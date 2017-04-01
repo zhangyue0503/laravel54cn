@@ -660,6 +660,7 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
 
     /**
      * Register a deferred provider and service.
+     * 注册延迟提供程序和服务。
      *
      * @param  string  $provider
      * @param  string  $service
@@ -670,6 +671,9 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
         // Once the provider that provides the deferred service has been registered we
         // will remove it from our local list of the deferred services with related
         // providers so that this container does not try to resolve it out again.
+        // 一旦提供延迟服务的提供商已注册我们
+        // 将从本地列表中删除与相关的延迟服务
+        // 提供程序使此容器不尝试再次解析它。
         if ($service) {
             unset($this->deferredServices[$service]);
         }

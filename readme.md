@@ -1,3 +1,9 @@
+#Laravel 阅读源码时加的中文注释
+
+- 水平有限，基本依靠百度翻译等工具
+- 自己理解的地方也会多写两句
+- 当前版本5.4.15
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
