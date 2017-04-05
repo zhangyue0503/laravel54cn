@@ -3,6 +3,7 @@
 - 水平有限，基本依靠百度翻译等工具
 - 自己理解的地方也会多写两句
 - 当前版本5.4.15
+- 水平很菜，有见解的可以直接写好注释提交代码一起学习
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
