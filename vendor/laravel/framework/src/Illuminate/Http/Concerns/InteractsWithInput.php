@@ -124,12 +124,15 @@ trait InteractsWithInput
     /**
      * Retrieve an input item from the request.
      *
+     * 从请求中检索输入项
+     *
      * @param  string  $key
      * @param  string|array|null  $default
      * @return string|array
      */
     public function input($key = null, $default = null)
     {
+        // 使用“点”符号从数组或对象中获取项
         return data_get(
             $this->getInputSource()->all() + $this->query->all(), $key, $default
         );

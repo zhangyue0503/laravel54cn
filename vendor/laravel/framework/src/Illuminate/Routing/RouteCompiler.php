@@ -16,6 +16,8 @@ class RouteCompiler
     /**
      * Create a new Route compiler instance.
      *
+     * 创建一个新的Route compiler实例
+     *
      * @param  \Illuminate\Routing\Route  $route
      * @return void
      */

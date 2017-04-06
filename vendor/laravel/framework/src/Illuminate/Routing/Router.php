@@ -25,12 +25,16 @@ class Router implements RegistrarContract, BindingRegistrar
     /**
      * The event dispatcher instance.
      *
+     * 事件调度实例
+     *
      * @var \Illuminate\Contracts\Events\Dispatcher
      */
     protected $events;
 
     /**
      * The IoC container instance.
+     *
+     * IoC容器实例
      *
      * @var \Illuminate\Container\Container
      */
@@ -488,6 +492,8 @@ class Router implements RegistrarContract, BindingRegistrar
     /**
      * Dispatch the request to the application.
      *
+     * 将请求发送到应用程序
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -501,6 +507,8 @@ class Router implements RegistrarContract, BindingRegistrar
     /**
      * Dispatch the request to a route and return the response.
      *
+     * 将请求发送到路由并返回响应
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return mixed
      */
@@ -509,36 +517,43 @@ class Router implements RegistrarContract, BindingRegistrar
         // First we will find a route that matches this request. We will also set the
         // route resolver on the request so middlewares assigned to the route will
         // receive access to this route instance for checking of the parameters.
-        $route = $this->findRoute($request);
-
+        //
+        // 首先，我们会找到一个符合这个要求的路由。我们也将要求设置路由解析，分配给路由中间件对参数检测接收访问此路径实例。
+        //
+        $route = $this->findRoute($request); // 查找给定请求相匹配的路由
+        // 设置路由回调解析器
         $request->setRouteResolver(function () use ($route) {
             return $route;
         });
-
+        // 触发事件并调用监听器
         $this->events->dispatch(new Events\RouteMatched($route, $request));
-
+        // 在堆栈“onion”实例中运行给定的路由
         $response = $this->runRouteWithinStack($route, $request);
-
+        // 返回 从给定值创建响应实例
         return $this->prepareResponse($request, $response);
     }
 
     /**
      * Find the route matching a given request.
      *
+     * 查找给定请求相匹配的路由
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Routing\Route
      */
     protected function findRoute($request)
     {
-        $this->current = $route = $this->routes->match($request);
+        $this->current = $route = $this->routes->match($request); //找到匹配给定请求的第一条路路由
 
-        $this->container->instance(Route::class, $route);
+        $this->container->instance(Route::class, $route); // IoC容器实例设置为Route
 
         return $route;
     }
 
     /**
      * Run the given route within a Stack "onion" instance.
+     *
+     * 在堆栈“onion”实例中运行给定的路由
      *
      * @param  \Illuminate\Routing\Route  $route
      * @param  \Illuminate\Http\Request  $request
@@ -548,7 +563,7 @@ class Router implements RegistrarContract, BindingRegistrar
     {
         $shouldSkipMiddleware = $this->container->bound('middleware.disable') &&
                                 $this->container->make('middleware.disable') === true;
-
+        // 用给定的解析类名收集给定路由的中间件
         $middleware = $shouldSkipMiddleware ? [] : $this->gatherRouteMiddleware($route);
 
         return (new Pipeline($this->container))
@@ -563,6 +578,8 @@ class Router implements RegistrarContract, BindingRegistrar
 
     /**
      * Gather the middleware for the given route with resolved class names.
+     *
+     * 用给定的解析类名收集给定路由的中间件
      *
      * @param  \Illuminate\Routing\Route  $route
      * @return array
@@ -590,19 +607,21 @@ class Router implements RegistrarContract, BindingRegistrar
     /**
      * Create a response instance from the given value.
      *
+     * 从给定值创建响应实例
+     *
      * @param  \Symfony\Component\HttpFoundation\Request  $request
      * @param  mixed  $response
      * @return \Illuminate\Http\Response
      */
     public function prepareResponse($request, $response)
     {
-        if ($response instanceof PsrResponseInterface) {
+        if ($response instanceof PsrResponseInterface) { // $response 是否属于PsrResponseInterface
             $response = (new HttpFoundationFactory)->createResponse($response);
-        } elseif (! $response instanceof SymfonyResponse) {
+        } elseif (! $response instanceof SymfonyResponse) { // $response 是否属于 SymfonyResopnse
             $response = new Response($response);
         }
 
-        return $response->prepare($request);
+        return $response->prepare($request); // 返回 Symfony\Component\HttpFoundation\Response::perpare() 在发送给客户端之前准备响应
     }
 
     /**

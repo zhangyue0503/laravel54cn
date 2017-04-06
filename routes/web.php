@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (\Illuminate\Http\Request $request) {
     return view('welcome');
+});
+
+Route::get('/aaa', function (\Illuminate\Http\Request $request) {
+    return "1111";
 });

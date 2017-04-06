@@ -18,6 +18,8 @@ abstract class Facade
     /**
      * The resolved object instances.
      *
+     * 解析过的对象实例
+     *
      * @var array
      */
     protected static $resolvedInstance;
@@ -161,6 +163,8 @@ abstract class Facade
 
     /**
      * Clear a resolved facade instance.
+     *
+     * 清除已经解析的facade实例
      *
      * @param  string  $name
      * @return void

@@ -17,6 +17,8 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 /**
  * Request represents an HTTP request.
  *
+ * HTTP请求代表请求
+ *
  * The methods dealing with URL accept / return a raw path (% encoded):
  *   * getBasePath
  *   * getBaseUrl
@@ -209,6 +211,8 @@ class Request
     /**
      * Constructor.
      *
+     * 构造函数
+     *
      * @param array           $query      The GET parameters
      * @param array           $request    The POST parameters
      * @param array           $attributes The request attributes (parameters parsed from the PATH_INFO, ...)
@@ -261,6 +265,8 @@ class Request
     /**
      * Creates a new request with values from PHP's super globals.
      *
+     * 从PHP的超级全局变量创建一个新的请求
+     *
      * @return static
      */
     public static function createFromGlobals()
@@ -268,6 +274,10 @@ class Request
         // With the php's bug #66606, the php's built-in web server
         // stores the Content-Type and Content-Length header values in
         // HTTP_CONTENT_TYPE and HTTP_CONTENT_LENGTH fields.
+        //
+        // 源于PHP的错误# 66606，PHP的内置网络服务器存储在HTTP_CONTENT_TYPE and HTTP_CONTENT_LENGTH 字段中的 Content-Type and Content-Length 值
+        // * PHP的错误# 66606:内容类型标头值应存放在content_type，但内置的Web服务器中存储在$_SERVER['HTTP_CONTENT_TYPE']，而没有$_SERVER['CONTENT_TYPE'] （这也可能会影响CONTENT_LENGTH）
+        //
         $server = $_SERVER;
         if ('cli-server' === PHP_SAPI) {
             if (array_key_exists('HTTP_CONTENT_LENGTH', $_SERVER)) {
@@ -278,13 +288,14 @@ class Request
             }
         }
 
+        //工厂方式创建request对象
         $request = self::createRequestFromFactory($_GET, $_POST, array(), $_COOKIE, $_FILES, $server);
-
+        // 如果CONTENT_TYPE是application/x-www-form-urlencoded，并且REQUEST_METHOD是put、delete、patch之一
         if (0 === strpos($request->headers->get('CONTENT_TYPE'), 'application/x-www-form-urlencoded')
             && in_array(strtoupper($request->server->get('REQUEST_METHOD', 'GET')), array('PUT', 'DELETE', 'PATCH'))
         ) {
             parse_str($request->getContent(), $data);
-            $request->request = new ParameterBag($data);
+            $request->request = new ParameterBag($data); // 根据参数创建ParameterBag对象赋给$request->request
         }
 
         return $request;
@@ -415,6 +426,8 @@ class Request
     /**
      * Clones a request and overrides some of its parameters.
      *
+     * 克隆一个请求并覆盖它的一些参数
+     *
      * @param array $query      The GET parameters
      * @param array $request    The POST parameters
      * @param array $attributes The request attributes (parameters parsed from the PATH_INFO, ...)
@@ -457,11 +470,12 @@ class Request
         $dup->method = null;
         $dup->format = null;
 
+        // 获取请求格式
         if (!$dup->get('_format') && $this->get('_format')) {
             $dup->attributes->set('_format', $this->get('_format'));
         }
-
         if (!$dup->getRequestFormat(null)) {
+            //设置请求的format格式
             $dup->setRequestFormat($this->getRequestFormat(null));
         }
 
@@ -678,13 +692,21 @@ class Request
     /**
      * Enables support for the _method request parameter to determine the intended HTTP method.
      *
+     * 可实现对_method请求参数来确定预期的HTTP方法的支持
+     *
      * Be warned that enabling this feature might lead to CSRF issues in your code.
+     * 注意，启用此功能可能会导致CSRF问题代码。
      * Check that you are using CSRF tokens when required.
+     * 检查是否正在使用CSRF令牌。
      * If the HTTP method parameter override is enabled, an html-form with method "POST" can be altered
      * and used to send a "PUT" or "DELETE" request via the _method request parameter.
+     * 如果HTTP方法参数重写启用HTML形式，方法的“post”是可以被改变的，用来让“put”或“delete”通过_method请求参数的要求。
+     *
      * If these methods are not protected against CSRF, this presents a possible vulnerability.
+     * 如果这些方法都不免受CSRF，这提出了一个可能的漏洞。
      *
      * The HTTP method can only be overridden when the real HTTP method is POST.
+     * HTTP方法只能在实际HTTP方法POST后被重写。
      */
     public static function enableHttpMethodParameterOverride()
     {
@@ -1189,6 +1211,8 @@ class Request
     /**
      * Returns the host name.
      *
+     * 返回主机名
+     *
      * This method can read the client host name from the "X-Forwarded-Host" header
      * when trusted proxies were set via "setTrustedProxies()".
      *
@@ -1378,11 +1402,15 @@ class Request
     /**
      * Gets the request format.
      *
+     * 获取请求格式
+     *
      * Here is the process to determine the format:
      *
-     *  * format defined by the user (with setRequestFormat())
-     *  * _format request attribute
-     *  * $default
+     * 这里是确定格式的过程：
+     *
+     *  * format defined by the user (with setRequestFormat()) 格式由用户定义的
+     *  * _format request attribute _format请求属性
+     *  * $default 默认参数
      *
      * @param string $default The default format
      *
@@ -1951,6 +1979,7 @@ class Request
 
     private static function createRequestFromFactory(array $query = array(), array $request = array(), array $attributes = array(), array $cookies = array(), array $files = array(), array $server = array(), $content = null)
     {
+        // 如果请求工厂已存在
         if (self::$requestFactory) {
             $request = call_user_func(self::$requestFactory, $query, $request, $attributes, $cookies, $files, $server, $content);
 
@@ -1960,7 +1989,7 @@ class Request
 
             return $request;
         }
-
+        //返回当前实例__construct
         return new static($query, $request, $attributes, $cookies, $files, $server, $content);
     }
 

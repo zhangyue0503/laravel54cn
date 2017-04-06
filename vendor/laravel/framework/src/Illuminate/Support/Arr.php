@@ -12,6 +12,8 @@ class Arr
     /**
      * Determine whether the given value is array accessible.
      *
+     * 确定给定值是否是可访问数组
+     *
      * @param  mixed  $value
      * @return bool
      */
@@ -39,6 +41,8 @@ class Arr
 
     /**
      * Collapse an array of arrays into a single array.
+     *
+     * 将数组数组折叠为单个数组
      *
      * @param  array  $array
      * @return array
@@ -110,6 +114,8 @@ class Arr
     /**
      * Determine if the given key exists in the provided array.
      *
+     * 确定给定的key是否存在于提供的数组中
+     *
      * @param  \ArrayAccess|array  $array
      * @param  string|int  $key
      * @return bool
@@ -125,6 +131,8 @@ class Arr
 
     /**
      * Return the first element in an array passing a given truth test.
+     *
+     * 通过给定的真值测试返回数组中的第一个元素
      *
      * @param  array  $array
      * @param  callable|null  $callback
@@ -238,6 +246,8 @@ class Arr
     /**
      * Get an item from an array using "dot" notation.
      *
+     * 使用“点”符号从数组中获取一个项
+     *
      * @param  \ArrayAccess|array  $array
      * @param  string  $key
      * @param  mixed   $default
@@ -245,7 +255,7 @@ class Arr
      */
     public static function get($array, $key, $default = null)
     {
-        if (! static::accessible($array)) {
+        if (! static::accessible($array)) { // 确定给定值是否是可访问数组
             return value($default);
         }
 
@@ -253,10 +263,10 @@ class Arr
             return $array;
         }
 
-        if (static::exists($array, $key)) {
+        if (static::exists($array, $key)) { // 确定$key在数组中是否存在
             return $array[$key];
         }
-
+        // 循环最终获取值
         foreach (explode('.', $key) as $segment) {
             if (static::accessible($array) && static::exists($array, $segment)) {
                 $array = $array[$segment];
@@ -340,6 +350,8 @@ class Arr
     /**
      * Pluck an array of values from an array.
      *
+     * 从数组中提取数组值
+     *
      * @param  array  $array
      * @param  string|array  $value
      * @param  string|array|null  $key
@@ -357,6 +369,9 @@ class Arr
             // If the key is "null", we will just append the value to the array and keep
             // looping. Otherwise we will key the array using the value of the key we
             // received from the developer. Then we'll return the final array form.
+            //
+            // 如果key是“null”，我们将值追加到数组并继续循环。否则，我们将使用从开发者接收的key的值来返回最终数组形式。
+            //
             if (is_null($key)) {
                 $results[] = $itemValue;
             } else {
@@ -371,6 +386,8 @@ class Arr
 
     /**
      * Explode the "value" and "key" arguments passed to "pluck".
+     *
+     * 将包含.的“value”和“key”拆分提取成多维数组
      *
      * @param  string|array  $value
      * @param  string|array|null  $key

@@ -50,17 +50,22 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     /**
      * Create a new Illuminate HTTP request from server variables.
      *
+     * 从服务器变量创建一个新的Illuminate HTTP请求
+     *
      * @return static
      */
-    public static function capture()
+    public static function capture() //捕获
     {
+        //设置Symfony允许请求参数重写
         static::enableHttpMethodParameterOverride();
-
+        //创建一个Illuminate请求通过Symfony请求实例
         return static::createFromBase(SymfonyRequest::createFromGlobals());
     }
 
     /**
      * Return the Request instance.
+     *
+     * 返回请求实例
      *
      * @return $this
      */
@@ -71,6 +76,8 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
 
     /**
      * Get the request method.
+     *
+     * 获取请求的方法
      *
      * @return string
      */
@@ -142,6 +149,8 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
 
     /**
      * Get the current encoded path info for the request.
+     *
+     * 获取请求的当前编码路径信息
      *
      * @return string
      */
@@ -305,6 +314,8 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     /**
      * Get the input source for the request.
      *
+     * 获取请求的输入源
+     *
      * @return \Symfony\Component\HttpFoundation\ParameterBag
      */
     protected function getInputSource()
@@ -319,6 +330,8 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     /**
      * Create an Illuminate request from a Symfony instance.
      *
+     * 从symfony实例创建一个Illuminate请求
+     *
      * @param  \Symfony\Component\HttpFoundation\Request  $request
      * @return \Illuminate\Http\Request
      */
@@ -328,8 +341,9 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
             return $request;
         }
 
-        $content = $request->content;
+        $content = $request->content;  // 保留content
 
+        //调用symfony中的方法，克隆一个请求并覆盖它的一些参数
         $request = (new static)->duplicate(
             $request->query->all(), $request->request->all(), $request->attributes->all(),
             $request->cookies->all(), $request->files->all(), $request->server->all()
@@ -337,6 +351,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
 
         $request->content = $content;
 
+        // 获取请求的输入源 get的$request->query,其他的$request->request
         $request->request = $request->getInputSource();
 
         return $request;
@@ -501,6 +516,8 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
 
     /**
      * Set the route resolver callback.
+     *
+     * 设置路由回调解析器
      *
      * @param  \Closure  $callback
      * @return $this

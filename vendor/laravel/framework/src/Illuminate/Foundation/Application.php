@@ -247,7 +247,7 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
 
         foreach ($bootstrappers as $bootstrapper) {
             $this['events']->fire('bootstrapping: '.$bootstrapper, [$this]);
-
+            //从容器中解析给定类型
             $this->make($bootstrapper)->bootstrap($this);
 
             $this['events']->fire('bootstrapped: '.$bootstrapper, [$this]);

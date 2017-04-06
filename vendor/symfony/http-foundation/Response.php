@@ -293,6 +293,8 @@ class Response
     /**
      * Prepares the Response before it is sent to the client.
      *
+     * 在发送给客户端之前准备响应
+     *
      * This method tweaks the Response to ensure that it is
      * compliant with RFC 2616. Most of the changes are based on
      * the Request that is "associated" with this Response.

@@ -97,6 +97,8 @@ class CompiledRoute implements \Serializable
     /**
      * Returns the regex.
      *
+     * 返回正则表达式
+     *
      * @return string The regex
      */
     public function getRegex()
@@ -106,6 +108,8 @@ class CompiledRoute implements \Serializable
 
     /**
      * Returns the host regex.
+     *
+     * 返回域的正则表达式
      *
      * @return string|null The host regex or null
      */

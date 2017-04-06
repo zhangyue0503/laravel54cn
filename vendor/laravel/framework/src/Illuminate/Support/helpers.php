@@ -398,6 +398,8 @@ if (! function_exists('data_get')) {
     /**
      * Get an item from an array or object using "dot" notation.
      *
+     * 使用“点”符号从数组或对象中获取项
+     *
      * @param  mixed   $target
      * @param  string|array  $key
      * @param  mixed   $default
@@ -409,26 +411,35 @@ if (! function_exists('data_get')) {
             return $target;
         }
 
+        // 如果包含点，拆成数组，如user.id
         $key = is_array($key) ? $key : explode('.', $key);
-
+        //循环第一个元素并删除
         while (! is_null($segment = array_shift($key))) {
-            if ($segment === '*') {
-                if ($target instanceof Collection) {
+
+            if ($segment === '*') { //如果是*
+                if ($target instanceof Collection) { //如果请求的数组是laravel集合对象
                     $target = $target->all();
-                } elseif (! is_array($target)) {
-                    return value($default);
+                } elseif (! is_array($target)) { //如果不是数组
+                    return value($default); //返回值
                 }
-
+                // Illuminate\Support\Arr，从数组中提取值，循环提取
                 $result = Arr::pluck($target, $key);
-
+                // 返回，如果$key中包含*，将提取出的值折叠为单个数组，否则直接返回结果值
                 return in_array('*', $key) ? Arr::collapse($result) : $result;
             }
 
+            /**
+             * 假设$key = user.id
+             * 原始$target = ['user'=>['id'=>'']]
+             * 第一次循环，$segment = user，$target = $target['user']，$target = ['id'=>'']
+             * 第二次循环，$segment = id，取到数据，$target = $target['user']
+             */
+            //如果 $target是可访问的数组 并且 $segment存在于$target中
             if (Arr::accessible($target) && Arr::exists($target, $segment)) {
-                $target = $target[$segment];
-            } elseif (is_object($target) && isset($target->{$segment})) {
+                $target = $target[$segment]; // $target变成第一级的数组
+            } elseif (is_object($target) && isset($target->{$segment})) { // $target是对象 并且 $segment存在于$target中
                 $target = $target->{$segment};
-            } else {
+            } else { // 否则返回默认值
                 return value($default);
             }
         }
@@ -917,11 +928,14 @@ if (! function_exists('value')) {
     /**
      * Return the default value of the given value.
      *
+     * 返回给定值的默认值
+     *
      * @param  mixed  $value
      * @return mixed
      */
     function value($value)
     {
+        //如果是闭包，返回执行的闭包，否则返回值
         return $value instanceof Closure ? $value() : $value;
     }
 }

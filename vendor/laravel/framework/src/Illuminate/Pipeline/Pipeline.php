@@ -12,12 +12,16 @@ class Pipeline implements PipelineContract
     /**
      * The container implementation.
      *
+     * 容器实现
+     *
      * @var \Illuminate\Contracts\Container\Container
      */
     protected $container;
 
     /**
      * The object being passed through the pipeline.
+     *
+     * 通过管道的对象
      *
      * @var mixed
      */
@@ -26,6 +30,8 @@ class Pipeline implements PipelineContract
     /**
      * The array of class pipes.
      *
+     * 管道类数组
+     *
      * @var array
      */
     protected $pipes = [];
@@ -33,12 +39,16 @@ class Pipeline implements PipelineContract
     /**
      * The method to call on each pipe.
      *
+     * 每个管道调用的方法
+     *
      * @var string
      */
     protected $method = 'handle';
 
     /**
      * Create a new class instance.
+     *
+     * 创建新的实例
      *
      * @param  \Illuminate\Contracts\Container\Container|null  $container
      * @return void
@@ -50,6 +60,8 @@ class Pipeline implements PipelineContract
 
     /**
      * Set the object being sent through the pipeline.
+     *
+     * 设置通过管道发送的对象
      *
      * @param  mixed  $passable
      * @return $this
@@ -63,6 +75,8 @@ class Pipeline implements PipelineContract
 
     /**
      * Set the array of pipes.
+     *
+     * 设置管道数组
      *
      * @param  array|mixed  $pipes
      * @return $this
@@ -89,6 +103,8 @@ class Pipeline implements PipelineContract
 
     /**
      * Run the pipeline with a final destination callback.
+     *
+     * 使用最终目标回调来运行管道
      *
      * @param  \Closure  $destination
      * @return mixed

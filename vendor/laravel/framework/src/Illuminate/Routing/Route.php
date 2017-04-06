@@ -149,6 +149,8 @@ class Route
     /**
      * Run the route action and return the response.
      *
+     * 运行路由操作并返回响应
+     *
      * @return mixed
      */
     public function run()
@@ -156,18 +158,20 @@ class Route
         $this->container = $this->container ?: new Container;
 
         try {
-            if ($this->isControllerAction()) {
-                return $this->runController();
+            if ($this->isControllerAction()) {  // 检查路由的动作是否为控制器
+                return $this->runController();  // 运行路由操作并返回响应，控制器方式
             }
 
-            return $this->runCallable();
-        } catch (HttpResponseException $e) {
+            return $this->runCallable(); // 运行路由操作并返回响应，闭包方式
+        } catch (HttpResponseException $e) { // HttpResponseException错误捕获
             return $e->getResponse();
         }
     }
 
     /**
      * Checks whether the route's action is a controller.
+     *
+     * 检查路由的动作是否为控制器
      *
      * @return bool
      */
@@ -178,6 +182,8 @@ class Route
 
     /**
      * Run the route action and return the response.
+     *
+     * 运行路由操作并返回响应，闭包方式
      *
      * @return mixed
      */
@@ -192,6 +198,8 @@ class Route
 
     /**
      * Run the route action and return the response.
+     *
+     * 运行路由操作并返回响应，控制器方式
      *
      * @return mixed
      *
@@ -243,13 +251,15 @@ class Route
     /**
      * Determine if the route matches given request.
      *
+     * 确定路由是否匹配给定的请求
+     *
      * @param  \Illuminate\Http\Request  $request
      * @param  bool  $includingMethod
      * @return bool
      */
     public function matches(Request $request, $includingMethod = true)
     {
-        $this->compileRoute();
+        $this->compileRoute(); // 编译路由为Symfony CompiledRoute实例
 
         foreach ($this->getValidators() as $validator) {
             if (! $includingMethod && $validator instanceof MethodValidator) {
@@ -267,6 +277,8 @@ class Route
     /**
      * Compile the route into a Symfony CompiledRoute instance.
      *
+     * 编译路由为Symfony CompiledRoute实例
+     *
      * @return void
      */
     protected function compileRoute()
@@ -281,16 +293,18 @@ class Route
     /**
      * Bind the route to a given request for execution.
      *
+     * 将路由绑定到给定的执行请求
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return $this
      */
     public function bind(Request $request)
     {
-        $this->compileRoute();
+        $this->compileRoute(); // 编译路由为Symfony CompiledRoute实例
 
-        $this->parameters = (new RouteParameterBinder($this))
-                        ->parameters($request);
-
+        $this->parameters = (new RouteParameterBinder($this)) //创建一个新的路由参数绑定实例
+                        ->parameters($request); //获取路由参数
+        // 返回自身
         return $this;
     }
 
@@ -361,6 +375,8 @@ class Route
     /**
      * Get the key / value list of parameters for the route.
      *
+     * 获取路由参数的键/值列表
+     *
      * @return array
      *
      * @throws \LogicException
@@ -377,6 +393,8 @@ class Route
     /**
      * Get the key / value list of parameters without null values.
      *
+     * 获取无空值参数的键/值列表。
+     *
      * @return array
      */
     public function parametersWithoutNulls()
@@ -389,6 +407,8 @@ class Route
     /**
      * Get all of the parameter names for the route.
      *
+     * 获取路由的所有参数名称
+     *
      * @return array
      */
     public function parameterNames()
@@ -396,12 +416,14 @@ class Route
         if (isset($this->parameterNames)) {
             return $this->parameterNames;
         }
-
+        //                              获取路由的参数名称
         return $this->parameterNames = $this->compileParameterNames();
     }
 
     /**
      * Get the parameter names for the route.
+     *
+     * 获取路由的参数名称
      *
      * @return array
      */
@@ -524,6 +546,8 @@ class Route
 
     /**
      * Get the domain defined for the route.
+     *
+     * 获取路由定义的域
      *
      * @return string|null
      */
@@ -740,6 +764,8 @@ class Route
     /**
      * Get the route validators for the instance.
      *
+     * 获取该实例的路由验证
+     *
      * @return array
      */
     public static function getValidators()
@@ -751,6 +777,9 @@ class Route
         // To match the route, we will use a chain of responsibility pattern with the
         // validator implementations. We will spin through each one making sure it
         // passes and then we will know if the route as a whole matches request.
+        //
+        // 路由匹配，我们将使用责任链模式实现验证。我们将通过每一个验证确保它们都通过，然后我们会知道整个路路由是否匹配请求。
+        //
         return static::$validators = [
             new UriValidator, new MethodValidator,
             new SchemeValidator, new HostValidator,

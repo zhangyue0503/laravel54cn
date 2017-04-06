@@ -16,12 +16,16 @@ class RouteCollection implements Countable, IteratorAggregate
     /**
      * An array of the routes keyed by method.
      *
+     * 用方法控制的路由数组
+     *
      * @var array
      */
     protected $routes = [];
 
     /**
      * An flattened array of all of the routes.
+     *
+     * 所有路由的平级数组
      *
      * @var array
      */
@@ -131,6 +135,8 @@ class RouteCollection implements Countable, IteratorAggregate
     /**
      * Find the first route matching a given request.
      *
+     * 找到匹配给定请求的第一条路路由
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Routing\Route
      *
@@ -138,20 +144,26 @@ class RouteCollection implements Countable, IteratorAggregate
      */
     public function match(Request $request)
     {
-        $routes = $this->get($request->getMethod());
+        $routes = $this->get($request->getMethod()); // 通过方法获取集合中的路由
 
         // First, we will see if we can find a matching route for this current request
         // method. If we can, great, we can just return it so that it can be called
         // by the consumer. Otherwise we will check for routes with another verb.
-        $route = $this->matchAgainstRoutes($routes, $request);
+        //
+        // 首先，我们将看看是否可以找到当前请求方法的匹配路径。如果可以，太棒了，我们可以返回它，以便它可以用户调用 。否则，我们将检查其他路由动词。
+        //
+        $route = $this->matchAgainstRoutes($routes, $request); // 确定数组中的路由是否与请求匹配，并返回路由
 
         if (! is_null($route)) {
-            return $route->bind($request);
+            return $route->bind($request); //编译路由为Symfony CompiledRoute实例
         }
 
         // If no route was found we will now check if a matching route is specified by
         // another HTTP verb. If it is we will need to throw a MethodNotAllowed and
         // inform the user agent of which HTTP verb it should use for this route.
+        //
+        // 如果没有找到路由，我们将检查是否由另一个HTTP谓词指定匹配路径。如果我们需要把MethodNotAllowed告知用户代理的HTTP动词应该用这条路线。
+        //
         $others = $this->checkForAlternateVerbs($request);
 
         if (count($others) > 0) {
@@ -164,6 +176,8 @@ class RouteCollection implements Countable, IteratorAggregate
     /**
      * Determine if a route in the array matches the request.
      *
+     * 确定数组中的路由是否与请求匹配
+     *
      * @param  array  $routes
      * @param  \Illuminate\http\Request  $request
      * @param  bool  $includingMethod
@@ -171,8 +185,9 @@ class RouteCollection implements Countable, IteratorAggregate
      */
     protected function matchAgainstRoutes(array $routes, $request, $includingMethod = true)
     {
+        // 通过给定的真值测试返回数组中的第一个元素
         return Arr::first($routes, function ($value) use ($request, $includingMethod) {
-            return $value->matches($request, $includingMethod);
+            return $value->matches($request, $includingMethod); //Illuminate\Routing\Route::matches()
         });
     }
 
@@ -236,11 +251,14 @@ class RouteCollection implements Countable, IteratorAggregate
     /**
      * Get routes from the collection by method.
      *
+     * 通过方法获取集合中的路由
+     *
      * @param  string|null  $method
      * @return array
      */
     public function get($method = null)
     {
+        // 返回 如果$method是空，返回所有平级路由数组，否则，从方法命名的路由数组中返回指定的值
         return is_null($method) ? $this->getRoutes() : Arr::get($this->routes, $method, []);
     }
 
@@ -280,11 +298,13 @@ class RouteCollection implements Countable, IteratorAggregate
     /**
      * Get all of the routes in the collection.
      *
+     * 获取集合中的所有路由
+     *
      * @return array
      */
     public function getRoutes()
     {
-        return array_values($this->allRoutes);
+        return array_values($this->allRoutes); //返回数组的所有值（非键名）：
     }
 
     /**

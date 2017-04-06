@@ -59,10 +59,10 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 |
 */
 
-$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
-
+$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class); // App\Http\Kernel类被容器实现
+//处理传入的HTTP请求
 $response = $kernel->handle(
-    $request = Illuminate\Http\Request::capture()
+    $request = Illuminate\Http\Request::capture() //
 );
 
 $response->send();

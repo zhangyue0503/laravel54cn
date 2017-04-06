@@ -469,6 +469,8 @@ if (! function_exists('event')) {
     /**
      * Dispatch an event and call the listeners.
      *
+     * 调度事件并调用侦听器
+     *
      * @param  string|object  $event
      * @param  mixed  $payload
      * @param  bool  $halt
@@ -476,7 +478,7 @@ if (! function_exists('event')) {
      */
     function event(...$args)
     {
-        return app('events')->dispatch(...$args);
+        return app('events')->dispatch(...$args); //调用app的events
     }
 }
 

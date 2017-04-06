@@ -17,6 +17,8 @@ class Kernel implements KernelContract
     /**
      * The application implementation.
      *
+     * 应用实现
+     *
      * @var \Illuminate\Contracts\Foundation\Application
      */
     protected $app;
@@ -24,12 +26,16 @@ class Kernel implements KernelContract
     /**
      * The router instance.
      *
+     * 路由器实例
+     *
      * @var \Illuminate\Routing\Router
      */
     protected $router;
 
     /**
      * The bootstrap classes for the application.
+     *
+     * 应用程序的引导类
      *
      * @var array
      */
@@ -44,6 +50,8 @@ class Kernel implements KernelContract
 
     /**
      * The application's middleware stack.
+     *
+     * 应用程序中间件堆栈
      *
      * @var array
      */
@@ -105,73 +113,82 @@ class Kernel implements KernelContract
     /**
      * Handle an incoming HTTP request.
      *
+     * 处理传入的HTTP请求
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function handle($request)
     {
         try {
-            $request->enableHttpMethodParameterOverride();
+            $request->enableHttpMethodParameterOverride(); //可实现对_method请求参数来确定预期的HTTP方法的支持
 
-            $response = $this->sendRequestThroughRouter($request);
+            $response = $this->sendRequestThroughRouter($request); // 通过中间件/路由器发送给定的请求
         } catch (Exception $e) {
-            $this->reportException($e);
+            $this->reportException($e); //向异常处理程序报告异常
 
-            $response = $this->renderException($request, $e);
+            $response = $this->renderException($request, $e); //将异常渲染到响应
         } catch (Throwable $e) {
-            $this->reportException($e = new FatalThrowableError($e));
+            $this->reportException($e = new FatalThrowableError($e)); //向异常处理程序报告异常
 
-            $response = $this->renderException($request, $e);
+            $response = $this->renderException($request, $e); //将异常渲染到响应
         }
-
+        // 调度事件并调用监听器，监听Requesthandled，Illuminate\Events\Dispatcher::dispatch
         event(new Events\RequestHandled($request, $response));
 
+        // 返回响应
         return $response;
     }
 
     /**
      * Send the given request through the middleware / router.
      *
+     * 通过中间件/路由器发送给定的请求
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     protected function sendRequestThroughRouter($request)
     {
-        $this->app->instance('request', $request);
+        $this->app->instance('request', $request); // 在容器中注册request实例
 
-        Facade::clearResolvedInstance('request');
+        Facade::clearResolvedInstance('request'); // 清除已经解析的facade实例
 
-        $this->bootstrap();
+        $this->bootstrap(); // 引导HTTP请求的应用程序
 
-        return (new Pipeline($this->app))
-                    ->send($request)
-                    ->through($this->app->shouldSkipMiddleware() ? [] : $this->middleware)
-                    ->then($this->dispatchToRouter());
+        return (new Pipeline($this->app)) //创建管道对象
+                    ->send($request) // 设置通过管道发送的对象
+                    ->through($this->app->shouldSkipMiddleware() ? [] : $this->middleware) // 设置管道数组,确定应用程序的中间件是否被禁用，禁用了传[]，未禁用传中间件
+                    ->then($this->dispatchToRouter()); // 使用最终目标回调来运行管道，dispatchToRouter()获取路由调度器回调
     }
 
     /**
      * Bootstrap the application for HTTP requests.
      *
+     * 引导HTTP请求的应用程序
+     *
      * @return void
      */
     public function bootstrap()
     {
-        if (! $this->app->hasBeenBootstrapped()) {
-            $this->app->bootstrapWith($this->bootstrappers());
+        if (! $this->app->hasBeenBootstrapped()) { // 确定应用程序是否已经引导 Illuminate\Foundation\Application::hasBeenBootstrapped()
+            $this->app->bootstrapWith($this->bootstrappers()); //运行给定的引导类数组 Illuminate\Foundation\Application::bootstrapWith()
         }
     }
 
     /**
      * Get the route dispatcher callback.
      *
+     * 获取路由调度器回调
+     *
      * @return \Closure
      */
     protected function dispatchToRouter()
     {
         return function ($request) {
-            $this->app->instance('request', $request);
+            $this->app->instance('request', $request); // 在容器中注册request实例
 
-            return $this->router->dispatch($request);
+            return $this->router->dispatch($request); // Illuminate\Routing\Router::dispatch()
         };
     }
 
@@ -294,6 +311,8 @@ class Kernel implements KernelContract
     /**
      * Get the bootstrap classes for the application.
      *
+     * 获取应用程序的引导类
+     *
      * @return array
      */
     protected function bootstrappers()
@@ -303,6 +322,8 @@ class Kernel implements KernelContract
 
     /**
      * Report the exception to the exception handler.
+     *
+     * 向异常处理程序报告异常
      *
      * @param  \Exception  $e
      * @return void
@@ -314,6 +335,8 @@ class Kernel implements KernelContract
 
     /**
      * Render the exception to a response.
+     *
+     * 将异常渲染到响应
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Exception  $e

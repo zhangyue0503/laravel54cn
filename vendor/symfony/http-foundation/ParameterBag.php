@@ -21,12 +21,16 @@ class ParameterBag implements \IteratorAggregate, \Countable
     /**
      * Parameter storage.
      *
+     * 参数数组
+     *
      * @var array
      */
     protected $parameters;
 
     /**
      * Constructor.
+     *
+     * 构造函数
      *
      * @param array $parameters An array of parameters
      */
@@ -38,6 +42,8 @@ class ParameterBag implements \IteratorAggregate, \Countable
     /**
      * Returns the parameters.
      *
+     * 返回所有参数数组
+     *
      * @return array An array of parameters
      */
     public function all()
@@ -47,6 +53,8 @@ class ParameterBag implements \IteratorAggregate, \Countable
 
     /**
      * Returns the parameter keys.
+     *
+     * 返回所有参数数组的key
      *
      * @return array An array of parameter keys
      */
@@ -58,6 +66,8 @@ class ParameterBag implements \IteratorAggregate, \Countable
     /**
      * Replaces the current parameters by a new set.
      *
+     * 替换参数数组
+     *
      * @param array $parameters An array of parameters
      */
     public function replace(array $parameters = array())
@@ -68,6 +78,8 @@ class ParameterBag implements \IteratorAggregate, \Countable
     /**
      * Adds parameters.
      *
+     * 添加参数数组
+     *
      * @param array $parameters An array of parameters
      */
     public function add(array $parameters = array())
@@ -77,6 +89,8 @@ class ParameterBag implements \IteratorAggregate, \Countable
 
     /**
      * Returns a parameter by name.
+     *
+     * 返回参数通过key名
      *
      * @param string $key     The key
      * @param mixed  $default The default value if the parameter key does not exist
@@ -91,6 +105,8 @@ class ParameterBag implements \IteratorAggregate, \Countable
     /**
      * Sets a parameter by name.
      *
+     * 设置参数通过key名
+     *
      * @param string $key   The key
      * @param mixed  $value The value
      */
@@ -101,6 +117,8 @@ class ParameterBag implements \IteratorAggregate, \Countable
 
     /**
      * Returns true if the parameter is defined.
+     *
+     * 返回参数key是否存在
      *
      * @param string $key The key
      *
@@ -114,6 +132,8 @@ class ParameterBag implements \IteratorAggregate, \Countable
     /**
      * Removes a parameter.
      *
+     * 删除指定的参数
+     *
      * @param string $key The key
      */
     public function remove($key)
@@ -123,6 +143,8 @@ class ParameterBag implements \IteratorAggregate, \Countable
 
     /**
      * Returns the alphabetic characters of the parameter value.
+     *
+     * 返回参数值的字母字符
      *
      * @param string $key     The parameter key
      * @param string $default The default value if the parameter key does not exist
@@ -137,6 +159,8 @@ class ParameterBag implements \IteratorAggregate, \Countable
     /**
      * Returns the alphabetic characters and digits of the parameter value.
      *
+     * 返回参数值的字母字符和数字
+     *
      * @param string $key     The parameter key
      * @param string $default The default value if the parameter key does not exist
      *
@@ -149,6 +173,8 @@ class ParameterBag implements \IteratorAggregate, \Countable
 
     /**
      * Returns the digits of the parameter value.
+     *
+     * 返回参数值的数字
      *
      * @param string $key     The parameter key
      * @param string $default The default value if the parameter key does not exist
@@ -164,6 +190,8 @@ class ParameterBag implements \IteratorAggregate, \Countable
     /**
      * Returns the parameter value converted to integer.
      *
+     * 返回转换为整数的参数值
+     *
      * @param string $key     The parameter key
      * @param int    $default The default value if the parameter key does not exist
      *
@@ -177,6 +205,8 @@ class ParameterBag implements \IteratorAggregate, \Countable
     /**
      * Returns the parameter value converted to boolean.
      *
+     * 返回转换为布尔值的参数值
+     *
      * @param string $key     The parameter key
      * @param mixed  $default The default value if the parameter key does not exist
      *
@@ -189,6 +219,8 @@ class ParameterBag implements \IteratorAggregate, \Countable
 
     /**
      * Filter key.
+     *
+     * 过滤key
      *
      * @param string $key     Key
      * @param mixed  $default Default = null
@@ -204,11 +236,13 @@ class ParameterBag implements \IteratorAggregate, \Countable
         $value = $this->get($key, $default);
 
         // Always turn $options into an array - this allows filter_var option shortcuts.
+        // 为数组添加filter_var检查
         if (!is_array($options) && $options) {
             $options = array('flags' => $options);
         }
 
         // Add a convenience check for arrays.
+        //为数组添加FILTER_REQUIRE_ARRAY检查
         if (is_array($value) && !isset($options['flags'])) {
             $options['flags'] = FILTER_REQUIRE_ARRAY;
         }
@@ -219,6 +253,8 @@ class ParameterBag implements \IteratorAggregate, \Countable
     /**
      * Returns an iterator for parameters.
      *
+     * 返回参数的迭代器
+     *
      * @return \ArrayIterator An \ArrayIterator instance
      */
     public function getIterator()
@@ -228,6 +264,8 @@ class ParameterBag implements \IteratorAggregate, \Countable
 
     /**
      * Returns the number of parameters.
+     *
+     * 返回参数的个数
      *
      * @return int The number of parameters
      */

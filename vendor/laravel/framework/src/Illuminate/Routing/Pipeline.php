@@ -13,7 +13,12 @@ use Symfony\Component\Debug\Exception\FatalThrowableError;
 /**
  * This extended pipeline catches any exceptions that occur during each slice.
  *
+ * 这个扩展的管道捕捉任何异常发生在每个切片
+ *
  * The exceptions are converted to HTTP responses for proper middleware handling.
+ *
+ * 异常被转换为HTTP响应，以便处理适当的中间件
+ *
  */
 class Pipeline extends BasePipeline
 {
