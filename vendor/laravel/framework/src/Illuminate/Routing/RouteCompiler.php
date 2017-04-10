@@ -4,10 +4,13 @@ namespace Illuminate\Routing;
 
 use Symfony\Component\Routing\Route as SymfonyRoute;
 
+//     路由  编译
 class RouteCompiler
 {
     /**
      * The route instance.
+     *
+     * 路由实例
      *
      * @var \Illuminate\Routing\Route
      */
@@ -29,21 +32,25 @@ class RouteCompiler
     /**
      * Compile the route.
      *
+     * 编译路由
+     *
      * @return \Symfony\Component\Routing\CompiledRoute
      */
     public function compile()
     {
-        $optionals = $this->getOptionalParameters();
-
+        $optionals = $this->getOptionalParameters(); // 获取路由的可选参数
+        //                                              与路由关联的URI
         $uri = preg_replace('/\{(\w+?)\?\}/', '{$1}', $this->route->uri());
 
         return (
             new SymfonyRoute($uri, $optionals, $this->route->wheres, [], $this->route->domain() ?: '')
-        )->compile();
+        )->compile(); //返回 编译的SymfonyRoute
     }
 
     /**
      * Get the optional parameters for the route.
+     *
+     * 获取路由的可选参数
      *
      * @return array
      */

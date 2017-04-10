@@ -22,12 +22,16 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     /**
      * The decoded JSON content for the request.
      *
+     * 请求的解码JSON内容
+     *
      * @var string
      */
     protected $json;
 
     /**
      * All of the converted files for the request.
+     *
+     * 请求的所有转换文件
      *
      * @var array
      */
@@ -36,12 +40,16 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     /**
      * The user resolver callback.
      *
+     * 用户解析器回调
+     *
      * @var \Closure
      */
     protected $userResolver;
 
     /**
      * The route resolver callback.
+     *
+     * 路由解析器回调
      *
      * @var \Closure
      */
@@ -89,6 +97,8 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     /**
      * Get the root URL for the application.
      *
+     * 获取应用程序的根URL
+     *
      * @return string
      */
     public function root()
@@ -99,22 +109,27 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     /**
      * Get the URL (no query string) for the request.
      *
+     * 从请求获取URL（无查询字符串）
+     *
      * @return string
      */
     public function url()
     {
+        //                                      为请求生成一个标准化URI（URL）
         return rtrim(preg_replace('/\?.*/', '', $this->getUri()), '/');
     }
 
     /**
      * Get the full URL for the request.
      *
+     * 从请求获取完整的URL
+     *
      * @return string
      */
     public function fullUrl()
     {
-        $query = $this->getQueryString();
-
+        $query = $this->getQueryString(); //为请求生成标准化查询字符串
+        //           返回执行此请求的根URL  返回与被执行脚本相对应的路径
         $question = $this->getBaseUrl().$this->getPathInfo() == '/' ? '/?' : '?';
 
         return $query ? $this->url().$question.$query : $this->url();
@@ -123,11 +138,14 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     /**
      * Get the full URL for the request with the added query string parameters.
      *
+     * 使用添加的查询字符串参数获取请求的完整URL
+     *
      * @param  array  $query
      * @return string
      */
     public function fullUrlWithQuery(array $query)
     {
+        //           返回执行此请求的根URL  返回与被执行脚本相对应的路径
         $question = $this->getBaseUrl().$this->getPathInfo() == '/' ? '/?' : '?';
 
         return count($this->query()) > 0
@@ -138,10 +156,13 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     /**
      * Get the current path info for the request.
      *
+     * 获取请求的当前路径信息
+     *
      * @return string
      */
     public function path()
     {
+        //                返回与被执行脚本相对应的路径
         $pattern = trim($this->getPathInfo(), '/');
 
         return $pattern == '' ? '/' : $pattern;
@@ -156,6 +177,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      */
     public function decodedPath()
     {
+        //  从 获取请求的当前路径信息 专用格式字符串还原成普通字符串
         return rawurldecode($this->path());
     }
 

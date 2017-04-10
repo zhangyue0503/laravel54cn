@@ -22,12 +22,16 @@ class Route
     /**
      * The URI pattern the route responds to.
      *
+     * 路由响应的URI模式
+     *
      * @var string
      */
     public $uri;
 
     /**
      * The HTTP methods the route responds to.
+     *
+     * 路由响应的HTTP方法
      *
      * @var array
      */
@@ -36,12 +40,16 @@ class Route
     /**
      * The route action array.
      *
+     * 路由动作数组
+     *
      * @var array
      */
     public $action;
 
     /**
      * The controller instance.
+     *
+     * 控制器实例
      *
      * @var mixed
      */
@@ -50,12 +58,16 @@ class Route
     /**
      * The default values for the route.
      *
+     * 路由的默认值
+     *
      * @var array
      */
     public $defaults = [];
 
     /**
      * The regular expression requirements.
+     *
+     * 所需的正则表达式
      *
      * @var array
      */
@@ -64,12 +76,16 @@ class Route
     /**
      * The array of matched parameters.
      *
+     * 匹配参数数组
+     *
      * @var array
      */
     public $parameters;
 
     /**
      * The parameter names for the route.
+     *
+     * 路由的参数名称
      *
      * @var array|null
      */
@@ -78,12 +94,16 @@ class Route
     /**
      * The computed gathered middleware.
      *
+     * 计算聚集中间件
+     *
      * @var array|null
      */
     public $computedMiddleware;
 
     /**
      * The compiled version of the route.
+     *
+     * 路由的编译版本
      *
      * @var \Symfony\Component\Routing\CompiledRoute
      */
@@ -92,12 +112,16 @@ class Route
     /**
      * The router instance used by the route.
      *
+     * 路由器使用的路由实例
+     *
      * @var \Illuminate\Routing\Router
      */
     protected $router;
 
     /**
      * The container instance used by the route.
+     *
+     * 路由使用的容器实例
      *
      * @var \Illuminate\Container\Container
      */
@@ -106,12 +130,16 @@ class Route
     /**
      * The validators used by the routes.
      *
+     * 路由使用的验证器
+     *
      * @var array
      */
     public static $validators;
 
     /**
      * Create a new Route instance.
+     *
+     * 创建一个新的路由实例
      *
      * @param  array|string  $methods
      * @param  string  $uri
@@ -122,19 +150,21 @@ class Route
     {
         $this->uri = $uri;
         $this->methods = (array) $methods;
-        $this->action = $this->parseAction($action);
+        $this->action = $this->parseAction($action); // 将路由动作解析为标准数组
 
         if (in_array('GET', $this->methods) && ! in_array('HEAD', $this->methods)) {
             $this->methods[] = 'HEAD';
         }
-
+        //如果路由操作有前缀
         if (isset($this->action['prefix'])) {
-            $this->prefix($this->action['prefix']);
+            $this->prefix($this->action['prefix']);  // 向路由URI添加前缀
         }
     }
 
     /**
      * Parse the route action into a standard array.
+     *
+     * 将路由动作解析为标准数组
      *
      * @param  callable|array|null  $action
      * @return array
@@ -143,7 +173,7 @@ class Route
      */
     protected function parseAction($action)
     {
-        return RouteAction::parse($this->uri, $action);
+        return RouteAction::parse($this->uri, $action); // 将给定操作解析为数组
     }
 
     /**
@@ -155,7 +185,7 @@ class Route
      */
     public function run()
     {
-        $this->container = $this->container ?: new Container;
+        $this->container = $this->container ?: new Container;  //获取容器
 
         try {
             if ($this->isControllerAction()) {  // 检查路由的动作是否为控制器
@@ -215,6 +245,8 @@ class Route
     /**
      * Get the controller instance for the route.
      *
+     * 获取路由使用的控制器实例
+     *
      * @return mixed
      */
     public function getController()
@@ -231,6 +263,8 @@ class Route
     /**
      * Get the controller method used for the route.
      *
+     * 获取路由使用的控制器方法
+     *
      * @return string
      */
     protected function getControllerMethod()
@@ -241,11 +275,13 @@ class Route
     /**
      * Parse the controller.
      *
+     * 解析控制器
+     *
      * @return array
      */
     protected function parseControllerCallback()
     {
-        return Str::parseCallback($this->action['uses']);
+        return Str::parseCallback($this->action['uses']); // 解析 类@方法 类型回调到类和方法
     }
 
     /**
@@ -261,12 +297,12 @@ class Route
     {
         $this->compileRoute(); // 编译路由为Symfony CompiledRoute实例
 
-        foreach ($this->getValidators() as $validator) {
+        foreach ($this->getValidators() as $validator) { // 获取该实例的路由验证
             if (! $includingMethod && $validator instanceof MethodValidator) {
                 continue;
             }
 
-            if (! $validator->matches($this, $request)) {
+            if (! $validator->matches($this, $request)) { //匹配请求
                 return false;
             }
         }
@@ -284,10 +320,10 @@ class Route
     protected function compileRoute()
     {
         if (! $this->compiled) {
-            $this->compiled = (new RouteCompiler($this))->compile();
+            $this->compiled = (new RouteCompiler($this))->compile();  //编译路由
         }
 
-        return $this->compiled;
+        return $this->compiled; // 返回 路由的编译版本
     }
 
     /**
@@ -311,6 +347,8 @@ class Route
     /**
      * Determine if the route has parameters.
      *
+     * 确定路由是否有参数
+     *
      * @return bool
      */
     public function hasParameters()
@@ -320,6 +358,8 @@ class Route
 
     /**
      * Determine a given parameter exists from the route.
+     *
+     * 确定路由是否存在的给定参数
      *
      * @param  string $name
      * @return bool
@@ -336,6 +376,8 @@ class Route
     /**
      * Get a given parameter from the route.
      *
+     * 从路由中得到给定的参数
+     *
      * @param  string  $name
      * @param  mixed   $default
      * @return string|object
@@ -347,6 +389,8 @@ class Route
 
     /**
      * Set a parameter to the given value.
+     *
+     * 为给定值设置参数
      *
      * @param  string  $name
      * @param  mixed   $value
@@ -361,6 +405,8 @@ class Route
 
     /**
      * Unset a parameter on the route if it is set.
+     *
+     * 取消设置路径上的一个参数，如果该参数已设置
      *
      * @param  string  $name
      * @return void
@@ -439,16 +485,20 @@ class Route
     /**
      * Get the parameters that are listed in the route / controller signature.
      *
+     * 获取路由/控制器签名中列出的参数
+     *
      * @param  string|null  $subClass
      * @return array
      */
     public function signatureParameters($subClass = null)
     {
-        return RouteSignatureParameters::fromAction($this->action, $subClass);
+        return RouteSignatureParameters::fromAction($this->action, $subClass); // 返回 提取路由动作的签名参数
     }
 
     /**
      * Set a default value for the route.
+     *
+     * 设置路由的默认值
      *
      * @param  string  $key
      * @param  mixed  $value
@@ -463,6 +513,8 @@ class Route
 
     /**
      * Set a regular expression requirement on the route.
+     *
+     * 设置路由上要求的正则表达式
      *
      * @param  array|string  $name
      * @param  string  $expression
@@ -480,6 +532,8 @@ class Route
     /**
      * Parse arguments to the where method into an array.
      *
+     * 将参数解析到数组中的方法
+     *
      * @param  array|string  $name
      * @param  string  $expression
      * @return array
@@ -491,6 +545,8 @@ class Route
 
     /**
      * Set a list of regular expression requirements on the route.
+     *
+     * 设置路由所要求的正则表达式
      *
      * @param  array  $wheres
      * @return $this
@@ -507,6 +563,8 @@ class Route
     /**
      * Get the HTTP verbs the route responds to.
      *
+     * 获取路由响应的HTTP请求method
+     *
      * @return array
      */
     public function methods()
@@ -516,6 +574,8 @@ class Route
 
     /**
      * Determine if the route only responds to HTTP requests.
+     *
+     * 确定路由是否只响应HTTP请求
      *
      * @return bool
      */
@@ -527,6 +587,8 @@ class Route
     /**
      * Determine if the route only responds to HTTPS requests.
      *
+     * 确定路由是否只响应HTTPS请求
+     *
      * @return bool
      */
     public function httpsOnly()
@@ -536,6 +598,8 @@ class Route
 
     /**
      * Determine if the route only responds to HTTPS requests.
+     *
+     * 确定路由是否只响应HTTPS请求
      *
      * @return bool
      */
@@ -553,12 +617,15 @@ class Route
      */
     public function domain()
     {
+        // 如果$action['domain']存在，返回过滤掉协议头的domain，否则返回null
         return isset($this->action['domain'])
                 ? str_replace(['http://', 'https://'], '', $this->action['domain']) : null;
     }
 
     /**
      * Get the prefix of the route instance.
+     *
+     * 获取路由实例的前缀
      *
      * @return string
      */
@@ -569,6 +636,8 @@ class Route
 
     /**
      * Add a prefix to the route URI.
+     *
+     * 向路由URI添加前缀
      *
      * @param  string  $prefix
      * @return $this
@@ -585,6 +654,8 @@ class Route
     /**
      * Get the URI associated with the route.
      *
+     * 获取与路由关联的URI
+     *
      * @return string
      */
     public function uri()
@@ -594,6 +665,8 @@ class Route
 
     /**
      * Set the URI that the route responds to.
+     *
+     * 设置路由响应的URI
      *
      * @param  string  $uri
      * @return $this
@@ -608,6 +681,8 @@ class Route
     /**
      * Get the name of the route instance.
      *
+     * 获取路由实例的名称
+     *
      * @return string
      */
     public function getName()
@@ -617,6 +692,8 @@ class Route
 
     /**
      * Add or change the route name.
+     *
+     * 添加或修改路由名称
      *
      * @param  string  $name
      * @return $this
@@ -631,13 +708,16 @@ class Route
     /**
      * Set the handler for the route.
      *
+     * 设置路由处理程序
+     *
      * @param  \Closure|string  $action
      * @return $this
      */
     public function uses($action)
     {
+        //          如果$action是字符串   解析“uses”方法的基于字符串的操作
         $action = is_string($action) ? $this->addGroupNamespaceToStringUses($action) : $action;
-
+        // 返回 设置路由的动作数组 合并数组 $action 将路由动作解析为标准数组的数组
         return $this->setAction(array_merge($this->action, $this->parseAction([
             'uses' => $action,
             'controller' => $action,
@@ -647,12 +727,14 @@ class Route
     /**
      * Parse a string based action for the "uses" fluent method.
      *
+     * 解析“uses”方法的基于字符串的操作
+     *
      * @param  string  $action
      * @return string
      */
     protected function addGroupNamespaceToStringUses($action)
     {
-        $groupStack = last($this->router->getGroupStack());
+        $groupStack = last($this->router->getGroupStack()); // 获取路由器的当前组堆栈
 
         if (isset($groupStack['namespace']) && strpos($action, '\\') !== 0) {
             return $groupStack['namespace'].'\\'.$action;
@@ -664,15 +746,20 @@ class Route
     /**
      * Get the action name for the route.
      *
+     * 获取路由的action名称
+     *
      * @return string
      */
     public function getActionName()
     {
+        //      如果存在控制器action                  返回控制器action                 闭包
         return isset($this->action['controller']) ? $this->action['controller'] : 'Closure';
     }
 
     /**
      * Get the method name of the route action.
+     *
+     * 获取路由action的方法名称
      *
      * @return string
      */
@@ -684,6 +771,8 @@ class Route
     /**
      * Get the action array for the route.
      *
+     * 获取路由的动作数组
+     *
      * @return array
      */
     public function getAction()
@@ -693,6 +782,8 @@ class Route
 
     /**
      * Set the action array for the route.
+     *
+     * 设置路由的动作数组
      *
      * @param  array  $action
      * @return $this
@@ -707,16 +798,18 @@ class Route
     /**
      * Get all middleware, including the ones from the controller.
      *
+     * 获取所有的中间件，包括从控制器中定义的
+     *
      * @return array
      */
     public function gatherMiddleware()
     {
-        if (! is_null($this->computedMiddleware)) {
+        if (! is_null($this->computedMiddleware)) {     //计算聚集中间件不为空
             return $this->computedMiddleware;
         }
 
         $this->computedMiddleware = [];
-
+        //返回 合并且移除重复值的数组，合并路由中间件和控制器中间件
         return $this->computedMiddleware = array_unique(array_merge(
             $this->middleware(), $this->controllerMiddleware()
         ), SORT_REGULAR);
@@ -724,6 +817,8 @@ class Route
 
     /**
      * Get or set the middlewares attached to the route.
+     *
+     * 获取或设置附加到路由的中间件
      *
      * @param  array|string|null $middleware
      * @return $this|array
@@ -748,16 +843,18 @@ class Route
     /**
      * Get the middleware for the route's controller.
      *
+     * 获取路由控制器的中间件
+     *
      * @return array
      */
     public function controllerMiddleware()
     {
-        if (! $this->isControllerAction()) {
+        if (! $this->isControllerAction()) { // 检查路由的动作是否为控制器
             return [];
         }
 
-        return ControllerDispatcher::getMiddleware(
-            $this->getController(), $this->getControllerMethod()
+        return ControllerDispatcher::getMiddleware(   // 从控制器实例获取中间件
+            $this->getController(), $this->getControllerMethod()     //路由使用的控制器实例,路由使用的控制器方法
         );
     }
 
@@ -789,6 +886,8 @@ class Route
     /**
      * Get the compiled version of the route.
      *
+     * 获取编译后的路由版本
+     *
      * @return \Symfony\Component\Routing\CompiledRoute
      */
     public function getCompiled()
@@ -798,6 +897,8 @@ class Route
 
     /**
      * Set the router instance on the route.
+     *
+     * 在路由上设置路由器实例
      *
      * @param  \Illuminate\Routing\Router  $router
      * @return $this
@@ -812,6 +913,8 @@ class Route
     /**
      * Set the container instance on the route.
      *
+     * 在路由上设置容器实例
+     *
      * @param  \Illuminate\Container\Container  $container
      * @return $this
      */
@@ -825,17 +928,20 @@ class Route
     /**
      * Prepare the route instance for serialization.
      *
+     * 为序列化准备路由实例
+     *
      * @return void
      *
      * @throws \LogicException
      */
     public function prepareForSerialization()
     {
+        //如果$action['uses']是闭包
         if ($this->action['uses'] instanceof Closure) {
             throw new LogicException("Unable to prepare route [{$this->uri}] for serialization. Uses Closure.");
         }
 
-        $this->compileRoute();
+        $this->compileRoute();  // 编译路由为Symfony CompiledRoute实例
 
         unset($this->router, $this->container);
     }
@@ -843,11 +949,13 @@ class Route
     /**
      * Dynamically access route parameters.
      *
+     * 动态访问路由参数
+     *
      * @param  string  $key
      * @return mixed
      */
     public function __get($key)
     {
-        return $this->parameter($key);
+        return $this->parameter($key);   // 从路由中得到给定的参数
     }
 }

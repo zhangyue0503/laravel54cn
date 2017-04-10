@@ -14,6 +14,8 @@ namespace Symfony\Component\Routing;
 /**
  * A Route describes a route and its parameters.
  *
+ * 描述路由及其参数的路由
+ *
  * @author Fabien Potencier <fabien@symfony.com>
  * @author Tobias Schultze <http://tobion.de>
  */
@@ -70,16 +72,18 @@ class Route implements \Serializable
      * Available options:
      *
      *  * compiler_class: A class name able to compile this route instance (RouteCompiler by default)
+     *  * 一个能够编译这个路由实例类的名字（routecompiler默认）
      *  * utf8:           Whether UTF-8 matching is enforced ot not
+     *  *                 无论是UTF-8执行不能匹配
      *
-     * @param string       $path         The path pattern to match
-     * @param array        $defaults     An array of default parameter values
-     * @param array        $requirements An array of requirements for parameters (regexes)
-     * @param array        $options      An array of options
-     * @param string       $host         The host pattern to match
-     * @param string|array $schemes      A required URI scheme or an array of restricted schemes
-     * @param string|array $methods      A required HTTP method or an array of restricted methods
-     * @param string       $condition    A condition that should evaluate to true for the route to match
+     * @param string       $path         The path pattern to match 路径匹配模式
+     * @param array        $defaults     An array of default parameter values 默认参数值数组
+     * @param array        $requirements An array of requirements for parameters (regexes) 要求的参数的数组（正则表达式）
+     * @param array        $options      An array of options 选项数组
+     * @param string       $host         The host pattern to match 主机模式匹配
+     * @param string|array $schemes      A required URI scheme or an array of restricted schemes 所需的URI方案或限制方案数组
+     * @param string|array $methods      A required HTTP method or an array of restricted methods  所需的HTTP方法或数组的限制方法
+     * @param string       $condition    A condition that should evaluate to true for the route to match 它应该是两个威胁评估的两个匹配的路由
      */
     public function __construct($path, array $defaults = array(), array $requirements = array(), array $options = array(), $host = '', $schemes = array(), $methods = array(), $condition = '')
     {
@@ -95,6 +99,7 @@ class Route implements \Serializable
 
     /**
      * {@inheritdoc}
+     * 序列化接口要实现的方法
      */
     public function serialize()
     {
@@ -113,6 +118,7 @@ class Route implements \Serializable
 
     /**
      * {@inheritdoc}
+     * 序列化接口要实现的方法
      */
     public function unserialize($serialized)
     {
@@ -136,6 +142,8 @@ class Route implements \Serializable
     /**
      * Returns the pattern for the path.
      *
+     * 返回路径
+     *
      * @return string The path pattern
      */
     public function getPath()
@@ -146,7 +154,11 @@ class Route implements \Serializable
     /**
      * Sets the pattern for the path.
      *
+     * 设置路径的模式
+     *
      * This method implements a fluent interface.
+     *
+     * 该方法实现了一个流接口
      *
      * @param string $pattern The path pattern
      *
@@ -156,6 +168,7 @@ class Route implements \Serializable
     {
         // A pattern must start with a slash and must not have multiple slashes at the beginning because the
         // generated path for this route would be confused with a network path, e.g. '//domain.com/path'.
+        // 模式必须以一个斜线不能有多个斜杠开始因为这条路将与网络路径容易混淆，如“/域名.com /路径”。
         $this->path = '/'.ltrim(trim($pattern), '/');
         $this->compiled = null;
 
@@ -164,6 +177,8 @@ class Route implements \Serializable
 
     /**
      * Returns the pattern for the host.
+     *
+     * 返回主机的模式
      *
      * @return string The host pattern
      */
@@ -175,7 +190,11 @@ class Route implements \Serializable
     /**
      * Sets the pattern for the host.
      *
+     * 设置主机的模式
+     *
      * This method implements a fluent interface.
+     *
+     * 该方法实现了一个流接口
      *
      * @param string $pattern The host pattern
      *
@@ -191,7 +210,12 @@ class Route implements \Serializable
 
     /**
      * Returns the lowercased schemes this route is restricted to.
+     *
+     * 返回小写格式的限制路由
+     *
      * So an empty array means that any scheme is allowed.
+     *
+     * 空数组意味着任何方案是允许的
      *
      * @return array The schemes
      */
@@ -202,9 +226,16 @@ class Route implements \Serializable
 
     /**
      * Sets the schemes (e.g. 'https') this route is restricted to.
+     *
+     * 设置受限制的计划（如“HTTPS”）
+     *
      * So an empty array means that any scheme is allowed.
+     * 空数组意味着任何方案是允许的
+     *
      *
      * This method implements a fluent interface.
+     *
+     * 该方法实现了流接口
      *
      * @param string|array $schemes The scheme or an array of schemes
      *
@@ -221,9 +252,11 @@ class Route implements \Serializable
     /**
      * Checks if a scheme requirement has been set.
      *
+     * 检查计划的要求是否已设置
+     *
      * @param string $scheme
      *
-     * @return bool true if the scheme requirement exists, otherwise false
+     * @return bool true if the scheme requirement exists, otherwise false 如果计划要求存在返回true，否则返回false
      */
     public function hasScheme($scheme)
     {
@@ -232,7 +265,12 @@ class Route implements \Serializable
 
     /**
      * Returns the uppercased HTTP methods this route is restricted to.
+     *
+     * 返回受限制的大写的HTTP方法路线
+     *
      * So an empty array means that any method is allowed.
+     *
+     * 空数组意味着任何方案是允许的
      *
      * @return array The methods
      */
@@ -243,9 +281,16 @@ class Route implements \Serializable
 
     /**
      * Sets the HTTP methods (e.g. 'POST') this route is restricted to.
+     *
+     * 设置受限制的路由HTTP方法（如“POST”）
+     *
      * So an empty array means that any method is allowed.
      *
+     * 空数组意味着任何方案是允许的
+     *
      * This method implements a fluent interface.
+     *
+     * 该方法实现了流接口
      *
      * @param string|array $methods The method or an array of methods
      *
@@ -262,6 +307,8 @@ class Route implements \Serializable
     /**
      * Returns the options.
      *
+     * 返回选项
+     *
      * @return array The options
      */
     public function getOptions()
@@ -272,7 +319,11 @@ class Route implements \Serializable
     /**
      * Sets the options.
      *
+     * 设置选项
+     *
      * This method implements a fluent interface.
+     *
+     * 空数组意味着任何方案是允许的
      *
      * @param array $options The options
      *
@@ -290,7 +341,11 @@ class Route implements \Serializable
     /**
      * Adds options.
      *
+     * 添加选项
+     *
      * This method implements a fluent interface.
+     *
+     * 该方法实现了流接口
      *
      * @param array $options The options
      *
@@ -309,7 +364,11 @@ class Route implements \Serializable
     /**
      * Sets an option value.
      *
+     * 设置一个选项的值
+     *
      * This method implements a fluent interface.
+     *
+     * 该方法实现了流接口
      *
      * @param string $name  An option name
      * @param mixed  $value The option value
@@ -327,6 +386,8 @@ class Route implements \Serializable
     /**
      * Get an option value.
      *
+     * 获取一个选项的值
+     *
      * @param string $name An option name
      *
      * @return mixed The option value or null when not given
@@ -338,6 +399,8 @@ class Route implements \Serializable
 
     /**
      * Checks if an option has been set.
+     *
+     * 检查一个选项是否被设置
      *
      * @param string $name An option name
      *
@@ -351,6 +414,8 @@ class Route implements \Serializable
     /**
      * Returns the defaults.
      *
+     * 返回默认数组
+     *
      * @return array The defaults
      */
     public function getDefaults()
@@ -361,7 +426,11 @@ class Route implements \Serializable
     /**
      * Sets the defaults.
      *
+     * 设置默认数组
+     *
      * This method implements a fluent interface.
+     *
+     * 该方法实现了流接口
      *
      * @param array $defaults The defaults
      *
@@ -377,7 +446,11 @@ class Route implements \Serializable
     /**
      * Adds defaults.
      *
+     * 添加默认数组
+     *
      * This method implements a fluent interface.
+     *
+     * 该方法实现了流接口
      *
      * @param array $defaults The defaults
      *
@@ -396,6 +469,8 @@ class Route implements \Serializable
     /**
      * Gets a default value.
      *
+     * 获取默认的值
+     *
      * @param string $name A variable name
      *
      * @return mixed The default value or null when not given
@@ -408,6 +483,8 @@ class Route implements \Serializable
     /**
      * Checks if a default value is set for the given variable.
      *
+     * 检查给定变量是否设置默认值
+     *
      * @param string $name A variable name
      *
      * @return bool true if the default value is set, false otherwise
@@ -419,6 +496,8 @@ class Route implements \Serializable
 
     /**
      * Sets a default value.
+     *
+     * 设置默认值
      *
      * @param string $name    A variable name
      * @param mixed  $default The default value
@@ -435,6 +514,8 @@ class Route implements \Serializable
 
     /**
      * Returns the requirements.
+     *
+     *
      *
      * @return array The requirements
      */
@@ -548,7 +629,9 @@ class Route implements \Serializable
     /**
      * Compiles the route.
      *
-     * @return CompiledRoute A CompiledRoute instance
+     * 编译路由
+     *
+     * @return CompiledRoute A CompiledRoute instance 编译后的编译路由实例
      *
      * @throws \LogicException If the Route cannot be compiled because the
      *                         path or host pattern is invalid

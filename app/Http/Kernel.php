@@ -9,7 +9,11 @@ class Kernel extends HttpKernel
     /**
      * The application's global HTTP middleware stack.
      *
+     * 应用程序的全局HTTP中间件栈
+     *
      * These middleware are run during every request to your application.
+     *
+     * 这些中间件运行在每个请求到您的应用程序之间
      *
      * @var array
      */
@@ -22,6 +26,8 @@ class Kernel extends HttpKernel
 
     /**
      * The application's route middleware groups.
+     *
+     * 应用程序的路由中间件组
      *
      * @var array
      */
@@ -45,7 +51,11 @@ class Kernel extends HttpKernel
     /**
      * The application's route middleware.
      *
+     * 应用程序的路由中间件
+     *
      * These middleware may be assigned to groups or used individually.
+     *
+     * 这些中间件可以被分配到组或单独使用
      *
      * @var array
      */

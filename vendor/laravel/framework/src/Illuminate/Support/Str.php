@@ -62,6 +62,8 @@ class Str
     /**
      * Determine if a given string contains a given substring.
      *
+     * 确定一个给定的字符串包含另一个字符串
+     *
      * @param  string  $haystack
      * @param  string|array  $needles
      * @return bool
@@ -127,6 +129,9 @@ class Str
         // Asterisks are translated into zero-or-more regular expression wildcards
         // to make it convenient to check if the strings starts with the given
         // pattern such as "library/*", making any string check convenient.
+        //
+        // 星号翻译成零个或多个正则表达式通配符如“library/*”便于检查字符串开始位置，方便检查任何字符串
+        //
         $pattern = str_replace('\*', '.*', $pattern);
 
         return (bool) preg_match('#^'.$pattern.'\z#u', $value);
@@ -204,12 +209,15 @@ class Str
     /**
      * Parse a Class@method style callback into class and method.
      *
+     * 解析 类@方法 类型回调到类和方法
+     *
      * @param  string  $callback
      * @param  string|null  $default
      * @return array
      */
     public static function parseCallback($callback, $default = null)
     {
+        //      确定一个给定的字符串包含另一个字符串    拆成数组
         return static::contains($callback, '@') ? explode('@', $callback, 2) : [$callback, $default];
     }
 

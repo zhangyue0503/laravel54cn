@@ -649,6 +649,8 @@ class Request
     /**
      * Normalizes a query string.
      *
+     * 正常的查询字符串
+     *
      * It builds a normalized query string, where keys/value pairs are alphabetized,
      * have consistent escaping and unneeded delimiters are removed.
      *
@@ -890,6 +892,8 @@ class Request
     /**
      * Returns the path being requested relative to the executed script.
      *
+     * 返回与被执行脚本相对应的路径
+     *
      * The path info always starts with a /.
      *
      * Suppose this request is instantiated from /mysite on localhost:
@@ -933,6 +937,8 @@ class Request
 
     /**
      * Returns the root URL from which this request is executed.
+     *
+     * 返回执行此请求的根URL
      *
      * The base URL never ends with a /.
      *
@@ -1075,8 +1081,12 @@ class Request
     /**
      * Gets the scheme and HTTP host.
      *
+     * 获取协议和HTTP主机
+     *
      * If the URL was called with basic authentication, the user
      * and the password are not added to the generated string.
+     *
+     * 如果用基本身份验证来调用URL，则不会将用户和密码添加到生成的字符串中
      *
      * @return string The scheme and HTTP host
      */
@@ -1087,6 +1097,8 @@ class Request
 
     /**
      * Generates a normalized URI (URL) for the Request.
+     *
+     * 为请求生成一个标准化URI（URL）
      *
      * @return string A normalized URI (URL) for the Request
      *
@@ -1171,8 +1183,12 @@ class Request
     /**
      * Generates the normalized query string for the Request.
      *
+     * 为请求生成标准化查询字符串
+     *
      * It builds a normalized query string, where keys/value pairs are alphabetized
      * and have consistent escaping.
+     *
+     * 它建立了一个标准的查询字符串，其中的键/值对是按字母顺序排列的和一致的escaping
      *
      * @return string|null A normalized query string for the Request
      */

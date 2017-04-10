@@ -596,6 +596,8 @@ class Router implements RegistrarContract, BindingRegistrar
     /**
      * Sort the given middleware by priority.
      *
+     * 按优先级排序给定的中间件
+     *
      * @param  \Illuminate\Support\Collection  $middlewares
      * @return array
      */
@@ -616,9 +618,9 @@ class Router implements RegistrarContract, BindingRegistrar
     public function prepareResponse($request, $response)
     {
         if ($response instanceof PsrResponseInterface) { // $response 是否属于PsrResponseInterface
-            $response = (new HttpFoundationFactory)->createResponse($response);
+            $response = (new HttpFoundationFactory)->createResponse($response); //创建HttpFoundationFactory响应
         } elseif (! $response instanceof SymfonyResponse) { // $response 是否属于 SymfonyResopnse
-            $response = new Response($response);
+            $response = new Response($response); //创建Symfony响应
         }
 
         return $response->prepare($request); // 返回 Symfony\Component\HttpFoundation\Response::perpare() 在发送给客户端之前准备响应
@@ -864,6 +866,8 @@ class Router implements RegistrarContract, BindingRegistrar
 
     /**
      * Get the current group stack for the router.
+     *
+     * 获取路由器的当前组堆栈
      *
      * @return array
      */

@@ -662,6 +662,8 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
     /**
      * Get the values of a given key.
      *
+     * 获取给定键的值
+     *
      * @param  string|array  $value
      * @param  string|null  $key
      * @return static
@@ -976,6 +978,8 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
 
     /**
      * Create a collection of all elements that do not pass a given truth test.
+     *
+     * 创建不通过给定的真值测试的所有元素的集合
      *
      * @param  callable|mixed  $callback
      * @return static
