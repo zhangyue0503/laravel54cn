@@ -1074,6 +1074,8 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
     /**
      * Get the primary key for the model.
      *
+     * 从模型中获取主键
+     *
      * @return string
      */
     public function getKeyName()
@@ -1169,6 +1171,8 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 
     /**
      * Get the route key for the model.
+     *
+     * 从模型中获取路由键值
      *
      * @return string
      */

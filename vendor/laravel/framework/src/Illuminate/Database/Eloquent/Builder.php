@@ -412,6 +412,8 @@ class Builder
     /**
      * Execute the query and get the first result or throw an exception.
      *
+     * 执行查询并得到第一个结果或抛出异常
+     *
      * @param  array  $columns
      * @return \Illuminate\Database\Eloquent\Model|static
      *

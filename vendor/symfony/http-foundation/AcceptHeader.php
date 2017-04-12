@@ -14,8 +14,12 @@ namespace Symfony\Component\HttpFoundation;
 /**
  * Represents an Accept-* header.
  *
+ * 表示 Accept-* 头部
+ *
  * An accept header is compound with a list of items,
  * sorted by descending quality.
+ *
+ * 接受标头与项列表组合，按降序排列
  *
  * @author Jean-François Simon <contact@jfsimon.fr>
  */
@@ -45,6 +49,8 @@ class AcceptHeader
 
     /**
      * Builds an AcceptHeader instance from a string.
+     *
+     * 建立一个字符串的AcceptHeader实例
      *
      * @param string $headerValue
      *

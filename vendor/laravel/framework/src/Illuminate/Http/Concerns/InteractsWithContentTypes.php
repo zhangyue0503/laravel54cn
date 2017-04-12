@@ -3,11 +3,13 @@
 namespace Illuminate\Http\Concerns;
 
 use Illuminate\Support\Str;
-
+// 与内容类型交互
 trait InteractsWithContentTypes
 {
     /**
      * Determine if the given content types match.
+     *
+     * 确定给定的内容是否类型匹配
      *
      * @param  string  $actual
      * @param  string  $type
@@ -27,6 +29,8 @@ trait InteractsWithContentTypes
     /**
      * Determine if the request is sending JSON.
      *
+     * 确定请求是否发送JSON
+     *
      * @return bool
      */
     public function isJson()
@@ -36,6 +40,8 @@ trait InteractsWithContentTypes
 
     /**
      * Determine if the current request probably expects a JSON response.
+     *
+     * 确定当前请求是否可能需要JSON响应
      *
      * @return bool
      */
@@ -47,11 +53,13 @@ trait InteractsWithContentTypes
     /**
      * Determine if the current request is asking for JSON in return.
      *
+     * 确定当前请求是否返回JSON请求
+     *
      * @return bool
      */
     public function wantsJson()
     {
-        $acceptable = $this->getAcceptableContentTypes();
+        $acceptable = $this->getAcceptableContentTypes();      // Symfony\Component\HttpFoundation\Request::getAcceptableContentTypes获取客户端浏览器可接受的内容类型列表
 
         return isset($acceptable[0]) && Str::contains($acceptable[0], ['/json', '+json']);
     }
@@ -59,12 +67,14 @@ trait InteractsWithContentTypes
     /**
      * Determines whether the current requests accepts a given content type.
      *
+     * 决定是否接受给定的当前请求类型
+     *
      * @param  string|array  $contentTypes
      * @return bool
      */
     public function accepts($contentTypes)
     {
-        $accepts = $this->getAcceptableContentTypes();
+        $accepts = $this->getAcceptableContentTypes(); // Symfony\Component\HttpFoundation\Request::getAcceptableContentTypes获取客户端浏览器可接受的内容类型列表
 
         if (count($accepts) === 0) {
             return true;
@@ -78,6 +88,7 @@ trait InteractsWithContentTypes
             }
 
             foreach ($types as $type) {
+                //     确定给定的内容是否类型匹配
                 if ($this->matchesType($accept, $type) || $accept === strtok($type, '/').'/*') {
                     return true;
                 }
@@ -90,12 +101,14 @@ trait InteractsWithContentTypes
     /**
      * Return the most suitable content type from the given array based on content negotiation.
      *
+     * 根据内容协商返回给定数组中最合适的内容类型
+     *
      * @param  string|array  $contentTypes
      * @return string|null
      */
     public function prefers($contentTypes)
     {
-        $accepts = $this->getAcceptableContentTypes();
+        $accepts = $this->getAcceptableContentTypes();// Symfony\Component\HttpFoundation\Request::getAcceptableContentTypes获取客户端浏览器可接受的内容类型列表
 
         $contentTypes = (array) $contentTypes;
 
@@ -106,11 +119,11 @@ trait InteractsWithContentTypes
 
             foreach ($contentTypes as $contentType) {
                 $type = $contentType;
-
+                //                        Symfony\Component\HttpFoundation\Request::getMimeType获取与格式关联的MIME类型
                 if (! is_null($mimeType = $this->getMimeType($contentType))) {
                     $type = $mimeType;
                 }
-
+                //     确定给定的内容是否类型匹配
                 if ($this->matchesType($type, $accept) || $accept === strtok($type, '/').'/*') {
                     return $contentType;
                 }
@@ -120,6 +133,8 @@ trait InteractsWithContentTypes
 
     /**
      * Determines whether a request accepts JSON.
+     *
+     * 决定是否接受JSON请求
      *
      * @return bool
      */
@@ -131,6 +146,8 @@ trait InteractsWithContentTypes
     /**
      * Determines whether a request accepts HTML.
      *
+     * 决定是否接受HTML请求
+     *
      * @return bool
      */
     public function acceptsHtml()
@@ -141,12 +158,16 @@ trait InteractsWithContentTypes
     /**
      * Get the data format expected in the response.
      *
+     * 获取响应中预期的数据格式
+     *
      * @param  string  $default
      * @return string
      */
     public function format($default = 'html')
     {
+        // Symfony\Component\HttpFoundation\Request::getAcceptableContentTypes获取客户端浏览器可接受的内容类型列表
         foreach ($this->getAcceptableContentTypes() as $type) {
+            //            Symfony\Component\HttpFoundation\Request::getFormat  获取与MIME类型关联的格式
             if ($format = $this->getFormat($type)) {
                 return $format;
             }

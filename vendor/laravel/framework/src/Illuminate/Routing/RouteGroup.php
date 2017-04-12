@@ -9,6 +9,8 @@ class RouteGroup
     /**
      * Merge route groups into a new array.
      *
+     * 将路由组合并到新数组中
+     *
      * @param  array  $new
      * @param  array  $old
      * @return array

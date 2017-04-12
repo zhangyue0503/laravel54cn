@@ -114,6 +114,8 @@ class Str
     /**
      * Determine if a given string matches a given pattern.
      *
+     * 确定给定的字符串是否与给定的模式匹配
+     *
      * @param  string  $pattern
      * @param  string  $value
      * @return bool
@@ -355,12 +357,14 @@ class Str
     /**
      * Get the singular form of an English word.
      *
+     * 得到一个英语单词的单数形式
+     *
      * @param  string  $value
      * @return string
      */
     public static function singular($value)
     {
-        return Pluralizer::singular($value);
+        return Pluralizer::singular($value); //得到一个英语单词的单数形式
     }
 
     /**

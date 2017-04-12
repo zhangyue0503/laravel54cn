@@ -221,7 +221,8 @@ class Route
     {
         $callable = $this->action['uses'];
 
-        return $callable(...array_values($this->resolveMethodDependencies(
+        return $callable(...array_values($this->resolveMethodDependencies(     //解析给定方法的类型暗示依赖
+            //获取无空值参数的键/值列表              反射函数
             $this->parametersWithoutNulls(), new ReflectionFunction($this->action['uses'])
         )));
     }
@@ -237,7 +238,9 @@ class Route
      */
     protected function runController()
     {
+        //      将请求发送给给定的控制器和方法
         return (new ControllerDispatcher($this->container))->dispatch(
+                  //获取路由使用的控制器实例       获取路由使用的控制器方法
             $this, $this->getController(), $this->getControllerMethod()
         );
     }
@@ -251,10 +254,11 @@ class Route
      */
     public function getController()
     {
+        //           解析控制器[0]=类名
         $class = $this->parseControllerCallback()[0];
 
         if (! $this->controller) {
-            $this->controller = $this->container->make($class);
+            $this->controller = $this->container->make($class); //从容器中解析给定类型
         }
 
         return $this->controller;
@@ -263,12 +267,15 @@ class Route
     /**
      * Get the controller method used for the route.
      *
+     * 获得用于路由的控制器方法
+     *
      * 获取路由使用的控制器方法
      *
      * @return string
      */
     protected function getControllerMethod()
     {
+        //           解析控制器[1]=方法名
         return $this->parseControllerCallback()[1];
     }
 
@@ -522,6 +529,7 @@ class Route
      */
     public function where($name, $expression = null)
     {
+        //            将参数解析到数组中的方法
         foreach ($this->parseWhere($name, $expression) as $name => $expression) {
             $this->wheres[$name] = $expression;
         }
@@ -554,7 +562,7 @@ class Route
     protected function whereArray(array $wheres)
     {
         foreach ($wheres as $name => $expression) {
-            $this->where($name, $expression);
+            $this->where($name, $expression); //置路由上要求的正则表达式
         }
 
         return $this;

@@ -10,12 +10,16 @@ trait Macroable
     /**
      * The registered string macros.
      *
+     * 已注册的字符串宏
+     *
      * @var array
      */
     protected static $macros = [];
 
     /**
      * Register a custom macro.
+     *
+     * 注册自定义宏
      *
      * @param  string    $name
      * @param  callable  $macro
@@ -29,6 +33,8 @@ trait Macroable
     /**
      * Checks if macro is registered.
      *
+     * 检查宏是否已注册
+     *
      * @param  string  $name
      * @return bool
      */
@@ -40,6 +46,8 @@ trait Macroable
     /**
      * Dynamically handle calls to the class.
      *
+     * 动态调用类的调用
+     *
      * @param  string  $method
      * @param  array   $parameters
      * @return mixed
@@ -48,6 +56,7 @@ trait Macroable
      */
     public static function __callStatic($method, $parameters)
     {
+        //            检查宏是否已注册
         if (! static::hasMacro($method)) {
             throw new BadMethodCallException("Method {$method} does not exist.");
         }
@@ -61,6 +70,8 @@ trait Macroable
 
     /**
      * Dynamically handle calls to the class.
+     *
+     * 动态调用类的调用
      *
      * @param  string  $method
      * @param  array   $parameters

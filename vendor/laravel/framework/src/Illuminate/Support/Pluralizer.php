@@ -70,6 +70,8 @@ class Pluralizer
     /**
      * Get the singular form of an English word.
      *
+     * 得到一个英语单词的单数形式
+     *
      * @param  string  $value
      * @return string
      */

@@ -1,11 +1,13 @@
 <?php
 
 namespace Illuminate\Http\Concerns;
-
+//与Flash数据交互
 trait InteractsWithFlashData
 {
     /**
      * Retrieve an old input item.
+     *
+     * 检索旧输入项
      *
      * @param  string  $key
      * @param  string|array|null  $default
@@ -19,6 +21,8 @@ trait InteractsWithFlashData
     /**
      * Flash the input for the current request to the session.
      *
+     * 将当前请求输入到会话中
+     *
      * @return void
      */
     public function flash()
@@ -28,6 +32,8 @@ trait InteractsWithFlashData
 
     /**
      * Flash only some of the input to the session.
+     *
+     * 只有一些Flash输入到会话中
      *
      * @param  array|mixed  $keys
      * @return void
@@ -42,6 +48,8 @@ trait InteractsWithFlashData
     /**
      * Flash only some of the input to the session.
      *
+     * 只有一些Flash输入到会话中
+     *
      * @param  array|mixed  $keys
      * @return void
      */
@@ -54,6 +62,8 @@ trait InteractsWithFlashData
 
     /**
      * Flush all of the old input from the session.
+     *
+     * 刷新会话中的所有旧输入
      *
      * @return void
      */

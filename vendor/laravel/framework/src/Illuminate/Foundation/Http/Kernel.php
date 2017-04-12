@@ -60,12 +60,16 @@ class Kernel implements KernelContract
     /**
      * The application's route middleware groups.
      *
+     * 应用程序的路由中间件组
+     *
      * @var array
      */
     protected $middlewareGroups = [];
 
     /**
      * The application's route middleware.
+     *
+     * 应用程序的路由中间件
      *
      * @var array
      */
@@ -74,21 +78,27 @@ class Kernel implements KernelContract
     /**
      * The priority-sorted list of middleware.
      *
+     * 中间件的优先级排序列表
+     *
      * Forces the listed middleware to always be in the given order.
+     *
+     * 强制列出的中间件总是在给定的顺序
      *
      * @var array
      */
     protected $middlewarePriority = [
-        \Illuminate\Session\Middleware\StartSession::class,
-        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-        \Illuminate\Auth\Middleware\Authenticate::class,
-        \Illuminate\Session\Middleware\AuthenticateSession::class,
+        \Illuminate\Session\Middleware\StartSession::class, //开启session
+        \Illuminate\View\Middleware\ShareErrorsFromSession::class, //共享session错误
+        \Illuminate\Auth\Middleware\Authenticate::class, //认证
+        \Illuminate\Session\Middleware\AuthenticateSession::class, //session认证
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
         \Illuminate\Auth\Middleware\Authorize::class,
     ];
 
     /**
      * Create a new HTTP kernel instance.
+     *
+     * 创建一个新的HTTP内核实例
      *
      * @param  \Illuminate\Contracts\Foundation\Application  $app
      * @param  \Illuminate\Routing\Router  $router
@@ -102,11 +112,11 @@ class Kernel implements KernelContract
         $router->middlewarePriority = $this->middlewarePriority;
 
         foreach ($this->middlewareGroups as $key => $middleware) {
-            $router->middlewareGroup($key, $middleware);
+            $router->middlewareGroup($key, $middleware);     // 注册一组中间件
         }
 
         foreach ($this->routeMiddleware as $key => $middleware) {
-            $router->aliasMiddleware($key, $middleware);
+            $router->aliasMiddleware($key, $middleware); //为中间件注册短名称
         }
     }
 
@@ -188,12 +198,14 @@ class Kernel implements KernelContract
         return function ($request) {
             $this->app->instance('request', $request); // 在容器中注册request实例
 
-            return $this->router->dispatch($request); // Illuminate\Routing\Router::dispatch()
+            return $this->router->dispatch($request); // 将请求发送到应用程序 Illuminate\Routing\Router::dispatch()
         };
     }
 
     /**
      * Call the terminate method on any terminable middleware.
+     *
+     * 调用terminate方法对任何有期限的中间件
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Http\Response  $response
@@ -201,13 +213,15 @@ class Kernel implements KernelContract
      */
     public function terminate($request, $response)
     {
-        $this->terminateMiddleware($request, $response);
+        $this->terminateMiddleware($request, $response); // 调用Terminate方法对任何有期限的中间件
 
-        $this->app->terminate();
+        $this->app->terminate(); //终止应用程序 Illuminate\Foundation\Application::terminate()
     }
 
     /**
      * Call the terminate method on any terminable middleware.
+     *
+     * 调用Terminate方法对任何有期限的中间件
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Http\Response  $response
@@ -215,22 +229,23 @@ class Kernel implements KernelContract
      */
     protected function terminateMiddleware($request, $response)
     {
+        //                    确定应用程序的中间件是否被禁用
         $middlewares = $this->app->shouldSkipMiddleware() ? [] : array_merge(
-            $this->gatherRouteMiddleware($request),
+            $this->gatherRouteMiddleware($request), //为给定的请求收集路由中间件
             $this->middleware
         );
-
+        //循环中间件数组
         foreach ($middlewares as $middleware) {
             if (! is_string($middleware)) {
                 continue;
             }
 
-            list($name, $parameters) = $this->parseMiddleware($middleware);
+            list($name, $parameters) = $this->parseMiddleware($middleware); // 解析中间件字符串以获取名称和参数
 
-            $instance = $this->app->make($name);
+            $instance = $this->app->make($name);  // 从容器中解析给定类型，获得实例
 
-            if (method_exists($instance, 'terminate')) {
-                $instance->terminate($request, $response);
+            if (method_exists($instance, 'terminate')) { //如果实例包含terminate方法
+                $instance->terminate($request, $response); //调用terminate方法
             }
         }
     }
@@ -238,13 +253,15 @@ class Kernel implements KernelContract
     /**
      * Gather the route middleware for the given request.
      *
+     * 为给定的请求收集路由中间件
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
     protected function gatherRouteMiddleware($request)
     {
-        if ($route = $request->route()) {
-            return $this->router->gatherRouteMiddleware($route);
+        if ($route = $request->route()) {    //获取路由处理请求
+            return $this->router->gatherRouteMiddleware($route); //用给定的解析类名收集给定路由的中间件
         }
 
         return [];
@@ -252,6 +269,8 @@ class Kernel implements KernelContract
 
     /**
      * Parse a middleware string to get the name and parameters.
+     *
+     * 解析中间件字符串以获取名称和参数
      *
      * @param  string  $middleware
      * @return array
@@ -270,6 +289,8 @@ class Kernel implements KernelContract
     /**
      * Determine if the kernel has a given middleware.
      *
+     * 确定内核是否有给定的中间件
+     *
      * @param  string  $middleware
      * @return bool
      */
@@ -280,6 +301,8 @@ class Kernel implements KernelContract
 
     /**
      * Add a new middleware to beginning of the stack if it does not already exist.
+     *
+     * 如果堆栈不存在，就向堆栈的开始添加一个新的中间件
      *
      * @param  string  $middleware
      * @return $this
@@ -295,6 +318,8 @@ class Kernel implements KernelContract
 
     /**
      * Add a new middleware to end of the stack if it does not already exist.
+     *
+     * 如果堆栈不存在，则向堆栈末尾添加新的中间件
      *
      * @param  string  $middleware
      * @return $this
@@ -349,6 +374,8 @@ class Kernel implements KernelContract
 
     /**
      * Get the Laravel application instance.
+     *
+     * 获取Laravel应用程序实例
      *
      * @return \Illuminate\Contracts\Foundation\Application
      */

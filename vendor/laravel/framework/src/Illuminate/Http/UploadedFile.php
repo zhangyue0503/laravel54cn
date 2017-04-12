@@ -89,6 +89,8 @@ class UploadedFile extends SymfonyUploadedFile
     /**
      * Create a new file instance from a base instance.
      *
+     * 从基础实例创建新的文件实例
+     *
      * @param  \Symfony\Component\HttpFoundation\File\UploadedFile  $file
      * @param  bool $test
      * @return static

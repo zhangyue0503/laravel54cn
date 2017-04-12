@@ -14,6 +14,8 @@ namespace Symfony\Component\HttpFoundation;
 /**
  * HeaderBag is a container for HTTP headers.
  *
+ * HeaderBag是一个HTTP标头的容器
+ *
  * @author Fabien Potencier <fabien@symfony.com>
  */
 class HeaderBag implements \IteratorAggregate, \Countable
@@ -23,6 +25,8 @@ class HeaderBag implements \IteratorAggregate, \Countable
 
     /**
      * Constructor.
+     *
+     * 构造函数
      *
      * @param array $headers An array of HTTP headers
      */
@@ -35,6 +39,8 @@ class HeaderBag implements \IteratorAggregate, \Countable
 
     /**
      * Returns the headers as a string.
+     *
+     * 字符串形式的所有标头
      *
      * @return string The headers
      */
@@ -60,6 +66,8 @@ class HeaderBag implements \IteratorAggregate, \Countable
     /**
      * Returns the headers.
      *
+     * 返回所有标头
+     *
      * @return array An array of headers
      */
     public function all()
@@ -70,6 +78,8 @@ class HeaderBag implements \IteratorAggregate, \Countable
     /**
      * Returns the parameter keys.
      *
+     * 返回所有参数的键值
+     *
      * @return array An array of parameter keys
      */
     public function keys()
@@ -79,6 +89,8 @@ class HeaderBag implements \IteratorAggregate, \Countable
 
     /**
      * Replaces the current HTTP headers by a new set.
+     *
+     * 用新的头数组替换当前HTTP头
      *
      * @param array $headers An array of HTTP headers
      */
@@ -91,6 +103,8 @@ class HeaderBag implements \IteratorAggregate, \Countable
     /**
      * Adds new headers the current HTTP headers set.
      *
+     * 添加新标头当前到HTTP标头数组
+     *
      * @param array $headers An array of HTTP headers
      */
     public function add(array $headers)
@@ -102,6 +116,8 @@ class HeaderBag implements \IteratorAggregate, \Countable
 
     /**
      * Returns a header value by name.
+     *
+     * 根据名称获取标头中的值
      *
      * @param string $key     The header name
      * @param mixed  $default The default value
@@ -131,6 +147,8 @@ class HeaderBag implements \IteratorAggregate, \Countable
     /**
      * Sets a header by name.
      *
+     * 根据名称设置头
+     *
      * @param string       $key     The key
      * @param string|array $values  The value or an array of values
      * @param bool         $replace Whether to replace the actual value or not (true by default)
@@ -155,6 +173,8 @@ class HeaderBag implements \IteratorAggregate, \Countable
     /**
      * Returns true if the HTTP header is defined.
      *
+     * 如果定义了HTTP头，则返回true
+     *
      * @param string $key The HTTP header
      *
      * @return bool true if the parameter exists, false otherwise
@@ -166,6 +186,8 @@ class HeaderBag implements \IteratorAggregate, \Countable
 
     /**
      * Returns true if the given HTTP header contains the given value.
+     *
+     * 如果给定的HTTP头包含给定值，则返回true。
      *
      * @param string $key   The HTTP header name
      * @param string $value The HTTP value
@@ -179,6 +201,8 @@ class HeaderBag implements \IteratorAggregate, \Countable
 
     /**
      * Removes a header.
+     *
+     * 删除头
      *
      * @param string $key The HTTP header name
      */
@@ -195,6 +219,8 @@ class HeaderBag implements \IteratorAggregate, \Countable
 
     /**
      * Returns the HTTP header value converted to a date.
+     *
+     * 返回转换为日期的HTTP标头值
      *
      * @param string    $key     The parameter key
      * @param \DateTime $default The default value
@@ -219,6 +245,8 @@ class HeaderBag implements \IteratorAggregate, \Countable
     /**
      * Adds a custom Cache-Control directive.
      *
+     * 添加缓存控制指令
+     *
      * @param string $key   The Cache-Control directive name
      * @param mixed  $value The Cache-Control directive value
      */
@@ -232,7 +260,9 @@ class HeaderBag implements \IteratorAggregate, \Countable
     /**
      * Returns true if the Cache-Control directive is defined.
      *
-     * @param string $key The Cache-Control directive
+     * 如果定义了缓存控制指令，则返回true
+     *
+     * @param string $key The Cache-Control directive 缓存控制指令
      *
      * @return bool true if the directive exists, false otherwise
      */
@@ -243,6 +273,8 @@ class HeaderBag implements \IteratorAggregate, \Countable
 
     /**
      * Returns a Cache-Control directive value by name.
+     *
+     * 按名称返回缓存控制指令值
      *
      * @param string $key The directive name
      *
@@ -256,6 +288,8 @@ class HeaderBag implements \IteratorAggregate, \Countable
     /**
      * Removes a Cache-Control directive.
      *
+     * 移除缓存控制指令
+     *
      * @param string $key The Cache-Control directive
      */
     public function removeCacheControlDirective($key)
@@ -268,6 +302,8 @@ class HeaderBag implements \IteratorAggregate, \Countable
     /**
      * Returns an iterator for headers.
      *
+     * 返回头的迭代器
+     *
      * @return \ArrayIterator An \ArrayIterator instance
      */
     public function getIterator()
@@ -278,13 +314,15 @@ class HeaderBag implements \IteratorAggregate, \Countable
     /**
      * Returns the number of headers.
      *
+     * 反回头数组的数量
+     *
      * @return int The number of headers
      */
     public function count()
     {
         return count($this->headers);
     }
-
+    //返回头缓存控制器
     protected function getCacheControlHeader()
     {
         $parts = array();
@@ -306,6 +344,8 @@ class HeaderBag implements \IteratorAggregate, \Countable
 
     /**
      * Parses a Cache-Control HTTP header.
+     *
+     * 解析HTTP缓存控制头
      *
      * @param string $header The value of the Cache-Control HTTP header
      *

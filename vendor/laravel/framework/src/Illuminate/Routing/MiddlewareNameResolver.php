@@ -9,6 +9,8 @@ class MiddlewareNameResolver
     /**
      * Resolve the middleware name to a class name(s) preserving passed parameters.
      *
+     * 将中间件名称解析为保存传递参数的类名
+     *
      * @param  string  $name
      * @param  array  $map
      * @param  array  $middlewareGroups

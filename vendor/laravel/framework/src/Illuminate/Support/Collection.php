@@ -460,6 +460,8 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
     /**
      * Get a flattened array of the items in the collection.
      *
+     * 获取集合中的项目的扁平数组
+     *
      * @param  int  $depth
      * @return static
      */
@@ -675,6 +677,8 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
 
     /**
      * Run a map over each of the items.
+     *
+     * 在每个项目上运行map
      *
      * @param  callable  $callback
      * @return static

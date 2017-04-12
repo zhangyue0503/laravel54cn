@@ -9,6 +9,8 @@ class ImplicitRouteBinding
     /**
      * Resolve the implicit route bindings for the given route.
      *
+     * 解决给定路由的隐式路由绑定
+     *
      * @param  \Illuminate\Container\Container  $container
      * @param  \Illuminate\Routing\Route  $route
      * @return void
