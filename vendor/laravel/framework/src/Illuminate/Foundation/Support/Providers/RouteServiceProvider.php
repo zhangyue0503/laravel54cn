@@ -17,15 +17,17 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap any application services.
+	 *
+	 * 引导一些应用程序服务
      *
      * @return void
      */
     public function boot()
     {
-        $this->setRootControllerNamespace();
+        $this->setRootControllerNamespace(); // 为应用程序设置根控制器命名空间
 
-        if ($this->app->routesAreCached()) {
-            $this->loadCachedRoutes();
+        if ($this->app->routesAreCached()) { // 确定应用程序路由是否被缓存
+            $this->loadCachedRoutes(); // 为应用程序加载缓存的路由
         } else {
             $this->loadRoutes();
 
@@ -37,6 +39,8 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Set the root controller namespace for the application.
+	 *
+	 * 为应用程序设置根控制器命名空间
      *
      * @return void
      */
@@ -49,6 +53,8 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Load the cached routes for the application.
+	 *
+	 * 为应用程序加载缓存的路由
      *
      * @return void
      */
@@ -61,12 +67,15 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Load the application routes.
+	 *
+	 * 加载应用程序路由
      *
      * @return void
      */
     protected function loadRoutes()
     {
         if (method_exists($this, 'map')) {
+			// 调用给定的闭包/类@方法并注入它的依赖项(this->map())
             $this->app->call([$this, 'map']);
         }
     }

@@ -30,6 +30,8 @@ interface Repository
 
     /**
      * Set a given configuration value.
+	 *
+	 * 设置给定的配置值
      *
      * @param  array|string  $key
      * @param  mixed   $value

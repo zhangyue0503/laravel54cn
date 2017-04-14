@@ -297,6 +297,7 @@ class ArgvInput extends Input
 
     /**
      * {@inheritdoc}
+	 * 返回原始选项的值（未解析）
      */
     public function getParameterOption($values, $default = false, $onlyParams = false)
     {

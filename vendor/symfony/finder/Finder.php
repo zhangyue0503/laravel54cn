@@ -71,6 +71,8 @@ class Finder implements \IteratorAggregate, \Countable
 
     /**
      * Creates a new Finder.
+	 *
+	 * 创建一个新的查找器
      *
      * @return static
      */
@@ -152,6 +154,8 @@ class Finder implements \IteratorAggregate, \Countable
 
     /**
      * Adds rules that files must match.
+	 *
+	 * 添加文件必须匹配的规则
      *
      * You can use patterns (delimited with / sign), globs or simple strings.
      *
@@ -526,6 +530,8 @@ class Finder implements \IteratorAggregate, \Countable
 
     /**
      * Searches files and directories which match defined rules.
+	 *
+	 * 搜索符合定义规则的文件和目录
      *
      * @param string|array $dirs A directory path or an array of directories
      *

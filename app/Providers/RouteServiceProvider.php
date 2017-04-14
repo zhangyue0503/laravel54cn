@@ -18,6 +18,8 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Define your route model bindings, pattern filters, etc.
+	 *
+	 * 定义路由模型绑定、模式筛选器等
      *
      * @return void
      */
@@ -25,27 +27,33 @@ class RouteServiceProvider extends ServiceProvider
     {
         //
 
-        parent::boot();
+        parent::boot(); //引导一些应用程序服务
     }
 
     /**
      * Define the routes for the application.
+	 *
+	 * 定义应用程序的路由
      *
      * @return void
      */
     public function map()
     {
-        $this->mapApiRoutes();
+        $this->mapApiRoutes(); // 定义应用程序的“api”路由
 
-        $this->mapWebRoutes();
+        $this->mapWebRoutes(); // 定义应用程序的“web”路由
 
         //
     }
 
     /**
      * Define the "web" routes for the application.
+	 *
+	 * 定义应用程序的“web”路由
      *
      * These routes all receive session state, CSRF protection, etc.
+	 *
+	 * 这些路由所有接收会话状态，CSRF保护，等。
      *
      * @return void
      */
@@ -58,8 +66,12 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Define the "api" routes for the application.
+	 *
+	 * 定义应用程序的“api”路由
      *
      * These routes are typically stateless.
+	 *
+	 * 这些路由通常是无状态的
      *
      * @return void
      */

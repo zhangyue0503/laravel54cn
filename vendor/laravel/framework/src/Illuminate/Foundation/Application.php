@@ -865,7 +865,7 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
     /**
      * Boot the application's service providers.
      *
-     * 启动应用程序的服务提供商
+     * 启动应用程序的服务提供者
      *
      * @return void
      */

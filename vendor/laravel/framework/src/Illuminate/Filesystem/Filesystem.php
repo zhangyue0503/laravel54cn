@@ -14,6 +14,8 @@ class Filesystem
 
     /**
      * Determine if a file or directory exists.
+	 *
+	 * 确定文件或目录是否存在
      *
      * @param  string  $path
      * @return bool
@@ -72,6 +74,8 @@ class Filesystem
 
     /**
      * Get the returned value of a file.
+	 *
+	 * 获取文件的返回值
      *
      * @param  string  $path
      * @return mixed
@@ -80,8 +84,8 @@ class Filesystem
      */
     public function getRequire($path)
     {
-        if ($this->isFile($path)) {
-            return require $path;
+        if ($this->isFile($path)) { // 确定给定路径是否为文件
+            return require $path; //require 文件
         }
 
         throw new FileNotFoundException("File does not exist at path {$path}");
@@ -345,6 +349,8 @@ class Filesystem
 
     /**
      * Determine if the given path is a file.
+	 *
+	 * 确定给定路径是否为文件
      *
      * @param  string  $file
      * @return bool

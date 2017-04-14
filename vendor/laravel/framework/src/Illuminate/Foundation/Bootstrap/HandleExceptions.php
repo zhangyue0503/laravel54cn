@@ -21,6 +21,8 @@ class HandleExceptions
 
     /**
      * Bootstrap the given application.
+	 *
+	 * 引导给定应用程序
      *
      * @param  \Illuminate\Contracts\Foundation\Application  $app
      * @return void

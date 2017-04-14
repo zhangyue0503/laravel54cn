@@ -44,6 +44,8 @@ class AliasLoader
 
     /**
      * Get or create the singleton alias loader instance.
+	 *
+	 * 获取或创建别名加载程序实例
      *
      * @param  array  $aliases
      * @return \Illuminate\Foundation\AliasLoader
@@ -63,6 +65,8 @@ class AliasLoader
 
     /**
      * Load a class alias if it is registered.
+	 *
+	 * 如果注册，加载类别名
      *
      * @param  string  $alias
      * @return bool|null
@@ -70,7 +74,7 @@ class AliasLoader
     public function load($alias)
     {
         if (static::$facadeNamespace && strpos($alias, static::$facadeNamespace) === 0) {
-            $this->loadFacade($alias);
+            $this->loadFacade($alias); // 为给定的别名加载实时门面
 
             return true;
         }
@@ -82,12 +86,15 @@ class AliasLoader
 
     /**
      * Load a real-time facade for the given alias.
+	 *
+	 * 为给定的别名加载实时门面
      *
      * @param  string  $alias
      * @return bool
      */
     protected function loadFacade($alias)
     {
+		// 用给定的值调用给定的闭包，然后返回值( 确保给定的别名有一个现有的实时门面类)
         tap($this->ensureFacadeExists($alias), function ($path) {
             require $path;
         });
@@ -95,6 +102,8 @@ class AliasLoader
 
     /**
      * Ensure that the given alias has an existing real-time facade class.
+	 *
+	 * 确保给定的别名有一个现有的实时门面类
      *
      * @param  string  $alias
      * @return string
@@ -105,7 +114,7 @@ class AliasLoader
             return $path;
         }
 
-        file_put_contents($path, $this->formatFacadeStub(
+        file_put_contents($path, $this->formatFacadeStub( // 使用适当的命名空间和类格式化门面存根
             $alias, file_get_contents(__DIR__.'/stubs/facade.stub')
         ));
 
@@ -114,6 +123,8 @@ class AliasLoader
 
     /**
      * Format the facade stub with the proper namespace and class.
+	 *
+	 * 使用适当的命名空间和类格式化门面存根
      *
      * @param  string  $alias
      * @param  string  $stub
@@ -146,13 +157,15 @@ class AliasLoader
 
     /**
      * Register the loader on the auto-loader stack.
+	 *
+	 * 在自动装载机堆栈上注册加载器
      *
      * @return void
      */
     public function register()
     {
         if (! $this->registered) {
-            $this->prependToLoaderStack();
+            $this->prependToLoaderStack(); // 自动装载堆栈装载预先加载的方法
 
             $this->registered = true;
         }
@@ -160,11 +173,14 @@ class AliasLoader
 
     /**
      * Prepend the load method to the auto-loader stack.
+	 *
+	 * 自动装载堆栈装载预先加载的方法
      *
      * @return void
      */
     protected function prependToLoaderStack()
     {
+		//                       this->load()
         spl_autoload_register([$this, 'load'], true, true);
     }
 

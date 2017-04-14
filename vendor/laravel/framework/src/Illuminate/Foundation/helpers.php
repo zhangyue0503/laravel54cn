@@ -429,6 +429,8 @@ if (! function_exists('encrypt')) {
 if (! function_exists('env')) {
     /**
      * Gets the value of an environment variable.
+	 *
+	 * 获取环境变量的值
      *
      * @param  string  $key
      * @param  mixed   $default
