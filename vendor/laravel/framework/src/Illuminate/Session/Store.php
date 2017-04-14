@@ -603,6 +603,8 @@ class Store implements Session
     /**
      * Get the previous URL from the session.
      *
+     * 从会话中获取以前的URL
+     *
      * @return string|null
      */
     public function previousUrl()

@@ -32,6 +32,8 @@ class ResponseFactory implements FactoryContract
     /**
      * Create a new response factory instance.
      *
+     * 创建一个新的响应工厂实例
+     *
      * @param  \Illuminate\Contracts\View\Factory  $view
      * @param  \Illuminate\Routing\Redirector  $redirector
      * @return void

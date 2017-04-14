@@ -56,6 +56,8 @@ class Dispatcher implements DispatcherContract
     /**
      * Register an event listener with the dispatcher.
      *
+     * 用分配器注册事件监听器
+     *
      * @param  string|array  $events
      * @param  mixed  $listener
      * @return void

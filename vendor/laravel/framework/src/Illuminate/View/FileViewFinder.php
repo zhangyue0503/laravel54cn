@@ -175,6 +175,8 @@ class FileViewFinder implements ViewFinderInterface
     /**
      * Add a namespace hint to the finder.
      *
+     * 向目录添加命名空间提示
+     *
      * @param  string  $namespace
      * @param  string|array  $hints
      * @return void

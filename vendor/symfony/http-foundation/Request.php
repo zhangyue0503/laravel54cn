@@ -1082,6 +1082,7 @@ class Request
      */
     public function getScheme()
     {
+        //        检查请求是否安全
         return $this->isSecure() ? 'https' : 'http';
     }
 

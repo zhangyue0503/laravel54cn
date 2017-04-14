@@ -14,6 +14,8 @@ interface Kernel
     /**
      * Handle an incoming HTTP request.
      *
+     * 处理传入的HTTP请求
+     *
      * @param  \Symfony\Component\HttpFoundation\Request  $request
      * @return \Symfony\Component\HttpFoundation\Response
      */

@@ -213,6 +213,8 @@ class AliasLoader
     /**
      * Set the real-time facade namespace.
      *
+     * 设置实时门面命名空间
+     *
      * @param  string  $namespace
      * @return void
      */

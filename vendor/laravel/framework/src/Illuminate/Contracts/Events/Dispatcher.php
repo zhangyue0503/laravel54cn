@@ -43,6 +43,8 @@ interface Dispatcher
     /**
      * Fire an event until the first non-null response is returned.
      *
+     * 将事件触发，直到返回第一个非空响应
+     *
      * @param  string|object  $event
      * @param  mixed  $payload
      * @param  bool  $halt

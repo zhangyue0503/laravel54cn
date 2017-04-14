@@ -10,6 +10,8 @@ class AuthServiceProvider extends ServiceProvider
     /**
      * The policy mappings for the application.
      *
+     * 应用程序的策略映射
+     *
      * @var array
      */
     protected $policies = [];
@@ -17,12 +19,14 @@ class AuthServiceProvider extends ServiceProvider
     /**
      * Register the application's policies.
      *
+     * 注册应用程序的策略
+     *
      * @return void
      */
     public function registerPolicies()
     {
         foreach ($this->policies as $key => $value) {
-            Gate::policy($key, $value);
+            Gate::policy($key, $value); //为给定类类型定义策略类 Illuminate\Auth\Access\Gate::policy()
         }
     }
 
