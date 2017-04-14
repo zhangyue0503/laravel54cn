@@ -200,6 +200,8 @@ class Redirector
     /**
      * Set the active session store.
      *
+     * 设置活动会话存储
+     *
      * @param  \Illuminate\Session\Store  $session
      * @return void
      */

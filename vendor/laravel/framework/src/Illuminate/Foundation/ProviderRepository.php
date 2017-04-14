@@ -31,6 +31,8 @@ class ProviderRepository
     /**
      * Create a new service repository instance.
      *
+     * 创建一个新的服务库实例
+     *
      * @param  \Illuminate\Contracts\Foundation\Application  $app
      * @param  \Illuminate\Filesystem\Filesystem  $files
      * @param  string  $manifestPath
@@ -45,6 +47,8 @@ class ProviderRepository
 
     /**
      * Register the application service providers.
+     *
+     * 注册应用服务提供商
      *
      * @param  array  $providers
      * @return void

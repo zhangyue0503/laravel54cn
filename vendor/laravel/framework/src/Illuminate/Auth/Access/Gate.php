@@ -126,6 +126,8 @@ class Gate implements GateContract
     /**
      * Define a policy class for a given class type.
      *
+     * 为给定类类型定义策略类
+     *
      * @param  string  $class
      * @param  string  $policy
      * @return $this

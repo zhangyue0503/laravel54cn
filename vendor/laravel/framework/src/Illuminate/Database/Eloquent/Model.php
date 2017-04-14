@@ -1162,6 +1162,8 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
     /**
      * Get the value of the model's route key.
      *
+     * 获取模型路由键的值
+     *
      * @return mixed
      */
     public function getRouteKey()

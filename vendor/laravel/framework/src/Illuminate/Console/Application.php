@@ -19,12 +19,16 @@ class Application extends SymfonyApplication implements ApplicationContract
     /**
      * The Laravel application instance.
      *
+     * Laravel应用程序实例
+     *
      * @var \Illuminate\Contracts\Container\Container
      */
     protected $laravel;
 
     /**
      * The output from the previous command.
+     *
+     * 来自前一个命令的输出
      *
      * @var \Symfony\Component\Console\Output\BufferedOutput
      */
@@ -33,12 +37,16 @@ class Application extends SymfonyApplication implements ApplicationContract
     /**
      * The console application bootstrappers.
      *
+     * 控制台程序的启动加载器数组
+     *
      * @var array
      */
     protected static $bootstrappers = [];
 
     /**
      * Create a new Artisan console application.
+     *
+     * 创建一个新的
      *
      * @param  \Illuminate\Contracts\Container\Container  $laravel
      * @param  \Illuminate\Contracts\Events\Dispatcher  $events
@@ -91,6 +99,8 @@ class Application extends SymfonyApplication implements ApplicationContract
 
     /**
      * Register a console "starting" bootstrapper.
+     *
+     * 登记一个控制台的“starting”程序
      *
      * @param  \Closure  $callback
      * @return void
@@ -194,6 +204,8 @@ class Application extends SymfonyApplication implements ApplicationContract
 
     /**
      * Resolve an array of commands through the application.
+     *
+     * 通过应用程序解析命令数组
      *
      * @param  array|mixed  $commands
      * @return $this

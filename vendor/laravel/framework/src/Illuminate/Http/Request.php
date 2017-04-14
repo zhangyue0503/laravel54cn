@@ -103,6 +103,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      */
     public function root()
     {
+        //                  获取协议和HTTP主机         返回执行此请求的根URL
         return rtrim($this->getSchemeAndHttpHost().$this->getBaseUrl(), '/');
     }
 

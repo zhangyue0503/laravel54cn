@@ -971,6 +971,8 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
     /**
      * Reduce the collection to a single value.
      *
+     * 调用array_reduce
+     *
      * @param  callable  $callback
      * @param  mixed  $initial
      * @return mixed
