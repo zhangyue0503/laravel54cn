@@ -117,6 +117,8 @@ class Factory implements FactoryContract
     /**
      * Get the evaluated view contents for the given view.
      *
+	 * 获取给定视图的得到视图内容
+	 *
      * @param  string  $view
      * @param  array   $data
      * @param  array   $mergeData

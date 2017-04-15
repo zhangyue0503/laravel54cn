@@ -205,7 +205,7 @@ class Kernel implements KernelContract
     /**
      * Call the terminate method on any terminable middleware.
      *
-     * 调用terminate方法对任何有期限的中间件
+     * 调用terminate方法完成所有终止中间件
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Http\Response  $response
@@ -213,7 +213,7 @@ class Kernel implements KernelContract
      */
     public function terminate($request, $response)
     {
-        $this->terminateMiddleware($request, $response); // 调用Terminate方法对任何有期限的中间件
+        $this->terminateMiddleware($request, $response); // 调用Terminate方法完成所有终止中间件
 
         $this->app->terminate(); //终止应用程序 Illuminate\Foundation\Application::terminate()
     }

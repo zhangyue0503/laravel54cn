@@ -64,7 +64,7 @@ $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class); // App\Http\Kerne
 $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture() //
 );
-// 发送HTTP头和内容 Symfony\Component\HttpFoundation::send()
+// 发送HTTP头和内容 Symfony\Component\HttpFoundation\Response::send()
 $response->send();
-//终止应用程序
+//调用terminate方法完成所有终止中间件，最后终止应用程序
 $kernel->terminate($request, $response);
