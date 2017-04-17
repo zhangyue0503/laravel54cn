@@ -298,8 +298,8 @@ class Request
         // stores the Content-Type and Content-Length header values in
         // HTTP_CONTENT_TYPE and HTTP_CONTENT_LENGTH fields.
         //
-        // 源于PHP的错误# 66606，PHP的内置网络服务器存储在HTTP_CONTENT_TYPE and HTTP_CONTENT_LENGTH 字段中的 Content-Type and Content-Length 值
-        // * PHP的错误# 66606:内容类型标头值应存放在content_type，但内置的Web服务器中存储在$_SERVER['HTTP_CONTENT_TYPE']，而没有$_SERVER['CONTENT_TYPE'] （这也可能会影响CONTENT_LENGTH）
+        // 源于PHP的错误# 66606，PHP的内置网络服务器存储在HTTP_CONTENt-Type and Content-Length 值
+        // * PHP的错误# 66606:内容类型标头值应存放在content_type，但内置的Web服务器中存储在$_SERVER['HTTP_CONTT_TYPE and HTTP_CONTENT_LENGTH 字段中的 ContenENT_TYPE']，而没有$_SERVER['CONTENT_TYPE'] （这也可能会影响CONTENT_LENGTH）
         //
         $server = $_SERVER;
         if ('cli-server' === PHP_SAPI) {

@@ -43,6 +43,8 @@ interface InputInterface
 
     /**
      * Returns the value of a raw option (not parsed).
+	 *
+	 * 返回原始选项的值（未解析）
      *
      * This method is to be used to introspect the input parameters
      * before they have been validated. It must be used carefully.

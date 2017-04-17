@@ -176,6 +176,8 @@ abstract class Facade
 
     /**
      * Clear all of the resolved instances.
+	 *
+	 * 清除所有已解决的实例
      *
      * @return void
      */
@@ -196,6 +198,8 @@ abstract class Facade
 
     /**
      * Set the application instance.
+	 *
+	 * 设置应用实例
      *
      * @param  \Illuminate\Contracts\Foundation\Application  $app
      * @return void

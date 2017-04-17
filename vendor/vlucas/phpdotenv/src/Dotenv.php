@@ -5,8 +5,13 @@ namespace Dotenv;
 /**
  * This is the dotenv class.
  *
+ * 这是dotenv类
+ *
  * It's responsible for loading a `.env` file in the given directory and
  * setting the environment vars.
+ *
+ * 它负责在给定的目录加载`.env`并设置环境变量文件
+ *
  */
 class Dotenv
 {
@@ -26,6 +31,8 @@ class Dotenv
 
     /**
      * Create a new dotenv instance.
+	 *
+	 * 创建一个新的dotenv实例
      *
      * @param string $path
      * @param string $file
@@ -34,18 +41,20 @@ class Dotenv
      */
     public function __construct($path, $file = '.env')
     {
-        $this->filePath = $this->getFilePath($path, $file);
+        $this->filePath = $this->getFilePath($path, $file); //返回文件的完整路径
         $this->loader = new Loader($this->filePath, true);
     }
 
     /**
      * Load environment file in given directory.
+	 *
+	 * 在给定目录中加载环境文件
      *
      * @return array
      */
     public function load()
     {
-        return $this->loadData();
+        return $this->loadData(); // 实际加载数据
     }
 
     /**
@@ -60,6 +69,8 @@ class Dotenv
 
     /**
      * Returns the full path to the file.
+	 *
+	 * 返回文件的完整路径
      *
      * @param string $path
      * @param string $file
@@ -79,6 +90,8 @@ class Dotenv
 
     /**
      * Actually load the data.
+	 *
+	 * 实际加载数据
      *
      * @param bool $overload
      *
@@ -86,9 +99,9 @@ class Dotenv
      */
     protected function loadData($overload = false)
     {
-        $this->loader = new Loader($this->filePath, !$overload);
+        $this->loader = new Loader($this->filePath, !$overload); //创建一个新的加载实例
 
-        return $this->loader->load();
+        return $this->loader->load(); // 在给定目录中加载`.env`文件
     }
 
     /**

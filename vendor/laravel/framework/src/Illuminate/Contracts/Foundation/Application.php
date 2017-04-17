@@ -36,6 +36,8 @@ interface Application extends Container
 
     /**
      * Register all of the configured providers.
+	 *
+	 * 注册所有配置的提供者
      *
      * @return void
      */
@@ -43,6 +45,8 @@ interface Application extends Container
 
     /**
      * Register a service provider with the application.
+	 *
+	 * 应用程序注册服务提供者
      *
      * @param  \Illuminate\Support\ServiceProvider|string  $provider
      * @param  array  $options
@@ -62,6 +66,8 @@ interface Application extends Container
 
     /**
      * Boot the application's service providers.
+	 *
+	 * 启动应用程序的服务提供者
      *
      * @return void
      */

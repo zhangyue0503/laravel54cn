@@ -40,12 +40,12 @@ class Kernel implements KernelContract
      * @var array
      */
     protected $bootstrappers = [
-        \Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables::class,
-        \Illuminate\Foundation\Bootstrap\LoadConfiguration::class,
-        \Illuminate\Foundation\Bootstrap\HandleExceptions::class,
-        \Illuminate\Foundation\Bootstrap\RegisterFacades::class,
-        \Illuminate\Foundation\Bootstrap\RegisterProviders::class,
-        \Illuminate\Foundation\Bootstrap\BootProviders::class,
+        \Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables::class, //环境检测
+        \Illuminate\Foundation\Bootstrap\LoadConfiguration::class,//配置加载
+        \Illuminate\Foundation\Bootstrap\HandleExceptions::class,//异常处理
+        \Illuminate\Foundation\Bootstrap\RegisterFacades::class,//外观注册
+        \Illuminate\Foundation\Bootstrap\RegisterProviders::class,//服务提供者注册
+        \Illuminate\Foundation\Bootstrap\BootProviders::class,//启动服务
     ];
 
     /**
@@ -205,7 +205,7 @@ class Kernel implements KernelContract
     /**
      * Call the terminate method on any terminable middleware.
      *
-     * 调用terminate方法对任何有期限的中间件
+     * 调用terminate方法完成所有终止中间件
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Http\Response  $response
@@ -213,7 +213,7 @@ class Kernel implements KernelContract
      */
     public function terminate($request, $response)
     {
-        $this->terminateMiddleware($request, $response); // 调用Terminate方法对任何有期限的中间件
+        $this->terminateMiddleware($request, $response); // 调用Terminate方法完成所有终止中间件
 
         $this->app->terminate(); //终止应用程序 Illuminate\Foundation\Application::terminate()
     }

@@ -879,6 +879,8 @@ if (! function_exists('studly_case')) {
 if (! function_exists('tap')) {
     /**
      * Call the given Closure with the given value then return the value.
+	 *
+	 * 用给定的值调用给定的闭包，然后返回值
      *
      * @param  mixed  $value
      * @param  callable  $callback

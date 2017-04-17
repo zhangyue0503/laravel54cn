@@ -386,6 +386,8 @@ class Response
 
     /**
      * Sends HTTP headers.
+	 *
+	 * 发送HTTP头部
      *
      * @return $this
      */
@@ -424,6 +426,8 @@ class Response
 
     /**
      * Sends content for the current web response.
+	 *
+	 * 发送当前web响应的内容
      *
      * @return $this
      */
@@ -443,13 +447,13 @@ class Response
      */
     public function send()
     {
-        $this->sendHeaders();
-        $this->sendContent();
+        $this->sendHeaders(); // 发送HTTP头部
+        $this->sendContent(); // 发送当前web响应的内容
 
         if (function_exists('fastcgi_finish_request')) {
             fastcgi_finish_request();
         } elseif ('cli' !== PHP_SAPI) {
-            static::closeOutputBuffers(0, true);
+            static::closeOutputBuffers(0, true); // 清除或刷新输出缓冲区到目标级别（缓冲区释放）
         }
 
         return $this;

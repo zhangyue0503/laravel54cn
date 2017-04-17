@@ -429,6 +429,8 @@ if (! function_exists('encrypt')) {
 if (! function_exists('env')) {
     /**
      * Gets the value of an environment variable.
+	 *
+	 * 获取环境变量的值
      *
      * @param  string  $key
      * @param  mixed   $default
@@ -899,6 +901,8 @@ if (! function_exists('validator')) {
 if (! function_exists('view')) {
     /**
      * Get the evaluated view contents for the given view.
+	 *
+	 * 获取给定视图的得到视图内容
      *
      * @param  string  $view
      * @param  array   $data
@@ -907,12 +911,13 @@ if (! function_exists('view')) {
      */
     function view($view = null, $data = [], $mergeData = [])
     {
+		//             \Illuminate\View\Factory
         $factory = app(ViewFactory::class);
 
         if (func_num_args() === 0) {
             return $factory;
         }
-
+		//          \Illuminate\View\Factory::make() 获取给定视图的得到视图内容
         return $factory->make($view, $data, $mergeData);
     }
 }

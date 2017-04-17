@@ -17,6 +17,8 @@ class Repository implements ArrayAccess, ConfigContract
 
     /**
      * Create a new configuration repository.
+	 *
+	 * 创建一个新的配置库
      *
      * @param  array  $items
      * @return void
@@ -39,6 +41,8 @@ class Repository implements ArrayAccess, ConfigContract
 
     /**
      * Get the specified configuration value.
+	 *
+	 * 获取指定的配置值
      *
      * @param  string  $key
      * @param  mixed   $default
@@ -51,6 +55,8 @@ class Repository implements ArrayAccess, ConfigContract
 
     /**
      * Set a given configuration value.
+	 *
+	 * 设置给定的配置值
      *
      * @param  array|string  $key
      * @param  mixed   $value

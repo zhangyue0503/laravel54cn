@@ -30,6 +30,8 @@ class Loader
 
     /**
      * Create a new loader instance.
+	 *
+	 * 创建一个新的加载实例
      *
      * @param string $filePath
      * @param bool   $immutable
@@ -44,18 +46,21 @@ class Loader
 
     /**
      * Load `.env` file in given directory.
+	 *
+	 * 在给定目录中加载`.env`文件
      *
      * @return array
      */
     public function load()
     {
-        $this->ensureFileIsReadable();
+        $this->ensureFileIsReadable(); // 确保给定的路径是可读的
 
         $filePath = $this->filePath;
         $lines = $this->readLinesFromFile($filePath);
         foreach ($lines as $line) {
+			//   确定文件中的行是一个注释       确定如果给定的行看起来像是设置一个变量
             if (!$this->isComment($line) && $this->looksLikeSetter($line)) {
-                $this->setEnvironmentVariable($line);
+                $this->setEnvironmentVariable($line); //设置环境变量
             }
         }
 
@@ -64,6 +69,8 @@ class Loader
 
     /**
      * Ensures the given filePath is readable.
+	 *
+	 * 确保给定的路径是可读的
      *
      * @throws \Dotenv\Exception\InvalidPathException
      *
@@ -78,12 +85,20 @@ class Loader
 
     /**
      * Normalise the given environment variable.
+	 *
+	 * 将给定的环境变量正常化
      *
      * Takes value as passed in by developer and:
+	 * 通过开发人员和：
      * - ensures we're dealing with a separate name and value, breaking apart the name string if needed,
+	 * -确保我们正在处理一个单独的名称和值，如果需要的话，断开名称字符串，
      * - cleaning the value of quotes,
+	 * -清理值的引号
      * - cleaning the name of quotes,
+	 * -清理名称的引号
      * - resolving nested variables.
+	 * -解决嵌套变量
+	 *
      *
      * @param string $name
      * @param string $value
@@ -122,6 +137,8 @@ class Loader
 
     /**
      * Read lines from the file, auto detecting line endings.
+	 *
+	 * 从文件中读取行，自动检测线条结尾
      *
      * @param string $filePath
      *
@@ -130,6 +147,7 @@ class Loader
     protected function readLinesFromFile($filePath)
     {
         // Read file into an array of lines with auto-detected line endings
+		// 将文件读入自动检测到的行结尾的行数组中
         $autodetect = ini_get('auto_detect_line_endings');
         ini_set('auto_detect_line_endings', '1');
         $lines = file($filePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -140,6 +158,8 @@ class Loader
 
     /**
      * Determine if the line in the file is a comment, e.g. begins with a #.
+	 *
+	 * 确定文件中的行是一个注释，例如从一个#
      *
      * @param string $line
      *
@@ -152,6 +172,8 @@ class Loader
 
     /**
      * Determine if the given line looks like it's setting a variable.
+	 *
+	 * 确定如果给定的行看起来像是设置一个变量
      *
      * @param string $line
      *
@@ -292,6 +314,8 @@ class Loader
 
     /**
      * Search the different places for environment variables and return first value found.
+	 *
+	 * 搜索不同位置的环境变量并返回第一个值
      *
      * @param string $name
      *
@@ -312,13 +336,18 @@ class Loader
 
     /**
      * Set an environment variable.
+	 *
+	 * 设置环境变量
      *
      * This is done using:
+	 * 这是使用:
      * - putenv,
      * - $_ENV,
      * - $_SERVER.
      *
      * The environment variable value is stripped of single and double quotes.
+	 *
+	 * 环境变量值被删除单引号和双引号
      *
      * @param string      $name
      * @param string|null $value
@@ -327,22 +356,28 @@ class Loader
      */
     public function setEnvironmentVariable($name, $value = null)
     {
-        list($name, $value) = $this->normaliseEnvironmentVariable($name, $value);
+        list($name, $value) = $this->normaliseEnvironmentVariable($name, $value);//将给定的环境变量正常化
 
         // Don't overwrite existing environment variables if we're immutable
         // Ruby's dotenv does this with `ENV[key] ||= value`.
-        if ($this->immutable && $this->getEnvironmentVariable($name) !== null) {
+		//
+		// 如果我们是一成不变的，不要覆盖现有的环境变量
+		//
+        if ($this->immutable && $this->getEnvironmentVariable($name) !== null) { //搜索不同位置的环境变量并返回第一个值
             return;
         }
 
         // If PHP is running as an Apache module and an existing
         // Apache environment variable exists, overwrite it
+		//
+		// 如果PHP作为Apache模块运行，并且存在一个现有的Apache环境变量，那么重写它
+		//
         if (function_exists('apache_getenv') && function_exists('apache_setenv') && apache_getenv($name)) {
             apache_setenv($name, $value);
         }
 
         if (function_exists('putenv')) {
-            putenv("$name=$value");
+            putenv("$name=$value");  // 设置环境变量的值
         }
 
         $_ENV[$name] = $value;
