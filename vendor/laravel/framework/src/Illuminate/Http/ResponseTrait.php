@@ -53,6 +53,8 @@ trait ResponseTrait
 
     /**
      * Set a header on the Response.
+	 *
+	 * 设置响应头
      *
      * @param  string  $key
      * @param  array|string  $values

@@ -14,9 +14,22 @@
 Route::get('/', function (\Illuminate\Http\Request $request) {
     return view('welcome');
 });
+
+//请求示例，Laravel框架关键技术解析九
+Route::post('/auth/register', 'AuthController@postRegister');
+Route::get('/auth/form', 'AuthController@redirectForm');
+
+
+//响应示例，Laravel框架关键技术解析九
+Route::get('/welcome/index_response', 'WelcomeController@indexResponse');
+Route::get('/welcome/index_response2', 'WelcomeController@indexResponse2');
+Route::get('/welcome/index_redirect', 'WelcomeController@indexRedirect');
+
+
+
 //容器示例
 Route::get('/container', function (\Illuminate\Http\Request $request) {
-    $container = new \Illuminate\Container\Container();
+	$app = $container = app();
     class Concrete{
         public function show()
         {
@@ -28,7 +41,41 @@ Route::get('/container', function (\Illuminate\Http\Request $request) {
     // 从容器中解析给定类型
     $c = $container->make('iabstract');
     $c->show();
+
+	//Lavarl框架关键技术解析，第8章
+	class SingleService{
+		public $serviceName;
+	}
+
+	//到bindings数组，普通绑定
+	$app->bind(\App\ServiceTest\GeneralService::class,function($app){
+		return new \App\ServiceTest\GeneralService();
+	});
+	//到bindings数组，单例绑定
+	$app->singleton(SingleService::class,function($app){
+		return new SingleService();
+	});
+	//实例对象服务绑定，到instances数组中
+	$instance = new \App\ServiceTest\InstanceService();
+	$app->instance('InstanceService', $instance);
+
+	//接口名、服务名形式
+	$app->bind(\App\ServiceTest\ServiceContract::class, \App\ServiceTest\GeneralService::class);
+
+	//查看bindings和instances数组
+	var_dump($app);
+
+	//4种解析方式
+	$generalServiceOne = $app->make(\App\ServiceTest\GeneralService::class);
+	$generalServiceTwo = $app[\App\ServiceTest\GeneralService::class];
+	$generalServiceThree = app(\App\ServiceTest\GeneralService::class);
+	$generalServiceFour = \App::make(\App\ServiceTest\GeneralService::class);
 });
+//服务容器与服务提供者
+Route::get('/container/welcome', 'WelcomeController@index');
+Route::get('/container/welcome/interface', 'WelcomeController@interfaceIndex');
+
+
 
 //管道示例
 Route::get('/pips', function (\Illuminate\Http\Request $request) {
@@ -62,3 +109,7 @@ Route::get('/pips', function (\Illuminate\Http\Request $request) {
 
 
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

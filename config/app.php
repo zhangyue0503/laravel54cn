@@ -202,6 +202,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+		//Lavarl框架关键技术解析，第8章
+		App\ServiceTest\TestServiceProvider::class,
+
     ],
 
     /*

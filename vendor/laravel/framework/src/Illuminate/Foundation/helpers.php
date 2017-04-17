@@ -642,6 +642,9 @@ if (! function_exists('public_path')) {
 if (! function_exists('redirect')) {
     /**
      * Get an instance of the redirector.
+	 *
+	 * 得到重定向器的实例
+	 * Illuminate\Routing\RoutingServiceProvider::registerRedirector()中注册
      *
      * @param  string|null  $to
      * @param  int     $status
@@ -710,6 +713,8 @@ if (! function_exists('resource_path')) {
 if (! function_exists('response')) {
     /**
      * Return a new response from the application.
+	 *
+	 * 从应用程序返回新的响应
      *
      * @param  string  $content
      * @param  int     $status
@@ -718,6 +723,7 @@ if (! function_exists('response')) {
      */
     function response($content = '', $status = 200, array $headers = [])
     {
+		// Illuminate\Routing\ResponseFactory.php
         $factory = app(ResponseFactory::class);
 
         if (func_num_args() === 0) {
