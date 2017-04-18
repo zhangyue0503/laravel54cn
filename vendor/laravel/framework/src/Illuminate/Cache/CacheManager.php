@@ -70,6 +70,8 @@ class CacheManager implements FactoryContract
     /**
      * Attempt to get the store from the local cache.
      *
+     * 试图从本地缓存获取存储区
+     *
      * @param  string  $name
      * @return \Illuminate\Contracts\Cache\Repository
      */

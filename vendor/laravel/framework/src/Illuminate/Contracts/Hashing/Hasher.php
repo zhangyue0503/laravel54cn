@@ -7,6 +7,8 @@ interface Hasher
     /**
      * Hash the given value.
      *
+     * 哈希给定的值
+     *
      * @param  string  $value
      * @param  array   $options
      * @return string

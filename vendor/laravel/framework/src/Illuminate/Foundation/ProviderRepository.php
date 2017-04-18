@@ -4,11 +4,13 @@ namespace Illuminate\Foundation;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Foundation\Application as ApplicationContract;
-
+// 提供者库
 class ProviderRepository
 {
     /**
      * The application implementation.
+     *
+     * 应用实现
      *
      * @var \Illuminate\Contracts\Foundation\Application
      */
@@ -17,12 +19,16 @@ class ProviderRepository
     /**
      * The filesystem instance.
      *
+     * 文件系统实例
+     *
      * @var \Illuminate\Filesystem\Filesystem
      */
     protected $files;
 
     /**
      * The path to the manifest file.
+     *
+     * 清单文件的路径
      *
      * @var string
      */
@@ -170,35 +176,47 @@ class ProviderRepository
         // The service manifest should contain a list of all of the providers for
         // the application so we can compare it on each request to the service
         // and determine if the manifest should be recompiled or is current.
-        $manifest = $this->freshManifest($providers);
+        //
+        // 服务清单应该包含一个应用程序的所有提供的名单，所以我们可以比较它对服务请求并确定清单应该重新编译或是现在的
+        //
+        $manifest = $this->freshManifest($providers);  //创建新的服务清单数据结构
 
         foreach ($providers as $provider) {
-            $instance = $this->createProvider($provider);
+            $instance = $this->createProvider($provider); //创建一个新的提供者实例
 
             // When recompiling the service manifest, we will spin through each of the
             // providers and check if it's a deferred provider or not. If so we'll
             // add it's provided services to the manifest and note the provider.
-            if ($instance->isDeferred()) {
-                foreach ($instance->provides() as $service) {
+            //
+            // 当重新编译服务清单，我们将通过旋转每个提供者并检查它是否延期提供或不
+            // 如果是这样，我们将向清单中添加其提供的服务，并注意提供程序。
+            //
+            if ($instance->isDeferred()) { //确定是否延迟提供程序
+                foreach ($instance->provides() as $service) { //获取提供者提供的服务
                     $manifest['deferred'][$service] = $provider;
                 }
 
-                $manifest['when'][$provider] = $instance->when();
+                $manifest['when'][$provider] = $instance->when(); //获取触发此服务提供程序注册的事件
             }
 
             // If the service providers are not deferred, we will simply add it to an
             // array of eagerly loaded providers that will get registered on every
             // request to this application instead of "lazy" loading every time.
+            //
+            // 如果服务提供者没有被延迟，我们将简单地将它添加到一个数组的急切加载的供应商，将得到注册的每一个请求这个应用程序，而不是“懒惰”加载每次。
+            //
             else {
                 $manifest['eager'][] = $provider;
             }
         }
 
-        return $this->writeManifest($manifest);
+        return $this->writeManifest($manifest); //将服务清单文件写入磁盘
     }
 
     /**
      * Create a fresh service manifest data structure.
+     *
+     * 创建新的服务清单数据结构
      *
      * @param  array  $providers
      * @return array
@@ -211,12 +229,14 @@ class ProviderRepository
     /**
      * Write the service manifest file to disk.
      *
+     * 将服务清单文件写入磁盘
+     *
      * @param  array  $manifest
      * @return array
      */
     public function writeManifest($manifest)
     {
-        $this->files->put(
+        $this->files->put(  //写入文件的内容
             $this->manifestPath, '<?php return '.var_export($manifest, true).';'
         );
 
@@ -225,6 +245,8 @@ class ProviderRepository
 
     /**
      * Create a new provider instance.
+     *
+     * 创建一个新的提供者实例
      *
      * @param  string  $provider
      * @return \Illuminate\Support\ServiceProvider

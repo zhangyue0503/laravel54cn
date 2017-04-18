@@ -3,7 +3,7 @@
 namespace Illuminate\Queue;
 
 use Illuminate\Contracts\Queue\Job as JobContract;
-
+//交互队列
 trait InteractsWithQueue
 {
     /**

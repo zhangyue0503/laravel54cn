@@ -14,6 +14,8 @@ namespace Symfony\Component\HttpFoundation;
 /**
  * Represents a cookie.
  *
+ * 代表一个Cookie
+ *
  * @author Johannes M. Schmitt <schmittjoh@gmail.com>
  */
 class Cookie
@@ -34,6 +36,8 @@ class Cookie
     /**
      * Constructor.
      *
+     * 构造函数
+     *
      * @param string                        $name     The name of the cookie
      * @param string                        $value    The value of the cookie
      * @param int|string|\DateTimeInterface $expire   The time the cookie expires
@@ -48,7 +52,7 @@ class Cookie
      */
     public function __construct($name, $value = null, $expire = 0, $path = '/', $domain = null, $secure = false, $httpOnly = true, $raw = false, $sameSite = null)
     {
-        // from PHP source code
+        // from PHP source code 源于php源码
         if (preg_match("/[=,; \t\r\n\013\014]/", $name)) {
             throw new \InvalidArgumentException(sprintf('The cookie name "%s" contains invalid characters.', $name));
         }
@@ -57,7 +61,7 @@ class Cookie
             throw new \InvalidArgumentException('The cookie name cannot be empty.');
         }
 
-        // convert expiration time to a Unix timestamp
+        // convert expiration time to a Unix timestamp  将过期时间转换为UNIX时间戳
         if ($expire instanceof \DateTimeInterface) {
             $expire = $expire->format('U');
         } elseif (!is_numeric($expire)) {
@@ -86,6 +90,8 @@ class Cookie
 
     /**
      * Returns the cookie as a string.
+     *
+     * 将cookie返回为字符串
      *
      * @return string The cookie
      */
@@ -129,6 +135,8 @@ class Cookie
     /**
      * Gets the name of the cookie.
      *
+     * 获取cookie的名称
+     *
      * @return string
      */
     public function getName()
@@ -138,6 +146,8 @@ class Cookie
 
     /**
      * Gets the value of the cookie.
+     *
+     * 获取cookie的值
      *
      * @return string|null
      */
@@ -149,6 +159,8 @@ class Cookie
     /**
      * Gets the domain that the cookie is available to.
      *
+     * 获取cookie可用的域
+     *
      * @return string|null
      */
     public function getDomain()
@@ -158,6 +170,8 @@ class Cookie
 
     /**
      * Gets the time the cookie expires.
+     *
+     * 获取cookie过期的时间
      *
      * @return int
      */
@@ -169,6 +183,8 @@ class Cookie
     /**
      * Gets the path on the server in which the cookie will be available on.
      *
+     * 获取服务器上可用cookie的路径
+     *
      * @return string
      */
     public function getPath()
@@ -178,6 +194,8 @@ class Cookie
 
     /**
      * Checks whether the cookie should only be transmitted over a secure HTTPS connection from the client.
+     *
+     * 检查cookie从客户端的HTTPS链接是否应该被安全发送
      *
      * @return bool
      */
@@ -189,6 +207,8 @@ class Cookie
     /**
      * Checks whether the cookie will be made accessible only through the HTTP protocol.
      *
+     * 检查是否可以只通过HTTP协议获得访问
+     *
      * @return bool
      */
     public function isHttpOnly()
@@ -198,6 +218,8 @@ class Cookie
 
     /**
      * Whether this cookie is about to be cleared.
+     *
+     * 这个cookie是否即将被清除
      *
      * @return bool
      */
@@ -209,6 +231,8 @@ class Cookie
     /**
      * Checks if the cookie value should be sent with no url encoding.
      *
+     * 检查cookie值是否应该不用URL编码发送
+     *
      * @return bool
      */
     public function isRaw()
@@ -218,6 +242,8 @@ class Cookie
 
     /**
      * Gets the SameSite attribute.
+     *
+     * 得到SameSite属性
      *
      * @return string|null
      */

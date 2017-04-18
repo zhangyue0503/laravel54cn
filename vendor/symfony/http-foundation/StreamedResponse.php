@@ -14,11 +14,18 @@ namespace Symfony\Component\HttpFoundation;
 /**
  * StreamedResponse represents a streamed HTTP response.
  *
+ * StreamedResponse是一个流的HTTP响应
+ *
  * A StreamedResponse uses a callback for its content.
+ *
+ * 一个StreamedResponse使用回调函数的内容
  *
  * The callback should use the standard PHP functions like echo
  * to stream the response back to the client. The flush() method
  * can also be used if needed.
+ *
+ * 回调函数应该使用标准的PHP函数，例如echo将响应流返回给客户端
+ * 该方法也可以用于flush()如果需要
  *
  * @see flush()
  *
@@ -33,6 +40,8 @@ class StreamedResponse extends Response
     /**
      * Constructor.
      *
+     * 构造函数
+     *
      * @param callable|null $callback A valid PHP callback or null to set it later
      * @param int           $status   The response status code
      * @param array         $headers  An array of response headers
@@ -42,7 +51,7 @@ class StreamedResponse extends Response
         parent::__construct(null, $status, $headers);
 
         if (null !== $callback) {
-            $this->setCallback($callback);
+            $this->setCallback($callback); // 设置与此响应关联的PHP回调
         }
         $this->streamed = false;
         $this->headersSent = false;
@@ -50,6 +59,8 @@ class StreamedResponse extends Response
 
     /**
      * Factory method for chainability.
+     *
+     * 链式调用的工厂方法
      *
      * @param callable|null $callback A valid PHP callback or null to set it later
      * @param int           $status   The response status code
@@ -65,6 +76,8 @@ class StreamedResponse extends Response
     /**
      * Sets the PHP callback associated with this Response.
      *
+     * 设置与此响应关联的PHP回调
+     *
      * @param callable $callback A valid PHP callback
      */
     public function setCallback(callable $callback)
@@ -76,6 +89,7 @@ class StreamedResponse extends Response
      * {@inheritdoc}
      *
      * This method only sends the headers once.
+     * 此方法只发送一次头
      */
     public function sendHeaders()
     {
@@ -85,13 +99,14 @@ class StreamedResponse extends Response
 
         $this->headersSent = true;
 
-        parent::sendHeaders();
+        parent::sendHeaders(); //发送HTTP头部
     }
 
     /**
      * {@inheritdoc}
      *
      * This method only sends the content once.
+     * 此方法只发送一次内容
      */
     public function sendContent()
     {
@@ -111,6 +126,8 @@ class StreamedResponse extends Response
     /**
      * {@inheritdoc}
      *
+     * 设置响应的内容
+     *
      * @throws \LogicException when the content is not null
      */
     public function setContent($content)
@@ -122,6 +139,8 @@ class StreamedResponse extends Response
 
     /**
      * {@inheritdoc}
+     *
+     * 获取当前的响应内容
      *
      * @return false
      */

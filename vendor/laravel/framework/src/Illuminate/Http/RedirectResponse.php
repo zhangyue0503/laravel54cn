@@ -167,6 +167,8 @@ class RedirectResponse extends BaseRedirectResponse
     /**
      * Get the request instance.
      *
+     * 获取请求实例
+     *
      * @return \Illuminate\Http\Request|null
      */
     public function getRequest()
@@ -176,6 +178,8 @@ class RedirectResponse extends BaseRedirectResponse
 
     /**
      * Set the request instance.
+     *
+     * 设置请求实例
      *
      * @param  \Illuminate\Http\Request  $request
      * @return void
@@ -197,6 +201,8 @@ class RedirectResponse extends BaseRedirectResponse
 
     /**
      * Set the session store implementation.
+     *
+     * 设置会话存储实现
      *
      * @param  \Illuminate\Session\Store  $session
      * @return void

@@ -178,6 +178,8 @@ class Factory implements ArrayAccess
     /**
      * Create a builder for the given model.
      *
+     * 为给定的模型创建生成器
+     *
      * @param  string  $class
      * @param  string  $name
      * @return \Illuminate\Database\Eloquent\FactoryBuilder

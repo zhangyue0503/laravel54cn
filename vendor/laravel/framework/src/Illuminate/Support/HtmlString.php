@@ -9,12 +9,16 @@ class HtmlString implements Htmlable
     /**
      * The HTML string.
      *
+     * HTML字符串
+     *
      * @var string
      */
     protected $html;
 
     /**
      * Create a new HTML string instance.
+     *
+     * 创建一个新的HTML字符串实例
      *
      * @param  string  $html
      * @return void
@@ -27,6 +31,8 @@ class HtmlString implements Htmlable
     /**
      * Get the HTML string.
      *
+     * 获取HTML字符串
+     *
      * @return string
      */
     public function toHtml()
@@ -36,6 +42,8 @@ class HtmlString implements Htmlable
 
     /**
      * Get the HTML string.
+     *
+     * 获取HTML字符串
      *
      * @return string
      */

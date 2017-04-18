@@ -1,11 +1,13 @@
 <?php
 
 namespace Illuminate\Foundation;
-
+//别名装载机
 class AliasLoader
 {
     /**
      * The array of class aliases.
+     *
+     * 类别名数组
      *
      * @var array
      */
@@ -14,12 +16,16 @@ class AliasLoader
     /**
      * Indicates if a loader has been registered.
      *
+     * 指示是否已加载加载程序
+     *
      * @var bool
      */
     protected $registered = false;
 
     /**
      * The namespace for all real-time facades.
+     *
+     * 所有实时门面的命名空间
      *
      * @var string
      */
@@ -28,12 +34,16 @@ class AliasLoader
     /**
      * The singleton instance of the loader.
      *
+     * 加载程序的单个实例
+     *
      * @var \Illuminate\Foundation\AliasLoader
      */
     protected static $instance;
 
     /**
      * Create a new AliasLoader instance.
+     *
+     * 创建一个新的AliasLoader实例
      *
      * @param  array  $aliases
      */
@@ -55,10 +65,10 @@ class AliasLoader
         if (is_null(static::$instance)) {
             return static::$instance = new static($aliases);
         }
-
+        //                                  获取注册别名
         $aliases = array_merge(static::$instance->getAliases(), $aliases);
 
-        static::$instance->setAliases($aliases);
+        static::$instance->setAliases($aliases); //设置已注册的别名
 
         return static::$instance;
     }
@@ -134,7 +144,7 @@ class AliasLoader
     {
         $replacements = [
             str_replace('/', '\\', dirname(str_replace('\\', '/', $alias))),
-            class_basename($alias),
+            class_basename($alias), // 获取类的“basename“从给定的对象/类
             substr($alias, strlen(static::$facadeNamespace)),
         ];
 
@@ -145,6 +155,8 @@ class AliasLoader
 
     /**
      * Add an alias to the loader.
+     *
+     * 在加载程序中添加别名
      *
      * @param  string  $class
      * @param  string  $alias
@@ -187,6 +199,8 @@ class AliasLoader
     /**
      * Get the registered aliases.
      *
+     * 获取注册别名
+     *
      * @return array
      */
     public function getAliases()
@@ -196,6 +210,8 @@ class AliasLoader
 
     /**
      * Set the registered aliases.
+     *
+     * 设置已注册的别名
      *
      * @param  array  $aliases
      * @return void
@@ -208,6 +224,8 @@ class AliasLoader
     /**
      * Indicates if the loader has been registered.
      *
+     * 指示加载程序是否已注册
+     *
      * @return bool
      */
     public function isRegistered()
@@ -217,6 +235,8 @@ class AliasLoader
 
     /**
      * Set the "registered" state of the loader.
+     *
+     * 设置装载机的“注册”状态
      *
      * @param  bool  $value
      * @return void
@@ -242,6 +262,8 @@ class AliasLoader
     /**
      * Set the value of the singleton alias loader.
      *
+     * 设置单例别名加载程序的值
+     *
      * @param  \Illuminate\Foundation\AliasLoader  $loader
      * @return void
      */
@@ -252,6 +274,8 @@ class AliasLoader
 
     /**
      * Clone method.
+     *
+     * 克隆方法
      *
      * @return void
      */

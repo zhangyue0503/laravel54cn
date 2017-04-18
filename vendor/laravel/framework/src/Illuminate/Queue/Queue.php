@@ -32,6 +32,8 @@ abstract class Queue
     /**
      * Push a new job onto the queue.
      *
+     * 将新工作推到队列上
+     *
      * @param  string  $queue
      * @param  string  $job
      * @param  mixed   $data

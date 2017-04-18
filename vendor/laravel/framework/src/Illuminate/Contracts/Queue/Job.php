@@ -22,6 +22,8 @@ interface Job
     /**
      * Delete the job from the queue.
      *
+     * 从队列中删除作业
+     *
      * @return void
      */
     public function delete();
@@ -35,6 +37,8 @@ interface Job
 
     /**
      * Determine if the job has been deleted or released.
+     *
+     * 确定作业是否已被删除或发布
      *
      * @return bool
      */

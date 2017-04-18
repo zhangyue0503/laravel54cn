@@ -166,7 +166,7 @@ class HeaderBag implements \IteratorAggregate, \Countable
         }
 
         if ('cache-control' === $key) {
-            $this->cacheControl = $this->parseCacheControl($values[0]);
+            $this->cacheControl = $this->parseCacheControl($values[0]); //解析HTTP缓存控制头
         }
     }
 

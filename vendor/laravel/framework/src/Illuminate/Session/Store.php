@@ -195,6 +195,8 @@ class Store implements Session
     /**
      * Get an item from the session.
      *
+     * 从会话中获取项目
+     *
      * @param  string  $key
      * @param  mixed  $default
      * @return mixed
@@ -254,6 +256,8 @@ class Store implements Session
 
     /**
      * Put a key / value pair or array of key / value pairs in the session.
+     *
+     * 将键/值对或数组中的键/值对放入session
      *
      * @param  string|array  $key
      * @param  mixed       $value
@@ -582,6 +586,8 @@ class Store implements Session
 
     /**
      * Get the CSRF token value.
+     *
+     * 得到的CSRF令牌值
      *
      * @return string
      */

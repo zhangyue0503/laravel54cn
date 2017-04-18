@@ -7,6 +7,8 @@ interface Factory
     /**
      * Create a new cookie instance.
      *
+     * 创建一个新的cookie实例
+     *
      * @param  string  $name
      * @param  string  $value
      * @param  int     $minutes

@@ -306,6 +306,8 @@ if (! function_exists('array_wrap')) {
     /**
      * If the given value is not an array, wrap it in one.
      *
+     * 如果给定值不是数组，请将其包在一个数组中
+     *
      * @param  mixed  $value
      * @return array
      */
@@ -332,6 +334,8 @@ if (! function_exists('class_basename')) {
     /**
      * Get the class "basename" of the given object / class.
      *
+     * 获取类的“basename“从给定的对象/类
+     *
      * @param  string|object  $class
      * @return string
      */
@@ -346,6 +350,8 @@ if (! function_exists('class_basename')) {
 if (! function_exists('class_uses_recursive')) {
     /**
      * Returns all traits used by a class, its subclasses and trait of their traits.
+     *
+     * 返回类所使用的所有特性、子类和它们的特征
      *
      * @param  object|string  $class
      * @return array
@@ -561,6 +567,9 @@ if (! function_exists('ends_with')) {
 if (! function_exists('head')) {
     /**
      * Get the first element of an array. Useful for method chaining.
+     *
+     * 获取数组的第一个元素
+     * 用于方法链接
      *
      * @param  array  $array
      * @return mixed

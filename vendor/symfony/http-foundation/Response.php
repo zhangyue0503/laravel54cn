@@ -209,10 +209,10 @@ class Response
     );
     private static $deprecationsTriggered = array(
         __CLASS__ => true,
-        BinaryFileResponse::class => true,
-        JsonResponse::class => true,
-        RedirectResponse::class => true,
-        StreamedResponse::class => true,
+        BinaryFileResponse::class => true, //文件响应
+        JsonResponse::class => true, //json响应
+        RedirectResponse::class => true, //重定向响应
+        StreamedResponse::class => true, //流响应
     );
 
     /**

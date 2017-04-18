@@ -64,6 +64,8 @@ class File extends \SplFileInfo
     /**
      * Returns the mime type of the file.
      *
+     * 返回文件的mime类型
+     *
      * The mime type is guessed using a MimeTypeGuesser instance, which uses finfo(),
      * mime_content_type() and the system binary "file" (in this order), depending on
      * which of those are available.

@@ -7,6 +7,8 @@ interface Factory
     /**
      * Get a guard instance by name.
      *
+     * 通过名称获取守护实例
+     *
      * @param  string|null  $name
      * @return mixed
      */

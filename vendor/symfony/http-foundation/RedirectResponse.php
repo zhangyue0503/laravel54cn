@@ -42,17 +42,18 @@ class RedirectResponse extends Response
 
         $this->setTargetUrl($url); //设置此响应的重定向目标
 
-        if (!$this->isRedirect()) {
+        if (!$this->isRedirect()) { // 响应是某种形式的重定向吗？
             throw new \InvalidArgumentException(sprintf('The HTTP status code is not a redirect ("%s" given).', $status));
         }
 
         if (301 == $status && !array_key_exists('cache-control', $headers)) {
-            $this->headers->remove('cache-control');
+            $this->headers->remove('cache-control'); //删除头
         }
     }
 
     /**
      * {@inheritdoc}
+     * 链式调用的工厂方法
      */
     public static function create($url = '', $status = 302, $headers = array())
     {
@@ -61,6 +62,8 @@ class RedirectResponse extends Response
 
     /**
      * Returns the target URL.
+     *
+     * 返回目标URL
      *
      * @return string target URL
      */
@@ -87,7 +90,7 @@ class RedirectResponse extends Response
         }
 
         $this->targetUrl = $url;
-
+        //设置响应的内容
         $this->setContent(
             sprintf('<!DOCTYPE html>
 <html>

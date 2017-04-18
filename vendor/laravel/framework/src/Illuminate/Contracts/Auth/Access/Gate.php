@@ -87,6 +87,8 @@ interface Gate
     /**
      * Get a policy instance for a given class.
      *
+     * 获取给定类的策略实例
+     *
      * @param  object|string  $class
      * @return mixed
      *

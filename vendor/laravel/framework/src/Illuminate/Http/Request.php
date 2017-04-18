@@ -14,9 +14,9 @@ use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
 class Request extends SymfonyRequest implements Arrayable, ArrayAccess
 {
-    use Concerns\InteractsWithContentTypes,
-        Concerns\InteractsWithFlashData,
-        Concerns\InteractsWithInput,
+    use Concerns\InteractsWithContentTypes, // 与内容类型交互
+        Concerns\InteractsWithFlashData, //与Flash数据交互
+        Concerns\InteractsWithInput,//与输入交互
         Macroable;
 
     /**

@@ -10,12 +10,16 @@ trait ResponseTrait
     /**
      * The original content of the response.
      *
+     * 响应的原始内容
+     *
      * @var mixed
      */
     public $original;
 
     /**
      * The exception that triggered the error response (if applicable).
+     *
+     * 触发错误响应的异常（如果适用）
      *
      * @var \Exception|null
      */
@@ -24,25 +28,31 @@ trait ResponseTrait
     /**
      * Get the status code for the response.
      *
+     * 获取响应的状态代码
+     *
      * @return int
      */
     public function status()
     {
-        return $this->getStatusCode();
+        return $this->getStatusCode(); //检索当前web响应的状态代码
     }
 
     /**
      * Get the content of the response.
      *
+     * 得到响应的内容
+     *
      * @return string
      */
     public function content()
     {
-        return $this->getContent();
+        return $this->getContent(); //获取当前的响应内容
     }
 
     /**
      * Get the original response content.
+     *
+     * 获取原始响应内容
      *
      * @return mixed
      */
@@ -63,7 +73,7 @@ trait ResponseTrait
      */
     public function header($key, $values, $replace = true)
     {
-        $this->headers->set($key, $values, $replace);
+        $this->headers->set($key, $values, $replace); //根据名称设置头
 
         return $this;
     }
@@ -71,13 +81,15 @@ trait ResponseTrait
     /**
      * Add an array of headers to the response.
      *
+     * 将标头数组添加到响应
+     *
      * @param  array  $headers
      * @return $this
      */
     public function withHeaders(array $headers)
     {
         foreach ($headers as $key => $value) {
-            $this->headers->set($key, $value);
+            $this->headers->set($key, $value); //根据名称设置头
         }
 
         return $this;
@@ -85,6 +97,8 @@ trait ResponseTrait
 
     /**
      * Add a cookie to the response.
+     *
+     * 在响应中添加cookie
      *
      * @param  \Symfony\Component\HttpFoundation\Cookie|mixed  $cookie
      * @return $this
@@ -97,6 +111,8 @@ trait ResponseTrait
     /**
      * Add a cookie to the response.
      *
+     * 在响应中添加cookie
+     *
      * @param  \Symfony\Component\HttpFoundation\Cookie|mixed  $cookie
      * @return $this
      */
@@ -106,13 +122,15 @@ trait ResponseTrait
             $cookie = call_user_func_array('cookie', func_get_args());
         }
 
-        $this->headers->setCookie($cookie);
+        $this->headers->setCookie($cookie); //设置cookie
 
         return $this;
     }
 
     /**
      * Set the exception to attach to the response.
+     *
+     * 设置附加到响应的异常
      *
      * @param  \Exception  $e
      * @return $this
@@ -126,6 +144,8 @@ trait ResponseTrait
 
     /**
      * Throws the response in a HttpResponseException instance.
+     *
+     * 抛出响应的HttpResponseException实例异常
      *
      * @throws \Illuminate\Http\Exceptions\HttpResponseException
      */

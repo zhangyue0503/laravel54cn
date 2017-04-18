@@ -168,6 +168,7 @@ class ResponseHeaderBag extends HeaderBag
      */
     public function setCookie(Cookie $cookie)
     {
+        //[获取cookie可用的域][获取服务器上可用cookie的路径][获取cookie的名称]
         $this->cookies[$cookie->getDomain()][$cookie->getPath()][$cookie->getName()] = $cookie;
     }
 
@@ -243,6 +244,7 @@ class ResponseHeaderBag extends HeaderBag
      */
     public function clearCookie($name, $path = '/', $domain = null, $secure = false, $httpOnly = true)
     {
+        //设置cookie
         $this->setCookie(new Cookie($name, null, 1, $path, $domain, $secure, $httpOnly));
     }
 
@@ -312,6 +314,7 @@ class ResponseHeaderBag extends HeaderBag
      */
     protected function computeCacheControlValue()
     {
+        //                           如果定义了HTTP头，则返回true       如果定义了HTTP头，则返回true     如果定义了HTTP头，则返回true
         if (!$this->cacheControl && !$this->has('ETag') && !$this->has('Last-Modified') && !$this->has('Expires')) {
             return 'no-cache, private';
         }

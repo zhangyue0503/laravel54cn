@@ -7,6 +7,8 @@ interface ResponseFactory
     /**
      * Return a new response from the application.
      *
+     * 从应用程序返回新的响应
+     *
      * @param  string  $content
      * @param  int  $status
      * @param  array  $headers

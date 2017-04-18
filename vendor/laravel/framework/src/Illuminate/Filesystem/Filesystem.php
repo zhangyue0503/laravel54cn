@@ -105,6 +105,8 @@ class Filesystem
     /**
      * Write the contents of a file.
      *
+     * 写入文件的内容
+     *
      * @param  string  $path
      * @param  string  $contents
      * @param  bool  $lock

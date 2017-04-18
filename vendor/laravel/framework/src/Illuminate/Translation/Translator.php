@@ -90,6 +90,8 @@ class Translator extends NamespacedItemResolver implements TranslatorContract
     /**
      * Get the translation for a given key.
      *
+     * 获取给定键的翻译
+     *
      * @param  string  $key
      * @param  array   $replace
      * @param  string  $locale
@@ -140,6 +142,8 @@ class Translator extends NamespacedItemResolver implements TranslatorContract
     /**
      * Get the translation for a given key from the JSON translation files.
      *
+     * 从JSON翻译文件获取给定键的翻译
+     *
      * @param  string  $key
      * @param  array  $replace
      * @param  string  $locale
@@ -173,6 +177,8 @@ class Translator extends NamespacedItemResolver implements TranslatorContract
 
     /**
      * Get a translation according to an integer value.
+     *
+     * 根据整数值得到一个翻译
      *
      * @param  string  $key
      * @param  int|array|\Countable  $number

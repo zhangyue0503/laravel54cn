@@ -7,6 +7,8 @@ interface Factory
     /**
      * Create a new Validator instance.
      *
+     * 创建一个新的验证实例
+     *
      * @param  array  $data
      * @param  array  $rules
      * @param  array  $messages
