@@ -145,6 +145,8 @@ class Connection implements ConnectionInterface
 
     /**
      * Create a new database connection instance.
+	 *
+	 * 创建一个新的数据库连接实例
      *
      * @param  \PDO|\Closure     $pdo
      * @param  string   $database
@@ -175,16 +177,20 @@ class Connection implements ConnectionInterface
 
     /**
      * Set the query grammar to the default implementation.
+	 *
+	 * 设置默认实现的请求语法
      *
      * @return void
      */
     public function useDefaultQueryGrammar()
     {
-        $this->queryGrammar = $this->getDefaultQueryGrammar();
+        $this->queryGrammar = $this->getDefaultQueryGrammar(); //获取默认查询语法实例
     }
 
     /**
      * Get the default query grammar instance.
+	 *
+	 * 获取默认查询语法实例
      *
      * @return \Illuminate\Database\Query\Grammars\Grammar
      */
@@ -215,6 +221,8 @@ class Connection implements ConnectionInterface
 
     /**
      * Set the query post processor to the default implementation.
+	 *
+	 * 根据默认实现设置请求后置处理器
      *
      * @return void
      */
@@ -225,6 +233,8 @@ class Connection implements ConnectionInterface
 
     /**
      * Get the default post processor instance.
+	 *
+	 * 获取默认的后置处理器实例
      *
      * @return \Illuminate\Database\Query\Processors\Processor
      */
@@ -249,17 +259,22 @@ class Connection implements ConnectionInterface
 
     /**
      * Begin a fluent query against a database table.
+	 *
+	 * 对数据库表开始一个流式查询
      *
      * @param  string  $table
      * @return \Illuminate\Database\Query\Builder
      */
     public function table($table)
     {
+		//    获取一个新的查询构造器实例->设置查询对象的表
         return $this->query()->from($table);
     }
 
     /**
      * Get a new query builder instance.
+	 *
+	 * 获取一个新的查询构造器实例
      *
      * @return \Illuminate\Database\Query\Builder
      */
@@ -299,6 +314,8 @@ class Connection implements ConnectionInterface
 
     /**
      * Run a select statement against the database.
+	 *
+	 * 对数据库运行SELECT语句
      *
      * @param  string  $query
      * @param  array  $bindings
@@ -307,6 +324,7 @@ class Connection implements ConnectionInterface
      */
     public function select($query, $bindings = [], $useReadPdo = true)
     {
+		// 运行SQL语句并记录其执行上下文
         return $this->run($query, $bindings, function ($query, $bindings) use ($useReadPdo) {
             if ($this->pretending()) {
                 return [];
@@ -586,6 +604,8 @@ class Connection implements ConnectionInterface
 
     /**
      * Run a SQL statement and log its execution context.
+	 *
+	 * 运行SQL语句并记录其执行上下文
      *
      * @param  string    $query
      * @param  array     $bindings
@@ -604,7 +624,7 @@ class Connection implements ConnectionInterface
         // caused by a connection that has been lost. If that is the cause, we'll try
         // to re-establish connection and re-run the query with a fresh connection.
         try {
-            $result = $this->runQueryCallback($query, $bindings, $callback);
+            $result = $this->runQueryCallback($query, $bindings, $callback); //运行SQL语句
         } catch (QueryException $e) {
             $result = $this->handleQueryException(
                 $e, $query, $bindings, $callback
@@ -615,7 +635,7 @@ class Connection implements ConnectionInterface
         // then log the query, bindings, and execution time so we will report them on
         // the event that the developer needs them. We'll log time in milliseconds.
         $this->logQuery(
-            $query, $bindings, $this->getElapsedTime($start)
+            $query, $bindings, $this->getElapsedTime($start) //从给定起始点获取所经过的时间
         );
 
         return $result;
@@ -623,6 +643,8 @@ class Connection implements ConnectionInterface
 
     /**
      * Run a SQL statement.
+	 *
+	 * 运行SQL语句
      *
      * @param  string    $query
      * @param  array     $bindings
@@ -671,6 +693,8 @@ class Connection implements ConnectionInterface
 
     /**
      * Get the elapsed time since a given starting point.
+	 *
+	 * 从给定起始点获取所经过的时间
      *
      * @param  int    $start
      * @return float

@@ -27,6 +27,8 @@ class Connector
 
     /**
      * Create a new PDO connection.
+	 *
+	 * 创建一个新的PDO连接
      *
      * @param  string  $dsn
      * @param  array   $config
@@ -40,7 +42,7 @@ class Connector
         ];
 
         try {
-            return $this->createPdoConnection(
+            return $this->createPdoConnection( // 创建一个新的PDO连接实例
                 $dsn, $username, $password, $options
             );
         } catch (Exception $e) {
@@ -52,6 +54,8 @@ class Connector
 
     /**
      * Create a new PDO connection instance.
+	 *
+	 * 创建一个新的PDO连接实例
      *
      * @param  string  $dsn
      * @param  string  $username

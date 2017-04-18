@@ -38,6 +38,8 @@ class Grammar extends BaseGrammar
 
     /**
      * Compile a select query into SQL.
+	 *
+	 * 将SELECT查询编译为sql
      *
      * @param  \Illuminate\Database\Query\Builder  $query
      * @return string
@@ -56,6 +58,8 @@ class Grammar extends BaseGrammar
         // To compile the query, we'll spin through each component of the query and
         // see if that component exists. If it does we'll just call the compiler
         // function for the component which is responsible for making the SQL.
+
+		//     连接数组片段并去除空格(编译select子句所需的组件)
         $sql = trim($this->concatenate(
             $this->compileComponents($query))
         );
@@ -67,6 +71,8 @@ class Grammar extends BaseGrammar
 
     /**
      * Compile the components necessary for a select clause.
+	 *
+	 * 编译select子句所需的组件
      *
      * @param  \Illuminate\Database\Query\Builder  $query
      * @return array
@@ -112,6 +118,8 @@ class Grammar extends BaseGrammar
 
     /**
      * Compile the "select *" portion of the query.
+	 *
+	 * 编译请求语句的"select *"部分
      *
      * @param  \Illuminate\Database\Query\Builder  $query
      * @param  array  $columns
@@ -133,6 +141,8 @@ class Grammar extends BaseGrammar
 
     /**
      * Compile the "from" portion of the query.
+	 *
+	 * 编译查询语句的“from”部分
      *
      * @param  \Illuminate\Database\Query\Builder  $query
      * @param  string  $table
@@ -818,6 +828,8 @@ class Grammar extends BaseGrammar
 
     /**
      * Concatenate an array of segments, removing empties.
+	 *
+	 * 连接数组片段并去除空格
      *
      * @param  array   $segments
      * @return string
