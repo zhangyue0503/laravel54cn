@@ -23,6 +23,8 @@ class Redirector
 
     /**
      * Create a new Redirector instance.
+	 *
+	 * 创建一个重定向器实例
      *
      * @param  \Illuminate\Routing\UrlGenerator  $generator
      * @return void
@@ -102,6 +104,8 @@ class Redirector
 
     /**
      * Create a new redirect response to the given path.
+	 *
+	 * 为给定路径创建新的重定向响应
      *
      * @param  string  $path
      * @param  int     $status
@@ -111,6 +115,7 @@ class Redirector
      */
     public function to($path, $status = 302, $headers = [], $secure = null)
     {
+		//      创建一个新的重定向响应     UrlGenerator::to生成给定路径的绝对URL
         return $this->createRedirect($this->generator->to($path, [], $secure), $status, $headers);
     }
 
@@ -170,6 +175,8 @@ class Redirector
 
     /**
      * Create a new redirect response.
+	 *
+	 * 创建一个新的重定向响应
      *
      * @param  string  $path
      * @param  int     $status
@@ -178,6 +185,7 @@ class Redirector
      */
     protected function createRedirect($path, $status, $headers)
     {
+		//    用给定的值调用给定的闭包，然后返回值
         return tap(new RedirectResponse($path, $status, $headers), function ($redirect) {
             if (isset($this->session)) {
                 $redirect->setSession($this->session);

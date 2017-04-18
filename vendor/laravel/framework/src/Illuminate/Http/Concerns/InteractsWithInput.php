@@ -137,7 +137,7 @@ trait InteractsWithInput
      */
     public function all()
     {
-        //                              从请求中检索输入项      获取请求上所有文件的数组
+        //递归地使用第二个数组（$a2）的值替换第一个数组（$a1）的值    从请求中检索输入项      获取请求上所有文件的数组
         return array_replace_recursive($this->input(), $this->allFiles());
     }
 

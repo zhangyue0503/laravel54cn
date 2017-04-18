@@ -11,7 +11,7 @@ use Illuminate\Session\Store as SessionStore;
 use Illuminate\Contracts\Support\MessageProvider;
 use Symfony\Component\HttpFoundation\File\UploadedFile as SymfonyUploadedFile;
 use Symfony\Component\HttpFoundation\RedirectResponse as BaseRedirectResponse;
-
+//继承自Symfony\Component\HttpFoundation\RedirectResponse
 class RedirectResponse extends BaseRedirectResponse
 {
     use ResponseTrait, Macroable {

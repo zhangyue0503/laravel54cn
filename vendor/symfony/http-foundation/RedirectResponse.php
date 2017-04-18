@@ -14,6 +14,8 @@ namespace Symfony\Component\HttpFoundation;
 /**
  * RedirectResponse represents an HTTP response doing a redirect.
  *
+ * RedirectResponse是一个HTTP响应做重定向
+ *
  * @author Fabien Potencier <fabien@symfony.com>
  */
 class RedirectResponse extends Response
@@ -22,11 +24,13 @@ class RedirectResponse extends Response
 
     /**
      * Creates a redirect response so that it conforms to the rules defined for a redirect status code.
+	 *
+	 * 创建重定向响应，使其与重定向状态代码定义的规则相一致
      *
-     * @param string $url     The URL to redirect to. The URL should be a full URL, with schema etc.,
-     *                        but practically every browser redirects on paths only as well
-     * @param int    $status  The status code (302 by default)
-     * @param array  $headers The headers (Location is always set to the given URL)
+     * @param string $url     The URL to redirect to. The URL should be a full URL, with schema etc., 重定向到的URL。URL应该是一个完整的URL，协议等
+     *                        but practically every browser redirects on paths only as well 但几乎每一个浏览器重定向路径仅为
+     * @param int    $status  The status code (302 by default) 状态码（默认302）
+     * @param array  $headers The headers (Location is always set to the given URL)（位置总是设置为给定URL）
      *
      * @throws \InvalidArgumentException
      *
@@ -36,7 +40,7 @@ class RedirectResponse extends Response
     {
         parent::__construct('', $status, $headers);
 
-        $this->setTargetUrl($url);
+        $this->setTargetUrl($url); //设置此响应的重定向目标
 
         if (!$this->isRedirect()) {
             throw new \InvalidArgumentException(sprintf('The HTTP status code is not a redirect ("%s" given).', $status));
@@ -67,6 +71,8 @@ class RedirectResponse extends Response
 
     /**
      * Sets the redirect target of this response.
+	 *
+	 * 设置此响应的重定向目标
      *
      * @param string $url The URL to redirect to
      *
