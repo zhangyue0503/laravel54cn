@@ -53,13 +53,15 @@ class DatabaseManager implements ConnectionResolverInterface
 
     /**
      * Get a database connection instance.
+	 *
+	 * 获取数据库连接实例
      *
      * @param  string  $name
      * @return \Illuminate\Database\Connection
      */
     public function connection($name = null)
     {
-        list($database, $type) = $this->parseConnectionName($name);
+        list($database, $type) = $this->parseConnectionName($name); //将连接解析为名称和读/写类型的数组
 
         $name = $name ?: $database;
 
@@ -68,6 +70,7 @@ class DatabaseManager implements ConnectionResolverInterface
         // set the "fetch mode" for PDO which determines the query return types.
         if (! isset($this->connections[$name])) {
             $this->connections[$name] = $this->configure(
+            	//              制作数据库连接实例
                 $connection = $this->makeConnection($database), $type
             );
         }
@@ -77,13 +80,15 @@ class DatabaseManager implements ConnectionResolverInterface
 
     /**
      * Parse the connection into an array of the name and read / write type.
+	 *
+	 * 将连接解析为名称和读/写类型的数组
      *
      * @param  string  $name
      * @return array
      */
     protected function parseConnectionName($name)
     {
-        $name = $name ?: $this->getDefaultConnection();
+        $name = $name ?: $this->getDefaultConnection(); // 获取默认的连接名称
 
         return Str::endsWith($name, ['::read', '::write'])
                             ? explode('::', $name, 2) : [$name, null];
@@ -91,15 +96,17 @@ class DatabaseManager implements ConnectionResolverInterface
 
     /**
      * Make the database connection instance.
+	 *
+	 * 制作数据库连接实例
      *
      * @param  string  $name
      * @return \Illuminate\Database\Connection
      */
     protected function makeConnection($name)
     {
-        $config = $this->configuration($name);
+        $config = $this->configuration($name); // 获取连接的配置
 
-        // First we will check by the connection name to see if an extension has been
+		// First we will check by the connection name to see if an extension has been
         // registered specifically for that connection. If it has we will call the
         // Closure and pass it the config allowing it to resolve the connection.
         if (isset($this->extensions[$name])) {
@@ -113,12 +120,14 @@ class DatabaseManager implements ConnectionResolverInterface
             return call_user_func($this->extensions[$driver], $config, $name);
         }
 
-        return $this->factory->make($config, $name);
-    }
+        return $this->factory->make($config, $name); //建立了一个基于PDO连接配置
+	}
 
     /**
      * Get the configuration for a connection.
-     *
+	 *
+	 * 获取连接的配置
+	 *
      * @param  string  $name
      * @return array
      *
@@ -248,6 +257,8 @@ class DatabaseManager implements ConnectionResolverInterface
 
     /**
      * Get the default connection name.
+	 *
+	 * 获取默认的连接名称
      *
      * @return string
      */
@@ -314,6 +325,8 @@ class DatabaseManager implements ConnectionResolverInterface
 
     /**
      * Dynamically pass methods to the default connection.
+	 *
+	 * 动态传递方法到默认连接
      *
      * @param  string  $method
      * @param  array   $parameters

@@ -193,6 +193,8 @@ class Builder
 
     /**
      * Create a new query builder instance.
+	 *
+	 * 创建一个新的查询构造器实例
      *
      * @param  \Illuminate\Database\ConnectionInterface  $connection
      * @param  \Illuminate\Database\Query\Grammars\Grammar  $grammar
@@ -315,6 +317,8 @@ class Builder
 
     /**
      * Set the table which the query is targeting.
+	 *
+	 * 设置查询对象的表
      *
      * @param  string  $table
      * @return $this
@@ -1642,11 +1646,14 @@ class Builder
 
     /**
      * Get the SQL representation of the query.
+	 *
+	 * 获取查询的sql表示形式
      *
      * @return string
      */
     public function toSql()
     {
+		//\Illuminate\Database\Query\Grammars\Grammar::compileSelect()将SELECT查询编译为sql
         return $this->grammar->compileSelect($this);
     }
 
@@ -1688,6 +1695,8 @@ class Builder
 
     /**
      * Execute the query as a "select" statement.
+	 *
+	 * 将查询执行为“SELECT”语句
      *
      * @param  array  $columns
      * @return \Illuminate\Support\Collection
@@ -1699,7 +1708,7 @@ class Builder
         if (is_null($original)) {
             $this->columns = $columns;
         }
-
+		//                      处理“select”查询的结果(this,通过连接执行select语句，获取数据库查询结果)
         $results = $this->processor->processSelect($this, $this->runSelect());
 
         $this->columns = $original;
@@ -1709,12 +1718,16 @@ class Builder
 
     /**
      * Run the query as a "select" statement against the connection.
+	 *
+	 * 将查询作为对连接的“SELECT”语句运行
+	 * * 通过连接执行select语句，获取数据库查询结果
      *
      * @return array
      */
     protected function runSelect()
     {
         return $this->connection->select(
+        	//获取查询的sql表示形式
             $this->toSql(), $this->getBindings(), ! $this->useWritePdo
         );
     }

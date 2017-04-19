@@ -13,6 +13,8 @@ class MySqlConnection extends Connection
 {
     /**
      * Get the default query grammar instance.
+	 *
+	 * 获取默认查询语法实例
      *
      * 获取默认查询语法实例
      *
@@ -53,6 +55,8 @@ class MySqlConnection extends Connection
 
     /**
      * Get the default post processor instance.
+	 *
+	 * 获取默认的后置处理器实例
      *
      * 获取默认的后置处理器实例
      *

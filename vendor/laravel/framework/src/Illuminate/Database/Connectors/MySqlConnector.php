@@ -8,20 +8,26 @@ class MySqlConnector extends Connector implements ConnectorInterface
 {
     /**
      * Establish a database connection.
+	 *
+	 * 建立数据库连接
      *
      * @param  array  $config
      * @return \PDO
      */
     public function connect(array $config)
     {
-        $dsn = $this->getDsn($config);
+        $dsn = $this->getDsn($config);// 从DSN字符串创建一个配置
 
         $options = $this->getOptions($config);
 
         // We need to grab the PDO options that should be used while making the brand
         // new connection instance. The PDO options control various aspects of the
         // connection's behavior, and some might be specified by the developers.
-        $connection = $this->createConnection($dsn, $config, $options);
+		//
+		// 我们需要抓住，要使品牌新的连接实例使用PDO的选项
+		// PDO选项控制连接的行为的各个方面，有的可能是由开发商指定的
+		//
+        $connection = $this->createConnection($dsn, $config, $options); // 创建一个新的PDO连接
 
         if (! empty($config['database'])) {
             $connection->exec("use `{$config['database']}`;");
@@ -84,8 +90,12 @@ class MySqlConnector extends Connector implements ConnectorInterface
 
     /**
      * Create a DSN string from a configuration.
-     *
+	 *
+	 * 从DSN字符串创建一个配置
+	 *
      * Chooses socket or host/port based on the 'unix_socket' config value.
+	 *
+	 * 选择socket或主机/端口基于“unix_socket”的配置值
      *
      * @param  array   $config
      * @return string
@@ -94,7 +104,7 @@ class MySqlConnector extends Connector implements ConnectorInterface
     {
         return $this->hasSocket($config)
                             ? $this->getSocketDsn($config)
-                            : $this->getHostDsn($config);
+                            : $this->getHostDsn($config); // 从DSN字符串得到一个主机/端口配置
     }
 
     /**
@@ -121,6 +131,8 @@ class MySqlConnector extends Connector implements ConnectorInterface
 
     /**
      * Get the DSN string for a host / port configuration.
+	 *
+	 * 从DSN字符串得到一个主机/端口配置
      *
      * @param  array  $config
      * @return string

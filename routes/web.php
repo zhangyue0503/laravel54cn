@@ -24,7 +24,8 @@ Route::get('/auth/form', 'AuthController@redirectForm');
 Route::get('/welcome/index_response', 'WelcomeController@indexResponse');
 Route::get('/welcome/index_response2', 'WelcomeController@indexResponse2');
 Route::get('/welcome/index_redirect', 'WelcomeController@indexRedirect');
-
+//查询构造器，Laravel框架关键技术解析十
+Route::get('/welcome/index_ten', 'WelcomeController@indexTen');
 
 
 //容器示例

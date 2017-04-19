@@ -35,7 +35,9 @@ class ConnectionFactory
 
     /**
      * Establish a PDO connection based on the configuration.
-     *
+	 *
+	 * 建立了一个基于PDO连接配置
+	 *
      * @param  array   $config
      * @param  string  $name
      * @return \Illuminate\Database\Connection
@@ -48,7 +50,7 @@ class ConnectionFactory
             return $this->createReadWriteConnection($config);
         }
 
-        return $this->createSingleConnection($config);
+        return $this->createSingleConnection($config); //创建单个数据库连接实例
     }
 
     /**
@@ -65,6 +67,8 @@ class ConnectionFactory
 
     /**
      * Create a single database connection instance.
+	 *
+	 * 创建单个数据库连接实例
      *
      * @param  array  $config
      * @return \Illuminate\Database\Connection
@@ -73,7 +77,7 @@ class ConnectionFactory
     {
         $pdo = $this->createPdoResolver($config);
 
-        return $this->createConnection(
+        return $this->createConnection( // 创建一个新的连接实例
             $config['driver'], $pdo, $config['database'], $config['prefix'], $config
         );
     }
@@ -256,6 +260,8 @@ class ConnectionFactory
 
     /**
      * Create a new connection instance.
+	 *
+	 * 创建一个新的连接实例
      *
      * @param  string   $driver
      * @param  \PDO|\Closure     $connection
