@@ -55,6 +55,8 @@ class Migrator
     /**
      * Create a new migrator instance.
      *
+     * 创建一个新的迁移实例
+     *
      * @param  \Illuminate\Database\Migrations\MigrationRepositoryInterface  $repository
      * @param  \Illuminate\Database\ConnectionResolverInterface  $resolver
      * @param  \Illuminate\Filesystem\Filesystem  $files

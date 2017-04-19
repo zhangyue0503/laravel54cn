@@ -30,6 +30,8 @@ class DatabaseMigrationRepository implements MigrationRepositoryInterface
     /**
      * Create a new database migration repository instance.
      *
+     * 创建新的数据库迁移库实例
+     *
      * @param  \Illuminate\Database\ConnectionResolverInterface  $resolver
      * @param  string  $table
      * @return void

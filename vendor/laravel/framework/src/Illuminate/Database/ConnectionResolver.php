@@ -1,11 +1,13 @@
 <?php
 
 namespace Illuminate\Database;
-
+//连接解析器
 class ConnectionResolver implements ConnectionResolverInterface
 {
     /**
      * All of the registered connections.
+     *
+     * 所有已注册的连接
      *
      * @var array
      */
@@ -14,6 +16,8 @@ class ConnectionResolver implements ConnectionResolverInterface
     /**
      * The default connection name.
      *
+     * 默认的连接名
+     *
      * @var string
      */
     protected $default;
@@ -21,18 +25,22 @@ class ConnectionResolver implements ConnectionResolverInterface
     /**
      * Create a new connection resolver instance.
      *
+     * 创建一个新的连接解析器实例
+     *
      * @param  array  $connections
      * @return void
      */
     public function __construct(array $connections = [])
     {
         foreach ($connections as $name => $connection) {
-            $this->addConnection($name, $connection);
+            $this->addConnection($name, $connection); //添加一个连接到解析器
         }
     }
 
     /**
      * Get a database connection instance.
+     *
+     * 获取数据库连接实例
      *
      * @param  string  $name
      * @return \Illuminate\Database\ConnectionInterface
@@ -40,7 +48,7 @@ class ConnectionResolver implements ConnectionResolverInterface
     public function connection($name = null)
     {
         if (is_null($name)) {
-            $name = $this->getDefaultConnection();
+            $name = $this->getDefaultConnection(); // 获取默认连接名
         }
 
         return $this->connections[$name];
@@ -48,6 +56,8 @@ class ConnectionResolver implements ConnectionResolverInterface
 
     /**
      * Add a connection to the resolver.
+     *
+     * 添加一个连接到解析器
      *
      * @param  string  $name
      * @param  \Illuminate\Database\ConnectionInterface  $connection
@@ -61,6 +71,8 @@ class ConnectionResolver implements ConnectionResolverInterface
     /**
      * Check if a connection has been registered.
      *
+     * 检查连接是否已注册
+     *
      * @param  string  $name
      * @return bool
      */
@@ -72,6 +84,8 @@ class ConnectionResolver implements ConnectionResolverInterface
     /**
      * Get the default connection name.
      *
+     * 获取默认连接名
+     *
      * @return string
      */
     public function getDefaultConnection()
@@ -81,6 +95,8 @@ class ConnectionResolver implements ConnectionResolverInterface
 
     /**
      * Set the default connection name.
+     *
+     * 设置默认连接名
      *
      * @param  string  $name
      * @return void

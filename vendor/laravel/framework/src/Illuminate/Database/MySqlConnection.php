@@ -16,22 +16,26 @@ class MySqlConnection extends Connection
 	 *
 	 * 获取默认查询语法实例
      *
+     * 获取默认查询语法实例
+     *
      * @return \Illuminate\Database\Query\Grammars\MySqlGrammar
      */
     protected function getDefaultQueryGrammar()
     {
-        return $this->withTablePrefix(new QueryGrammar);
+        return $this->withTablePrefix(new QueryGrammar);//设置表前缀并返回语法
     }
 
     /**
      * Get a schema builder instance for the connection.
+     *
+     * 获取连接的架构生成器实例
      *
      * @return \Illuminate\Database\Schema\MySqlBuilder
      */
     public function getSchemaBuilder()
     {
         if (is_null($this->schemaGrammar)) {
-            $this->useDefaultSchemaGrammar();
+            $this->useDefaultSchemaGrammar();//将架构语法设置为默认实现
         }
 
         return new MySqlBuilder($this);
@@ -40,17 +44,21 @@ class MySqlConnection extends Connection
     /**
      * Get the default schema grammar instance.
      *
+     * 获取默认模式语法实例
+     *
      * @return \Illuminate\Database\Schema\Grammars\MySqlGrammar
      */
     protected function getDefaultSchemaGrammar()
     {
-        return $this->withTablePrefix(new SchemaGrammar);
+        return $this->withTablePrefix(new SchemaGrammar); //设置表前缀并返回语法
     }
 
     /**
      * Get the default post processor instance.
 	 *
 	 * 获取默认的后置处理器实例
+     *
+     * 获取默认的后置处理器实例
      *
      * @return \Illuminate\Database\Query\Processors\MySqlProcessor
      */
@@ -62,6 +70,8 @@ class MySqlConnection extends Connection
     /**
      * Get the Doctrine DBAL driver.
      *
+     * 获取DBAL声明驱动
+     *
      * @return \Doctrine\DBAL\Driver\PDOMySql\Driver
      */
     protected function getDoctrineDriver()
@@ -71,6 +81,8 @@ class MySqlConnection extends Connection
 
     /**
      * Bind values to their parameters in the given statement.
+     *
+     * 将值绑定到给定语句中的参数
      *
      * @param  \PDOStatement $statement
      * @param  array  $bindings

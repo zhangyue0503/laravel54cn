@@ -4,11 +4,13 @@ namespace Illuminate\Database;
 
 use Exception;
 use Illuminate\Support\Str;
-
+//检测死锁
 trait DetectsDeadlocks
 {
     /**
      * Determine if the given exception was caused by a deadlock.
+     *
+     * 确定给定的异常是否由死锁引起
      *
      * @param  \Exception  $e
      * @return bool

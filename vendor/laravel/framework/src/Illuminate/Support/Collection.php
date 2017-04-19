@@ -582,6 +582,8 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
     /**
      * Concatenate values of a given key as a string.
      *
+     * 一个给定的键连接的值作为一个字符串
+     *
      * @param  string  $value
      * @param  string  $glue
      * @return string
@@ -600,11 +602,14 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
     /**
      * Intersect the collection with the given items.
      *
+     * 将集合与给定项相交
+     *
      * @param  mixed  $items
      * @return static
      */
     public function intersect($items)
     {
+        //               计算数组的交集                         收集结果从Collection或Arrayable数组
         return new static(array_intersect($this->items, $this->getArrayableItems($items)));
     }
 
@@ -1489,6 +1494,8 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
 
     /**
      * Results array of items from Collection or Arrayable.
+     *
+     * 收集结果从Collection或Arrayable数组
      *
      * @param  mixed  $items
      * @return array
