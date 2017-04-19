@@ -25,6 +25,8 @@ class ConnectionFactory
     /**
      * Create a new connection factory instance.
      *
+     * 创建一个新的连接工厂实例
+     *
      * @param  \Illuminate\Contracts\Container\Container  $container
      * @return void
      */

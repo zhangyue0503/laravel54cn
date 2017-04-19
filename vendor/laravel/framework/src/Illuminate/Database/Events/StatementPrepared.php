@@ -21,6 +21,8 @@ class StatementPrepared
     /**
      * Create a new event instance.
      *
+     * 创建一个新的事件实例
+     *
      * @param  \Illuminate\Database\Connection  $connection
      * @param  \PDOStatement  $statement
      * @return void

@@ -38,6 +38,8 @@ class Builder
     /**
      * Create a new database Schema manager.
      *
+     * 创建新的数据库架构管理器
+     *
      * @param  \Illuminate\Database\Connection  $connection
      * @return void
      */

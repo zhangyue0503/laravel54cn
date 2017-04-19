@@ -192,6 +192,8 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
     /**
      * Clear the list of booted models so they will be re-booted.
      *
+     * 清除启动模型的列表，以便重新启动它们
+     *
      * @return void
      */
     public static function clearBootedModels()
@@ -1025,6 +1027,8 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 
     /**
      * Set the connection resolver instance.
+     *
+     * 设置连接解析器实例
      *
      * @param  \Illuminate\Database\ConnectionResolverInterface  $resolver
      * @return void

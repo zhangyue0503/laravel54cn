@@ -286,6 +286,8 @@ trait HasEvents
     /**
      * Set the event dispatcher instance.
      *
+     * 设置事件调度实例
+     *
      * @param  \Illuminate\Contracts\Events\Dispatcher  $dispatcher
      * @return void
      */

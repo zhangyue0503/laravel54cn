@@ -797,6 +797,8 @@ class Grammar extends BaseGrammar
     /**
      * Determine if the grammar supports savepoints.
      *
+     * 确定语法支持保存点
+     *
      * @return bool
      */
     public function supportsSavepoints()
@@ -806,6 +808,8 @@ class Grammar extends BaseGrammar
 
     /**
      * Compile the SQL statement to define a savepoint.
+     *
+     * 编译SQL语句来定义一个保存点
      *
      * @param  string  $name
      * @return string

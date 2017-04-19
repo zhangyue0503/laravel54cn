@@ -9,6 +9,8 @@ interface ConnectionInterface
     /**
      * Begin a fluent query against a database table.
      *
+     * 对数据库表开始一个链式的查询
+     *
      * @param  string  $table
      * @return \Illuminate\Database\Query\Builder
      */
@@ -17,6 +19,8 @@ interface ConnectionInterface
     /**
      * Get a new raw query expression.
      *
+     * 获取新的原始查询表达式
+     *
      * @param  mixed  $value
      * @return \Illuminate\Database\Query\Expression
      */
@@ -24,6 +28,8 @@ interface ConnectionInterface
 
     /**
      * Run a select statement and return a single result.
+     *
+     * 运行SELECT语句并返回单个结果
      *
      * @param  string  $query
      * @param  array   $bindings
@@ -34,6 +40,8 @@ interface ConnectionInterface
     /**
      * Run a select statement against the database.
      *
+     * 对数据库运行SELECT语句
+     *
      * @param  string  $query
      * @param  array   $bindings
      * @return array
@@ -42,6 +50,8 @@ interface ConnectionInterface
 
     /**
      * Run an insert statement against the database.
+     *
+     * 对数据库运行INSERT语句
      *
      * @param  string  $query
      * @param  array   $bindings
@@ -52,6 +62,8 @@ interface ConnectionInterface
     /**
      * Run an update statement against the database.
      *
+     * 对数据库运行UPDATE语句
+     *
      * @param  string  $query
      * @param  array   $bindings
      * @return int
@@ -60,6 +72,8 @@ interface ConnectionInterface
 
     /**
      * Run a delete statement against the database.
+     *
+     * 对数据库运行DELETE语句
      *
      * @param  string  $query
      * @param  array   $bindings
@@ -70,6 +84,8 @@ interface ConnectionInterface
     /**
      * Execute an SQL statement and return the boolean result.
      *
+     * 执行SQL语句并返回布尔结果
+     *
      * @param  string  $query
      * @param  array   $bindings
      * @return bool
@@ -78,6 +94,8 @@ interface ConnectionInterface
 
     /**
      * Run an SQL statement and get the number of rows affected.
+     *
+     * 执行SQL语句并返回影响行数
      *
      * @param  string  $query
      * @param  array   $bindings
@@ -88,6 +106,8 @@ interface ConnectionInterface
     /**
      * Run a raw, unprepared query against the PDO connection.
      *
+     * 运行一个原始语句，准备对PDO连接查询
+     *
      * @param  string  $query
      * @return bool
      */
@@ -96,6 +116,8 @@ interface ConnectionInterface
     /**
      * Prepare the query bindings for execution.
      *
+     * 为执行准备查询绑定
+     *
      * @param  array  $bindings
      * @return array
      */
@@ -103,6 +125,8 @@ interface ConnectionInterface
 
     /**
      * Execute a Closure within a transaction.
+     *
+     * 在事务中执行闭包
      *
      * @param  \Closure  $callback
      * @param  int  $attempts
@@ -115,12 +139,16 @@ interface ConnectionInterface
     /**
      * Start a new database transaction.
      *
+     * 启动一个新的数据库事务
+     *
      * @return void
      */
     public function beginTransaction();
 
     /**
      * Commit the active database transaction.
+     *
+     * 提交活动数据库事务
      *
      * @return void
      */
@@ -129,6 +157,8 @@ interface ConnectionInterface
     /**
      * Rollback the active database transaction.
      *
+     * 回滚活动数据库事务
+     *
      * @return void
      */
     public function rollBack();
@@ -136,12 +166,16 @@ interface ConnectionInterface
     /**
      * Get the number of active transactions.
      *
+     * 获取活动事务数
+     *
      * @return int
      */
     public function transactionLevel();
 
     /**
      * Execute the given callback in "dry run" mode.
+     *
+     * 在“干运行”模式下执行给定回调
      *
      * @param  \Closure  $callback
      * @return array
