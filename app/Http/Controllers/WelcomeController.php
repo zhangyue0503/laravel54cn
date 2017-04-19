@@ -14,6 +14,7 @@ namespace App\Http\Controllers;
 
 use App\ServiceTest\GeneralService;
 use App\ServiceTest\ServiceContract;
+use App\User;
 use Illuminate\Container\Container;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +22,11 @@ use Illuminate\Support\Facades\DB;
 
 class WelcomeController extends Container
 {
-
+	//Laravel框架关键技术解析十
+	public function indexTen1(){
+		$data = User::all();
+		var_dump($data);
+	}
 	//Laravel框架关键技术解析十
 	public function indexTen()
 	{

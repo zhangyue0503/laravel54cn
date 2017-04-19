@@ -26,6 +26,7 @@ Route::get('/welcome/index_response2', 'WelcomeController@indexResponse2');
 Route::get('/welcome/index_redirect', 'WelcomeController@indexRedirect');
 //查询构造器，Laravel框架关键技术解析十
 Route::get('/welcome/index_ten', 'WelcomeController@indexTen');
+Route::get('/welcome/index_ten1', 'WelcomeController@indexTen1');
 
 
 //容器示例

@@ -132,6 +132,8 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 
     /**
      * Create a new Eloquent model instance.
+	 *
+	 * 创建一个新的Eloquent模型实例
      *
      * @param  array  $attributes
      * @return void
@@ -326,12 +328,15 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 
     /**
      * Get all of the models from the database.
+	 *
+	 * 从数据库获取所有模型
      *
      * @param  array|mixed  $columns
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public static function all($columns = ['*'])
     {
+		//创建一个新的Eloquent模型实例->获取模型表的新查询生成器
         return (new static)->newQuery()->get(
             is_array($columns) ? $columns : func_get_args()
         );
@@ -780,11 +785,15 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 
     /**
      * Get a new query builder for the model's table.
+	 *
+	 * 获取模型表的新查询生成器
+	 * *根据模型类对应的数据表生成一个新的查询构造器
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function newQuery()
     {
+		//获取一个新的查询生成器，它没有任何全局作用域
         $builder = $this->newQueryWithoutScopes();
 
         foreach ($this->getGlobalScopes() as $identifier => $scope) {
@@ -796,11 +805,15 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 
     /**
      * Get a new query builder that doesn't have any global scopes.
+	 *
+	 * 获取一个新的查询生成器，它没有任何全局作用域
+	 * * 获取查询构造器
      *
      * @return \Illuminate\Database\Eloquent\Builder|static
      */
     public function newQueryWithoutScopes()
     {
+		//        为模型创建一个新的Eloquent查询生成器()
         $builder = $this->newEloquentBuilder($this->newBaseQueryBuilder());
 
         // Once we have the query builders, we will set the model instances so the
@@ -824,6 +837,8 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 
     /**
      * Create a new Eloquent query builder for the model.
+	 *
+	 * 为模型创建一个新的Eloquent查询生成器
      *
      * @param  \Illuminate\Database\Query\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder|static
@@ -835,6 +850,8 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 
     /**
      * Get a new query builder instance for the connection.
+	 *
+	 * 获取连接的新查询生成器实例
      *
      * @return \Illuminate\Database\Query\Builder
      */
