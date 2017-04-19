@@ -38,6 +38,8 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
 
     /**
      * Create a new collection.
+	 *
+	 * 创建一个新集合
      *
      * @param  mixed  $items
      * @return void
@@ -60,6 +62,8 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
 
     /**
      * Get all of the items in the collection.
+	 *
+	 * 获取集合中的所有项目
      *
      * @return array
      */

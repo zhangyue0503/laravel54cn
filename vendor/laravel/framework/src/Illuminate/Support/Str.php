@@ -225,6 +225,8 @@ class Str
 
     /**
      * Get the plural form of an English word.
+	 *
+	 * 获取一个英语单词的复数形式
      *
      * @param  string  $value
      * @param  int     $count
@@ -394,6 +396,8 @@ class Str
 
     /**
      * Convert a string to snake case.
+	 *
+	 * 将字符串转换为蛇形命名aaa_bbb
      *
      * @param  string  $value
      * @param  string  $delimiter

@@ -51,6 +51,8 @@ class Pluralizer
 
     /**
      * Get the plural form of an English word.
+	 *
+	 * 获取一个英语单词的复数形式
      *
      * @param  string  $value
      * @param  int     $count

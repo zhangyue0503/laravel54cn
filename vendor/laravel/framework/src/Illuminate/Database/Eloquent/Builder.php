@@ -87,6 +87,8 @@ class Builder
 
     /**
      * Create a new Eloquent query builder instance.
+	 *
+	 * 创建一个新的Eloquent查询生成器实例
      *
      * @param  \Illuminate\Database\Query\Builder  $query
      * @return void
@@ -239,16 +241,18 @@ class Builder
 
     /**
      * Create a collection of models from plain arrays.
+	 *
+	 * 从普通数组创建模型集合
      *
      * @param  array  $items
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function hydrate(array $items)
     {
-        $instance = $this->model->newInstance();
-
+        $instance = $this->model->newInstance();//创建给定模型的新实例
+		//       创建一个新的Eloquent集合实例
         return $instance->newCollection(array_map(function ($item) use ($instance) {
-            return $instance->newFromBuilder($item);
+            return $instance->newFromBuilder($item); //创建一个新的模型实例
         }, $items));
     }
 
@@ -465,6 +469,8 @@ class Builder
 
     /**
      * Execute the query as a "select" statement.
+	 *
+	 * 将查询执行为“SELECT”语句
      *
      * @param  array  $columns
      * @return \Illuminate\Database\Eloquent\Collection|static[]
@@ -476,6 +482,8 @@ class Builder
         // If we actually found models we will also eager load any relationships that
         // have been specified as needing to be eager loaded, which will solve the
         // n+1 query issue for the developers to avoid running a lot of queries.
+		//
+		//                     获取模型类实例的集合
         if (count($models = $builder->getModels($columns)) > 0) {
             $models = $builder->eagerLoadRelations($models);
         }
@@ -485,16 +493,20 @@ class Builder
 
     /**
      * Get the hydrated models without eager loading.
+	 *
+	 * 得到水合模型不急于加载
+	 * * 获取模型类实例的集合
      *
      * @param  array  $columns
      * @return \Illuminate\Database\Eloquent\Model[]
      */
     public function getModels($columns = ['*'])
     {
+		//从普通数组创建模型集合
         return $this->model->hydrate(
-            $this->query->get($columns)->all(),
-            $this->model->getConnectionName()
-        )->all();
+            $this->query->get($columns)->all(),//将查询执行为“SELECT”语句->获取集合中的所有项目()
+            $this->model->getConnectionName()//获取模型的当前连接名称
+        )->all();//获取集合中的所有项目
     }
 
     /**
@@ -1270,6 +1282,8 @@ class Builder
 
     /**
      * Set a model instance for the model being queried.
+	 *
+	 * 为被查询的模型设置模型实例
      *
      * @param  \Illuminate\Database\Eloquent\Model  $model
      * @return $this
@@ -1277,7 +1291,7 @@ class Builder
     public function setModel(Model $model)
     {
         $this->model = $model;
-
+		//           设置查询对象的表(获取与模型相关联的表)
         $this->query->from($model->getTable());
 
         return $this;

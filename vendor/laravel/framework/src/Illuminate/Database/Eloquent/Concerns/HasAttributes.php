@@ -855,6 +855,10 @@ trait HasAttributes
 
     /**
      * Set the array of model attributes. No checking is done.
+	 *
+	 * 设置模型属性的数组
+	 * 没有检查完成
+	 * * 通过数组设置模型类实例的attributes属性
      *
      * @param  array  $attributes
      * @param  bool  $sync

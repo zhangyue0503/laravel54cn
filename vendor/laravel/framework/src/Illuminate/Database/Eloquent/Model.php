@@ -259,6 +259,8 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 
     /**
      * Create a new instance of the given model.
+	 *
+	 * 创建给定模型的新实例
      *
      * @param  array  $attributes
      * @param  bool  $exists
@@ -282,6 +284,8 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 
     /**
      * Create a new model instance that is existing.
+	 *
+	 * 创建一个新的模型实例
      *
      * @param  array  $attributes
      * @param  string|null  $connection
@@ -289,9 +293,9 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
      */
     public function newFromBuilder($attributes = [], $connection = null)
     {
-        $model = $this->newInstance([], true);
+        $model = $this->newInstance([], true); //创建给定模型的新实例
 
-        $model->setRawAttributes((array) $attributes, true);
+        $model->setRawAttributes((array) $attributes, true); //通过数组设置模型类实例的attributes属性
 
         $model->setConnection($connection ?: $this->getConnectionName());
 
@@ -815,7 +819,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
      */
     public function newQueryWithoutScopes()
     {
-		//        为模型创建一个新的Eloquent查询生成器()
+		//        为模型创建一个新的Eloquent查询生成器(获取连接的新查询生成器实例)
         $builder = $this->newEloquentBuilder($this->newBaseQueryBuilder());
 
         // Once we have the query builders, we will set the model instances so the
@@ -847,6 +851,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
      */
     public function newEloquentBuilder($query)
     {
+		//创建一个新的Eloquent查询生成器实例
         return new Builder($query);
     }
 
@@ -854,12 +859,14 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
      * Get a new query builder instance for the connection.
 	 *
 	 * 获取连接的新查询生成器实例
+	 * * 获取针对一个连接的查询构造器
      *
      * @return \Illuminate\Database\Query\Builder
      */
     protected function newBaseQueryBuilder()
     {
-        $connection = $this->getConnection();
+		//获取模型的数据库连接
+		$connection = $this->getConnection();
 
         return new QueryBuilder(
             $connection, $connection->getQueryGrammar(), $connection->getPostProcessor()
@@ -868,12 +875,15 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 
     /**
      * Create a new Eloquent Collection instance.
+	 *
+	 * 创建一个新的Eloquent集合实例
      *
      * @param  array  $models
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function newCollection(array $models = [])
     {
+		//创建一个新集合
         return new Collection($models);
     }
 
@@ -990,16 +1000,21 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 
     /**
      * Get the database connection for the model.
-     *
+	 *
+	 * 获取模型的数据库连接
+	 *
      * @return \Illuminate\Database\Connection
      */
     public function getConnection()
     {
+		//获取一个连接实例(获取模型的当前连接名称)
         return static::resolveConnection($this->getConnectionName());
     }
 
     /**
      * Get the current connection name for the model.
+	 *
+	 * 获取模型的当前连接名称
      *
      * @return string
      */
@@ -1023,12 +1038,16 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 
     /**
      * Resolve a connection instance.
+	 *
+	 * 解析连接实例
+	 * * 获取一个连接实例
      *
      * @param  string|null  $connection
      * @return \Illuminate\Database\Connection
      */
     public static function resolveConnection($connection = null)
     {
+		//                      获取一个数据连接实例
         return static::$resolver->connection($connection);
     }
 
@@ -1067,12 +1086,15 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 
     /**
      * Get the table associated with the model.
+	 *
+	 * 获取与模型相关联的表
      *
      * @return string
      */
     public function getTable()
     {
         if (! isset($this->table)) {
+			//                           将字符串转换为蛇形命名( 获取一个英语单词的复数形式 )
             return str_replace('\\', '', Str::snake(Str::plural(class_basename($this))));
         }
 

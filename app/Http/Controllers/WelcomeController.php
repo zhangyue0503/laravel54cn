@@ -12,8 +12,11 @@
 namespace App\Http\Controllers;
 
 
+use App\Blog;
+use App\Comment;
 use App\ServiceTest\GeneralService;
 use App\ServiceTest\ServiceContract;
+use App\Subject;
 use App\User;
 use Illuminate\Container\Container;
 use Illuminate\Http\Response;
@@ -23,10 +26,74 @@ use Illuminate\Support\Facades\DB;
 class WelcomeController extends Container
 {
 	//Laravel框架关键技术解析十
-	public function indexTen1(){
-		$data = User::all();
-		var_dump($data);
+	public function indexTen1()
+	{
+
+		//添加
+//		Blog::create([
+//			'title'=>'Python的未来'
+//		]);
+//		$blog = new Blog();
+//		$blog->title = 'Ruby的未来';
+//		$blog->save();
+//		//先检查存不存在然后再添加或new
+//		Blog::firstOrCreate([
+//			'title'=>'JavaScript的未来'
+//		]);
+//		$blog = Blog::firstOrNew([
+//			'title'=>'CSS3的未来'
+//		]);
+//		$blog->save();
+
+		//查询
+		$blogs = Blog::all();
+		var_dump($blogs);
+		var_dump(Blog::find(1));
+		var_dump(Blog::where('title', '=', 'PHP的未来')->first());
+		var_dump(Comment::where('words', '>', 10)->get());
+		var_dump(Comment::whereRaw('words>10 or words<15')->get());
+
+		//更新
+//		$comment          = Comment::where('content', '=', 'PHP是无类型编程语言')->first();
+//		$comment->content = 'PHP变量名以$开头';
+//		$comment->words   = 10;
+//		$comment->save();
+
+//		$affectedRows = Comment::where('content', '=', 'PHP变量名以$开头')->update(['content' => 'PHP是无类型编程语言1']);
+//		var_dump($affectedRows);
+//
+//		//删除
+//		$blog = Blog::find(6);
+//		$blog->delete();
+//
+//		Comment::where('words', '>', 10)->delete();
+//
+//		Blog::destroy(7);
+//		Blog::destroy(1,2,3);
+
+		//关系查询
+		$php  = Blog::where('title', '=', 'PHP的未来')->first();
+		//一对一
+		$auth = $php->author;
+		var_dump($auth->name);
+		var_dump($php->author->name);
+		//一对多
+		foreach ($php->comments as $comment) {
+			var_dump($comment->content . ' ' . $comment->words);
+		}
+		//多对多
+		foreach($php->subjects as $subject){
+			var_dump($subject->name);
+		}
+		$program = Subject::where('name','=','编程语言')->first();
+		foreach($program->blogs as $blog){
+			var_dump($blog->title);
+		}
+
+
+
 	}
+
 	//Laravel框架关键技术解析十
 	public function indexTen()
 	{
@@ -67,11 +134,11 @@ class WelcomeController extends Container
 		var_dump($users);
 		$users = DB::table('users')->where('id', '>', 2)->orWhere('email', 'bbb')->get();
 		var_dump($users);
-		$users = DB::table('users')->whereBetween('password',[100,400])->get();
+		$users = DB::table('users')->whereBetween('password', [100, 400])->get();
 		var_dump($users);
-		$users = DB::table('users')->whereIn('id',[1,2,3])->get();
+		$users = DB::table('users')->whereIn('id', [1, 2, 3])->get();
 		var_dump($users);
-		$users = DB::table('users')->whereNotIn('id',[1,2,3])->get();
+		$users = DB::table('users')->whereNotIn('id', [1, 2, 3])->get();
 		var_dump($users);
 
 	}
