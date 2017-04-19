@@ -27,12 +27,16 @@ class Connection implements ConnectionInterface
     /**
      * The active PDO connection.
      *
+     * 活动的PDO连接
+     *
      * @var PDO
      */
     protected $pdo;
 
     /**
      * The active PDO connection used for reads.
+     *
+     * 读取用的活动PDO连接
      *
      * @var PDO
      */
@@ -41,12 +45,16 @@ class Connection implements ConnectionInterface
     /**
      * The name of the connected database.
      *
+     * 连接数据库的名称
+     *
      * @var string
      */
     protected $database;
 
     /**
      * The table prefix for the connection.
+     *
+     * 连接的表前缀
      *
      * @var string
      */
@@ -55,12 +63,16 @@ class Connection implements ConnectionInterface
     /**
      * The database connection configuration options.
      *
+     * 数据库连接配置选项
+     *
      * @var array
      */
     protected $config = [];
 
     /**
      * The reconnector instance for the connection.
+     *
+     * 用于连接的reconnector实例
      *
      * @var callable
      */
@@ -69,12 +81,16 @@ class Connection implements ConnectionInterface
     /**
      * The query grammar implementation.
      *
+     * 查询语法实现
+     *
      * @var \Illuminate\Database\Query\Grammars\Grammar
      */
     protected $queryGrammar;
 
     /**
      * The schema grammar implementation.
+     *
+     * 模式语法实现
      *
      * @var \Illuminate\Database\Schema\Grammars\Grammar
      */
@@ -83,12 +99,16 @@ class Connection implements ConnectionInterface
     /**
      * The query post processor implementation.
      *
+     * 查询后处理器实现
+     *
      * @var \Illuminate\Database\Query\Processors\Processor
      */
     protected $postProcessor;
 
     /**
      * The event dispatcher instance.
+     *
+     * 事件调度实例
      *
      * @var \Illuminate\Contracts\Events\Dispatcher
      */
@@ -97,12 +117,16 @@ class Connection implements ConnectionInterface
     /**
      * The default fetch mode of the connection.
      *
+     * 连接的默认取模式
+     *
      * @var int
      */
     protected $fetchMode = PDO::FETCH_OBJ;
 
     /**
      * The number of active transactions.
+     *
+     * 活动事务数
      *
      * @var int
      */
@@ -111,12 +135,16 @@ class Connection implements ConnectionInterface
     /**
      * All of the queries run against the connection.
      *
+     * 所有查询都运行在连接上
+     *
      * @var array
      */
     protected $queryLog = [];
 
     /**
      * Indicates whether queries are being logged.
+     *
+     * 指示是否有正在查询的查询
      *
      * @var bool
      */
@@ -125,12 +153,16 @@ class Connection implements ConnectionInterface
     /**
      * Indicates if the connection is in a "dry run".
      *
+     * 指示连接是否处于“干运行状态”
+     *
      * @var bool
      */
     protected $pretending = false;
 
     /**
      * The instance of Doctrine connection.
+     *
+     * Doctrine连接的实例
      *
      * @var \Doctrine\DBAL\Connection
      */
@@ -139,12 +171,16 @@ class Connection implements ConnectionInterface
     /**
      * The connection resolvers.
      *
+     * 解析器连接
+     *
      * @var array
      */
     protected static $resolvers = [];
 
     /**
      * Create a new database connection instance.
+     *
+     * 创建一个新的数据库连接实例
      *
      * @param  \PDO|\Closure     $pdo
      * @param  string   $database
@@ -159,6 +195,10 @@ class Connection implements ConnectionInterface
         // First we will setup the default properties. We keep track of the DB
         // name we are connected to since it is needed when some reflective
         // type commands are run such as checking whether a table exists.
+        //
+        // 首先，我们将设置默认属性
+        // 我们跟踪我们连接到的DB名称，因为当一些反射类型命令运行时，如需要检查表是否存在
+        //
         $this->database = $database;
 
         $this->tablePrefix = $tablePrefix;
@@ -168,6 +208,9 @@ class Connection implements ConnectionInterface
         // We need to initialize a query grammar and the query post processors
         // which are both very important parts of the database abstractions
         // so we initialize these to their default values while starting.
+        //
+        // 我们需要初始化一个查询语法和查询后处理器，它们都是数据库抽象的重要部分，所以我们在初始化时将它们初始化为默认值。
+        //
         $this->useDefaultQueryGrammar();
 
         $this->useDefaultPostProcessor();
@@ -196,6 +239,8 @@ class Connection implements ConnectionInterface
     /**
      * Set the schema grammar to the default implementation.
      *
+     * 将架构语法设置为默认实现
+     *
      * @return void
      */
     public function useDefaultSchemaGrammar()
@@ -205,6 +250,8 @@ class Connection implements ConnectionInterface
 
     /**
      * Get the default schema grammar instance.
+     *
+     * 获取默认模式语法实例
      *
      * @return \Illuminate\Database\Schema\Grammars\Grammar
      */
@@ -1165,6 +1212,8 @@ class Connection implements ConnectionInterface
 
     /**
      * Set the table prefix and return the grammar.
+     *
+     * 设置表前缀并返回语法
      *
      * @param  \Illuminate\Database\Grammar  $grammar
      * @return \Illuminate\Database\Grammar

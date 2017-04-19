@@ -10,6 +10,8 @@ class QueryException extends PDOException
     /**
      * The SQL for the query.
      *
+     * 查询SQL
+     *
      * @var string
      */
     protected $sql;
@@ -17,12 +19,16 @@ class QueryException extends PDOException
     /**
      * The bindings for the query.
      *
+     * 查询绑定
+     *
      * @var array
      */
     protected $bindings;
 
     /**
      * Create a new query exception instance.
+     *
+     * 创建一个新的查询异常实例
      *
      * @param  string  $sql
      * @param  array  $bindings
@@ -36,6 +42,7 @@ class QueryException extends PDOException
         $this->sql = $sql;
         $this->bindings = $bindings;
         $this->code = $previous->getCode();
+        //                   格式化SQL错误信息
         $this->message = $this->formatMessage($sql, $bindings, $previous);
 
         if ($previous instanceof PDOException) {
@@ -45,6 +52,8 @@ class QueryException extends PDOException
 
     /**
      * Format the SQL error message.
+     *
+     * 格式化SQL错误信息
      *
      * @param  string  $sql
      * @param  array  $bindings
@@ -59,6 +68,8 @@ class QueryException extends PDOException
     /**
      * Get the SQL for the query.
      *
+     * 获取查询的sql
+     *
      * @return string
      */
     public function getSql()
@@ -68,6 +79,8 @@ class QueryException extends PDOException
 
     /**
      * Get the bindings for the query.
+     *
+     * 获取查询的绑定
      *
      * @return array
      */

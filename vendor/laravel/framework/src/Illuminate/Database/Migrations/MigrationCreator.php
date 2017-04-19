@@ -26,6 +26,8 @@ class MigrationCreator
     /**
      * Create a new migration creator instance.
      *
+     * 创建一个新的迁移创建者实例
+     *
      * @param  \Illuminate\Filesystem\Filesystem  $files
      * @return void
      */

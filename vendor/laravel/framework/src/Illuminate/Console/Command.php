@@ -526,6 +526,8 @@ class Command extends SymfonyCommand
     /**
      * Get the output implementation.
      *
+     * 得到输出实现
+     *
      * @return \Symfony\Component\Console\Output\OutputInterface
      */
     public function getOutput()

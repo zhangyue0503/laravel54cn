@@ -253,8 +253,9 @@ class Writer implements LogContract, PsrLoggerInterface
      */
     public function useFiles($path, $level = 'debug')
     {
+        //                                                                字符串等解析为Monolog的常量
         $this->monolog->pushHandler($handler = new StreamHandler($path, $this->parseLevel($level)));
-
+        //                            获得一个默认的Monolog格式化程序实例
         $handler->setFormatter($this->getDefaultFormatter());
     }
 
@@ -271,9 +272,10 @@ class Writer implements LogContract, PsrLoggerInterface
     public function useDailyFiles($path, $days = 0, $level = 'debug')
     {
         $this->monolog->pushHandler(
+            //                                                字符串等解析为Monolog的常量
             $handler = new RotatingFileHandler($path, $days, $this->parseLevel($level))
         );
-
+        //                         获得一个默认的Monolog格式化程序实例
         $handler->setFormatter($this->getDefaultFormatter());
     }
 
@@ -304,9 +306,10 @@ class Writer implements LogContract, PsrLoggerInterface
     public function useErrorLog($level = 'debug', $messageType = ErrorLogHandler::OPERATING_SYSTEM)
     {
         $this->monolog->pushHandler(
+        //                                                字符串等解析为Monolog的常量
             $handler = new ErrorLogHandler($messageType, $this->parseLevel($level))
         );
-
+        //                         获得一个默认的Monolog格式化程序实例
         $handler->setFormatter($this->getDefaultFormatter());
     }
 
@@ -367,8 +370,9 @@ class Writer implements LogContract, PsrLoggerInterface
         if (is_array($message)) {
             return var_export($message, true);
         } elseif ($message instanceof Jsonable) {
-            return $message->toJson();
+            return $message->toJson(); //将对象转换为JSON表示形式
         } elseif ($message instanceof Arrayable) {
+            //                   获取数组实例
             return var_export($message->toArray(), true);
         }
 
