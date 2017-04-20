@@ -31,6 +31,8 @@ class RedisManager implements Factory
 
     /**
      * Create a new Redis manager instance.
+	 *
+	 * 创建一个新的Redis管理实例
      *
      * @param  string  $driver
      * @param  array  $config
@@ -43,6 +45,8 @@ class RedisManager implements Factory
 
     /**
      * Get a Redis connection by name.
+	 *
+	 * 根据名字获取一个Redis连接
      *
      * @param  string  $name
      * @return \Illuminate\Redis\Connections\Connection

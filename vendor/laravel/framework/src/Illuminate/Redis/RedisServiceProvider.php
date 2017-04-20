@@ -16,14 +16,17 @@ class RedisServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
+	 *
+	 * 注册服务提供者
      *
      * @return void
      */
     public function register()
     {
+		//在容器中注册共享绑定
         $this->app->singleton('redis', function ($app) {
             $config = $app->make('config')->get('database.redis');
-
+			//创建一个新的Redis管理实例
             return new RedisManager(Arr::pull($config, 'client', 'predis'), $config);
         });
 

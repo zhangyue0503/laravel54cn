@@ -21,10 +21,18 @@ use App\User;
 use Illuminate\Container\Container;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 
 
 class WelcomeController extends Container
 {
+
+	//Laravel框架关键技术解析十一
+	public function indexEleven(){
+		Redis::set('string:user:name','zy');
+		echo Redis::get('string:user:name');
+	}
+
 	//Laravel框架关键技术解析十
 	public function indexTen1()
 	{

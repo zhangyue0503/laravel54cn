@@ -122,11 +122,14 @@ abstract class Facade
 
     /**
      * Get the root object behind the facade.
+	 *
+	 * 获取外观后面的根对象
      *
      * @return mixed
      */
     public static function getFacadeRoot()
     {
+		//         从容器解析外观的根实例
         return static::resolveFacadeInstance(static::getFacadeAccessor());
     }
 
@@ -144,6 +147,9 @@ abstract class Facade
 
     /**
      * Resolve the facade root instance from the container.
+	 *
+	 * 从容器解析外观的根实例
+	 * * 通过服务容器解决外观对应的实例
      *
      * @param  string|object  $name
      * @return mixed
@@ -211,6 +217,9 @@ abstract class Facade
 
     /**
      * Handle dynamic, static calls to the object.
+	 *
+	 * 处理对象的动态、静态调用
+	 * * 处理一个对象的动态或静态方法
      *
      * @param  string  $method
      * @param  array   $args
@@ -220,7 +229,7 @@ abstract class Facade
      */
     public static function __callStatic($method, $args)
     {
-        $instance = static::getFacadeRoot();
+        $instance = static::getFacadeRoot();//获取外观后面的根对象
 
         if (! $instance) {
             throw new RuntimeException('A facade root has not been set.');
