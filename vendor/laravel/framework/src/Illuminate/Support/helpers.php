@@ -967,6 +967,9 @@ if (! function_exists('with')) {
     /**
      * Return the given object. Useful for chaining.
      *
+     * 返回给定对象
+     * 有用的链接
+     *
      * @param  mixed  $object
      * @return mixed
      */

@@ -23,6 +23,8 @@ trait GuardsAttributes
     /**
      * Indicates if all mass assignment is enabled.
      *
+     * 指示是否启用所有批量赋值
+     *
      * @var bool
      */
     protected static $unguarded = false;
@@ -76,6 +78,8 @@ trait GuardsAttributes
     /**
      * Disable all mass assignable restrictions.
      *
+     * 禁用所有批量赋值限制
+     *
      * @param  bool  $state
      * @return void
      */
@@ -107,6 +111,8 @@ trait GuardsAttributes
     /**
      * Run the given callable while being unguarded.
      *
+     * 当无守护时运行给定调用
+     *
      * @param  callable  $callback
      * @return mixed
      */
@@ -127,6 +133,8 @@ trait GuardsAttributes
 
     /**
      * Determine if the given attribute may be mass assigned.
+     *
+     * 确定给定的属性是否可以被批量赋值
      *
      * @param  string  $key
      * @return bool
@@ -169,6 +177,8 @@ trait GuardsAttributes
     /**
      * Determine if the model is totally guarded.
      *
+     * 确定模型是否完全保护
+     *
      * @return bool
      */
     public function totallyGuarded()
@@ -178,6 +188,8 @@ trait GuardsAttributes
 
     /**
      * Get the fillable attributes of a given array.
+     *
+     * 获取给定数组的填充属性
      *
      * @param  array  $attributes
      * @return array

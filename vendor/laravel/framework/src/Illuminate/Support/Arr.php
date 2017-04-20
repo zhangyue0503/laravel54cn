@@ -100,6 +100,8 @@ class Arr
     /**
      * Get all of the given array except for a specified array of items.
      *
+     * 获取指定数组，除了指定的数组项
+     *
      * @param  array  $array
      * @param  array|string  $keys
      * @return array

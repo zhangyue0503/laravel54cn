@@ -38,6 +38,8 @@ class Pivot extends Model
     /**
      * Create a new pivot model instance.
      *
+     * 创建一个新的枢纽模型实例
+     *
      * @param  \Illuminate\Database\Eloquent\Model  $parent
      * @param  array   $attributes
      * @param  string  $table
@@ -68,6 +70,8 @@ class Pivot extends Model
 
     /**
      * Create a new pivot model from raw values returned from a query.
+     *
+     * 从查询返回的原始值创建新的枢纽模型
      *
      * @param  \Illuminate\Database\Eloquent\Model  $parent
      * @param  array   $attributes

@@ -540,6 +540,8 @@ trait HasRelationships
     /**
      * Set the entire relations array on the model.
      *
+     * 在模型上设置整个关系数组
+     *
      * @param  array  $relations
      * @return $this
      */

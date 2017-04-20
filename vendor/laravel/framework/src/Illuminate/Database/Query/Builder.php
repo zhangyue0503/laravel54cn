@@ -738,6 +738,8 @@ class Builder
     /**
      * Add a "where in" clause to the query.
      *
+     * 在查询中添加“在哪里”子句
+     *
      * @param  string  $column
      * @param  mixed   $values
      * @param  string  $boolean
@@ -2157,6 +2159,8 @@ class Builder
     /**
      * Insert a new record into the database.
      *
+     * 将新记录插入数据库
+     *
      * @param  array  $values
      * @return bool
      */
@@ -2195,6 +2199,8 @@ class Builder
 
     /**
      * Insert a new record and get the value of the primary key.
+     *
+     * 插入新记录并获取主键的值
      *
      * @param  array   $values
      * @param  string  $sequence
@@ -2457,6 +2463,8 @@ class Builder
 
     /**
      * Use the write pdo for query.
+     *
+     * 用写的PDO的查询
      *
      * @return $this
      */

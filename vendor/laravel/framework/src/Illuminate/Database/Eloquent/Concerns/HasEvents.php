@@ -121,6 +121,8 @@ trait HasEvents
     /**
      * Fire the given event for the model.
      *
+     * 触发模型的给定的事件
+     *
      * @param  string  $event
      * @param  bool  $halt
      * @return mixed

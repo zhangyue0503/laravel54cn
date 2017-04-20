@@ -73,6 +73,8 @@ trait HasAttributes
     /**
      * Convert the model's attributes to an array.
      *
+     * 将模型的属性转换为数组
+     *
      * @return array
      */
     public function attributesToArray()
@@ -216,6 +218,8 @@ trait HasAttributes
     /**
      * Get the model's relationships in array form.
      *
+     * 以数组形式获取模型的关系
+     *
      * @return array
      */
     public function relationsToArray()
@@ -288,6 +292,8 @@ trait HasAttributes
 
     /**
      * Get an attribute from the model.
+     *
+     * 从模型中获取属性
      *
      * @param  string  $key
      * @return mixed
@@ -503,6 +509,8 @@ trait HasAttributes
 
     /**
      * Set a given attribute on the model.
+     *
+     * 在模型上设置给定属性
      *
      * @param  string  $key
      * @param  mixed  $value
@@ -890,6 +898,8 @@ trait HasAttributes
     /**
      * Sync the original attributes with the current.
      *
+     * 当前模型同步原始属性
+     *
      * @return $this
      */
     public function syncOriginal()
@@ -901,6 +911,8 @@ trait HasAttributes
 
     /**
      * Sync a single original attribute with its current value.
+     *
+     * 将单个原始属性与当前值同步
      *
      * @param  string  $attribute
      * @return $this
@@ -914,6 +926,8 @@ trait HasAttributes
 
     /**
      * Determine if the model or given attribute(s) have been modified.
+     *
+     * 确定模型或特定的属性是否已经修改
      *
      * @param  array|string|null  $attributes
      * @return bool
@@ -957,6 +971,8 @@ trait HasAttributes
 
     /**
      * Get the attributes that have been changed since last sync.
+     *
+     * 获取上次同步后已更改的属性
      *
      * @return array
      */

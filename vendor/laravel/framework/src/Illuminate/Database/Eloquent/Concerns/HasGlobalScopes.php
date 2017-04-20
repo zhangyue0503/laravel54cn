@@ -62,6 +62,8 @@ trait HasGlobalScopes
     /**
      * Get the global scopes for this class instance.
      *
+     * 获取此类实例的全局作用域
+     *
      * @return array
      */
     public function getGlobalScopes()

@@ -32,6 +32,8 @@ trait HasTimestamps
     /**
      * Update the creation and update timestamps.
      *
+     * 更新的创建和更新时间戳
+     *
      * @return void
      */
     protected function updateTimestamps()
@@ -96,6 +98,8 @@ trait HasTimestamps
     /**
      * Determine if the model uses timestamps.
      *
+     * 确定模型使用时间戳
+     *
      * @return bool
      */
     public function usesTimestamps()
@@ -106,6 +110,8 @@ trait HasTimestamps
     /**
      * Get the name of the "created at" column.
      *
+     * 获取“created at”列的名称
+     *
      * @return string
      */
     public function getCreatedAtColumn()
@@ -115,6 +121,8 @@ trait HasTimestamps
 
     /**
      * Get the name of the "updated at" column.
+     *
+     * 获取“updated at”列的名称
      *
      * @return string
      */

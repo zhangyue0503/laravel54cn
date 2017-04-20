@@ -101,6 +101,8 @@ class Builder
     /**
      * Register a new global scope.
      *
+     * 注册一个新的全局范围
+     *
      * @param  string  $identifier
      * @param  \Illuminate\Database\Eloquent\Scope|\Closure  $scope
      * @return $this
@@ -118,6 +120,8 @@ class Builder
 
     /**
      * Remove a registered global scope.
+     *
+     * 移除注册的全局范围
      *
      * @param  \Illuminate\Database\Eloquent\Scope|string  $scope
      * @return $this
@@ -204,6 +208,8 @@ class Builder
 
     /**
      * Add a basic where clause to the query.
+     *
+     * 将基本WHERE子句添加到查询中
      *
      * @param  string|\Closure  $column
      * @param  string  $operator
@@ -405,6 +411,8 @@ class Builder
     /**
      * Execute the query and get the first result.
      *
+     * 执行查询和得到的第一个结果
+     *
      * @param  array  $columns
      * @return \Illuminate\Database\Eloquent\Model|static|null
      */
@@ -511,6 +519,8 @@ class Builder
 
     /**
      * Eager load the relationships for the models.
+     *
+     * 贪婪加载的关系模型
      *
      * @param  array  $models
      * @return array
@@ -861,6 +871,8 @@ class Builder
     /**
      * Update a record in the database.
      *
+     * 更新数据库中的记录
+     *
      * @param  array  $values
      * @return int
      */
@@ -919,6 +931,8 @@ class Builder
 
     /**
      * Delete a record from the database.
+     *
+     * 从数据库中删除一个记录
      *
      * @return mixed
      */
@@ -1111,6 +1125,8 @@ class Builder
 
     /**
      * Set the relationships that should be eager loaded.
+     *
+     * 设置应该加载的关系
      *
      * @param  mixed  $relations
      * @return $this

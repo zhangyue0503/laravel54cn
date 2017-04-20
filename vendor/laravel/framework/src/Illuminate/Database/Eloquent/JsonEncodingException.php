@@ -9,6 +9,8 @@ class JsonEncodingException extends RuntimeException
     /**
      * Create a new JSON encoding exception for the model.
      *
+     * 为模型创建新的JSON编码异常
+     *
      * @param  mixed  $model
      * @param  string  $message
      * @return static
