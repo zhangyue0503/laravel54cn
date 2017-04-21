@@ -23,11 +23,14 @@ class SessionServiceProvider extends ServiceProvider
 
     /**
      * Register the session manager instance.
+	 *
+	 * 注册会话管理器实例
      *
      * @return void
      */
     protected function registerSessionManager()
     {
+		//在容器中注册共享绑定
         $this->app->singleton('session', function ($app) {
             return new SessionManager($app);
         });

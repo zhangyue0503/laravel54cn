@@ -440,6 +440,8 @@ class Str
 
     /**
      * Convert a value to studly caps case.
+	 *
+	 * 将值转换为大驼峰
      *
      * @param  string  $value
      * @return string

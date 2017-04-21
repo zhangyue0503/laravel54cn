@@ -47,6 +47,8 @@ class Store implements Session
 
     /**
      * Create a new session instance.
+	 *
+	 * 创建一个新的会话实例
      *
      * @param  string $name
      * @param  \SessionHandlerInterface $handler
@@ -55,13 +57,15 @@ class Store implements Session
      */
     public function __construct($name, SessionHandlerInterface $handler, $id = null)
     {
-        $this->setId($id);
+        $this->setId($id); // 设置会话ID
         $this->name = $name;
         $this->handler = $handler;
     }
 
     /**
      * Start the session, reading the data from a handler.
+	 *
+	 * 启动会话，从处理程序读取数据
      *
      * @return bool
      */
@@ -78,21 +82,27 @@ class Store implements Session
 
     /**
      * Load the session data from the handler.
+	 *
+	 * 从处理程序加载会话数据
      *
      * @return void
      */
     protected function loadSession()
     {
+		//                                                  从处理程序读取会话数据
         $this->attributes = array_merge($this->attributes, $this->readFromHandler());
     }
 
     /**
      * Read the session data from the handler.
+	 *
+	 * 从处理程序读取会话数据
      *
      * @return array
      */
     protected function readFromHandler()
     {
+		//                  读取会话数据(获取当前的会话ID)
         if ($data = $this->handler->read($this->getId())) {
             $data = @unserialize($this->prepareForUnserialize($data));
 
@@ -531,6 +541,8 @@ class Store implements Session
 
     /**
      * Get the current session ID.
+	 *
+	 * 获取当前的会话ID
      *
      * @return string
      */
@@ -541,6 +553,8 @@ class Store implements Session
 
     /**
      * Set the session ID.
+	 *
+	 * 设置会话ID
      *
      * @param  string  $id
      * @return void
@@ -651,6 +665,8 @@ class Store implements Session
 
     /**
      * Set the request on the handler instance.
+	 *
+	 * 在处理程序实例上设置请求
      *
      * @param  \Illuminate\Http\Request  $request
      * @return void

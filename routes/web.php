@@ -32,6 +32,8 @@ Route::get('/welcome/index_eleven', 'WelcomeController@indexEleven');
 Route::get('/welcome/index_eleven1', function () { //发布、订阅消息
 	\Illuminate\Support\Facades\Redis::publish('redis-msg', 'visit welcom time=' . time() . "\n");
 });
+//Session，Laravel框架关键技术解析十二
+Route::get('/welcome/index_twelve', 'WelcomeController@indexTwelve');
 
 //容器示例
 Route::get('/container', function (\Illuminate\Http\Request $request) {

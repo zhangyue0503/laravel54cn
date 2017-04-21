@@ -42,6 +42,8 @@ class SessionManager extends Manager
 
     /**
      * Create an instance of the file session driver.
+	 *
+	 * 创建文件会话驱动程序的实例
      *
      * @return \Illuminate\Session\Store
      */
@@ -52,13 +54,15 @@ class SessionManager extends Manager
 
     /**
      * Create an instance of the file session driver.
+	 *
+	 * 创建文件会话驱动程序的实例
      *
      * @return \Illuminate\Session\Store
      */
     protected function createNativeDriver()
     {
         $lifetime = $this->app['config']['session.lifetime'];
-
+		//      建立会话实例
         return $this->buildSession(new FileSessionHandler(
             $this->app['files'], $this->app['config']['session.files'], $lifetime
         ));
@@ -157,6 +161,8 @@ class SessionManager extends Manager
 
     /**
      * Build the session instance.
+	 *
+	 * 建立会话实例
      *
      * @param  \SessionHandlerInterface  $handler
      * @return \Illuminate\Session\Store
@@ -166,6 +172,7 @@ class SessionManager extends Manager
         if ($this->app['config']['session.encrypt']) {
             return $this->buildEncryptedSession($handler);
         } else {
+			//       创建一个新的会话实例
             return new Store($this->app['config']['session.cookie'], $handler);
         }
     }
@@ -185,6 +192,8 @@ class SessionManager extends Manager
 
     /**
      * Get the session configuration.
+	 *
+	 * 获取会话配置
      *
      * @return array
      */
@@ -195,6 +204,8 @@ class SessionManager extends Manager
 
     /**
      * Get the default session driver name.
+	 *
+	 * 获取默认会话驱动程序名称
      *
      * @return string
      */

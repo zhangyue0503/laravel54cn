@@ -19,17 +19,47 @@ use App\ServiceTest\ServiceContract;
 use App\Subject;
 use App\User;
 use Illuminate\Container\Container;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Session;
 
 
 class WelcomeController extends Container
 {
+	//Laravel框架关键技术解析十二
+	public function indexTwelve(Request $request)
+	{
+		//session实例获取
+		var_dump($request->session());
+		var_dump(Session::put('name', 'zy'));
+		var_dump(session()->driver());
+
+		//session实例的操作
+		Session::put('name1', 'zy1');//添加数据到$attributes属性中
+		Session::push('contact.phone', '15555555555');//以数组形式保存到$attributes属性中
+
+		var_dump(Session::get('name'));
+		var_dump(Session::get('key', 'default'));
+		var_dump(Session::pull('name'));//在取回对应值时进行删除
+		var_dump(Session::all());//返回session所有的值
+
+		//数据删除
+		Session::forget('key');//删除对应键的值
+		Session::flush();//清空所有
+
+		//数据暂存
+		Session::flash('key', 'value');//暂存数据
+		Session::reflash();//刷新，保留一次数据
+		Session::keep(['username', 'email']);//批量刷新
+
+	}
 
 	//Laravel框架关键技术解析十一
-	public function indexEleven(){
-		Redis::set('string:user:name','zy');
+	public function indexEleven()
+	{
+		Redis::set('string:user:name', 'zy');
 		echo Redis::get('string:user:name');
 	}
 
@@ -80,7 +110,7 @@ class WelcomeController extends Container
 //		Blog::destroy(1,2,3);
 
 		//关系查询
-		$php  = Blog::where('title', '=', 'PHP的未来')->first();
+		$php = Blog::where('title', '=', 'PHP的未来')->first();
 		//一对一
 		$auth = $php->author;
 		var_dump($auth->name);
@@ -90,14 +120,13 @@ class WelcomeController extends Container
 			var_dump($comment->content . ' ' . $comment->words);
 		}
 		//多对多
-		foreach($php->subjects as $subject){
+		foreach ($php->subjects as $subject) {
 			var_dump($subject->name);
 		}
-		$program = Subject::where('name','=','编程语言')->first();
-		foreach($program->blogs as $blog){
+		$program = Subject::where('name', '=', '编程语言')->first();
+		foreach ($program->blogs as $blog) {
 			var_dump($blog->title);
 		}
-
 
 
 	}

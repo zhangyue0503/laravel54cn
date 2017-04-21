@@ -30,6 +30,8 @@ class StartSession
 
     /**
      * Create a new session middleware.
+	 *
+	 * 创建一个新的session中间件
      *
      * @param  \Illuminate\Session\SessionManager  $manager
      * @return void
@@ -41,6 +43,8 @@ class StartSession
 
     /**
      * Handle an incoming request.
+	 *
+	 * 处理传入的请求
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
@@ -53,11 +57,16 @@ class StartSession
         // If a session driver has been configured, we will need to start the session here
         // so that the data is ready for an application. Note that the Laravel sessions
         // do not make use of PHP "native" sessions in any way since they are crappy.
+		//
+		// 如果已配置会话驱动程序，我们将需要在这里启动会话，以便为应用程序准备好数据
+		// 请注意，Laravel会话不让任何PHP会话使用“本地”因为他们是蹩脚的
+		//
+		//    确定会话驱动程序是否已配置
         if ($this->sessionConfigured()) {
-            $request->setLaravelSession(
-                $session = $this->startSession($request)
+            $request->setLaravelSession(//在请求上设置session实例
+                $session = $this->startSession($request) //为给定的请求启动会话
             );
-
+			//必要时删除会话中的垃圾
             $this->collectGarbage($session);
         }
 
@@ -66,10 +75,14 @@ class StartSession
         // Again, if the session has been configured we will need to close out the session
         // so that the attributes may be persisted to some storage medium. We will also
         // add the session identifier cookie to the application response headers now.
-        if ($this->sessionConfigured()) {
-            $this->storeCurrentUrl($request, $session);
+		//
+		// 再次，如果会话已被配置，我们将需要关闭会话，以便将属性保留到某些存储介质中
+		// 我们也会将会话标识符cookie添加到应用程序响应头中
+		//
+        if ($this->sessionConfigured()) {//确定会话驱动程序是否已配置
+            $this->storeCurrentUrl($request, $session);//如果需要，存储请求的当前URL
 
-            $this->addCookieToResponse($response, $session);
+            $this->addCookieToResponse($response, $session);//将会话cookie添加到应用程序响应中
         }
 
         return $response;
@@ -77,6 +90,9 @@ class StartSession
 
     /**
      * Perform any final actions for the request lifecycle.
+	 *
+	 * 执行任何最后的行动请求的生命周期
+	 * * 在请求的周期中执行最后的操作
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Symfony\Component\HttpFoundation\Response  $response
@@ -91,27 +107,33 @@ class StartSession
 
     /**
      * Start the session for the given request.
+	 *
+	 * 为给定的请求启动会话
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Session\Session
      */
     protected function startSession(Request $request)
     {
+		//     用给定的值调用给定的闭包，然后返回值(从管理器获取会话实现)
         return tap($this->getSession($request), function ($session) use ($request) {
-            $session->setRequestOnHandler($request);
+            $session->setRequestOnHandler($request);//在处理程序实例上设置请求,Illuminate\Session\Store
 
-            $session->start();
-        });
+            $session->start();//启动会话，从处理程序读取数据,Illuminate\Session\Store
+		});
     }
 
     /**
      * Get the session implementation from the manager.
+	 *
+	 * 从管理器获取会话实现
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Session\Session
      */
     public function getSession(Request $request)
     {
+		//      用给定的值调用给定的闭包，然后返回值(获取驱动实例)
         return tap($this->manager->driver(), function ($session) use ($request) {
             $session->setId($request->cookies->get($session->getName()));
         });
@@ -119,6 +141,8 @@ class StartSession
 
     /**
      * Remove the garbage from the session if necessary.
+	 *
+	 * 必要时删除会话中的垃圾
      *
      * @param  \Illuminate\Contracts\Session\Session  $session
      * @return void
@@ -148,6 +172,8 @@ class StartSession
 
     /**
      * Store the current URL for the request if necessary.
+	 *
+	 * 如果需要，存储请求的当前URL
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Contracts\Session\Session  $session
@@ -162,6 +188,8 @@ class StartSession
 
     /**
      * Add the session cookie to the application response.
+	 *
+	 * 将会话cookie添加到应用程序响应中
      *
      * @param  \Symfony\Component\HttpFoundation\Response  $response
      * @param  \Illuminate\Contracts\Session\Session  $session
@@ -172,7 +200,7 @@ class StartSession
         if ($this->usingCookieSessions()) {
             $this->manager->driver()->save();
         }
-
+		//     确定配置的会话驱动程序是否持久()
         if ($this->sessionIsPersistent($config = $this->manager->getSessionConfig())) {
             $response->headers->setCookie(new Cookie(
                 $session->getName(), $session->getId(), $this->getCookieExpirationDate(),
@@ -206,16 +234,21 @@ class StartSession
 
     /**
      * Determine if a session driver has been configured.
+	 *
+	 * 确定会话驱动程序是否已配置
      *
      * @return bool
      */
     protected function sessionConfigured()
     {
+		//                                       获取会话配置
         return ! is_null(Arr::get($this->manager->getSessionConfig(), 'driver'));
     }
 
     /**
      * Determine if the configured session driver is persistent.
+	 *
+	 * 确定配置的会话驱动程序是否持久
      *
      * @param  array|null  $config
      * @return bool
