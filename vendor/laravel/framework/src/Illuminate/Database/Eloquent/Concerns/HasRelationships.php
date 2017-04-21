@@ -22,6 +22,8 @@ trait HasRelationships
     /**
      * The loaded relationships for the model.
      *
+     * 模型的加载关系
+     *
      * @var array
      */
     protected $relations = [];
@@ -29,12 +31,16 @@ trait HasRelationships
     /**
      * The relationships that should be touched on save.
      *
+     * 应注意的关系保存
+     *
      * @var array
      */
     protected $touches = [];
 
     /**
      * The many to many relationship methods.
+     *
+     * 多对多关系方法
      *
      * @var array
      */
@@ -46,6 +52,8 @@ trait HasRelationships
     /**
      * Define a one-to-one relationship.
      *
+     * 定义一对一关系
+     *
      * @param  string  $related
      * @param  string  $foreignKey
      * @param  string  $localKey
@@ -53,17 +61,19 @@ trait HasRelationships
      */
     public function hasOne($related, $foreignKey = null, $localKey = null)
     {
-        $instance = $this->newRelatedInstance($related);
+        $instance = $this->newRelatedInstance($related);//为相关模型创建新的模型实例
 
-        $foreignKey = $foreignKey ?: $this->getForeignKey();
+        $foreignKey = $foreignKey ?: $this->getForeignKey();//获取模型的默认外键名称
 
-        $localKey = $localKey ?: $this->getKeyName();
-
+        $localKey = $localKey ?: $this->getKeyName();//从模型中获取主键
+        //  创建一个新的有一个或多个关系实例(获取模型表的新查询生成器,$this,获取与模型相关联的表……)
         return new HasOne($instance->newQuery(), $this, $instance->getTable().'.'.$foreignKey, $localKey);
     }
 
     /**
      * Define a polymorphic one-to-one relationship.
+     *
+     * 定义多态一对一关系
      *
      * @param  string  $related
      * @param  string  $name
@@ -74,19 +84,21 @@ trait HasRelationships
      */
     public function morphOne($related, $name, $type = null, $id = null, $localKey = null)
     {
-        $instance = $this->newRelatedInstance($related);
+        $instance = $this->newRelatedInstance($related);//为相关模型创建新的模型实例
 
-        list($type, $id) = $this->getMorphs($name, $type, $id);
+        list($type, $id) = $this->getMorphs($name, $type, $id);//获取多态关系列
 
-        $table = $instance->getTable();
+        $table = $instance->getTable();//获取模型表的新查询生成器
 
-        $localKey = $localKey ?: $this->getKeyName();
-
+        $localKey = $localKey ?: $this->getKeyName();//从模型中获取主键
+        //        创建一个新的变形一个或多个关系实例(获取模型表的新查询生成器,……)
         return new MorphOne($instance->newQuery(), $this, $table.'.'.$type, $table.'.'.$id, $localKey);
     }
 
     /**
      * Define an inverse one-to-one or many relationship.
+     *
+     * 定义一对一或多个关系
      *
      * @param  string  $related
      * @param  string  $foreignKey
@@ -99,31 +111,44 @@ trait HasRelationships
         // If no relation name was given, we will use this debug backtrace to extract
         // the calling method's name and use that as the relationship name as most
         // of the time this will be what we desire to use for the relationships.
+        //
+        // 如果没有关系的名字了，我们将使用这个调试回溯提取调用的方法的名称和使用那个名字的关系，大部分时间，这将是我们所希望使用的关系
+        //
         if (is_null($relation)) {
-            $relation = $this->guessBelongsToRelation();
+            $relation = $this->guessBelongsToRelation(); //猜测“belongs to”关系名称
         }
-
+        //为相关模型创建新的模型实例
         $instance = $this->newRelatedInstance($related);
 
         // If no foreign key was supplied, we can use a backtrace to guess the proper
         // foreign key name by using the name of the relationship function, which
         // when combined with an "_id" should conventionally match the columns.
+        //
+        // 如果没有提供任何外键，我们可以使用回溯利用关系函数的名字猜正确的外键名称，当它与“_id”应该常规匹配列
+        //
         if (is_null($foreignKey)) {
+            //         将字符串转换为蛇形命名                从模型中获取主键
             $foreignKey = Str::snake($relation).'_'.$instance->getKeyName();
         }
 
         // Once we have the foreign key names, we'll just create a new Eloquent query
         // for the related models and returns the relationship instance which will
         // actually be responsible for retrieving and hydrating every relations.
-        $ownerKey = $ownerKey ?: $instance->getKeyName();
-
+        //
+        // 一旦我们有了外键名称，我们将创建一个新的Eloquent的查询相关的模型，并返回关系实例，这实际上是负责检索和水合每一个关系
+        //
+        $ownerKey = $ownerKey ?: $instance->getKeyName(); //从模型中获取主键
+        //创建一个新的属于关系实例
         return new BelongsTo(
+            //获取模型表的新查询生成器
             $instance->newQuery(), $this, $foreignKey, $ownerKey, $relation
         );
     }
 
     /**
      * Define a polymorphic, inverse one-to-one or many relationship.
+     *
+     * 定义一个多态，逆一对一或多关系
      *
      * @param  string  $name
      * @param  string  $type
@@ -135,22 +160,33 @@ trait HasRelationships
         // If no name is provided, we will use the backtrace to get the function name
         // since that is most likely the name of the polymorphic interface. We can
         // use that to get both the class and foreign key that will be utilized.
-        $name = $name ?: $this->guessBelongsToRelation();
+        //
+        // 如果没有提供姓名，我们将使用回溯到函数名自认为是最有可能的多态接口的名称
+        // 我们可以使用它来获取将被利用的类和外键
+        //
+        $name = $name ?: $this->guessBelongsToRelation();//猜测“belongs to”关系名称
 
-        list($type, $id) = $this->getMorphs(
+        list($type, $id) = $this->getMorphs(//获取多态关系列
+            //将字符串转换为蛇形命名
             Str::snake($name), $type, $id
         );
 
         // If the type value is null it is probably safe to assume we're eager loading
         // the relationship. In this case we'll just pass in a dummy query where we
         // need to remove any eager loads that may already be defined on a model.
+        //
+        // 如果类型值为空，我们假定我们急于加载关系，这可能是安全的
+        // 在这种情况下，我们只是传递一个虚拟的查询，我们需要删除任何贪婪加载，可能已经定义了一个模型
+        //
         return empty($class = $this->{$type})
-                    ? $this->morphEagerTo($name, $type, $id)
-                    : $this->morphInstanceTo($class, $name, $type, $id);
+                    ? $this->morphEagerTo($name, $type, $id)//定义一个多态，逆一对一或多关系
+                    : $this->morphInstanceTo($class, $name, $type, $id);//定义一个多态，逆一对一或多关系
     }
 
     /**
      * Define a polymorphic, inverse one-to-one or many relationship.
+     *
+     * 定义一个多态，逆一对一或多关系
      *
      * @param  string  $name
      * @param  string  $type
@@ -166,6 +202,8 @@ trait HasRelationships
 
     /**
      * Define a polymorphic, inverse one-to-one or many relationship.
+     *
+     * 定义一个多态，逆一对一或多关系
      *
      * @param  string  $target
      * @param  string  $name
@@ -197,6 +235,8 @@ trait HasRelationships
 
     /**
      * Guess the "belongs to" relationship name.
+     *
+     * 猜测“belongs to”关系名称
      *
      * @return string
      */
@@ -450,6 +490,8 @@ trait HasRelationships
     /**
      * Get the polymorphic relationship columns.
      *
+     * 获取多态关系列
+     *
      * @param  string  $name
      * @param  string  $type
      * @param  string  $id
@@ -478,6 +520,8 @@ trait HasRelationships
 
     /**
      * Create a new model instance for a related model.
+     *
+     * 为相关模型创建新的模型实例
      *
      * @param  string  $class
      * @return mixed

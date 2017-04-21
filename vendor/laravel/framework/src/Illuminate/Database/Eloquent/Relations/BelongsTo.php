@@ -44,6 +44,8 @@ class BelongsTo extends Relation
     /**
      * Create a new belongs to relationship instance.
      *
+     * 创建一个新的属于关系实例
+     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  \Illuminate\Database\Eloquent\Model  $child
      * @param  string  $foreignKey

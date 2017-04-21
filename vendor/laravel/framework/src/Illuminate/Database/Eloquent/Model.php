@@ -1606,6 +1606,8 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
     /**
      * Handle dynamic method calls into the model.
      *
+     * 将动态方法调用处理到模型中
+     *
      * @param  string  $method
      * @param  array  $parameters
      * @return mixed
@@ -1615,12 +1617,14 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
         if (in_array($method, ['increment', 'decrement'])) {
             return $this->$method(...$parameters);
         }
-
+        //        获取模型表的新查询生成器
         return $this->newQuery()->$method(...$parameters);
     }
 
     /**
      * Handle dynamic static method calls into the method.
+     *
+     * 将动态静态方法调用处理到方法中
      *
      * @param  string  $method
      * @param  array  $parameters
@@ -1634,20 +1638,24 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
     /**
      * Convert the model to its string representation.
      *
+     * 将模型转换为字符串表示形式
+     *
      * @return string
      */
     public function __toString()
     {
-        return $this->toJson();
+        return $this->toJson(); //将模型实例转换为JSON
     }
 
     /**
      * When a model is being unserialized, check if it needs to be booted.
      *
+     * 当一个模型是不可序列化的，检查它是否需要启动
+     *
      * @return void
      */
     public function __wakeup()
     {
-        $this->bootIfNotBooted();
+        $this->bootIfNotBooted(); //检查模型是否需要被引导，如果是的话，引导它
     }
 }
