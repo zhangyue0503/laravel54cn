@@ -14,6 +14,8 @@ interface Queue
 
     /**
      * Push a new job onto the queue.
+	 *
+	 * 推送一条新的消息到队列
      *
      * @param  string  $job
      * @param  mixed   $data

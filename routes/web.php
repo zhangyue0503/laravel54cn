@@ -34,6 +34,9 @@ Route::get('/welcome/index_eleven1', function () { //发布、订阅消息
 });
 //Session，Laravel框架关键技术解析十二
 Route::get('/welcome/index_twelve', 'WelcomeController@indexTwelve');
+//消息队列，Laravel框架关键技术解析十三
+Route::get('/welcome/index_thirteen', 'WelcomeController@indexThirteen');
+Route::get('/welcome/index_thirteen1', 'WelcomeController@indexThirteen1');
 
 //容器示例
 Route::get('/container', function (\Illuminate\Http\Request $request) {

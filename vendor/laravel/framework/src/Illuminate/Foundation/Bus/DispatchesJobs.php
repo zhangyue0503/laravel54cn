@@ -8,6 +8,9 @@ trait DispatchesJobs
 {
     /**
      * Dispatch a job to its appropriate handler.
+	 *
+	 * 把工作分派给适当的处理者
+	 * * 分发消息到适当的处理模块
      *
      * @param  mixed  $job
      * @return mixed

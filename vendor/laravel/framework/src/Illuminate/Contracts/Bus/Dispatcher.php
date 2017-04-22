@@ -14,6 +14,9 @@ interface Dispatcher
 
     /**
      * Dispatch a command to its appropriate handler in the current process.
+	 *
+	 * 在当前进程中向其适当的处理程序发送命令
+	 * * 在当前进程中将命令发送给适当的处理模块
      *
      * @param  mixed  $command
      * @param  mixed  $handler

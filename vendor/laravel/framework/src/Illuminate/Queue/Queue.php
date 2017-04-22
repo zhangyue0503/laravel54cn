@@ -75,6 +75,9 @@ abstract class Queue
 
     /**
      * Create a payload string from the given job and data.
+	 *
+	 * 从给定的作业和数据创建有效载荷字符串
+	 * * 通过给定的消息和数据创建一个载荷字符串
      *
      * @param  string  $job
      * @param  mixed   $data
@@ -85,6 +88,7 @@ abstract class Queue
      */
     protected function createPayload($job, $data = '', $queue = null)
     {
+		//                       从给定的作业和数据创建有效载荷数组
         $payload = json_encode($this->createPayloadArray($job, $data, $queue));
 
         if (JSON_ERROR_NONE !== json_last_error()) {
@@ -96,6 +100,8 @@ abstract class Queue
 
     /**
      * Create a payload array from the given job and data.
+	 *
+	 * 从给定的作业和数据创建有效载荷数组
      *
      * @param  string  $job
      * @param  mixed   $data
@@ -118,7 +124,7 @@ abstract class Queue
     protected function createObjectPayload($job)
     {
         return [
-            'displayName' => $this->getDisplayName($job),
+            'displayName' => $this->getDisplayName($job),//获取给定作业的显示名称
             'job' => 'Illuminate\Queue\CallQueuedHandler@call',
             'maxTries' => isset($job->tries) ? $job->tries : null,
             'timeout' => isset($job->timeout) ? $job->timeout : null,
@@ -131,6 +137,8 @@ abstract class Queue
 
     /**
      * Get the display name for the given job.
+	 *
+	 * 获取给定作业的显示名称
      *
      * @param  mixed  $job
      * @return string

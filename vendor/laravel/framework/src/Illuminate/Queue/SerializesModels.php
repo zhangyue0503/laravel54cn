@@ -11,6 +11,8 @@ trait SerializesModels
 
     /**
      * Prepare the instance for serialization.
+	 *
+	 * 准备序列化的实例
      *
      * @return array
      */

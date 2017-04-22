@@ -57,6 +57,8 @@ abstract class Job
 
     /**
      * Fire the job.
+	 *
+	 * 处理一个消息
      *
      * @return void
      */
@@ -64,7 +66,7 @@ abstract class Job
     {
         $payload = $this->payload();
 
-        list($class, $method) = JobName::parse($payload['job']);
+        list($class, $method) = JobName::parse($payload['job']); //将给定的作业名称解析成类/方法数组
 
         with($this->instance = $this->resolve($class))->{$method}($this, $payload['data']);
     }

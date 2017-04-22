@@ -14,11 +14,13 @@ namespace App\Http\Controllers;
 
 use App\Blog;
 use App\Comment;
+use App\Jobs\QueuedTest;
 use App\ServiceTest\GeneralService;
 use App\ServiceTest\ServiceContract;
 use App\Subject;
 use App\User;
 use Illuminate\Container\Container;
+use Illuminate\Contracts\Queue\Queue;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -26,8 +28,25 @@ use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Session;
 
 
-class WelcomeController extends Container
+class WelcomeController extends Controller
 {
+	//Laravel框架关键技术解析十三
+	public function indexThirteen1(){
+		//消息的生成与发送
+		$this->dispatch(new QueuedTest());
+		//消息的获取与处理
+		$queue = app(Queue::class);
+		$queueJob = $queue->pop();
+		$queueJob->fire();
+
+		return view('welcome');
+	}
+	//Laravel框架关键技术解析十三
+	public function indexThirteen(){
+		//    分发消息到适当的处理模块
+		$this->dispatch(new QueuedTest());
+		return view('welcome');
+	}
 	//Laravel框架关键技术解析十二
 	public function indexTwelve(Request $request)
 	{

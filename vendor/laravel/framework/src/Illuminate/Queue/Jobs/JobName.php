@@ -9,6 +9,8 @@ class JobName
 {
     /**
      * Parse the given job name into a class / method array.
+	 *
+	 * 将给定的作业名称解析成类/方法数组
      *
      * @param  string  $job
      * @return array

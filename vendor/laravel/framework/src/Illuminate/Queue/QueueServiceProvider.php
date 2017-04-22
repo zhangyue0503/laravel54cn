@@ -24,12 +24,14 @@ class QueueServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
+	 *
+	 * 注册服务提供者
      *
      * @return void
      */
     public function register()
     {
-        $this->registerManager();
+        $this->registerManager();//注册队列管理器
 
         $this->registerConnection();
 
@@ -42,17 +44,25 @@ class QueueServiceProvider extends ServiceProvider
 
     /**
      * Register the queue manager.
+	 *
+	 * 注册队列管理器
      *
      * @return void
      */
     protected function registerManager()
     {
+		//      在容器中注册共享绑定
         $this->app->singleton('queue', function ($app) {
             // Once we have an instance of the queue manager, we will register the various
-            // resolvers for the queue connectors. These connectors are responsible for
-            // creating the classes that accept queue configs and instantiate queues.
+			// resolvers for the queue connectors. These connectors are responsible for
+			// creating the classes that accept queue configs and instantiate queues.
+			//
+			// 一旦我们的队列管理器的一个实例，我们将登记为队列连接各种解析器
+			// 这些连接器负责创造，接受队列配置和实例化的类队列
+			//
+			// 用给定的值调用给定的闭包，然后返回值(创建一个新的队列管理器实例)
             return tap(new QueueManager($app), function ($manager) {
-                $this->registerConnectors($manager);
+                $this->registerConnectors($manager);//在队列管理器上注册连接器
             });
         });
     }
@@ -71,6 +81,9 @@ class QueueServiceProvider extends ServiceProvider
 
     /**
      * Register the connectors on the queue manager.
+	 *
+	 * 在队列管理器上注册连接器
+	 * * 注册消息队列中控制器的连接器
      *
      * @param  \Illuminate\Queue\QueueManager  $manager
      * @return void
@@ -97,12 +110,15 @@ class QueueServiceProvider extends ServiceProvider
 
     /**
      * Register the Sync queue connector.
+	 *
+	 * 注册同步队列连接器
      *
      * @param  \Illuminate\Queue\QueueManager  $manager
      * @return void
      */
     protected function registerSyncConnector($manager)
     {
+		//    添加队列连接解析器
         $manager->addConnector('sync', function () {
             return new SyncConnector;
         });
@@ -110,12 +126,15 @@ class QueueServiceProvider extends ServiceProvider
 
     /**
      * Register the database queue connector.
+	 *
+	 * 注册数据库队列连接器
      *
      * @param  \Illuminate\Queue\QueueManager  $manager
      * @return void
      */
     protected function registerDatabaseConnector($manager)
     {
+		//      添加队列连接解析器
         $manager->addConnector('database', function () {
             return new DatabaseConnector($this->app['db']);
         });

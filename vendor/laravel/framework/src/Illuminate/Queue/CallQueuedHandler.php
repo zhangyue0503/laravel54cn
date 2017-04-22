@@ -27,6 +27,8 @@ class CallQueuedHandler
 
     /**
      * Handle the queued job.
+	 *
+	 * 处理队列工作
      *
      * @param  \Illuminate\Contracts\Queue\Job  $job
      * @param  array  $data
@@ -38,7 +40,7 @@ class CallQueuedHandler
             $job, unserialize($data['command'])
         );
 
-        $this->dispatcher->dispatchNow(
+        $this->dispatcher->dispatchNow(//在当前进程中将命令发送给适当的处理模块
             $command, $handler = $this->resolveHandler($job, $command)
         );
 

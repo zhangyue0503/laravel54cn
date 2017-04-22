@@ -22,6 +22,8 @@ trait InteractsWithTime
 
     /**
      * Get the "available at" UNIX timestamp.
+	 *
+	 * 获取“available at”UNIX时间戳
      *
      * @param  \DateTimeInterface|int  $delay
      * @return int

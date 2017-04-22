@@ -32,6 +32,8 @@ class QueueManager implements FactoryContract, MonitorContract
 
     /**
      * Create a new queue manager instance.
+	 *
+	 * 创建一个新的队列管理器实例
      *
      * @param  \Illuminate\Foundation\Application  $app
      * @return void
@@ -122,19 +124,23 @@ class QueueManager implements FactoryContract, MonitorContract
      * Resolve a queue connection instance.
      *
      * 解析队列连接实例
+	 * * 获取一个消息队列连接器实例
      *
      * @param  string  $name
      * @return \Illuminate\Contracts\Queue\Queue
      */
     public function connection($name = null)
     {
-        $name = $name ?: $this->getDefaultDriver();
+        $name = $name ?: $this->getDefaultDriver();//获取默认队列连接的名称
 
         // If the connection has not been resolved yet we will resolve it now as all
         // of the connections are resolved when they are actually needed so we do
         // not make any unnecessary connection to the various queue end-points.
+		//
+		// 如果连接尚未解决，我们将解决它，因为所有的连接解决时，他们实际上需要，所以我们不做任何不必要的连接到不同的队列端点
+		//
         if (! isset($this->connections[$name])) {
-            $this->connections[$name] = $this->resolve($name);
+            $this->connections[$name] = $this->resolve($name);//解决一个消息队列连接
 
             $this->connections[$name]->setContainer($this->app);
         }
@@ -144,21 +150,26 @@ class QueueManager implements FactoryContract, MonitorContract
 
     /**
      * Resolve a queue connection.
+	 *
+	 * 解决队列连接
+	 * * 解决一个消息队列连接
      *
      * @param  string  $name
      * @return \Illuminate\Contracts\Queue\Queue
      */
     protected function resolve($name)
     {
-        $config = $this->getConfig($name);
+        $config = $this->getConfig($name);//获取队列连接配置
 
-        return $this->getConnector($config['driver'])
-                        ->connect($config)
+        return $this->getConnector($config['driver'])//获取给定驱动器的连接器
+                        ->connect($config)//建立队列连接
                         ->setConnectionName($name);
     }
 
     /**
      * Get the connector for a given driver.
+	 *
+	 * 获取给定驱动器的连接器
      *
      * @param  string  $driver
      * @return \Illuminate\Queue\Connectors\ConnectorInterface
@@ -188,6 +199,8 @@ class QueueManager implements FactoryContract, MonitorContract
 
     /**
      * Add a queue connection resolver.
+	 *
+	 * 添加队列连接解析器
      *
      * @param  string    $driver
      * @param  \Closure  $resolver
@@ -200,6 +213,8 @@ class QueueManager implements FactoryContract, MonitorContract
 
     /**
      * Get the queue connection configuration.
+	 *
+	 * 获取队列连接配置
      *
      * @param  string  $name
      * @return array
@@ -215,6 +230,8 @@ class QueueManager implements FactoryContract, MonitorContract
 
     /**
      * Get the name of the default queue connection.
+	 *
+	 * 获取默认队列连接的名称
      *
      * @return string
      */

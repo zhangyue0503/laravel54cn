@@ -24,6 +24,8 @@ class SyncQueue extends Queue implements QueueContract
 
     /**
      * Push a new job onto the queue.
+	 *
+	 * 推送一条新的消息到队列
      *
      * @param  string  $job
      * @param  mixed   $data
@@ -34,6 +36,7 @@ class SyncQueue extends Queue implements QueueContract
      */
     public function push($job, $data = '', $queue = null)
     {
+		//                 解决同步job实例(通过给定的消息和数据创建一个载荷字符串)
         $queueJob = $this->resolveJob($this->createPayload($job, $data, $queue), $queue);
 
         try {
@@ -53,6 +56,9 @@ class SyncQueue extends Queue implements QueueContract
 
     /**
      * Resolve a Sync job instance.
+	 *
+	 * 解决同步job实例
+	 * * 处理一个同步类型消息实例
      *
      * @param  string  $payload
      * @param  string  $queue
