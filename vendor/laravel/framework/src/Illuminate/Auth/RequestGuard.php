@@ -38,6 +38,8 @@ class RequestGuard implements Guard
 
     /**
      * Get the currently authenticated user.
+	 *
+	 * 获取当前身份验证用户
      *
      * @return \Illuminate\Contracts\Auth\Authenticatable|null
      */

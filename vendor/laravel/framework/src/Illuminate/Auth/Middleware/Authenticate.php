@@ -17,6 +17,8 @@ class Authenticate
 
     /**
      * Create a new middleware instance.
+	 *
+	 * 创建一个新的中间件实例
      *
      * @param  \Illuminate\Contracts\Auth\Factory  $auth
      * @return void
@@ -28,6 +30,8 @@ class Authenticate
 
     /**
      * Handle an incoming request.
+	 *
+	 * 处理传入的请求
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
@@ -38,13 +42,15 @@ class Authenticate
      */
     public function handle($request, Closure $next, ...$guards)
     {
-        $this->authenticate($guards);
+        $this->authenticate($guards);//确定用户是否登录到任何给定的保护中
 
         return $next($request);
     }
 
     /**
      * Determine if the user is logged in to any of the given guards.
+	 *
+	 * 确定用户是否登录到任何给定的保护中
      *
      * @param  array  $guards
      * @return void

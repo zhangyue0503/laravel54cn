@@ -41,6 +41,8 @@ trait GuardHelpers
 
     /**
      * Determine if the current user is authenticated.
+	 *
+	 * 确定当前用户是否身份验证
      *
      * @return bool
      */
@@ -51,12 +53,14 @@ trait GuardHelpers
 
     /**
      * Determine if the current user is a guest.
-     *
+	 *
+	 * 确定当前用户是否为客人
+	 *
      * @return bool
      */
     public function guest()
     {
-        return ! $this->check();
+        return ! $this->check();//确定当前用户是否身份验证
     }
 
     /**

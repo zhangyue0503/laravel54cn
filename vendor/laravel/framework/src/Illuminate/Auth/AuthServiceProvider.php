@@ -16,7 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerAuthenticator();
+        $this->registerAuthenticator();//注册认证服务
 
         $this->registerUserResolver();
 
@@ -27,6 +27,8 @@ class AuthServiceProvider extends ServiceProvider
 
     /**
      * Register the authenticator services.
+	 *
+	 * 注册认证服务
      *
      * @return void
      */
@@ -42,6 +44,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton('auth.driver', function ($app) {
+			//     Illuminate\Auth\AuthManager->试图从本地缓存中得到守卫
             return $app['auth']->guard();
         });
     }

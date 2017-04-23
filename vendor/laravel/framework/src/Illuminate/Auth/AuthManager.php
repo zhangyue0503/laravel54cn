@@ -57,21 +57,25 @@ class AuthManager implements FactoryContract
 
     /**
      * Attempt to get the guard from the local cache.
+	 *
+	 * 试图从本地缓存中得到守卫
      *
      * @param  string  $name
      * @return \Illuminate\Contracts\Auth\Guard|\Illuminate\Contracts\Auth\StatefulGuard
      */
     public function guard($name = null)
     {
-        $name = $name ?: $this->getDefaultDriver();
+        $name = $name ?: $this->getDefaultDriver();//获取默认身份验证驱动程序名称
 
         return isset($this->guards[$name])
                     ? $this->guards[$name]
-                    : $this->guards[$name] = $this->resolve($name);
+                    : $this->guards[$name] = $this->resolve($name);//解决给定的守卫
     }
 
     /**
      * Resolve the given guard.
+	 *
+	 * 解决给定的守卫
      *
      * @param  string  $name
      * @return \Illuminate\Contracts\Auth\Guard|\Illuminate\Contracts\Auth\StatefulGuard
@@ -177,6 +181,8 @@ class AuthManager implements FactoryContract
 
     /**
      * Get the default authentication driver name.
+	 *
+	 * 获取默认身份验证驱动程序名称
      *
      * @return string
      */
