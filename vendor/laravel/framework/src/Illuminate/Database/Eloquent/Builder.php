@@ -22,12 +22,16 @@ class Builder
     /**
      * The base query builder instance.
      *
+     * 基础查询生成器实例
+     *
      * @var \Illuminate\Database\Query\Builder
      */
     protected $query;
 
     /**
      * The model being queried.
+     *
+     * 正在查询的模型
      *
      * @var \Illuminate\Database\Eloquent\Model
      */
@@ -36,12 +40,16 @@ class Builder
     /**
      * The relationships that should be eager loaded.
      *
+     * 贪婪加载的关系
+     *
      * @var array
      */
     protected $eagerLoad = [];
 
     /**
      * All of the globally registered builder macros.
+     *
+     * 所有全局注册的生成器宏
      *
      * @var array
      */
@@ -50,6 +58,8 @@ class Builder
     /**
      * All of the locally registered builder macros.
      *
+     * 所有本地注册的生成器宏
+     *
      * @var array
      */
     protected $localMacros = [];
@@ -57,12 +67,16 @@ class Builder
     /**
      * A replacement for the typical delete function.
      *
+     * 一个典型的删除函数的替换
+     *
      * @var \Closure
      */
     protected $onDelete;
 
     /**
      * The methods that should be returned from query builder.
+     *
+     * 应该从查询生成器返回的方法
      *
      * @var array
      */
@@ -74,12 +88,16 @@ class Builder
     /**
      * Applied global scopes.
      *
+     * 应用全局作用域
+     *
      * @var array
      */
     protected $scopes = [];
 
     /**
      * Removed global scopes.
+     *
+     * 移除全局作用域
      *
      * @var array
      */
@@ -121,7 +139,7 @@ class Builder
     /**
      * Remove a registered global scope.
      *
-     * 移除注册的全局范围
+     * 移除注册的全局作用域
      *
      * @param  \Illuminate\Database\Eloquent\Scope|string  $scope
      * @return $this
@@ -142,6 +160,8 @@ class Builder
     /**
      * Remove all or passed registered global scopes.
      *
+     * 删除所有或经过注册的全局作用域
+     *
      * @param  array|null  $scopes
      * @return $this
      */
@@ -149,7 +169,7 @@ class Builder
     {
         if (is_array($scopes)) {
             foreach ($scopes as $scope) {
-                $this->withoutGlobalScope($scope);
+                $this->withoutGlobalScope($scope);//移除注册的全局作用域
             }
         } else {
             $this->scopes = [];
@@ -161,6 +181,8 @@ class Builder
     /**
      * Get an array of global scopes that were removed from the query.
      *
+     * 获取从查询中移除的全局作用域数组
+     *
      * @return array
      */
     public function removedScopes()
@@ -170,6 +192,8 @@ class Builder
 
     /**
      * Apply the callback's query changes if the given "value" is true.
+     *
+     * 如果给定的“值”为真，则应用回调的查询更改
      *
      * @param  bool  $value
      * @param  \Closure  $callback
@@ -192,17 +216,20 @@ class Builder
     /**
      * Add a where clause on the primary key to the query.
      *
+     * 在查询的主键上添加WHERE子句
+     *
      * @param  mixed  $id
      * @return $this
      */
     public function whereKey($id)
     {
         if (is_array($id) || $id instanceof Arrayable) {
+            // 在查询中添加“where”子句           获取表格的键名
             $this->query->whereIn($this->model->getQualifiedKeyName(), $id);
 
             return $this;
         }
-
+        //       将基本WHERE子句添加到查询中      获取表格的键名
         return $this->where($this->model->getQualifiedKeyName(), '=', $id);
     }
 
@@ -1275,6 +1302,8 @@ class Builder
 
     /**
      * Set the relationships being eagerly loaded.
+     *
+     * 设置贪婪加载的关系
      *
      * @param  array  $eagerLoad
      * @return $this

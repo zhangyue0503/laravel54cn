@@ -291,6 +291,8 @@ abstract class Relation
     /**
      * Set or get the morph map for polymorphic relations.
      *
+     * 设置或获取多态关系的变形图
+     *
      * @param  array|null  $map
      * @param  bool  $merge
      * @return array

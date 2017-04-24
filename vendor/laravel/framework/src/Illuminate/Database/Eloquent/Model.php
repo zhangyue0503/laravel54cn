@@ -1357,7 +1357,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
     /**
      * Get the table qualified key name.
      *
-     * 获取表格的密钥名称
+     * 获取表格的键名
      *
      * @return string
      */

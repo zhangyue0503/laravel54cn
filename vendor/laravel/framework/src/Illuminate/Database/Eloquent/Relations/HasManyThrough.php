@@ -48,6 +48,8 @@ class HasManyThrough extends Relation
     /**
      * Create a new has many through relationship instance.
      *
+     * 创建一个新的有许多通过关系实例
+     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  \Illuminate\Database\Eloquent\Model  $farParent
      * @param  \Illuminate\Database\Eloquent\Model  $throughParent

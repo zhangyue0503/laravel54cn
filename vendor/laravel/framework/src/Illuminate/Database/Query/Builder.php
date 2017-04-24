@@ -738,7 +738,7 @@ class Builder
     /**
      * Add a "where in" clause to the query.
      *
-     * 在查询中添加“在哪里”子句
+     * 在查询中添加“where”子句
      *
      * @param  string  $column
      * @param  mixed   $values

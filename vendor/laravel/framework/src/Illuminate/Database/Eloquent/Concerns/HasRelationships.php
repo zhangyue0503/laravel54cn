@@ -175,7 +175,7 @@ trait HasRelationships
         // the relationship. In this case we'll just pass in a dummy query where we
         // need to remove any eager loads that may already be defined on a model.
         //
-        // 如果类型值为空，我们假定我们急于加载关系，这可能是安全的
+        // 如果类型值为空，我们假定我们贪婪加载关系，这可能是安全的
         // 在这种情况下，我们只是传递一个虚拟的查询，我们需要删除任何贪婪加载，可能已经定义了一个模型
         //
         return empty($class = $this->{$type})
@@ -195,7 +195,9 @@ trait HasRelationships
      */
     protected function morphEagerTo($name, $type, $id)
     {
+        //        创建一个新的关系实例
         return new MorphTo(
+            //获取模型表的新查询生成器->设置贪婪加载的关系
             $this->newQuery()->setEagerLoads([]), $this, $id, null, $type, $name
         );
     }
@@ -213,11 +215,12 @@ trait HasRelationships
      */
     protected function morphInstanceTo($target, $name, $type, $id)
     {
-        $instance = $this->newRelatedInstance(
-            static::getActualClassNameForMorph($target)
+        $instance = $this->newRelatedInstance( //为相关模型创建新的模型实例
+            static::getActualClassNameForMorph($target)//检索给定的变形类的实际类名
         );
-
+        //        创建一个新的关系实例
         return new MorphTo(
+            //获取模型表的新查询生成器                    从模型中获取主键
             $instance->newQuery(), $this, $id, $instance->getKeyName(), $type, $name
         );
     }
@@ -225,11 +228,14 @@ trait HasRelationships
     /**
      * Retrieve the actual class name for a given morph class.
      *
+     * 检索给定的变形类的实际类名
+     *
      * @param  string  $class
      * @return string
      */
     public static function getActualClassNameForMorph($class)
     {
+        //使用“点”符号从数组中获取一个项  设置或获取多态关系的变形图
         return Arr::get(Relation::morphMap(), $class, $class);
     }
 
@@ -250,6 +256,8 @@ trait HasRelationships
     /**
      * Define a one-to-many relationship.
      *
+     * 定义一对多关系
+     *
      * @param  string  $related
      * @param  string  $foreignKey
      * @param  string  $localKey
@@ -257,19 +265,22 @@ trait HasRelationships
      */
     public function hasMany($related, $foreignKey = null, $localKey = null)
     {
-        $instance = $this->newRelatedInstance($related);
+        $instance = $this->newRelatedInstance($related); //为相关模型创建新的模型实例
 
-        $foreignKey = $foreignKey ?: $this->getForeignKey();
+        $foreignKey = $foreignKey ?: $this->getForeignKey();//获取模型的默认外键名称
 
-        $localKey = $localKey ?: $this->getKeyName();
+        $localKey = $localKey ?: $this->getKeyName();//从模型中获取主键
 
         return new HasMany(
+            //获取模型表的新查询生成器           获取与模型相关联的表
             $instance->newQuery(), $this, $instance->getTable().'.'.$foreignKey, $localKey
         );
     }
 
     /**
      * Define a has-many-through relationship.
+     *
+     * 定义一个有许多通过关系
      *
      * @param  string  $related
      * @param  string  $through
@@ -282,19 +293,21 @@ trait HasRelationships
     {
         $through = new $through;
 
-        $firstKey = $firstKey ?: $this->getForeignKey();
+        $firstKey = $firstKey ?: $this->getForeignKey();//获取模型的默认外键名称
 
-        $secondKey = $secondKey ?: $through->getForeignKey();
+        $secondKey = $secondKey ?: $through->getForeignKey();//获取模型的默认外键名称
 
-        $localKey = $localKey ?: $this->getKeyName();
+        $localKey = $localKey ?: $this->getKeyName();//从模型中获取主键
 
-        $instance = $this->newRelatedInstance($related);
-
+        $instance = $this->newRelatedInstance($related);//为相关模型创建新的模型实例
+        //      创建一个新的有许多通过关系实例(获取模型表的新查询生成器)
         return new HasManyThrough($instance->newQuery(), $this, $through, $firstKey, $secondKey, $localKey);
     }
 
     /**
      * Define a polymorphic one-to-many relationship.
+     *
+     * 定义多态的一对多关系
      *
      * @param  string  $related
      * @param  string  $name
@@ -305,22 +318,28 @@ trait HasRelationships
      */
     public function morphMany($related, $name, $type = null, $id = null, $localKey = null)
     {
-        $instance = $this->newRelatedInstance($related);
+        $instance = $this->newRelatedInstance($related); //为相关模型创建新的模型实例
 
         // Here we will gather up the morph type and ID for the relationship so that we
         // can properly query the intermediate table of a relation. Finally, we will
         // get the table and create the relationship instances for the developers.
-        list($type, $id) = $this->getMorphs($name, $type, $id);
+        //
+        // 在这里，我们将收集的多态类型和ID的关系，以便我们可以正确地查询中间表的关系
+        // 最后，我们将获取表并为开发人员创建关系实例。
+        //
+        list($type, $id) = $this->getMorphs($name, $type, $id); //获取多态关系列
 
-        $table = $instance->getTable();
+        $table = $instance->getTable();//获取与模型相关联的表
 
-        $localKey = $localKey ?: $this->getKeyName();
-
+        $localKey = $localKey ?: $this->getKeyName();//从模型中获取主键
+        //                           获取模型表的新查询生成器
         return new MorphMany($instance->newQuery(), $this, $table.'.'.$type, $table.'.'.$id, $localKey);
     }
 
     /**
      * Define a many-to-many relationship.
+     *
+     * 定义多对多关系
      *
      * @param  string  $related
      * @param  string  $table
@@ -334,33 +353,49 @@ trait HasRelationships
         // If no relationship name was passed, we will pull backtraces to get the
         // name of the calling function. We will use that function name as the
         // title of this relation since that is a great convention to apply.
+        //
+        // 如果没有关系的名字被通过，我们将回朔到调用函数的名字
+        // 我们将使用该函数名称作为该关系的名称，因为这是一个极好的惯例适用
+        //
         if (is_null($relation)) {
-            $relation = $this->guessBelongsToManyRelation();
+            $relation = $this->guessBelongsToManyRelation();//得到关系的名字属于多
         }
 
         // First, we'll need to determine the foreign key and "other key" for the
         // relationship. Once we have determined the keys we'll make the query
         // instances as well as the relationship instances we need for this.
-        $instance = $this->newRelatedInstance($related);
+        //
+        // 首先，我们需要确定外键和“其他键”的关系
+        // 一旦我们确定了键，我们将生成查询实例以及我们需要的关系实例
+        //
+        $instance = $this->newRelatedInstance($related);//为相关模型创建新的模型实例
 
-        $foreignKey = $foreignKey ?: $this->getForeignKey();
+        $foreignKey = $foreignKey ?: $this->getForeignKey();//获取模型的默认外键名称
 
-        $relatedKey = $relatedKey ?: $instance->getForeignKey();
+        $relatedKey = $relatedKey ?: $instance->getForeignKey();//获取模型的默认外键名称
 
         // If no table name was provided, we can guess it by concatenating the two
         // models using underscores in alphabetical order. The two model names
         // are transformed to snake case from their default CamelCase also.
+        //
+        // 如果没有提供表名，我们可以猜测它将两模型使用下划线的字母顺序
+        // 两模型的名字从默认的驼峰命名转化为蛇形命名
+        //
         if (is_null($table)) {
+            //获取多对多关系的连接表名
             $table = $this->joiningTable($related);
         }
 
-        return new BelongsToMany(
+        return new BelongsToMany(//创建一个新的属于许多关系实例
+            //获取模型表的新查询生成器
             $instance->newQuery(), $this, $table, $foreignKey, $relatedKey, $relation
         );
     }
 
     /**
      * Define a polymorphic many-to-many relationship.
+     *
+     * 定义多态多对多关系
      *
      * @param  string  $related
      * @param  string  $name
@@ -372,23 +407,32 @@ trait HasRelationships
      */
     public function morphToMany($related, $name, $table = null, $foreignKey = null, $relatedKey = null, $inverse = false)
     {
-        $caller = $this->guessBelongsToManyRelation();
+        $caller = $this->guessBelongsToManyRelation();//得到关系的名字属于多
 
         // First, we will need to determine the foreign key and "other key" for the
         // relationship. Once we have determined the keys we will make the query
         // instances, as well as the relationship instances we need for these.
-        $instance = $this->newRelatedInstance($related);
+        //
+        // 首先，我们需要确定的外键和“其他键”的关系
+        // 一旦我们确定了键，我们将生成查询实例，以及我们需要的关系实例
+        //
+        $instance = $this->newRelatedInstance($related);//为相关模型创建新的模型实例
 
         $foreignKey = $foreignKey ?: $name.'_id';
 
-        $relatedKey = $relatedKey ?: $instance->getForeignKey();
+        $relatedKey = $relatedKey ?: $instance->getForeignKey();//获取模型的默认外键名称
 
         // Now we're ready to create a new query builder for this related model and
         // the relationship instances for this relation. This relations will set
         // appropriate query constraints then entirely manages the hydrations.
-        $table = $table ?: Str::plural($name);
+        //
+        // 现在我们准备为这个相关模型创建一个新的查询生成器和关系的关系实例
+        // 这种关系将设置适当的查询约束然后完全管理水合
+        //
+        $table = $table ?: Str::plural($name); //获取一个英语单词的复数形式
 
-        return new MorphToMany(
+        return new MorphToMany(//创建一个新的多态到多关系实例
+            //获取模型表的新查询生成器
             $instance->newQuery(), $this, $name, $table,
             $foreignKey, $relatedKey, $caller, $inverse
         );
@@ -396,6 +440,8 @@ trait HasRelationships
 
     /**
      * Define a polymorphic, inverse many-to-many relationship.
+     *
+     * 定义一个多态的逆多对多关系
      *
      * @param  string  $related
      * @param  string  $name
@@ -406,18 +452,23 @@ trait HasRelationships
      */
     public function morphedByMany($related, $name, $table = null, $foreignKey = null, $relatedKey = null)
     {
-        $foreignKey = $foreignKey ?: $this->getForeignKey();
+        $foreignKey = $foreignKey ?: $this->getForeignKey();//获取模型的默认外键名称
 
         // For the inverse of the polymorphic many-to-many relations, we will change
         // the way we determine the foreign and other keys, as it is the opposite
         // of the morph-to-many method since we're figuring out these inverses.
+        //
+        // 对于逆多态多对多的关系，我们将改变我们确定外键和其他的键，因为它是变形的许多方法相反的因为我们解决了这些逆
+        //
         $relatedKey = $relatedKey ?: $name.'_id';
-
+        //        定义多态多对多关系
         return $this->morphToMany($related, $name, $table, $foreignKey, $relatedKey, true);
     }
 
     /**
      * Get the relationship name of the belongs to many.
+     *
+     * 得到关系的名字属于多
      *
      * @return string
      */
@@ -433,6 +484,8 @@ trait HasRelationships
     /**
      * Get the joining table name for a many-to-many relation.
      *
+     * 获取多对多关系的连接表名
+     *
      * @param  string  $related
      * @return string
      */
@@ -441,14 +494,20 @@ trait HasRelationships
         // The joining table name, by convention, is simply the snake cased models
         // sorted alphabetically and concatenated with an underscore, so we can
         // just sort the models and join them together to get the table name.
+        //
+        // 按惯例，连接表名只是简单地按字母顺序排列并与下划线连在一起的蛇模型，所以我们只需对模型进行排序并将它们组合在一起即可得到表名
+        //
         $models = [
-            Str::snake(class_basename($related)),
-            Str::snake(class_basename($this)),
+            Str::snake(class_basename($related)),//将字符串转换为蛇形命名
+            Str::snake(class_basename($this)),//将字符串转换为蛇形命名
         ];
 
         // Now that we have the model names in an array we can just sort them and
         // use the implode function to join them together with an underscores,
         // which is typically used by convention within the database system.
+        //
+        // 现在我们有了模型名称数组中我们可以把它们和使用爆炸功能加入他们一起强调，这通常是由数据库系统内的惯例
+        //
         sort($models);
 
         return strtolower(implode('_', $models));
@@ -456,6 +515,8 @@ trait HasRelationships
 
     /**
      * Determine if the model touches a given relation.
+     *
+     * 确定模型是否触及给定的关系
      *
      * @param  string  $relation
      * @return bool
@@ -467,6 +528,8 @@ trait HasRelationships
 
     /**
      * Touch the owning relations of the model.
+     *
+     * 触摸模型的拥有关系
      *
      * @return void
      */
@@ -505,11 +568,13 @@ trait HasRelationships
     /**
      * Get the class name for polymorphic relations.
      *
+     * 获取多态关系的类名
+     *
      * @return string
      */
     public function getMorphClass()
     {
-        $morphMap = Relation::morphMap();
+        $morphMap = Relation::morphMap();//设置或获取多态关系的变形图
 
         if (! empty($morphMap) && in_array(static::class, $morphMap)) {
             return array_search(static::class, $morphMap, true);
@@ -529,14 +594,16 @@ trait HasRelationships
     protected function newRelatedInstance($class)
     {
         return tap(new $class, function ($instance) {
-            if (! $instance->getConnectionName()) {
-                $instance->setConnection($this->connection);
+            if (! $instance->getConnectionName()) { //获取模型的当前连接名称
+                $instance->setConnection($this->connection); //设置与模型相关联的连接
             }
         });
     }
 
     /**
      * Get all the loaded relations for the instance.
+     *
+     * 获取实例的所有加载关系
      *
      * @return array
      */
@@ -547,6 +614,8 @@ trait HasRelationships
 
     /**
      * Get a specified relationship.
+     *
+     * 得到指定的关系
      *
      * @param  string  $relation
      * @return mixed
@@ -559,6 +628,8 @@ trait HasRelationships
     /**
      * Determine if the given relation is loaded.
      *
+     * 确定给定的关系是否加载
+     *
      * @param  string  $key
      * @return bool
      */
@@ -569,6 +640,8 @@ trait HasRelationships
 
     /**
      * Set the specific relationship in the model.
+     *
+     * 在模型中设置特定关系
      *
      * @param  string  $relation
      * @param  mixed  $value
@@ -599,6 +672,8 @@ trait HasRelationships
     /**
      * Get the relationships that are touched on save.
      *
+     * 得到的关系，触及节省
+     *
      * @return array
      */
     public function getTouchedRelations()
@@ -608,6 +683,8 @@ trait HasRelationships
 
     /**
      * Set the relationships that are touched on save.
+     *
+     * 设置被保存的关系
      *
      * @param  array  $touches
      * @return $this

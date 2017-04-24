@@ -34,6 +34,8 @@ class MorphToMany extends BelongsToMany
     /**
      * Create a new morph to many relationship instance.
      *
+     * 创建一个新的多态到多关系实例
+     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  \Illuminate\Database\Eloquent\Model  $parent
      * @param  string  $name

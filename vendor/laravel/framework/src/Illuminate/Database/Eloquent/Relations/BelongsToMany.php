@@ -93,6 +93,8 @@ class BelongsToMany extends Relation
     /**
      * Create a new belongs to many relationship instance.
      *
+     * 创建一个新的属于许多关系实例
+     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  \Illuminate\Database\Eloquent\Model  $parent
      * @param  string  $table

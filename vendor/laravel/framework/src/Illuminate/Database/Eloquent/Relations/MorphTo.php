@@ -40,6 +40,8 @@ class MorphTo extends BelongsTo
     /**
      * Create a new morph to relationship instance.
      *
+     * 创建一个新的关系实例
+     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  \Illuminate\Database\Eloquent\Model  $parent
      * @param  string  $foreignKey
