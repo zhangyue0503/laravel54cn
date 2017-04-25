@@ -9,6 +9,8 @@ class RelationNotFoundException extends RuntimeException
     /**
      * Create a new exception instance.
      *
+     * 创建一个新的异常实例
+     *
      * @param  mixed  $model
      * @param  string  $relation
      * @return static

@@ -6,7 +6,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Database\Grammar as BaseGrammar;
-
+//语法
 class Grammar extends BaseGrammar
 {
     /**

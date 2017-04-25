@@ -70,6 +70,8 @@ abstract class Relation
     /**
      * Run a callback with constraints disabled on the relation.
      *
+     * 在关系上禁用约束的回调
+     *
      * @param  \Closure  $callback
      * @return mixed
      */
@@ -99,6 +101,8 @@ abstract class Relation
     /**
      * Set the constraints for an eager load of the relation.
      *
+     * 为关系的贪婪加载设置约束
+     *
      * @param  array  $models
      * @return void
      */
@@ -106,6 +110,8 @@ abstract class Relation
 
     /**
      * Initialize the relation on a set of models.
+     *
+     * 在一组模型上初始化关系
      *
      * @param  array   $models
      * @param  string  $relation
@@ -115,6 +121,8 @@ abstract class Relation
 
     /**
      * Match the eagerly loaded results to their parents.
+     *
+     * 将贪婪加载的结果与父类相匹配
      *
      * @param  array   $models
      * @param  \Illuminate\Database\Eloquent\Collection  $results
@@ -132,6 +140,8 @@ abstract class Relation
 
     /**
      * Get the relationship for eager loading.
+     *
+     * 得到贪婪加载的关系
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
@@ -166,6 +176,8 @@ abstract class Relation
     /**
      * Add the constraints for a relationship count query.
      *
+     * 为关系计数查询添加约束
+     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  \Illuminate\Database\Eloquent\Builder  $parentQuery
      * @return \Illuminate\Database\Eloquent\Builder
@@ -180,7 +192,11 @@ abstract class Relation
     /**
      * Add the constraints for an internal relationship existence query.
      *
+     * 为内部关系存在查询添加约束
+     *
      * Essentially, these queries compare on column names like whereColumn.
+     *
+     * 从本质上讲，这些查询比较喜欢whereColumn列名
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  \Illuminate\Database\Eloquent\Builder  $parentQuery
@@ -210,6 +226,8 @@ abstract class Relation
 
     /**
      * Get the underlying query for the relation.
+     *
+     * 获取关系的基础查询
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -250,6 +268,8 @@ abstract class Relation
 
     /**
      * Get the related model of the relation.
+     *
+     * 获取相关模型的关系
      *
      * @return \Illuminate\Database\Eloquent\Model
      */

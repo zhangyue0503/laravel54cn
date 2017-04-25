@@ -690,13 +690,15 @@ if (! function_exists('snake_case')) {
     /**
      * Convert a string to snake case.
      *
+     * 转换字符串为蛇形命名
+     *
      * @param  string  $value
      * @param  string  $delimiter
      * @return string
      */
     function snake_case($value, $delimiter = '_')
     {
-        return Str::snake($value, $delimiter);
+        return Str::snake($value, $delimiter); //将字符串转换为蛇形命名
     }
 }
 

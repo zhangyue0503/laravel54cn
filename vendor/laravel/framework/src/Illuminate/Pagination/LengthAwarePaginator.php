@@ -31,6 +31,8 @@ class LengthAwarePaginator extends AbstractPaginator implements Arrayable, Array
     /**
      * Create a new paginator instance.
      *
+     * 创建一个新的页面实例
+     *
      * @param  mixed  $items
      * @param  int  $total
      * @param  int  $perPage

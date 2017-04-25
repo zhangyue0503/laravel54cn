@@ -24,6 +24,8 @@ class Paginator extends AbstractPaginator implements Arrayable, ArrayAccess, Cou
     /**
      * Create a new paginator instance.
      *
+     * 创建一个新的页面实例
+     *
      * @param  mixed  $items
      * @param  int  $perPage
      * @param  int|null  $currentPage

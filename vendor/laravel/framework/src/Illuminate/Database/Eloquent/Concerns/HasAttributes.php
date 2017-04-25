@@ -418,6 +418,8 @@ trait HasAttributes
     /**
      * Determine if a get mutator exists for an attribute.
      *
+     * 确定是否得到一个属性赋值的存在
+     *
      * @param  string  $key
      * @return bool
      */
@@ -767,6 +769,8 @@ trait HasAttributes
     /**
      * Get the attributes that should be converted to dates.
      *
+     * 获取应该转换为日期的属性
+     *
      * @return array
      */
     public function getDates()
@@ -801,6 +805,8 @@ trait HasAttributes
 
     /**
      * Determine whether an attribute should be cast to a native type.
+     *
+     * 确定属性是否应被转换为本机类型
      *
      * @param  string  $key
      * @param  array|string|null  $types

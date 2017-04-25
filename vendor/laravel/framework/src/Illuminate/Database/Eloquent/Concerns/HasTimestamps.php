@@ -88,6 +88,8 @@ trait HasTimestamps
     /**
      * Get a fresh timestamp for the model.
      *
+     * 为模型获取新的时间戳
+     *
      * @return string
      */
     public function freshTimestampString()

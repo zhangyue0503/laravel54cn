@@ -181,6 +181,8 @@ class Str
     /**
      * Convert the given string to lower-case.
      *
+     * 将给定的字符串转为小写
+     *
      * @param  string  $value
      * @return string
      */
@@ -422,6 +424,8 @@ class Str
 
     /**
      * Determine if a given string starts with a given substring.
+     *
+     * 确定给定的子字符串是否属于给定的字符串
      *
      * @param  string  $haystack
      * @param  string|array  $needles

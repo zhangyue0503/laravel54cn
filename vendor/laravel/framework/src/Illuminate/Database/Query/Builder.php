@@ -26,12 +26,16 @@ class Builder
     /**
      * The database connection instance.
      *
+     * 数据库连接实例
+     *
      * @var \Illuminate\Database\Connection
      */
     public $connection;
 
     /**
      * The database query grammar instance.
+     *
+     * 数据库查询语法实例
      *
      * @var \Illuminate\Database\Query\Grammars\Grammar
      */
@@ -40,12 +44,16 @@ class Builder
     /**
      * The database query post processor instance.
      *
+     * 数据库查询后处理器实例
+     *
      * @var \Illuminate\Database\Query\Processors\Processor
      */
     public $processor;
 
     /**
      * The current query value bindings.
+     *
+     * 当前查询值绑定
      *
      * @var array
      */
@@ -61,12 +69,16 @@ class Builder
     /**
      * An aggregate function and column to be run.
      *
+     * 要运行的聚合函数和列
+     *
      * @var array
      */
     public $aggregate;
 
     /**
      * The columns that should be returned.
+     *
+     * 应返回的列
      *
      * @var array
      */
@@ -75,12 +87,16 @@ class Builder
     /**
      * Indicates if the query returns distinct results.
      *
+     * 指示查询是否返回不同的结果
+     *
      * @var bool
      */
     public $distinct = false;
 
     /**
      * The table which the query is targeting.
+     *
+     * 查询对象的表
      *
      * @var string
      */
@@ -89,12 +105,16 @@ class Builder
     /**
      * The table joins for the query.
      *
+     * 表加入查询
+     *
      * @var array
      */
     public $joins;
 
     /**
      * The where constraints for the query.
+     *
+     * 查询的where限制
      *
      * @var array
      */
@@ -103,12 +123,16 @@ class Builder
     /**
      * The groupings for the query.
      *
+     * 查询的编组
+     *
      * @var array
      */
     public $groups;
 
     /**
      * The having constraints for the query.
+     *
+     * 查询的having限制
      *
      * @var array
      */
@@ -117,12 +141,16 @@ class Builder
     /**
      * The orderings for the query.
      *
+     * 查询的排序
+     *
      * @var array
      */
     public $orders;
 
     /**
      * The maximum number of records to return.
+     *
+     * 返回的最大记录数
      *
      * @var int
      */
@@ -131,12 +159,16 @@ class Builder
     /**
      * The number of records to skip.
      *
+     * 要跳过的记录数
+     *
      * @var int
      */
     public $offset;
 
     /**
      * The query union statements.
+     *
+     * 查询联合报表
      *
      * @var array
      */
@@ -145,12 +177,16 @@ class Builder
     /**
      * The maximum number of union records to return.
      *
+     * 返回的联合记录的最大数目
+     *
      * @var int
      */
     public $unionLimit;
 
     /**
      * The number of union records to skip.
+     *
+     * 要跳过的联合记录的数目
      *
      * @var int
      */
@@ -159,6 +195,8 @@ class Builder
     /**
      * The orderings for the union query.
      *
+     * 联合查询的排序
+     *
      * @var array
      */
     public $unionOrders;
@@ -166,12 +204,16 @@ class Builder
     /**
      * Indicates whether row locking is being used.
      *
+     * 指示是否正在使用行锁
+     *
      * @var string|bool
      */
     public $lock;
 
     /**
      * All of the available clause operators.
+     *
+     * 所有可用的子句运算符
      *
      * @var array
      */
@@ -187,6 +229,8 @@ class Builder
     /**
      * Whether use write pdo for select.
      *
+     * 是否使用写PDO的选择
+     *
      * @var bool
      */
     public $useWritePdo = false;
@@ -201,17 +245,19 @@ class Builder
      * @param  \Illuminate\Database\Query\Processors\Processor  $processor
      * @return void
      */
-    public function __construct(ConnectionInterface $connection,
-                                Grammar $grammar = null,
-                                Processor $processor = null)
+    public function __construct(ConnectionInterface $connection,//连接接口
+                                Grammar $grammar = null,//语法
+                                Processor $processor = null)//处理器
     {
         $this->connection = $connection;
-        $this->grammar = $grammar ?: $connection->getQueryGrammar();
-        $this->processor = $processor ?: $connection->getPostProcessor();
+        $this->grammar = $grammar ?: $connection->getQueryGrammar(); //获取连接所使用的查询语法
+        $this->processor = $processor ?: $connection->getPostProcessor();//获取连接所使用的查询后处理器
     }
 
     /**
      * Set the columns to be selected.
+     *
+     * 设置要选择的列
      *
      * @param  array|mixed  $columns
      * @return $this
@@ -226,15 +272,19 @@ class Builder
     /**
      * Add a new "raw" select expression to the query.
      *
+     * 向查询添加新的“原始”选择表达式
+     *
      * @param  string  $expression
      * @param  array   $bindings
      * @return \Illuminate\Database\Query\Builder|static
      */
     public function selectRaw($expression, array $bindings = [])
     {
+        //向查询添加新的选择列(创建新的原始查询表达式)
         $this->addSelect(new Expression($expression));
 
         if ($bindings) {
+            //向查询添加绑定
             $this->addBinding($bindings, 'select');
         }
 
@@ -243,6 +293,8 @@ class Builder
 
     /**
      * Add a subselect expression to the query.
+     *
+     * 添加一个subselect表达式查询
      *
      * @param  \Closure|\Illuminate\Database\Query\Builder|string $query
      * @param  string  $as
@@ -255,18 +307,27 @@ class Builder
         // If the given query is a Closure, we will execute it while passing in a new
         // query instance to the Closure. This will give the developer a chance to
         // format and work with the query before we cast it to a raw SQL string.
+        //
+        // 如果给定的查询是闭包，我们将在将新查询实例传递给闭包时执行它
+        // 这将给开发人员提供格式化和使用查询的机会，然后再将其转换为原始sql字符串
+        //
         if ($query instanceof Closure) {
             $callback = $query;
-
+            //                 获取查询生成器的新实例
             $callback($query = $this->newQuery());
         }
 
         // Here, we will parse this query into an SQL string and an array of bindings
         // so we can add it to the query builder using the selectRaw method so the
         // query is included in the real SQL generated by this builder instance.
+        //
+        // 在这里，我们将解析该查询在SQL字符串和数组绑定的所以我们可以把它添加到使用selectRaw方法查询包含在这个生成器实例生成实体SQL查询生成器
+        //
+        //                           将子选择查询解析为sql和绑定
         list($query, $bindings) = $this->parseSubSelect($query);
-
+        //       向查询添加新的“原始”选择表达式
         return $this->selectRaw(
+            //                                 在关键字标识符中包装值
             '('.$query.') as '.$this->grammar->wrap($as), $bindings
         );
     }
@@ -274,12 +335,15 @@ class Builder
     /**
      * Parse the sub-select query into SQL and bindings.
      *
+     * 将子选择查询解析为sql和绑定
+     *
      * @param  mixed  $query
      * @return array
      */
     protected function parseSubSelect($query)
     {
         if ($query instanceof self) {
+            //获取查询的sql表示形式           在扁平数组中获取当前查询值绑定
             return [$query->toSql(), $query->getBindings()];
         } elseif (is_string($query)) {
             return [$query, []];
@@ -290,6 +354,8 @@ class Builder
 
     /**
      * Add a new select column to the query.
+     *
+     * 向查询添加新的选择列
      *
      * @param  array|mixed  $column
      * @return $this
@@ -305,6 +371,8 @@ class Builder
 
     /**
      * Force the query to only return distinct results.
+     *
+     * 强制查询只返回不同的结果
      *
      * @return $this
      */
@@ -332,6 +400,8 @@ class Builder
 
     /**
      * Add a join clause to the query.
+     *
+     * 向查询添加联接子句
      *
      * @param  string  $table
      * @param  string  $first
@@ -500,6 +570,8 @@ class Builder
 
     /**
      * Add a basic where clause to the query.
+     *
+     * 将基本WHERE子句添加到查询中
      *
      * @param  string|array|\Closure  $column
      * @param  string  $operator
@@ -1125,6 +1197,8 @@ class Builder
     /**
      * Create a new query instance for nested where condition.
      *
+     * 为嵌套的条件创建新的查询实例
+     *
      * @return \Illuminate\Database\Query\Builder
      */
     public function forNestedWhere()
@@ -1134,6 +1208,8 @@ class Builder
 
     /**
      * Add another query builder as a nested where to the query builder.
+     *
+     * 将另一个查询生成器作为嵌套在查询生成器中
      *
      * @param  \Illuminate\Database\Query\Builder|static $query
      * @param  string  $boolean
@@ -1783,6 +1859,8 @@ class Builder
     /**
      * Get the count of the total records for the paginator.
      *
+     * 得到的分页程序的总记录数
+     *
      * @param  array  $columns
      * @return int
      */
@@ -1834,6 +1912,8 @@ class Builder
 
     /**
      * Get a generator for the given query.
+     *
+     * 获取给定查询的生成器
      *
      * @return \Generator
      */
@@ -1962,6 +2042,8 @@ class Builder
 
     /**
      * Get an array with the values of a given column.
+     *
+     * 用给定列的值获取数组
      *
      * @param  string  $column
      * @param  string|null  $key
@@ -2218,6 +2300,8 @@ class Builder
     /**
      * Update a record in the database.
      *
+     * 更新数据库中的记录
+     *
      * @param  array  $values
      * @return int
      */
@@ -2249,6 +2333,8 @@ class Builder
     /**
      * Increment a column's value by a given amount.
      *
+     * 按给定值递增列的值
+     *
      * @param  string  $column
      * @param  int     $amount
      * @param  array   $extra
@@ -2270,6 +2356,8 @@ class Builder
     /**
      * Decrement a column's value by a given amount.
      *
+     * 按给定数量递减列的值
+     *
      * @param  string  $column
      * @param  int     $amount
      * @param  array   $extra
@@ -2290,6 +2378,8 @@ class Builder
 
     /**
      * Delete a record from the database.
+     *
+     * 从数据库中删除记录
      *
      * @param  mixed  $id
      * @return int
@@ -2323,6 +2413,8 @@ class Builder
     /**
      * Get a new instance of the query builder.
      *
+     * 获取查询生成器的新实例
+     *
      * @return \Illuminate\Database\Query\Builder
      */
     public function newQuery()
@@ -2344,6 +2436,8 @@ class Builder
     /**
      * Get the current query value bindings in a flattened array.
      *
+     * 在扁平数组中获取当前查询值绑定
+     *
      * @return array
      */
     public function getBindings()
@@ -2353,6 +2447,8 @@ class Builder
 
     /**
      * Get the raw array of bindings.
+     *
+     * 获取绑定的原始数组
      *
      * @return array
      */
@@ -2383,6 +2479,8 @@ class Builder
 
     /**
      * Add a binding to the query.
+     *
+     * 向查询添加绑定
      *
      * @param  mixed   $value
      * @param  string  $type
@@ -2433,6 +2531,8 @@ class Builder
 
     /**
      * Get the database connection instance.
+     *
+     * 获取数据库链接实例
      *
      * @return \Illuminate\Database\ConnectionInterface
      */

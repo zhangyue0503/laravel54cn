@@ -168,6 +168,8 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
     /**
      * Determine if an item exists in the collection.
      *
+     * 确定集合中是否存在项
+     *
      * @param  mixed  $key
      * @param  mixed  $operator
      * @param  mixed  $value
@@ -452,6 +454,8 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
     /**
      * Get the first item from the collection.
      *
+     * 从集合中获取第一项
+     *
      * @param  callable|null  $callback
      * @param  mixed  $default
      * @return mixed
@@ -660,6 +664,8 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
 
     /**
      * Get the last item from the collection.
+     *
+     * 从集合中获取最后一个项
      *
      * @param  callable|null  $callback
      * @param  mixed  $default
@@ -1419,6 +1425,8 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
 
     /**
      * Count the number of items in the collection.
+     *
+     * 计数集合中的项目数
      *
      * @return int
      */

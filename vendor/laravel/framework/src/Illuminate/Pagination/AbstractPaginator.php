@@ -352,6 +352,8 @@ abstract class AbstractPaginator implements Htmlable
     /**
      * Resolve the current request path or return the default value.
      *
+     * 解决当前请求路径或返回默认值
+     *
      * @param  string  $default
      * @return string
      */
@@ -377,6 +379,8 @@ abstract class AbstractPaginator implements Htmlable
 
     /**
      * Resolve the current page or return the default value.
+     *
+     * 解析当前页或返回默认值
      *
      * @param  string  $pageName
      * @param  int  $default

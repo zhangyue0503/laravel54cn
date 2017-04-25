@@ -25,6 +25,8 @@ class Arr
     /**
      * Add an element to an array using "dot" notation if it doesn't exist.
      *
+     * 如果不存在，使用“点”表示法将一个元素添加到数组中
+     *
      * @param  array   $array
      * @param  string  $key
      * @param  mixed   $value

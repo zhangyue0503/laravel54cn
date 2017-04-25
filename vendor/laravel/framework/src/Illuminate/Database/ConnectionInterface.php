@@ -3,7 +3,7 @@
 namespace Illuminate\Database;
 
 use Closure;
-
+//连接接口
 interface ConnectionInterface
 {
     /**
