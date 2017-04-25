@@ -22,6 +22,8 @@ trait RegistersUsers
 
     /**
      * Handle a registration request for the application.
+	 *
+	 * 办理申请注册申请
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response

@@ -15,13 +15,16 @@ class TranslationServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
+	 *
+	 * 注册服务提供者
      *
      * @return void
      */
     public function register()
     {
+		//  注册翻译行加载器
         $this->registerLoader();
-
+		//         在容器中注册共享绑定
         $this->app->singleton('translator', function ($app) {
             $loader = $app['translation.loader'];
 
@@ -40,6 +43,8 @@ class TranslationServiceProvider extends ServiceProvider
 
     /**
      * Register the translation line loader.
+	 *
+	 * 注册翻译行加载器
      *
      * @return void
      */

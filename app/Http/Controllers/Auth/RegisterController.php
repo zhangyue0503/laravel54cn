@@ -41,6 +41,9 @@ class RegisterController extends Controller
 
     /**
      * Get a validator for an incoming registration request.
+	 *
+	 * 得到一个接收注册请求验证器
+	 * * 根据注册请求输入，获取验证实例
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator

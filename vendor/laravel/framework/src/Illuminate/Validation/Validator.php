@@ -171,6 +171,8 @@ class Validator implements ValidatorContract
 
     /**
      * Create a new Validator instance.
+	 *
+	 * 创建一个新的验证实例
      *
      * @param  \Illuminate\Contracts\Translation\Translator  $translator
      * @param  array  $data
@@ -236,6 +238,8 @@ class Validator implements ValidatorContract
 
     /**
      * Determine if the data passes the validation rules.
+	 *
+	 * 确定数据是否通过验证规则
      *
      * @return bool
      */
@@ -250,7 +254,7 @@ class Validator implements ValidatorContract
             $attribute = str_replace('\.', '->', $attribute);
 
             foreach ($rules as $rule) {
-                $this->validateAttribute($attribute, $rule);
+                $this->validateAttribute($attribute, $rule);//根据规则验证给定属性
 
                 if ($this->shouldStopValidating($attribute)) {
                     break;
@@ -270,12 +274,15 @@ class Validator implements ValidatorContract
 
     /**
      * Determine if the data fails the validation rules.
+	 *
+	 * 确定数据是否验证规则失败
+	 * * 判断数据是否符合验证规则
      *
      * @return bool
      */
     public function fails()
     {
-        return ! $this->passes();
+        return ! $this->passes();//确定数据是否通过验证规则
     }
 
     /**
@@ -294,6 +301,9 @@ class Validator implements ValidatorContract
 
     /**
      * Validate a given attribute against a rule.
+	 *
+	 * 根据规则验证给定属性
+	 * * 根据一个准则验证一个给定的属性
      *
      * @param  string  $attribute
      * @param  string  $rule

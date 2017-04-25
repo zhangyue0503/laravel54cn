@@ -27,12 +27,16 @@ class ValidationServiceProvider extends ServiceProvider
 
     /**
      * Register the validation factory.
+	 *
+	 * 注册验证工厂
      *
      * @return void
      */
     protected function registerValidationFactory()
     {
+		//在容器中注册共享绑定
         $this->app->singleton('validator', function ($app) {
+			//创建一个新的验证工厂实例
             $validator = new Factory($app['translator'], $app);
 
             // The validation presence verifier is responsible for determining the existence of

@@ -68,6 +68,8 @@ class Factory implements FactoryContract
 
     /**
      * Create a new Validator factory instance.
+	 *
+	 * 创建一个新的验证工厂实例
      *
      * @param  \Illuminate\Contracts\Translation\Translator $translator
      * @param  \Illuminate\Contracts\Container\Container  $container
@@ -81,6 +83,8 @@ class Factory implements FactoryContract
 
     /**
      * Create a new Validator instance.
+	 *
+	 * 创建一个新的验证实例
      *
      * @param  array  $data
      * @param  array  $rules
@@ -93,6 +97,12 @@ class Factory implements FactoryContract
         // The presence verifier is responsible for checking the unique and exists data
         // for the validator. It is behind an interface so that multiple versions of
         // it may be written besides database. We'll inject it into the validator.
+		//
+		// 存在者负责检查独特存在数据验证
+		// 它是在一个接口的后面，所以可以在数据库之外编写多个版本
+		// 我们将它注入到验证器
+		//
+		//              解决一个新的验证实例
         $validator = $this->resolve(
             $data, $rules, $messages, $customAttributes
         );
@@ -131,6 +141,8 @@ class Factory implements FactoryContract
 
     /**
      * Resolve a new Validator instance.
+	 *
+	 * 解决一个新的验证实例
      *
      * @param  array  $data
      * @param  array  $rules
@@ -141,6 +153,7 @@ class Factory implements FactoryContract
     protected function resolve(array $data, array $rules, array $messages, array $customAttributes)
     {
         if (is_null($this->resolver)) {
+			//        创建一个新的验证实例
             return new Validator($this->translator, $data, $rules, $messages, $customAttributes);
         }
 
