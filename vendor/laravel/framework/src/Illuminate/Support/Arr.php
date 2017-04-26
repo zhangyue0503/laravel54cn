@@ -34,8 +34,8 @@ class Arr
      */
     public static function add($array, $key, $value)
     {
-        if (is_null(static::get($array, $key))) {
-            static::set($array, $key, $value);
+        if (is_null(static::get($array, $key))) {//使用“点”符号从数组中获取一个项
+            static::set($array, $key, $value);//使用“点”符号将数组项设置为给定值
         }
 
         return $array;
@@ -55,7 +55,7 @@ class Arr
 
         foreach ($array as $values) {
             if ($values instanceof Collection) {
-                $values = $values->all();
+                $values = $values->all();//获取集合中的所有项目
             } elseif (! is_array($values)) {
                 continue;
             }
@@ -69,6 +69,8 @@ class Arr
     /**
      * Divide an array into two arrays. One with keys and the other with values.
      *
+     * 将数组分成两个数组。一个是全部的key，另一个是全部的value
+     *
      * @param  array  $array
      * @return array
      */
@@ -80,6 +82,8 @@ class Arr
     /**
      * Flatten a multi-dimensional associative array with dots.
      *
+     * 用点对多维关联数组进行扁平化
+     *
      * @param  array   $array
      * @param  string  $prepend
      * @return array
@@ -90,6 +94,7 @@ class Arr
 
         foreach ($array as $key => $value) {
             if (is_array($value) && ! empty($value)) {
+                //                                      用点对多维关联数组进行扁平化
                 $results = array_merge($results, static::dot($value, $prepend.$key.'.'));
             } else {
                 $results[$prepend.$key] = $value;
@@ -110,7 +115,7 @@ class Arr
      */
     public static function except($array, $keys)
     {
-        static::forget($array, $keys);
+        static::forget($array, $keys);//使用“点”符号从给定数组中移除一个或多个数组项
 
         return $array;
     }
@@ -167,6 +172,8 @@ class Arr
     /**
      * Return the last element in an array passing a given truth test.
      *
+     * 返回经过给定的真值测试的数组中的最后一个元素
+     *
      * @param  array  $array
      * @param  callable|null  $callback
      * @param  mixed  $default
@@ -177,12 +184,14 @@ class Arr
         if (is_null($callback)) {
             return empty($array) ? value($default) : end($array);
         }
-
+        //通过给定的真值测试返回数组中的第一个元素
         return static::first(array_reverse($array, true), $callback, $default);
     }
 
     /**
      * Flatten a multi-dimensional array into a single level.
+     *
+     * 将多维数组变平为单级
      *
      * @param  array  $array
      * @param  int  $depth
@@ -191,6 +200,7 @@ class Arr
     public static function flatten($array, $depth = INF)
     {
         return array_reduce($array, function ($result, $item) use ($depth) {
+            //                                       获取集合中的所有项目
             $item = $item instanceof Collection ? $item->all() : $item;
 
             if (! is_array($item)) {
@@ -198,6 +208,7 @@ class Arr
             } elseif ($depth === 1) {
                 return array_merge($result, array_values($item));
             } else {
+                //                            将多维数组变平为单级
                 return array_merge($result, static::flatten($item, $depth - 1));
             }
         }, []);
@@ -205,6 +216,8 @@ class Arr
 
     /**
      * Remove one or many array items from a given array using "dot" notation.
+     *
+     * 使用“点”符号从给定数组中移除一个或多个数组项
      *
      * @param  array  $array
      * @param  array|string  $keys
@@ -222,7 +235,8 @@ class Arr
 
         foreach ($keys as $key) {
             // if the exact key exists in the top-level, remove it
-            if (static::exists($array, $key)) {
+            // 如果确定键存在于顶层，删除它
+            if (static::exists($array, $key)) {//确定给定的key是否存在于提供的数组中
                 unset($array[$key]);
 
                 continue;
@@ -231,6 +245,7 @@ class Arr
             $parts = explode('.', $key);
 
             // clean up before each pass
+            // 每次循环前清理
             $array = &$original;
 
             while (count($parts) > 1) {
@@ -272,6 +287,7 @@ class Arr
         }
         // 循环最终获取值
         foreach (explode('.', $key) as $segment) {
+            //确定给定值是否是可访问数组              确定给定的key是否存在于提供的数组中
             if (static::accessible($array) && static::exists($array, $segment)) {
                 $array = $array[$segment];
             } else {
@@ -284,6 +300,8 @@ class Arr
 
     /**
      * Check if an item or items exist in an array using "dot" notation.
+     *
+     * 使用“点”符号检查数组中的项或项是否存在
      *
      * @param  \ArrayAccess|array  $array
      * @param  string|array  $keys
@@ -308,11 +326,12 @@ class Arr
         foreach ($keys as $key) {
             $subKeyArray = $array;
 
-            if (static::exists($array, $key)) {
+            if (static::exists($array, $key)) {//确定给定的key是否存在于提供的数组中
                 continue;
             }
 
             foreach (explode('.', $key) as $segment) {
+                //确定给定值是否是可访问数组              确定给定的key是否存在于提供的数组中
                 if (static::accessible($subKeyArray) && static::exists($subKeyArray, $segment)) {
                     $subKeyArray = $subKeyArray[$segment];
                 } else {
@@ -327,7 +346,11 @@ class Arr
     /**
      * Determines if an array is associative.
      *
+     * 确定数组是否为关联
+     *
      * An array is "associative" if it doesn't have sequential numerical keys beginning with zero.
+     *
+     * 数组是“关联”的，如果它没有连续的数字键开始为零
      *
      * @param  array  $array
      * @return bool
@@ -342,12 +365,15 @@ class Arr
     /**
      * Get a subset of the items from the given array.
      *
+     * 从给定数组中获取项目的子集
+     *
      * @param  array  $array
      * @param  array|string  $keys
      * @return array
      */
     public static function only($array, $keys)
     {
+        //比较数组，返回交集（只比较键名）        交换数组中的键和值
         return array_intersect_key($array, array_flip((array) $keys));
     }
 
@@ -364,7 +390,7 @@ class Arr
     public static function pluck($array, $value, $key = null)
     {
         $results = [];
-
+        //                      将包含.的“value”和“key”拆分提取成多维数组
         list($value, $key) = static::explodePluckParameters($value, $key);
 
         foreach ($array as $item) {
@@ -409,6 +435,8 @@ class Arr
     /**
      * Push an item onto the beginning of an array.
      *
+     * 将项目推到数组的开头
+     *
      * @param  array  $array
      * @param  mixed  $value
      * @param  mixed  $key
@@ -428,6 +456,8 @@ class Arr
     /**
      * Get a value from the array, and remove it.
      *
+     * 从数组中获取值，并将其移除
+     *
      * @param  array   $array
      * @param  string  $key
      * @param  mixed   $default
@@ -435,9 +465,9 @@ class Arr
      */
     public static function pull(&$array, $key, $default = null)
     {
-        $value = static::get($array, $key, $default);
+        $value = static::get($array, $key, $default);//使用“点”符号从数组中获取一个项
 
-        static::forget($array, $key);
+        static::forget($array, $key);//使用“点”符号从给定数组中移除一个或多个数组项
 
         return $value;
     }
@@ -445,7 +475,11 @@ class Arr
     /**
      * Set an array item to a given value using "dot" notation.
      *
+     * 使用“点”符号将数组项设置为给定值
+     *
      * If no key is given to the method, the entire array will be replaced.
+     *
+     * 如果没有给定的方法，整个数组将被替换
      *
      * @param  array   $array
      * @param  string  $key
@@ -466,6 +500,10 @@ class Arr
             // If the key doesn't exist at this depth, we will just create an empty array
             // to hold the next value, allowing us to create the arrays to hold final
             // values at the correct depth. Then we'll keep digging into the array.
+            //
+            // 如果key不存在于这个深度，我们将创建一个空数组来保存下一个值，这样我们就可以创建数组以在正确的深度保存最终值
+            // 然后我们将继续挖掘数组
+            //
             if (! isset($array[$key]) || ! is_array($array[$key])) {
                 $array[$key] = [];
             }
@@ -481,6 +519,8 @@ class Arr
     /**
      * Shuffle the given array and return the result.
      *
+     * 对给定数组进行洗牌并返回结果
+     *
      * @param  array  $array
      * @return array
      */
@@ -494,17 +534,22 @@ class Arr
     /**
      * Sort the array using the given callback or "dot" notation.
      *
+     * 使用给定的回调或“点”符号对数组进行排序
+     *
      * @param  array  $array
      * @param  callable|string  $callback
      * @return array
      */
     public static function sort($array, $callback)
     {
+        //创建一个新的集合实例，如果该值不是一个准备好的->使用给定的回调排序集合->获取集合中的所有项目
         return Collection::make($array)->sortBy($callback)->all();
     }
 
     /**
      * Recursively sort an array by keys and values.
+     *
+     * 递归排序数组的键和值
      *
      * @param  array  $array
      * @return array
@@ -513,11 +558,12 @@ class Arr
     {
         foreach ($array as &$value) {
             if (is_array($value)) {
+                //           递归排序数组的键和值
                 $value = static::sortRecursive($value);
             }
         }
 
-        if (static::isAssoc($array)) {
+        if (static::isAssoc($array)) {//确定数组是否为关联
             ksort($array);
         } else {
             sort($array);
@@ -528,6 +574,8 @@ class Arr
 
     /**
      * Filter the array using the given callback.
+     *
+     * 使用给定的回调筛选数组
      *
      * @param  array  $array
      * @param  callable  $callback

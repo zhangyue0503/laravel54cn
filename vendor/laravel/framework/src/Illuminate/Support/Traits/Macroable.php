@@ -81,7 +81,7 @@ trait Macroable
      */
     public function __call($method, $parameters)
     {
-        if (! static::hasMacro($method)) {
+        if (! static::hasMacro($method)) {//检查宏是否已注册
             throw new BadMethodCallException("Method {$method} does not exist.");
         }
 

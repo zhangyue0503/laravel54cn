@@ -376,6 +376,8 @@ if (! function_exists('collect')) {
     /**
      * Create a collection from the given value.
      *
+     * 通过给定的值创建集合对象
+     *
      * @param  mixed  $value
      * @return \Illuminate\Support\Collection
      */

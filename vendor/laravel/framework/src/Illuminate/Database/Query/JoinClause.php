@@ -30,6 +30,8 @@ class JoinClause extends Builder
     /**
      * Create a new join clause instance.
      *
+     * 创建一个新的加入从句实例
+     *
      * @param  \Illuminate\Database\Query\Builder $parentQuery
      * @param  string  $type
      * @param  string  $table

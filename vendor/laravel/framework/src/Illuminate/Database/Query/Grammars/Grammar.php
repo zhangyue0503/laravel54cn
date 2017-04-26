@@ -577,6 +577,8 @@ class Grammar extends BaseGrammar
     /**
      * Compile the random statement into SQL.
      *
+     * 将随机语句编译为sql
+     *
      * @param  string  $seed
      * @return string
      */
@@ -654,6 +656,8 @@ class Grammar extends BaseGrammar
     /**
      * Compile an exists statement into SQL.
      *
+     * 将exists语句编译为sql
+     *
      * @param  \Illuminate\Database\Query\Builder  $query
      * @return string
      */
@@ -666,6 +670,8 @@ class Grammar extends BaseGrammar
 
     /**
      * Compile an insert statement into SQL.
+     *
+     * 将插入语句编译为sql
      *
      * @param  \Illuminate\Database\Query\Builder  $query
      * @param  array  $values
@@ -697,6 +703,8 @@ class Grammar extends BaseGrammar
     /**
      * Compile an insert and get ID statement into SQL.
      *
+     * 编译插入并将ID语句导入sql
+     *
      * @param  \Illuminate\Database\Query\Builder  $query
      * @param  array   $values
      * @param  string  $sequence
@@ -709,6 +717,8 @@ class Grammar extends BaseGrammar
 
     /**
      * Compile an update statement into SQL.
+     *
+     * 将更新语句编译为sql
      *
      * @param  \Illuminate\Database\Query\Builder  $query
      * @param  array  $values
@@ -745,6 +755,8 @@ class Grammar extends BaseGrammar
     /**
      * Prepare the bindings for an update statement.
      *
+     * 为更新语句准备绑定
+     *
      * @param  array  $bindings
      * @param  array  $values
      * @return array
@@ -761,6 +773,8 @@ class Grammar extends BaseGrammar
     /**
      * Compile a delete statement into SQL.
      *
+     * 将删除语句编译为sql
+     *
      * @param  \Illuminate\Database\Query\Builder  $query
      * @return string
      */
@@ -773,6 +787,8 @@ class Grammar extends BaseGrammar
 
     /**
      * Compile a truncate table statement into SQL.
+     *
+     * 将截断表语句编译为sql
      *
      * @param  \Illuminate\Database\Query\Builder  $query
      * @return array
@@ -847,6 +863,8 @@ class Grammar extends BaseGrammar
 
     /**
      * Remove the leading boolean from a statement.
+     *
+     * 从语句中移除领先的布尔值
      *
      * @param  string  $value
      * @return string

@@ -52,6 +52,8 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
     /**
      * Create a new collection instance if the value isn't one already.
      *
+     * 创建一个新的集合实例，如果该值不是一个准备好的
+     *
      * @param  mixed  $items
      * @return static
      */
@@ -624,6 +626,8 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
     /**
      * Determine if the collection is empty or not.
      *
+     * 确定集合是否为空
+     *
      * @return bool
      */
     public function isEmpty()
@@ -1153,6 +1157,8 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
     /**
      * Sort the collection using the given callback.
      *
+     * 使用给定的回调排序集合
+     *
      * @param  callable|string  $callback
      * @param  int  $options
      * @param  bool  $descending
@@ -1312,6 +1318,8 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
 
     /**
      * Reset the keys on the underlying array.
+     *
+     * 重置基础阵列上的键
      *
      * @return static
      */

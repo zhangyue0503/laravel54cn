@@ -23,6 +23,8 @@ class Processor
     /**
      * Process an  "insert get ID" query.
      *
+     * 处理“插入获取ID”查询
+     *
      * @param  \Illuminate\Database\Query\Builder  $query
      * @param  string  $sql
      * @param  array   $values
