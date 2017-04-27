@@ -6,11 +6,13 @@ use ArrayAccess;
 use JsonSerializable;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Contracts\Support\Arrayable;
-
+//流式对象容器
 class Fluent implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
 {
     /**
      * All of the attributes set on the container.
+     *
+     * 容器上设置的所有属性
      *
      * @var array
      */
@@ -18,6 +20,8 @@ class Fluent implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
 
     /**
      * Create a new fluent container instance.
+     *
+     * 创建一个新的流容器实例
      *
      * @param  array|object    $attributes
      * @return void
@@ -31,6 +35,8 @@ class Fluent implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
 
     /**
      * Get an attribute from the container.
+     *
+     * 从容器中获取属性
      *
      * @param  string  $key
      * @param  mixed   $default
@@ -48,6 +54,8 @@ class Fluent implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
     /**
      * Get the attributes from the container.
      *
+     * 从容器中获取所有属性
+     *
      * @return array
      */
     public function getAttributes()
@@ -57,6 +65,8 @@ class Fluent implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
 
     /**
      * Convert the Fluent instance to an array.
+     *
+     * 转换流实例为数组
      *
      * @return array
      */
@@ -68,26 +78,33 @@ class Fluent implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
     /**
      * Convert the object into something JSON serializable.
      *
+     * 转换对象为可被JSON序列化
+     *
      * @return array
      */
     public function jsonSerialize()
     {
-        return $this->toArray();
+        return $this->toArray();// 转换流实例为数组
     }
 
     /**
      * Convert the Fluent instance to JSON.
+     *
+     * 转换流实例为JSON
      *
      * @param  int  $options
      * @return string
      */
     public function toJson($options = 0)
     {
+        //                   转换对象为可被JSON序列化
         return json_encode($this->jsonSerialize(), $options);
     }
 
     /**
      * Determine if the given offset exists.
+     *
+     * 确定给定偏移是否存在
      *
      * @param  string  $offset
      * @return bool
@@ -100,6 +117,8 @@ class Fluent implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
     /**
      * Get the value for a given offset.
      *
+     * 获取给定偏移量的值
+     *
      * @param  string  $offset
      * @return mixed
      */
@@ -110,6 +129,8 @@ class Fluent implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
 
     /**
      * Set the value at the given offset.
+     *
+     * 设置给定偏移量的值
      *
      * @param  string  $offset
      * @param  mixed   $value
@@ -123,6 +144,8 @@ class Fluent implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
     /**
      * Unset the value at the given offset.
      *
+     * 删除给定偏移量的值
+     *
      * @param  string  $offset
      * @return void
      */
@@ -133,6 +156,8 @@ class Fluent implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
 
     /**
      * Handle dynamic calls to the container to set attributes.
+     *
+     * 处理容器的动态调用以设置属性
      *
      * @param  string  $method
      * @param  array   $parameters
@@ -148,16 +173,21 @@ class Fluent implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
     /**
      * Dynamically retrieve the value of an attribute.
      *
+     * 动态检索属性值
+     *
      * @param  string  $key
      * @return mixed
      */
     public function __get($key)
     {
+        //        从容器中获取属性
         return $this->get($key);
     }
 
     /**
      * Dynamically set the value of an attribute.
+     *
+     * 动态设置属性值
      *
      * @param  string  $key
      * @param  mixed   $value
@@ -171,6 +201,8 @@ class Fluent implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
     /**
      * Dynamically check if an attribute is set.
      *
+     * 动态检查属性是否设置
+     *
      * @param  string  $key
      * @return bool
      */
@@ -181,6 +213,8 @@ class Fluent implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
 
     /**
      * Dynamically unset an attribute.
+     *
+     * 动态删除属性
      *
      * @param  string  $key
      * @return void

@@ -24,6 +24,8 @@ use Symfony\Component\Process\Pipes\WindowsPipes;
  * Process is a thin wrapper around proc_* functions to easily
  * start independent PHP processes.
  *
+ * 过程是一个薄包装proc_ *函数轻松地启动独立的PHP进程
+ *
  * @author Fabien Potencier <fabien@symfony.com>
  * @author Romain Neutron <imprec@gmail.com>
  */
@@ -185,6 +187,8 @@ class Process implements \IteratorAggregate
 
     /**
      * Runs the process.
+     *
+     * 运行进程
      *
      * The callback receives the type of output (out or err) and
      * some bytes from the output in real-time. It allows to have feedback
@@ -909,6 +913,8 @@ class Process implements \IteratorAggregate
     /**
      * Sets the command line to be executed.
      *
+     * 设置要执行的命令行
+     *
      * @param string $commandline The command to execute
      *
      * @return self The current Process instance
@@ -943,7 +949,11 @@ class Process implements \IteratorAggregate
     /**
      * Sets the process timeout (max. runtime).
      *
+     * 设置进程的运行时间
+     *
      * To disable the timeout, set this value to null.
+     *
+     * 要禁用超时，将该值设置为null
      *
      * @param int|float|null $timeout The timeout in seconds
      *

@@ -14,6 +14,8 @@ namespace Symfony\Component\Process;
 /**
  * An executable finder specifically designed for the PHP executable.
  *
+ * 专为PHP可执行文件设计的可执行搜索器
+ *
  * @author Fabien Potencier <fabien@symfony.com>
  * @author Johannes M. Schmitt <schmittjoh@gmail.com>
  */
@@ -28,6 +30,8 @@ class PhpExecutableFinder
 
     /**
      * Finds The PHP executable.
+     *
+     * 发现PHP可执行文件
      *
      * @param bool $includeArgs Whether or not include command arguments
      *

@@ -32,6 +32,8 @@ class ProcessUtils
     /**
      * Escapes a string to be used as a shell argument.
      *
+     * 转义字符串用作shell参数
+     *
      * @param string $argument The argument that will be escaped
      *
      * @return string The escaped argument

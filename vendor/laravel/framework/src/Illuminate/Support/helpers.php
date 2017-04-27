@@ -10,6 +10,8 @@ if (! function_exists('append_config')) {
     /**
      * Assign high numeric IDs to a config item to force appending.
      *
+     * 将高数值IDs分配给配置项以强制追加
+     *
      * @param  array  $array
      * @return array
      */
@@ -20,7 +22,7 @@ if (! function_exists('append_config')) {
         foreach ($array as $key => $value) {
             if (is_numeric($key)) {
                 $start++;
-
+                //               将高数值id分配给配置项以强制追加
                 $array[$start] = Arr::pull($array, $key);
             }
         }
@@ -33,6 +35,8 @@ if (! function_exists('array_add')) {
     /**
      * Add an element to an array using "dot" notation if it doesn't exist.
      *
+     * 如果不存在，使用“点”表示法将一个元素添加到数组中
+     *
      * @param  array   $array
      * @param  string  $key
      * @param  mixed   $value
@@ -40,6 +44,7 @@ if (! function_exists('array_add')) {
      */
     function array_add($array, $key, $value)
     {
+        //           如果不存在，使用“点”表示法将一个元素添加到数组中
         return Arr::add($array, $key, $value);
     }
 }
@@ -48,11 +53,14 @@ if (! function_exists('array_collapse')) {
     /**
      * Collapse an array of arrays into a single array.
      *
+     * 将多维数组折叠为单个数组
+     *
      * @param  array  $array
      * @return array
      */
     function array_collapse($array)
     {
+        //将多维数组折叠为单个数组
         return Arr::collapse($array);
     }
 }
@@ -61,12 +69,15 @@ if (! function_exists('array_divide')) {
     /**
      * Divide an array into two arrays. One with keys and the other with values.
      *
+     * 将数组分成两个数组
+     * 一个是keys，另一个有values
+     *
      * @param  array  $array
      * @return array
      */
     function array_divide($array)
     {
-        return Arr::divide($array);
+        return Arr::divide($array);//将数组分成两个数组。一个是全部的key，另一个是全部的value
     }
 }
 
@@ -74,12 +85,15 @@ if (! function_exists('array_dot')) {
     /**
      * Flatten a multi-dimensional associative array with dots.
      *
+     * 用点对多维关联数组进行扁平化
+     *
      * @param  array   $array
      * @param  string  $prepend
      * @return array
      */
     function array_dot($array, $prepend = '')
     {
+        //用点对多维关联数组进行扁平化
         return Arr::dot($array, $prepend);
     }
 }
@@ -88,12 +102,15 @@ if (! function_exists('array_except')) {
     /**
      * Get all of the given array except for a specified array of items.
      *
+     * 获取指定数组，除了指定的数组项
+     *
      * @param  array  $array
      * @param  array|string  $keys
      * @return array
      */
     function array_except($array, $keys)
     {
+        //获取指定数组，除了指定的数组项
         return Arr::except($array, $keys);
     }
 }
@@ -102,6 +119,8 @@ if (! function_exists('array_first')) {
     /**
      * Return the first element in an array passing a given truth test.
      *
+     * 通过给定的真值测试返回数组中的第一个元素
+     *
      * @param  array  $array
      * @param  callable|null  $callback
      * @param  mixed  $default
@@ -109,6 +128,7 @@ if (! function_exists('array_first')) {
      */
     function array_first($array, callable $callback = null, $default = null)
     {
+        //通过给定的真值测试返回数组中的第一个元素
         return Arr::first($array, $callback, $default);
     }
 }
@@ -117,12 +137,15 @@ if (! function_exists('array_flatten')) {
     /**
      * Flatten a multi-dimensional array into a single level.
      *
+     * 将多维数组变平为单级
+     *
      * @param  array  $array
      * @param  int  $depth
      * @return array
      */
     function array_flatten($array, $depth = INF)
     {
+        //将多维数组变平为单级
         return Arr::flatten($array, $depth);
     }
 }
@@ -131,12 +154,15 @@ if (! function_exists('array_forget')) {
     /**
      * Remove one or many array items from a given array using "dot" notation.
      *
+     * 使用“点”符号从给定数组中移除一个或多个数组项
+     *
      * @param  array  $array
      * @param  array|string  $keys
      * @return void
      */
     function array_forget(&$array, $keys)
     {
+        // 使用“点”符号从给定数组中移除一个或多个数组项
         return Arr::forget($array, $keys);
     }
 }
@@ -145,6 +171,8 @@ if (! function_exists('array_get')) {
     /**
      * Get an item from an array using "dot" notation.
      *
+     * 使用“点”符号从数组中获取一个项
+     *
      * @param  \ArrayAccess|array  $array
      * @param  string  $key
      * @param  mixed   $default
@@ -152,6 +180,7 @@ if (! function_exists('array_get')) {
      */
     function array_get($array, $key, $default = null)
     {
+        //使用“点”符号从数组中获取一个项
         return Arr::get($array, $key, $default);
     }
 }
@@ -160,19 +189,23 @@ if (! function_exists('array_has')) {
     /**
      * Check if an item or items exist in an array using "dot" notation.
      *
+     * 使用“点”符号检查数组中的项或项是否存在
+     *
      * @param  \ArrayAccess|array  $array
      * @param  string|array  $keys
      * @return bool
      */
     function array_has($array, $keys)
     {
-        return Arr::has($array, $keys);
+        return Arr::has($array, $keys);//使用“点”符号检查数组中的项或项是否存在
     }
 }
 
 if (! function_exists('array_last')) {
     /**
      * Return the last element in an array passing a given truth test.
+     *
+     * 返回经过给定的真值测试的数组中的最后一个元素
      *
      * @param  array  $array
      * @param  callable|null  $callback
@@ -181,6 +214,7 @@ if (! function_exists('array_last')) {
      */
     function array_last($array, callable $callback = null, $default = null)
     {
+        //返回经过给定的真值测试的数组中的最后一个元素
         return Arr::last($array, $callback, $default);
     }
 }
@@ -189,12 +223,15 @@ if (! function_exists('array_only')) {
     /**
      * Get a subset of the items from the given array.
      *
+     * 从给定数组中获取项目的子集
+     *
      * @param  array  $array
      * @param  array|string  $keys
      * @return array
      */
     function array_only($array, $keys)
     {
+        //从给定数组中获取项目的子集
         return Arr::only($array, $keys);
     }
 }
@@ -202,6 +239,8 @@ if (! function_exists('array_only')) {
 if (! function_exists('array_pluck')) {
     /**
      * Pluck an array of values from an array.
+     *
+     * 从数组中提取数组值
      *
      * @param  array   $array
      * @param  string|array  $value
@@ -218,6 +257,8 @@ if (! function_exists('array_prepend')) {
     /**
      * Push an item onto the beginning of an array.
      *
+     * 将项目推到数组的开头
+     *
      * @param  array  $array
      * @param  mixed  $value
      * @param  mixed  $key
@@ -225,13 +266,15 @@ if (! function_exists('array_prepend')) {
      */
     function array_prepend($array, $value, $key = null)
     {
-        return Arr::prepend($array, $value, $key);
+        return Arr::prepend($array, $value, $key);//将项目推到数组的开头
     }
 }
 
 if (! function_exists('array_pull')) {
     /**
      * Get a value from the array, and remove it.
+     *
+     * 从数组中获取值，并将其移除
      *
      * @param  array   $array
      * @param  string  $key
@@ -240,7 +283,7 @@ if (! function_exists('array_pull')) {
      */
     function array_pull(&$array, $key, $default = null)
     {
-        return Arr::pull($array, $key, $default);
+        return Arr::pull($array, $key, $default);//从数组中获取值，并将其移除
     }
 }
 
@@ -248,7 +291,11 @@ if (! function_exists('array_set')) {
     /**
      * Set an array item to a given value using "dot" notation.
      *
+     * 使用“点”符号将数组项设置为给定值
+     *
      * If no key is given to the method, the entire array will be replaced.
+     *
+     * 如果没有给定的方法，整个数组将被替换
      *
      * @param  array   $array
      * @param  string  $key
@@ -257,6 +304,7 @@ if (! function_exists('array_set')) {
      */
     function array_set(&$array, $key, $value)
     {
+        //如果没有给定的方法，整个数组将被替换
         return Arr::set($array, $key, $value);
     }
 }
@@ -265,12 +313,15 @@ if (! function_exists('array_sort')) {
     /**
      * Sort the array using the given callback.
      *
+     * 使用给定的回调排序数组
+     *
      * @param  array  $array
      * @param  callable  $callback
      * @return array
      */
     function array_sort($array, callable $callback)
     {
+        //使用给定的回调或“点”符号对数组进行排序
         return Arr::sort($array, $callback);
     }
 }
@@ -279,12 +330,14 @@ if (! function_exists('array_sort_recursive')) {
     /**
      * Recursively sort an array by keys and values.
      *
+     * 递归排序数组的键和值
+     *
      * @param  array  $array
      * @return array
      */
     function array_sort_recursive($array)
     {
-        return Arr::sortRecursive($array);
+        return Arr::sortRecursive($array);//递归排序数组的键和值
     }
 }
 
@@ -292,13 +345,15 @@ if (! function_exists('array_where')) {
     /**
      * Filter the array using the given callback.
      *
+     * 使用给定的回调筛选数组
+     *
      * @param  array  $array
      * @param  callable  $callback
      * @return array
      */
     function array_where($array, callable $callback)
     {
-        return Arr::where($array, $callback);
+        return Arr::where($array, $callback);//使用给定的回调筛选数组
     }
 }
 
@@ -321,12 +376,14 @@ if (! function_exists('camel_case')) {
     /**
      * Convert a value to camel case.
      *
+     * 转换值为驼峰命名
+     *
      * @param  string  $value
      * @return string
      */
     function camel_case($value)
     {
-        return Str::camel($value);
+        return Str::camel($value);//转换值为驼峰命名
     }
 }
 

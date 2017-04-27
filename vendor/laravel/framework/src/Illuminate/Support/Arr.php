@@ -44,7 +44,7 @@ class Arr
     /**
      * Collapse an array of arrays into a single array.
      *
-     * 将数组数组折叠为单个数组
+     * 将多维数组折叠为单个数组
      *
      * @param  array  $array
      * @return array
@@ -479,7 +479,7 @@ class Arr
      *
      * If no key is given to the method, the entire array will be replaced.
      *
-     * 如果没有给定的方法，整个数组将被替换
+     * 如果没有给定key的方法，整个数组将被替换
      *
      * @param  array   $array
      * @param  string  $key

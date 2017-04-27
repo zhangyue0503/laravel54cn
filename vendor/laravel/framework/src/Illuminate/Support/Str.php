@@ -47,6 +47,8 @@ class Str
     /**
      * Convert a value to camel case.
      *
+     * 转换值为驼峰命名
+     *
      * @param  string  $value
      * @return string
      */
