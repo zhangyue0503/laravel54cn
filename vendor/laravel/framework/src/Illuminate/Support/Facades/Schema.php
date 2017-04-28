@@ -10,11 +10,14 @@ class Schema extends Facade
     /**
      * Get a schema builder instance for a connection.
      *
+     * 获取连接的架构生成器实例
+     *
      * @param  string  $name
      * @return \Illuminate\Database\Schema\Builder
      */
     public static function connection($name)
     {
+        //                      获取数据库连接实例      获取连接的架构生成器实例
         return static::$app['db']->connection($name)->getSchemaBuilder();
     }
 
@@ -25,6 +28,7 @@ class Schema extends Facade
      */
     protected static function getFacadeAccessor()
     {
+        //                      获取数据库连接实例      获取连接的架构生成器实例
         return static::$app['db']->connection()->getSchemaBuilder();
     }
 }

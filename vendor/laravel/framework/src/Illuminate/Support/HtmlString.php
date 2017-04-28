@@ -3,7 +3,7 @@
 namespace Illuminate\Support;
 
 use Illuminate\Contracts\Support\Htmlable;
-
+//HTML字符串
 class HtmlString implements Htmlable
 {
     /**
@@ -49,6 +49,7 @@ class HtmlString implements Htmlable
      */
     public function __toString()
     {
+        //获取HTML字符串
         return $this->toHtml();
     }
 }

@@ -3,7 +3,7 @@
 namespace Illuminate\Contracts\Mail;
 
 use Illuminate\Contracts\Queue\Factory as Queue;
-
+//可邮寄的
 interface Mailable
 {
     /**

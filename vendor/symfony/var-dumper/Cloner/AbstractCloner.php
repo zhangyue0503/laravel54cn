@@ -186,6 +186,8 @@ abstract class AbstractCloner implements ClonerInterface
     /**
      * Clones a PHP variable.
      *
+     * 克隆PHP变量
+     *
      * @param mixed $var    Any PHP variable
      * @param int   $filter A bit field of Caster::EXCLUDE_* constants
      *

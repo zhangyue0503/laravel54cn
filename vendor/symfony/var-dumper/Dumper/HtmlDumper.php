@@ -17,6 +17,8 @@ use Symfony\Component\VarDumper\Cloner\Data;
 /**
  * HtmlDumper dumps variables as HTML.
  *
+ * HtmlDumper将变量转储为HTML
+ *
  * @author Nicolas Grekas <p@tchwork.com>
  */
 class HtmlDumper extends CliDumper

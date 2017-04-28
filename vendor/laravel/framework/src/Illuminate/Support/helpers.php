@@ -440,6 +440,7 @@ if (! function_exists('collect')) {
      */
     function collect($value = null)
     {
+        //         创建一个新的集合实例，如果该值不是一个准备好的
         return new Collection($value);
     }
 }
@@ -448,6 +449,8 @@ if (! function_exists('data_fill')) {
     /**
      * Fill in data where it's missing.
      *
+     * 填写丢失的数据
+     *
      * @param  mixed   $target
      * @param  string|array  $key
      * @param  mixed  $value
@@ -455,6 +458,7 @@ if (! function_exists('data_fill')) {
      */
     function data_fill(&$target, $key, $value)
     {
+        //      使用点符号在数组或对象上设置项
         return data_set($target, $key, $value, false);
     }
 }
@@ -517,6 +521,8 @@ if (! function_exists('data_set')) {
     /**
      * Set an item on an array or object using dot notation.
      *
+     * 使用点符号在数组或对象上设置项
+     *
      * @param  mixed  $target
      * @param  string|array  $key
      * @param  mixed  $value
@@ -528,7 +534,7 @@ if (! function_exists('data_set')) {
         $segments = is_array($key) ? $key : explode('.', $key);
 
         if (($segment = array_shift($segments)) === '*') {
-            if (! Arr::accessible($target)) {
+            if (! Arr::accessible($target)) {//确定给定值是否是可访问数组
                 $target = [];
             }
 
@@ -541,13 +547,14 @@ if (! function_exists('data_set')) {
                     $inner = $value;
                 }
             }
-        } elseif (Arr::accessible($target)) {
+        } elseif (Arr::accessible($target)) {//确定给定值是否是可访问数组
             if ($segments) {
-                if (! Arr::exists($target, $segment)) {
+                if (! Arr::exists($target, $segment)) {//确定给定的key是否存在于提供的数组中
                     $target[$segment] = [];
                 }
-
+                //使用点符号在数组或对象上设置项
                 data_set($target[$segment], $segments, $value, $overwrite);
+                //                      确定给定的key是否存在于提供的数组中
             } elseif ($overwrite || ! Arr::exists($target, $segment)) {
                 $target[$segment] = $value;
             }
@@ -556,7 +563,7 @@ if (! function_exists('data_set')) {
                 if (! isset($target->{$segment})) {
                     $target->{$segment} = [];
                 }
-
+                //使用点符号在数组或对象上设置项
                 data_set($target->{$segment}, $segments, $value, $overwrite);
             } elseif ($overwrite || ! isset($target->{$segment})) {
                 $target->{$segment} = $value;
@@ -565,6 +572,7 @@ if (! function_exists('data_set')) {
             $target = [];
 
             if ($segments) {
+                //使用点符号在数组或对象上设置项
                 data_set($target[$segment], $segments, $value, $overwrite);
             } elseif ($overwrite) {
                 $target[$segment] = $value;
@@ -579,13 +587,15 @@ if (! function_exists('dd')) {
     /**
      * Dump the passed variables and end the script.
      *
+     * 倾倒传递的变量并结束脚本
+     *
      * @param  mixed
      * @return void
      */
     function dd()
     {
         array_map(function ($x) {
-            (new Dumper)->dump($x);
+            (new Dumper)->dump($x);//简洁地倾倒一个值
         }, func_get_args());
 
         die(1);
@@ -596,13 +606,15 @@ if (! function_exists('e')) {
     /**
      * Escape HTML special characters in a string.
      *
+     * 编码字符串中的HTML特殊字符
+     *
      * @param  \Illuminate\Contracts\Support\Htmlable|string  $value
      * @return string
      */
     function e($value)
     {
         if ($value instanceof Htmlable) {
-            return $value->toHtml();
+            return $value->toHtml();//获取内容作为HTML字符串
         }
 
         return htmlspecialchars($value, ENT_QUOTES, 'UTF-8', false);
@@ -613,12 +625,15 @@ if (! function_exists('ends_with')) {
     /**
      * Determine if a given string ends with a given substring.
      *
+     * 如果一个给定的字符串结束，确定一个给定的子字符串
+     *
      * @param  string  $haystack
      * @param  string|array  $needles
      * @return bool
      */
     function ends_with($haystack, $needles)
     {
+        //    确定一个给定的字符串包含另一个字符串
         return Str::endsWith($haystack, $needles);
     }
 }
@@ -643,11 +658,14 @@ if (! function_exists('kebab_case')) {
     /**
      * Convert a string to kebab case.
      *
+     * 将字符串转换为串格式（短横线隔开）
+     *
      * @param  string  $value
      * @return string
      */
     function kebab_case($value)
     {
+        //将字符串转换为串格式（短横线隔开）
         return Str::kebab($value);
     }
 }
@@ -655,6 +673,8 @@ if (! function_exists('kebab_case')) {
 if (! function_exists('last')) {
     /**
      * Get the last element from an array.
+     *
+     * 从数组中获取最后一个元素
      *
      * @param  array  $array
      * @return mixed
@@ -668,6 +688,8 @@ if (! function_exists('last')) {
 if (! function_exists('object_get')) {
     /**
      * Get an item from an object using "dot" notation.
+     *
+     * 使用“点”符号从对象获取项目
      *
      * @param  object  $object
      * @param  string  $key
@@ -696,6 +718,8 @@ if (! function_exists('preg_replace_array')) {
     /**
      * Replace a given pattern with each value in the array in sequentially.
      *
+     * 按顺序替换数组中每个值的给定模式
+     *
      * @param  string  $pattern
      * @param  array   $replacements
      * @param  string  $subject
@@ -714,6 +738,8 @@ if (! function_exists('preg_replace_array')) {
 if (! function_exists('retry')) {
     /**
      * Retry an operation a given number of times.
+     *
+     * 重试给定次数的操作
      *
      * @param  int  $times
      * @param  callable  $callback
@@ -765,12 +791,15 @@ if (! function_exists('starts_with')) {
     /**
      * Determine if a given string starts with a given substring.
      *
+     * 确定给定的子字符串是否属于给定的字符串
+     *
      * @param  string  $haystack
      * @param  string|array  $needles
      * @return bool
      */
     function starts_with($haystack, $needles)
     {
+        //确定给定的子字符串是否属于给定的字符串
         return Str::startsWith($haystack, $needles);
     }
 }
@@ -779,12 +808,15 @@ if (! function_exists('str_contains')) {
     /**
      * Determine if a given string contains a given substring.
      *
+     * 确定给定的字符串是否包含给定的子字符串
+     *
      * @param  string  $haystack
      * @param  string|array  $needles
      * @return bool
      */
     function str_contains($haystack, $needles)
     {
+        //确定一个给定的字符串包含另一个字符串
         return Str::contains($haystack, $needles);
     }
 }
@@ -793,12 +825,15 @@ if (! function_exists('str_finish')) {
     /**
      * Cap a string with a single instance of a given value.
      *
+     * 使用给定的值覆盖单个实例字符串
+     *
      * @param  string  $value
      * @param  string  $cap
      * @return string
      */
     function str_finish($value, $cap)
     {
+        //使用给定的值覆盖单个实例字符串
         return Str::finish($value, $cap);
     }
 }
@@ -807,12 +842,15 @@ if (! function_exists('str_is')) {
     /**
      * Determine if a given string matches a given pattern.
      *
+     * 确定给定的字符串是否与给定的模式匹配
+     *
      * @param  string  $pattern
      * @param  string  $value
      * @return bool
      */
     function str_is($pattern, $value)
     {
+        //确定给定的字符串是否与给定的模式匹配
         return Str::is($pattern, $value);
     }
 }
@@ -821,6 +859,8 @@ if (! function_exists('str_limit')) {
     /**
      * Limit the number of characters in a string.
      *
+     * 限制字符串中字符的个数
+     *
      * @param  string  $value
      * @param  int     $limit
      * @param  string  $end
@@ -828,6 +868,7 @@ if (! function_exists('str_limit')) {
      */
     function str_limit($value, $limit = 100, $end = '...')
     {
+        //限制字符串中字符的个数
         return Str::limit($value, $limit, $end);
     }
 }
@@ -836,12 +877,15 @@ if (! function_exists('str_plural')) {
     /**
      * Get the plural form of an English word.
      *
+     * 获取一个英语单词的复数形式
+     *
      * @param  string  $value
      * @param  int     $count
      * @return string
      */
     function str_plural($value, $count = 2)
     {
+        //获取一个英语单词的复数形式
         return Str::plural($value, $count);
     }
 }
@@ -850,6 +894,8 @@ if (! function_exists('str_random')) {
     /**
      * Generate a more truly "random" alpha-numeric string.
      *
+     * 生成一个更真实的“随机”alpha数字字符串
+     *
      * @param  int  $length
      * @return string
      *
@@ -857,6 +903,7 @@ if (! function_exists('str_random')) {
      */
     function str_random($length = 16)
     {
+        //生成一个更真实的“随机”alpha数字字符串
         return Str::random($length);
     }
 }
@@ -865,6 +912,8 @@ if (! function_exists('str_replace_array')) {
     /**
      * Replace a given value in the string sequentially with an array.
      *
+     * 用数组顺序替换字符串中的给定值
+     *
      * @param  string  $search
      * @param  array   $replace
      * @param  string  $subject
@@ -872,6 +921,7 @@ if (! function_exists('str_replace_array')) {
      */
     function str_replace_array($search, array $replace, $subject)
     {
+        //用数组顺序替换字符串中的给定值
         return Str::replaceArray($search, $replace, $subject);
     }
 }
@@ -880,6 +930,8 @@ if (! function_exists('str_replace_first')) {
     /**
      * Replace the first occurrence of a given value in the string.
      *
+     * 替换字符串中第一次出现的给定值
+     *
      * @param  string  $search
      * @param  string  $replace
      * @param  string  $subject
@@ -887,6 +939,7 @@ if (! function_exists('str_replace_first')) {
      */
     function str_replace_first($search, $replace, $subject)
     {
+        //替换字符串中第一次出现的给定值
         return Str::replaceFirst($search, $replace, $subject);
     }
 }
@@ -895,6 +948,8 @@ if (! function_exists('str_replace_last')) {
     /**
      * Replace the last occurrence of a given value in the string.
      *
+     * 替换字符串中最后一次出现的给定值
+     *
      * @param  string  $search
      * @param  string  $replace
      * @param  string  $subject
@@ -902,6 +957,7 @@ if (! function_exists('str_replace_last')) {
      */
     function str_replace_last($search, $replace, $subject)
     {
+        //替换字符串中最后一次出现的给定值
         return Str::replaceLast($search, $replace, $subject);
     }
 }
@@ -910,11 +966,14 @@ if (! function_exists('str_singular')) {
     /**
      * Get the singular form of an English word.
      *
+     * 得到一个英语单词的单数形式
+     *
      * @param  string  $value
      * @return string
      */
     function str_singular($value)
     {
+        //得到一个英语单词的单数形式
         return Str::singular($value);
     }
 }
@@ -923,12 +982,15 @@ if (! function_exists('str_slug')) {
     /**
      * Generate a URL friendly "slug" from a given string.
      *
+     * 生成一个URL友好的“slug”从一个给定的字符串
+     *
      * @param  string  $title
      * @param  string  $separator
      * @return string
      */
     function str_slug($title, $separator = '-')
     {
+        //生成一个URL友好的“slug”从一个给定的字符串
         return Str::slug($title, $separator);
     }
 }
@@ -937,11 +999,14 @@ if (! function_exists('studly_case')) {
     /**
      * Convert a value to studly caps case.
      *
+     * 将值转换为大驼峰
+     *
      * @param  string  $value
      * @return string
      */
     function studly_case($value)
     {
+        //将值转换为大驼峰
         return Str::studly($value);
     }
 }
@@ -968,11 +1033,14 @@ if (! function_exists('title_case')) {
     /**
      * Convert a value to title case.
      *
+     * 给定字符串转换为首字母大写
+     *
      * @param  string  $value
      * @return string
      */
     function title_case($value)
     {
+        //给定字符串转换为首字母大写
         return Str::title($value);
     }
 }
@@ -980,6 +1048,8 @@ if (! function_exists('title_case')) {
 if (! function_exists('trait_uses_recursive')) {
     /**
      * Returns all traits used by a trait and its traits.
+     *
+     * 返回特性及其特性所使用的所有特性
      *
      * @param  string  $trait
      * @return array
@@ -989,6 +1059,7 @@ if (! function_exists('trait_uses_recursive')) {
         $traits = class_uses($trait);
 
         foreach ($traits as $trait) {
+            //返回特性及其特性所使用的所有特性
             $traits += trait_uses_recursive($trait);
         }
 
@@ -1015,6 +1086,8 @@ if (! function_exists('value')) {
 if (! function_exists('windows_os')) {
     /**
      * Determine whether the current environment is Windows based.
+     *
+     * 确定当前环境是否是基于Windows的
      *
      * @return bool
      */

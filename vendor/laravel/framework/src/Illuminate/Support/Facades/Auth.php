@@ -29,6 +29,8 @@ class Auth extends Facade
     /**
      * Get the registered name of the component.
      *
+     * 获取组件的注册名称
+     *
      * @return string
      */
     protected static function getFacadeAccessor()
@@ -39,10 +41,13 @@ class Auth extends Facade
     /**
      * Register the typical authentication routes for an application.
      *
+     * 为应用程序注册典型的身份验证路径
+     *
      * @return void
      */
     public static function routes()
     {
+        //从容器中解析给定类型           为应用程序注册典型的身份验证路径
         static::$app->make('router')->auth();
     }
 }

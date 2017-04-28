@@ -4,11 +4,13 @@ namespace Illuminate\Support\Testing\Fakes;
 
 use Illuminate\Contracts\Queue\Queue;
 use PHPUnit_Framework_Assert as PHPUnit;
-
+//伪队列
 class QueueFake implements Queue
 {
     /**
      * All of the jobs that have been pushed.
+     *
+     * 所有被推的工作
      *
      * @var array
      */
@@ -17,6 +19,8 @@ class QueueFake implements Queue
     /**
      * Assert if a job was pushed based on a truth-test callback.
      *
+     * 断言如果一个任务是基于真实测试回调而被推的
+     *
      * @param  string  $job
      * @param  callable|null  $callback
      * @return void
@@ -24,6 +28,7 @@ class QueueFake implements Queue
     public function assertPushed($job, $callback = null)
     {
         PHPUnit::assertTrue(
+            //获取所有匹配一个真实测试回调的任务->计数集合中的项目数
             $this->pushed($job, $callback)->count() > 0,
             "The expected [{$job}] job was not pushed."
         );
@@ -31,6 +36,8 @@ class QueueFake implements Queue
 
     /**
      * Assert if a job was pushed based on a truth-test callback.
+     *
+     * 断言如果一个任务是基于真实测试回调而被推的
      *
      * @param  string  $queue
      * @param  string  $job
@@ -51,6 +58,8 @@ class QueueFake implements Queue
     /**
      * Determine if a job was pushed based on a truth-test callback.
      *
+     * 确定一个推送的任务是否基于一个真实测试的回调
+     *
      * @param  string  $job
      * @param  callable|null  $callback
      * @return void
@@ -58,6 +67,7 @@ class QueueFake implements Queue
     public function assertNotPushed($job, $callback = null)
     {
         PHPUnit::assertTrue(
+            //获取所有匹配一个真实测试回调的任务->计数集合中的项目数
             $this->pushed($job, $callback)->count() === 0,
             "The unexpected [{$job}] job was pushed."
         );
@@ -66,27 +76,31 @@ class QueueFake implements Queue
     /**
      * Get all of the jobs matching a truth-test callback.
      *
+     * 获取所有匹配一个真实测试回调的任务
+     *
      * @param  string  $job
      * @param  callable|null  $callback
      * @return \Illuminate\Support\Collection
      */
     public function pushed($job, $callback = null)
     {
-        if (! $this->hasPushed($job)) {
+        if (! $this->hasPushed($job)) {//确定给定类是否存在任何存储作业
             return collect();
         }
 
         $callback = $callback ?: function () {
             return true;
         };
-
+        //                               在每个项目上运行过滤器
         return collect($this->jobs[$job])->filter(function ($data) use ($callback) {
             return $callback($data['job'], $data['queue']);
-        })->pluck('job');
+        })->pluck('job');//获取给定键的值
     }
 
     /**
      * Determine if there are any stored jobs for a given class.
+     *
+     * 确定给定类是否存在任何存储作业
      *
      * @param  string  $job
      * @return bool
@@ -99,6 +113,8 @@ class QueueFake implements Queue
     /**
      * Resolve a queue connection instance.
      *
+     * 解析队列连接实例
+     *
      * @param  mixed  $value
      * @return \Illuminate\Contracts\Queue\Queue
      */
@@ -110,6 +126,8 @@ class QueueFake implements Queue
     /**
      * Get the size of the queue.
      *
+     * 获取队列大小
+     *
      * @param  string  $queue
      * @return int
      */
@@ -120,6 +138,8 @@ class QueueFake implements Queue
 
     /**
      * Push a new job onto the queue.
+     *
+     * 向队列推一个新的任务
      *
      * @param  string  $job
      * @param  mixed   $data
@@ -137,6 +157,8 @@ class QueueFake implements Queue
     /**
      * Push a raw payload onto the queue.
      *
+     * 将原始有效负载推到队列中
+     *
      * @param  string  $payload
      * @param  string  $queue
      * @param  array   $options
@@ -150,6 +172,8 @@ class QueueFake implements Queue
     /**
      * Push a new job onto the queue after a delay.
      *
+     * 在延迟之后将新作业推到队列上
+     *
      * @param  \DateTime|int  $delay
      * @param  string  $job
      * @param  mixed   $data
@@ -158,11 +182,14 @@ class QueueFake implements Queue
      */
     public function later($delay, $job, $data = '', $queue = null)
     {
+        //向队列推一个新的任务
         return $this->push($job, $data, $queue);
     }
 
     /**
      * Push a new job onto the queue.
+     *
+     * 把新工作推到队列上
      *
      * @param  string  $queue
      * @param  string  $job
@@ -171,11 +198,14 @@ class QueueFake implements Queue
      */
     public function pushOn($queue, $job, $data = '')
     {
+        //向队列推一个新的任务
         return $this->push($job, $data, $queue);
     }
 
     /**
      * Push a new job onto the queue after a delay.
+     *
+     * 在延迟之后将新作业推到队列上
      *
      * @param  string  $queue
      * @param  \DateTime|int  $delay
@@ -185,11 +215,14 @@ class QueueFake implements Queue
      */
     public function laterOn($queue, $delay, $job, $data = '')
     {
+        //向队列推一个新的任务
         return $this->push($job, $data, $queue);
     }
 
     /**
      * Pop the next job off of the queue.
+     *
+     * 从队列中取出下一个作业
      *
      * @param  string  $queue
      * @return \Illuminate\Contracts\Queue\Job|null
@@ -202,6 +235,8 @@ class QueueFake implements Queue
     /**
      * Push an array of jobs onto the queue.
      *
+     * 将一系列作业推到队列中
+     *
      * @param  array $jobs
      * @param  mixed $data
      * @param  string $queue
@@ -210,12 +245,14 @@ class QueueFake implements Queue
     public function bulk($jobs, $data = '', $queue = null)
     {
         foreach ($this->jobs as $job) {
-            $this->push($job);
+            $this->push($job);//向队列推一个新的任务
         }
     }
 
     /**
      * Get the connection name for the queue.
+     *
+     * 获取队列的连接名
      *
      * @return string
      */
@@ -226,6 +263,8 @@ class QueueFake implements Queue
 
     /**
      * Set the connection name for the queue.
+     *
+     * 设置队列的连接名
      *
      * @param  string $name
      * @return $this

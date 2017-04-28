@@ -3,11 +3,13 @@
 namespace Illuminate\Support\Debug;
 
 use Symfony\Component\VarDumper\Dumper\HtmlDumper as SymfonyHtmlDumper;
-
+//HtmlDumper将变量转储为HTML
 class HtmlDumper extends SymfonyHtmlDumper
 {
     /**
      * Colour definitions for output.
+     *
+     * 输出的颜色定义
      *
      * @var array
      */

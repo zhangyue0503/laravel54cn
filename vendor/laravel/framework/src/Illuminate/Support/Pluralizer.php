@@ -3,11 +3,13 @@
 namespace Illuminate\Support;
 
 use Doctrine\Common\Inflector\Inflector;
-
+//复数
 class Pluralizer
 {
     /**
      * Uncountable word forms.
+     *
+     * 不可复数的单词
      *
      * @var array
      */
@@ -60,13 +62,13 @@ class Pluralizer
      */
     public static function plural($value, $count = 2)
     {
-        if ((int) $count === 1 || static::uncountable($value)) {
+        if ((int) $count === 1 || static::uncountable($value)) { //确定给定值是否不复数
             return $value;
         }
 
-        $plural = Inflector::pluralize($value);
+        $plural = Inflector::pluralize($value);//以复数形式返回一个单词
 
-        return static::matchCase($plural, $value);
+        return static::matchCase($plural, $value);//尝试匹配两个字符串的情况
     }
 
     /**
@@ -79,13 +81,15 @@ class Pluralizer
      */
     public static function singular($value)
     {
-        $singular = Inflector::singularize($value);
+        $singular = Inflector::singularize($value);//以单数形式返回一个单词
 
-        return static::matchCase($singular, $value);
+        return static::matchCase($singular, $value);//尝试匹配两个字符串的情况
     }
 
     /**
      * Determine if the given value is uncountable.
+     *
+     * 确定给定值是否不复数
      *
      * @param  string  $value
      * @return bool
@@ -97,6 +101,8 @@ class Pluralizer
 
     /**
      * Attempt to match the case on two strings.
+     *
+     * 尝试匹配两个字符串的情况
      *
      * @param  string  $value
      * @param  string  $comparison

@@ -40,6 +40,8 @@ class EngineResolver
     /**
      * Resolver an engine instance by name.
      *
+     * 按名称命名引擎实例
+     *
      * @param  string  $engine
      * @return \Illuminate\View\Engines\EngineInterface
      * @throws \InvalidArgumentException

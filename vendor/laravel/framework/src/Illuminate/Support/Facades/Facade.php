@@ -11,6 +11,8 @@ abstract class Facade
     /**
      * The application instance being facaded.
      *
+     * facade的应用实例
+     *
      * @var \Illuminate\Contracts\Foundation\Application
      */
     protected static $app;
@@ -27,13 +29,15 @@ abstract class Facade
     /**
      * Convert the facade into a Mockery spy.
      *
+     * 转换facade为Mockery spy
+     *
      * @return void
      */
     public static function spy()
     {
-        if (! static::isMock()) {
-            $class = static::getMockableClass();
-
+        if (! static::isMock()) {//确定是否将模拟设置为外观的实例
+            $class = static::getMockableClass();//获得绑定的实例mockable类
+            //热交换facade底层的实例
             static::swap($class ? Mockery::spy($class) : Mockery::spy());
         }
     }
@@ -41,29 +45,35 @@ abstract class Facade
     /**
      * Initiate a mock expectation on the facade.
      *
+     * 开始对facade的模拟预期
+     *
      * @return \Mockery\Expectation
      */
     public static function shouldReceive()
     {
+        //获取组件的注册名称
         $name = static::getFacadeAccessor();
 
-        $mock = static::isMock()
+        $mock = static::isMock()//确定是否将模拟设置为外观的实例
                     ? static::$resolvedInstance[$name]
-                    : static::createFreshMockInstance();
-
+                    : static::createFreshMockInstance();//为给定类创建新的模拟实例
+        //开始对facade的模拟预期
         return $mock->shouldReceive(...func_get_args());
     }
 
     /**
      * Create a fresh mock instance for the given class.
      *
+     * 为给定类创建新的模拟实例
+     *
      * @return \Mockery\Expectation
      */
     protected static function createFreshMockInstance()
     {
+        //用给定的值调用给定的闭包，然后返回值(为给定类创建新的模拟实例,)
         return tap(static::createMock(), function ($mock) {
-            static::swap($mock);
-
+            static::swap($mock);//热交换facade底层的实例
+            //应该允许模仿保护的方法
             $mock->shouldAllowMockingProtectedMethods();
         });
     }
@@ -71,11 +81,13 @@ abstract class Facade
     /**
      * Create a fresh mock instance for the given class.
      *
+     * 为给定类创建新的模拟实例
+     *
      * @return \Mockery\MockInterface
      */
     protected static function createMock()
     {
-        $class = static::getMockableClass();
+        $class = static::getMockableClass();//获得绑定的实例mockable类
 
         return $class ? Mockery::mock($class) : Mockery::mock();
     }
@@ -83,11 +95,13 @@ abstract class Facade
     /**
      * Determines whether a mock is set as the instance of the facade.
      *
+     * 确定是否将模拟设置为外观的实例
+     *
      * @return bool
      */
     protected static function isMock()
     {
-        $name = static::getFacadeAccessor();
+        $name = static::getFacadeAccessor();//获取组件的注册名称
 
         return isset(static::$resolvedInstance[$name]) &&
                static::$resolvedInstance[$name] instanceof MockInterface;
@@ -96,10 +110,13 @@ abstract class Facade
     /**
      * Get the mockable class for the bound instance.
      *
+     * 获得绑定的实例mockable类
+     *
      * @return string|null
      */
     protected static function getMockableClass()
     {
+        //              获取外观后面的根对象
         if ($root = static::getFacadeRoot()) {
             return get_class($root);
         }
@@ -108,14 +125,18 @@ abstract class Facade
     /**
      * Hotswap the underlying instance behind the facade.
      *
+     * 热交换facade底层的实例
+     *
      * @param  mixed  $instance
      * @return void
      */
     public static function swap($instance)
     {
+        //                             获取组件的注册名称
         static::$resolvedInstance[static::getFacadeAccessor()] = $instance;
 
         if (isset(static::$app)) {
+            //      在容器中注册一个已存在的实例     获取组件的注册名称
             static::$app->instance(static::getFacadeAccessor(), $instance);
         }
     }
@@ -129,12 +150,14 @@ abstract class Facade
      */
     public static function getFacadeRoot()
     {
-		//         从容器解析外观的根实例
+		//         从容器解析外观的根实例          获取组件的注册名称
         return static::resolveFacadeInstance(static::getFacadeAccessor());
     }
 
     /**
      * Get the registered name of the component.
+     *
+     * 获取组件的注册名称
      *
      * @return string
      *
@@ -194,6 +217,8 @@ abstract class Facade
 
     /**
      * Get the application instance behind the facade.
+     *
+     * 获取facade的应用实例
      *
      * @return \Illuminate\Contracts\Foundation\Application
      */

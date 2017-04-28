@@ -13,10 +13,13 @@ class Notification extends Facade
     /**
      * Replace the bound instance with a fake.
      *
+     * 用假的替换绑定实例
+     *
      * @return void
      */
     public static function fake()
     {
+        //热交换facade底层的实例(伪邮件)
         static::swap(new NotificationFake);
     }
 

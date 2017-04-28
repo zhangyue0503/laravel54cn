@@ -16,6 +16,8 @@ use Symfony\Component\VarDumper\Cloner\Cursor;
 /**
  * CliDumper dumps variables for command line output.
  *
+ * CliDumper转储命令行输出变量
+ *
  * @author Nicolas Grekas <p@tchwork.com>
  */
 class CliDumper extends AbstractDumper

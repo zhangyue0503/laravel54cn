@@ -93,6 +93,8 @@ class CompilerEngine extends PhpEngine
     /**
      * Get the compiler implementation.
      *
+     * 获取编译器实现
+     *
      * @return \Illuminate\View\Compilers\CompilerInterface
      */
     public function getCompiler()

@@ -87,6 +87,8 @@ interface MessageBag
     /**
      * Get the number of messages in the container.
      *
+     * 获取容器中的消息数
+     *
      * @return int
      */
     public function count();

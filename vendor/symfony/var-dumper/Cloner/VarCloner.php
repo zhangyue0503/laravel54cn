@@ -12,6 +12,7 @@
 namespace Symfony\Component\VarDumper\Cloner;
 
 /**
+ * 变量克隆
  * @author Nicolas Grekas <p@tchwork.com>
  */
 class VarCloner extends AbstractCloner

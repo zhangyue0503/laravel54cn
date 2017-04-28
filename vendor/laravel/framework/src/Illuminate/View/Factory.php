@@ -422,6 +422,8 @@ class Factory implements FactoryContract
     /**
      * Get the engine resolver instance.
      *
+     * 获取引擎解析器实例
+     *
      * @return \Illuminate\View\Engines\EngineResolver
      */
     public function getEngineResolver()

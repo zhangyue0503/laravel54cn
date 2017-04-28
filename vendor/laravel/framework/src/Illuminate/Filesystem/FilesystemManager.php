@@ -142,6 +142,8 @@ class FilesystemManager implements FactoryContract
     /**
      * Create an instance of the local driver.
      *
+     * 创建本地驱动的实例
+     *
      * @param  array  $config
      * @return \Illuminate\Contracts\Filesystem\Filesystem
      */
@@ -273,6 +275,8 @@ class FilesystemManager implements FactoryContract
 
     /**
      * Set the given disk instance.
+     *
+     * 设置给定的磁盘实例
      *
      * @param  string  $name
      * @param  mixed  $disk

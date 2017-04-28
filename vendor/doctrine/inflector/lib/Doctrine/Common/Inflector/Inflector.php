@@ -379,6 +379,8 @@ class Inflector
     /**
      * Returns a word in plural form.
      *
+     * 以复数形式返回一个单词
+     *
      * @param string $word The word in singular form.
      *
      * @return string The word in plural form.
@@ -425,6 +427,8 @@ class Inflector
 
     /**
      * Returns a word in singular form.
+     *
+     * 以单数形式返回一个单词
      *
      * @param string $word The word in plural form.
      *

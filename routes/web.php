@@ -12,6 +12,7 @@
 */
 
 Route::get('/', function (\Illuminate\Http\Request $request) {
+    dd();
 	return view('welcome');
 });
 

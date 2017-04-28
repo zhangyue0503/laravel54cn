@@ -48,6 +48,8 @@ class PendingMail
     /**
      * Set the recipients of the message.
      *
+     * 设置消息的收件人
+     *
      * @param  mixed  $users
      * @return $this
      */
@@ -73,6 +75,8 @@ class PendingMail
 
     /**
      * Set the recipients of the message.
+     *
+     * 设置消息的接收者
      *
      * @param  mixed  $users
      * @return $this
@@ -141,6 +145,8 @@ class PendingMail
 
     /**
      * Populate the mailable with the addresses.
+     *
+     * 填充邮件地址
      *
      * @param  Mailable  $mailable
      * @return Mailable

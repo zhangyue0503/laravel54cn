@@ -11,12 +11,16 @@ class Str
     /**
      * The cache of snake-cased words.
      *
+     * 缓存蛇形命名单词
+     *
      * @var array
      */
     protected static $snakeCache = [];
 
     /**
      * The cache of camel-cased words.
+     *
+     * 缓存驼峰命名单词
      *
      * @var array
      */
@@ -25,6 +29,8 @@ class Str
     /**
      * The cache of studly-cased words.
      *
+     * 缓存驼峰式大小写命名单词
+     *
      * @var array
      */
     protected static $studlyCache = [];
@@ -32,11 +38,14 @@ class Str
     /**
      * Transliterate a UTF-8 value to ASCII.
      *
+     * 将一个UTF-8值转为ASCII
+     *
      * @param  string  $value
      * @return string
      */
     public static function ascii($value)
     {
+        //          返回ASCII方法的替换
         foreach (static::charsArray() as $key => $val) {
             $value = str_replace($val, $key, $value);
         }
@@ -57,7 +66,7 @@ class Str
         if (isset(static::$camelCache[$value])) {
             return static::$camelCache[$value];
         }
-
+        //                                             将值转换为大驼峰
         return static::$camelCache[$value] = lcfirst(static::studly($value));
     }
 
@@ -84,6 +93,8 @@ class Str
     /**
      * Determine if a given string ends with a given substring.
      *
+     * 确定给定的字符串的结束是否是给定的子字符串
+     *
      * @param  string  $haystack
      * @param  string|array  $needles
      * @return bool
@@ -101,6 +112,8 @@ class Str
 
     /**
      * Cap a string with a single instance of a given value.
+     *
+     * 使用给定的值覆盖单个实例字符串
      *
      * @param  string  $value
      * @param  string  $cap
@@ -144,16 +157,21 @@ class Str
     /**
      * Convert a string to kebab case.
      *
+     * 将字符串转换为串格式（短横线隔开）
+     *
      * @param  string  $value
      * @return string
      */
     public static function kebab($value)
     {
+        //将字符串转换为蛇形命名
         return static::snake($value, '-');
     }
 
     /**
      * Return the length of the given string.
+     *
+     * 返回给定字符串的长度
      *
      * @param  string  $value
      * @return int
@@ -165,6 +183,8 @@ class Str
 
     /**
      * Limit the number of characters in a string.
+     *
+     * 限制字符串中字符的个数
      *
      * @param  string  $value
      * @param  int     $limit
@@ -196,6 +216,8 @@ class Str
     /**
      * Limit the number of words in a string.
      *
+     * 限制字符串中的单词数量
+     *
      * @param  string  $value
      * @param  int     $words
      * @param  string  $end
@@ -204,7 +226,7 @@ class Str
     public static function words($value, $words = 100, $end = '...')
     {
         preg_match('/^\s*+(?:\S++\s*+){1,'.$words.'}/u', $value, $matches);
-
+        //                          返回给定字符串的长度             返回给定字符串的长度
         if (! isset($matches[0]) || static::length($value) === static::length($matches[0])) {
             return $value;
         }
@@ -238,11 +260,14 @@ class Str
      */
     public static function plural($value, $count = 2)
     {
+        //获取一个英语单词的复数形式
         return Pluralizer::plural($value, $count);
     }
 
     /**
      * Generate a more truly "random" alpha-numeric string.
+     *
+     * 生成一个更真实的“随机”alpha数字字符串
      *
      * @param  int  $length
      * @return string
@@ -265,7 +290,11 @@ class Str
     /**
      * Generate a "random" alpha-numeric string.
      *
+     * 生成一个“随机”alpha数字字符串
+     *
      * Should not be considered sufficient for cryptography, etc.
+     *
+     * 不应该被认为是足够的加密等
      *
      * @deprecated since version 5.3. Use the "random" method directly.
      *
@@ -275,7 +304,7 @@ class Str
     public static function quickRandom($length = 16)
     {
         if (PHP_MAJOR_VERSION > 5) {
-            return static::random($length);
+            return static::random($length);//生成一个更真实的“随机”alpha数字字符串
         }
 
         $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -286,6 +315,8 @@ class Str
     /**
      * Replace a given value in the string sequentially with an array.
      *
+     * 用数组顺序替换字符串中的给定值
+     *
      * @param  string  $search
      * @param  array   $replace
      * @param  string  $subject
@@ -294,6 +325,7 @@ class Str
     public static function replaceArray($search, array $replace, $subject)
     {
         foreach ($replace as $value) {
+            //          替换字符串中第一次出现的给定值
             $subject = static::replaceFirst($search, $value, $subject);
         }
 
@@ -302,6 +334,8 @@ class Str
 
     /**
      * Replace the first occurrence of a given value in the string.
+     *
+     * 替换字符串中第一次出现的给定值
      *
      * @param  string  $search
      * @param  string  $replace
@@ -322,6 +356,8 @@ class Str
     /**
      * Replace the last occurrence of a given value in the string.
      *
+     * 替换字符串中最后一次出现的给定值
+     *
      * @param  string  $search
      * @param  string  $replace
      * @param  string  $subject
@@ -341,6 +377,8 @@ class Str
     /**
      * Convert the given string to upper-case.
      *
+     * 将给定的字符串转换为大写
+     *
      * @param  string  $value
      * @return string
      */
@@ -351,6 +389,8 @@ class Str
 
     /**
      * Convert the given string to title case.
+     *
+     * 给定字符串转换为首字母大写
      *
      * @param  string  $value
      * @return string
@@ -376,23 +416,25 @@ class Str
     /**
      * Generate a URL friendly "slug" from a given string.
      *
+     * 生成一个URL友好的“slug”从一个给定的字符串
+     *
      * @param  string  $title
      * @param  string  $separator
      * @return string
      */
     public static function slug($title, $separator = '-')
     {
-        $title = static::ascii($title);
+        $title = static::ascii($title);//将一个UTF-8值转为ASCII
 
-        // Convert all dashes/underscores into separator
+        // Convert all dashes/underscores into separator 将所有破折号/下划线转换成分隔符
         $flip = $separator == '-' ? '_' : '-';
 
         $title = preg_replace('!['.preg_quote($flip).']+!u', $separator, $title);
 
-        // Remove all characters that are not the separator, letters, numbers, or whitespace.
+        // Remove all characters that are not the separator, letters, numbers, or whitespace.  删除所有非分隔字符，字母，数字，或空白
         $title = preg_replace('![^'.preg_quote($separator).'\pL\pN\s]+!u', '', mb_strtolower($title));
 
-        // Replace all separator characters and whitespace by a single separator
+        // Replace all separator characters and whitespace by a single separator 由一个单一的分离器代替所有的分隔字符和空格
         $title = preg_replace('!['.preg_quote($separator).'\s]+!u', $separator, $title);
 
         return trim($title, $separator);
@@ -417,7 +459,7 @@ class Str
 
         if (! ctype_lower($value)) {
             $value = preg_replace('/\s+/u', '', $value);
-
+            //           将给定的字符串转为小写
             $value = static::lower(preg_replace('/(.)(?=[A-Z])/u', '$1'.$delimiter, $value));
         }
 
@@ -468,6 +510,8 @@ class Str
     /**
      * Returns the portion of string specified by the start and length parameters.
      *
+     * 返回由开始和长度参数指定的字符串的一部分
+     *
      * @param  string  $string
      * @param  int  $start
      * @param  int|null  $length
@@ -481,18 +525,25 @@ class Str
     /**
      * Make a string's first character uppercase.
      *
+     * 使字符串的第一个字符大写
+     *
      * @param  string  $string
      * @return string
      */
     public static function ucfirst($string)
     {
+        //       将给定的字符串转换为大写 返回由开始和长度参数指定的字符串的一部分  返回由开始和长度参数指定的字符串的一部分
         return static::upper(static::substr($string, 0, 1)).static::substr($string, 1);
     }
 
     /**
      * Returns the replacements for the ascii method.
      *
+     * 返回ASCII方法的替换
+     *
      * Note: Adapted from Stringy\Stringy.
+     *
+     * 注：改编自Stringy\Stringy
      *
      * @see https://github.com/danielstjules/Stringy/blob/2.3.1/LICENSE.txt
      *

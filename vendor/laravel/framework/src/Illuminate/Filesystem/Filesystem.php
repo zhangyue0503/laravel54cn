@@ -557,6 +557,8 @@ class Filesystem
     /**
      * Empty the specified directory of all files and folders.
      *
+     * 清空所有文件和文件夹的指定目录
+     *
      * @param  string  $directory
      * @return bool
      */
