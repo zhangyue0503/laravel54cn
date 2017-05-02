@@ -106,6 +106,8 @@ class Repository implements ArrayAccess, ConfigContract
     /**
      * Get all of the configuration items for the application.
      *
+     * 获取应用程序的所有配置项
+     *
      * @return array
      */
     public function all()

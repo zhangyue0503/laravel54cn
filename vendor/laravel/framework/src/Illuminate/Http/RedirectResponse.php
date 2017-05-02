@@ -35,6 +35,8 @@ class RedirectResponse extends BaseRedirectResponse
     /**
      * Flash a piece of data to the session.
      *
+     * 把数据闪存到会话中
+     *
      * @param  string|array  $key
      * @param  mixed  $value
      * @return \Illuminate\Http\RedirectResponse
@@ -67,6 +69,8 @@ class RedirectResponse extends BaseRedirectResponse
 
     /**
      * Flash an array of input to the session.
+     *
+     * 在会话中闪存输入的数组
      *
      * @param  array  $input
      * @return $this
@@ -123,6 +127,8 @@ class RedirectResponse extends BaseRedirectResponse
 
     /**
      * Flash a container of errors to the session.
+     *
+     * 将错误的容器闪存到会话中
      *
      * @param  \Illuminate\Contracts\Support\MessageProvider|array|string  $provider
      * @param  string  $key

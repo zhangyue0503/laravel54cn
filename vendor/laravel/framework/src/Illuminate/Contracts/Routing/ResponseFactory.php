@@ -30,6 +30,8 @@ interface ResponseFactory
     /**
      * Return a new JSON response from the application.
      *
+     * 从应用程序返回一个新的JSON响应
+     *
      * @param  string|array  $data
      * @param  int  $status
      * @param  array  $headers

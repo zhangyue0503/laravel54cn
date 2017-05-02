@@ -9,7 +9,11 @@ trait ConfirmableTrait
     /**
      * Confirm before proceeding with the action.
      *
+     * 在继续操作之前确认
+     *
      * This method only asks for confirmation in production.
+     *
+     * 这种方法只要求在生产中确认
      *
      * @param  string  $warning
      * @param  \Closure|bool|null  $callback

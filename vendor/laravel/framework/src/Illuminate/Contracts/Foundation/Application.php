@@ -9,6 +9,8 @@ interface Application extends Container
     /**
      * Get the version number of the application.
      *
+     * 获得应用程序的版本号
+     *
      * @return string
      */
     public function version();
@@ -16,12 +18,16 @@ interface Application extends Container
     /**
      * Get the base path of the Laravel installation.
      *
+     * 得到Laravel安装的基本路径
+     *
      * @return string
      */
     public function basePath();
 
     /**
      * Get or check the current application environment.
+     *
+     * 获取或检查当前的应用程序环境
      *
      * @return string
      */
@@ -84,6 +90,8 @@ interface Application extends Container
     /**
      * Register a new "booted" listener.
      *
+     * 注册一个新的“引导”监听
+     *
      * @param  mixed  $callback
      * @return void
      */
@@ -91,6 +99,8 @@ interface Application extends Container
 
     /**
      * Get the path to the cached services.php file.
+     *
+     * 获取缓存的services.php文件路径
      *
      * @return string
      */

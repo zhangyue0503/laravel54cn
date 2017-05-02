@@ -17,6 +17,8 @@ abstract class Controller
     /**
      * Register middleware on the controller.
      *
+     * 注册控制器上的中间件
+     *
      * @param  array|string|\Closure  $middleware
      * @param  array   $options
      * @return \Illuminate\Routing\ControllerMiddlewareOptions

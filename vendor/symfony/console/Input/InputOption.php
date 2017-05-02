@@ -17,6 +17,8 @@ use Symfony\Component\Console\Exception\LogicException;
 /**
  * Represents a command line option.
  *
+ * 表示一个命令行选项
+ *
  * @author Fabien Potencier <fabien@symfony.com>
  */
 class InputOption

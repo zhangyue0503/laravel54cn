@@ -126,6 +126,8 @@ class Factory implements FactoryContract
     /**
      * Validate the given data against the provided rules.
      *
+     * 根据所提供的规则验证给定的数据
+     *
      * @param  array  $data
      * @param  array  $rules
      * @param  array  $messages

@@ -459,6 +459,8 @@ class Store implements Session
     /**
      * Remove all of the items from the session.
      *
+     * 从会话中移除所有项目
+     *
      * @return void
      */
     public function flush()
@@ -480,6 +482,8 @@ class Store implements Session
 
     /**
      * Generate a new session identifier.
+     *
+     * 生成一个新的会话标识符
      *
      * @param  bool  $destroy
      * @return bool

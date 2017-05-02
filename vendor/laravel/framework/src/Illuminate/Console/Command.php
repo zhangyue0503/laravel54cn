@@ -87,6 +87,8 @@ class Command extends SymfonyCommand
     /**
      * Create a new console command instance.
      *
+     * 创建一个新的控制台命令实例
+     *
      * @return void
      */
     public function __construct()
@@ -185,6 +187,8 @@ class Command extends SymfonyCommand
     /**
      * Call another console command.
      *
+     * 调用另一个控制台命令
+     *
      * @param  string  $command
      * @param  array   $arguments
      * @return int
@@ -200,6 +204,8 @@ class Command extends SymfonyCommand
 
     /**
      * Call another console command silently.
+     *
+     * 调用另一个控制台命令
      *
      * @param  string  $command
      * @param  array   $arguments
@@ -227,6 +233,8 @@ class Command extends SymfonyCommand
 
     /**
      * Get the value of a command argument.
+     *
+     * 获取一个命令参数的值
      *
      * @param  string  $key
      * @return string|array
@@ -263,6 +271,8 @@ class Command extends SymfonyCommand
 
     /**
      * Get the value of a command option.
+     *
+     * 获取命令选项的值
      *
      * @param  string  $key
      * @return string|array
@@ -378,6 +388,8 @@ class Command extends SymfonyCommand
     /**
      * Format input to textual table.
      *
+     * 格式输入到文本表
+     *
      * @param  array   $headers
      * @param  \Illuminate\Contracts\Support\Arrayable|array  $rows
      * @param  string  $style
@@ -397,6 +409,8 @@ class Command extends SymfonyCommand
     /**
      * Write a string as information output.
      *
+     * 将字符串写入信息输出
+     *
      * @param  string  $string
      * @param  null|int|string  $verbosity
      * @return void
@@ -408,6 +422,8 @@ class Command extends SymfonyCommand
 
     /**
      * Write a string as standard output.
+     *
+     * 将字符串作为标准输出写入
      *
      * @param  string  $string
      * @param  string  $style
@@ -423,6 +439,8 @@ class Command extends SymfonyCommand
 
     /**
      * Write a string as comment output.
+     *
+     * 编写一个字符串作为注释输出
      *
      * @param  string  $string
      * @param  null|int|string  $verbosity
@@ -447,6 +465,8 @@ class Command extends SymfonyCommand
 
     /**
      * Write a string as error output.
+     *
+     * 将字符串写入错误输出
      *
      * @param  string  $string
      * @param  null|int|string  $verbosity

@@ -67,6 +67,8 @@ interface Gate
     /**
      * Determine if the given ability should be granted.
      *
+     * 确定是否给予给定的能力
+     *
      * @param  string  $ability
      * @param  array|mixed  $arguments
      * @return bool
@@ -75,6 +77,8 @@ interface Gate
 
     /**
      * Determine if the given ability should be granted for the current user.
+     *
+     * 确定当前用户是否授予给定的能力
      *
      * @param  string  $ability
      * @param  array|mixed  $arguments
@@ -98,6 +102,8 @@ interface Gate
 
     /**
      * Get a guard instance for the given user.
+     *
+     * 为给定用户获取保护实例
      *
      * @param  \Illuminate\Contracts\Auth\Authenticatable|mixed  $user
      * @return static

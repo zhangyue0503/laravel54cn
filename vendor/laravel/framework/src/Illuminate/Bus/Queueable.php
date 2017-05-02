@@ -28,18 +28,21 @@ trait Queueable
     /**
      * Set the desired connection for the job.
      *
+     * 为作业设置所需的连接
+     *
      * @param  string|null  $connection
      * @return $this
      */
     public function onConnection($connection)
     {
         $this->connection = $connection;
-
         return $this;
     }
 
     /**
      * Set the desired queue for the job.
+     *
+     * 设置工作所需的队列
      *
      * @param  string|null  $queue
      * @return $this
@@ -53,6 +56,8 @@ trait Queueable
 
     /**
      * Set the desired delay for the job.
+     *
+     * 为工作设定期望的延迟
      *
      * @param  \DateTime|int|null  $delay
      * @return $this

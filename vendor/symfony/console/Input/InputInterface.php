@@ -74,6 +74,8 @@ interface InputInterface
     /**
      * Returns all the given arguments merged with the default values.
      *
+     * 返回所有给定的参数与默认值合并
+     *
      * @return array
      */
     public function getArguments();
@@ -111,12 +113,16 @@ interface InputInterface
     /**
      * Returns all the given options merged with the default values.
      *
+     * 返回与默认值合并的所有选项
+     *
      * @return array
      */
     public function getOptions();
 
     /**
      * Returns the option value for a given option name.
+     *
+     * 返回给定选项名的选项值
      *
      * @param string $name The option name
      *

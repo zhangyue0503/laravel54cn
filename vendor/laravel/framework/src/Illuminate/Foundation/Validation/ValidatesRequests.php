@@ -41,6 +41,8 @@ trait ValidatesRequests
     /**
      * Validate the given request with the given rules.
      *
+     * 使用给定的规则验证给定的请求
+     *
      * @param  \Illuminate\Http\Request  $request
      * @param  array  $rules
      * @param  array  $messages

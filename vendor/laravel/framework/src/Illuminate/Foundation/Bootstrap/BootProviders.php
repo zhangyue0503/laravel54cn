@@ -3,7 +3,7 @@
 namespace Illuminate\Foundation\Bootstrap;
 
 use Illuminate\Contracts\Foundation\Application;
-
+//启动提供者
 class BootProviders
 {
     /**

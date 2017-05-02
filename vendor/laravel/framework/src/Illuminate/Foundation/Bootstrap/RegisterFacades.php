@@ -5,7 +5,7 @@ namespace Illuminate\Foundation\Bootstrap;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Contracts\Foundation\Application;
-
+//注册门面
 class RegisterFacades
 {
     /**

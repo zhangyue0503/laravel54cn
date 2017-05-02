@@ -327,6 +327,8 @@ class Carbon extends DateTime
     /**
      * Get a Carbon instance for the current date and time.
      *
+     * 获取当前日期和时间的Carbon实例
+     *
      * @param \DateTimeZone|string|null $tz
      *
      * @return static

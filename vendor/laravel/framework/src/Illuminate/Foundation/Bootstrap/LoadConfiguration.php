@@ -7,7 +7,7 @@ use Illuminate\Config\Repository;
 use Symfony\Component\Finder\Finder;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Config\Repository as RepositoryContract;
-
+//加载配置文件
 class LoadConfiguration
 {
     /**

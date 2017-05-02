@@ -18,6 +18,8 @@ class Registered
     /**
      * Create a new event instance.
      *
+     * 创建一个新的事件实例
+     *
      * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @return void
      */

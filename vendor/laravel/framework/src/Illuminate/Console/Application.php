@@ -46,7 +46,7 @@ class Application extends SymfonyApplication implements ApplicationContract
     /**
      * Create a new Artisan console application.
      *
-     * 创建一个新的
+     * 创建一个新的Artisan控制台应用程序
      *
      * @param  \Illuminate\Contracts\Container\Container  $laravel
      * @param  \Illuminate\Contracts\Events\Dispatcher  $events
@@ -135,6 +135,8 @@ class Application extends SymfonyApplication implements ApplicationContract
     /**
      * Run an Artisan console command by name.
      *
+     * 按名称运行一个Artisan控制台命令
+     *
      * @param  string  $command
      * @param  array  $parameters
      * @param  \Symfony\Component\Console\Output\OutputInterface  $outputBuffer
@@ -158,6 +160,8 @@ class Application extends SymfonyApplication implements ApplicationContract
     /**
      * Get the output for the last run command.
      *
+     * 获取最后一个运行命令的输出
+     *
      * @return string
      */
     public function output()
@@ -167,6 +171,8 @@ class Application extends SymfonyApplication implements ApplicationContract
 
     /**
      * Add a command to the console.
+     *
+     * 向控制台添加一个命令
      *
      * @param  \Symfony\Component\Console\Command\Command  $command
      * @return \Symfony\Component\Console\Command\Command

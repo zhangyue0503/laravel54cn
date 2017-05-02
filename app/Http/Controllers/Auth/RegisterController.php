@@ -60,6 +60,8 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
+     * 在有效注册之后创建一个新的用户实例
+     *
      * @param  array  $data
      * @return User
      */

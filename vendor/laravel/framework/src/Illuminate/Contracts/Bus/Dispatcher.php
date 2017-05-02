@@ -1,7 +1,7 @@
 <?php
 
 namespace Illuminate\Contracts\Bus;
-
+//分配
 interface Dispatcher
 {
     /**

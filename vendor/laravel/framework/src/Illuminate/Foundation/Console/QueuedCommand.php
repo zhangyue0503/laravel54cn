@@ -10,12 +10,16 @@ class QueuedCommand implements ShouldQueue
     /**
      * The data to pass to the Artisan command.
      *
+     * 传递给Artisan命令的数据
+     *
      * @var array
      */
     protected $data;
 
     /**
      * Create a new job instance.
+     *
+     * 创建一个新的作业实例
      *
      * @param  array  $data
      * @return void
@@ -27,6 +31,8 @@ class QueuedCommand implements ShouldQueue
 
     /**
      * Handle the job.
+     *
+     * 处理工作
      *
      * @param  \Illuminate\Contracts\Console\Kernel  $kernel
      * @return void

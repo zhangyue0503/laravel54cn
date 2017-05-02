@@ -170,6 +170,8 @@ class View implements ArrayAccess, ViewContract
     /**
      * Add a piece of data to the view.
      *
+     * 将数据添加到视图中
+     *
      * @param  string|array  $key
      * @param  mixed   $value
      * @return $this

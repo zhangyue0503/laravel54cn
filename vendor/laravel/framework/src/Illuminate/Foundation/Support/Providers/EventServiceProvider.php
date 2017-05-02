@@ -50,6 +50,8 @@ class EventServiceProvider extends ServiceProvider
     /**
      * Get the events and handlers.
      *
+     * 获取事件和处理程序
+     *
      * @return array
      */
     public function listens()

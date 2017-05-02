@@ -44,6 +44,8 @@ interface PasswordBroker
     /**
      * Send a password reset link to a user.
      *
+     * 将密码重置链接发送给用户
+     *
      * @param  array  $credentials
      * @return string
      */
@@ -51,6 +53,8 @@ interface PasswordBroker
 
     /**
      * Reset the password for the given token.
+     *
+     * 重置给定令牌的密码
      *
      * @param  array     $credentials
      * @param  \Closure  $callback

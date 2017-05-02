@@ -28,6 +28,8 @@ class RateLimiter
     /**
      * Determine if the given key has been "accessed" too many times.
      *
+     * 确定给定的键是否被“访问”过多次
+     *
      * @param  string  $key
      * @param  int  $maxAttempts
      * @param  float|int  $decayMinutes
@@ -66,6 +68,8 @@ class RateLimiter
 
     /**
      * Increment the counter for a given key for a given decay time.
+     *
+     * 为给定的衰减时间增加给定键的计数器
      *
      * @param  string  $key
      * @param  float|int  $decayMinutes
@@ -117,6 +121,8 @@ class RateLimiter
     /**
      * Clear the hits and lockout for the given key.
      *
+     * 清除给定键的点击和锁定
+     *
      * @param  string  $key
      * @return void
      */
@@ -129,6 +135,8 @@ class RateLimiter
 
     /**
      * Get the number of seconds until the "key" is accessible again.
+     *
+     * 获得秒数，直到“键”再次访问
      *
      * @param  string  $key
      * @return int

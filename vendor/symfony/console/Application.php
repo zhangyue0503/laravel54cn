@@ -96,6 +96,8 @@ class Application
     /**
      * Runs the current application.
      *
+     * 运行当前的应用程序
+     *
      * @param InputInterface  $input  An Input instance
      * @param OutputInterface $output An Output instance
      *
@@ -568,7 +570,11 @@ class Application
     /**
      * Gets the commands (registered in the given namespace if provided).
      *
+     * 获取命令(如果提供的话，在给定的名称空间中注册)
+     *
      * The array keys are the full names and the values the command instances.
+     *
+     * 数组键是完整的名称和命令实例的值
      *
      * @param string $namespace A namespace name
      *

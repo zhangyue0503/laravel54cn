@@ -28,6 +28,8 @@ class Filesystem
     /**
      * Get the contents of a file.
      *
+     * 获取文件的内容
+     *
      * @param  string  $path
      * @param  bool  $lock
      * @return string
@@ -164,6 +166,8 @@ class Filesystem
     /**
      * Delete the file at a given path.
      *
+     * 在给定的路径中删除该文件
+     *
      * @param  string|array  $paths
      * @return bool
      */
@@ -201,6 +205,8 @@ class Filesystem
     /**
      * Copy a file to a new location.
      *
+     * 将文件复制到新位置
+     *
      * @param  string  $path
      * @param  string  $target
      * @return bool
@@ -212,6 +218,8 @@ class Filesystem
 
     /**
      * Create a hard link to the target file or directory.
+     *
+     * 创建一个指向目标文件或目录的硬链接
      *
      * @param  string  $target
      * @param  string  $link
@@ -319,6 +327,8 @@ class Filesystem
     /**
      * Determine if the given path is a directory.
      *
+     * 确定给定路径是否为目录
+     *
      * @param  string  $directory
      * @return bool
      */
@@ -364,6 +374,8 @@ class Filesystem
 
     /**
      * Find path names matching a given pattern.
+     *
+     * 找到匹配给定模式的路径名
      *
      * @param  string  $pattern
      * @param  int     $flags
@@ -427,6 +439,8 @@ class Filesystem
 
     /**
      * Create a directory.
+     *
+     * 创建一个目录
      *
      * @param  string  $path
      * @param  int     $mode

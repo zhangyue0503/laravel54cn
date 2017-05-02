@@ -7,6 +7,8 @@ trait RedirectsUsers
     /**
      * Get the post register / login redirect path.
      *
+     * 获取post注册/登录重定向路径
+     *
      * @return string
      */
     public function redirectPath()

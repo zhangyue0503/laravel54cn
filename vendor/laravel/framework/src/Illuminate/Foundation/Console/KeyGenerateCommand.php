@@ -12,6 +12,8 @@ class KeyGenerateCommand extends Command
     /**
      * The name and signature of the console command.
      *
+     * 控制台命令的名称和签名
+     *
      * @var string
      */
     protected $signature = 'key:generate
@@ -21,12 +23,16 @@ class KeyGenerateCommand extends Command
     /**
      * The console command description.
      *
+     * 控制台命令描述
+     *
      * @var string
      */
     protected $description = 'Set the application key';
 
     /**
      * Execute the console command.
+     *
+     * 执行控制台命令
      *
      * @return void
      */
@@ -53,6 +59,8 @@ class KeyGenerateCommand extends Command
     /**
      * Generate a random key for the application.
      *
+     * 为应用程序生成一个随机密钥
+     *
      * @return string
      */
     protected function generateRandomKey()
@@ -65,17 +73,19 @@ class KeyGenerateCommand extends Command
     /**
      * Set the application key in the environment file.
      *
+     * 在环境文件中设置应用程序键
+     *
      * @param  string  $key
      * @return bool
      */
     protected function setKeyInEnvironmentFile($key)
     {
         $currentKey = $this->laravel['config']['app.key'];
-
+        //                                      在继续操作之前确认
         if (strlen($currentKey) !== 0 && (! $this->confirmToProceed())) {
             return false;
         }
-
+        //用给定的键编写一个新的环境文件
         $this->writeNewEnvironmentFileWith($key);
 
         return true;
@@ -84,20 +94,25 @@ class KeyGenerateCommand extends Command
     /**
      * Write a new environment file with the given key.
      *
+     * 用给定的键编写一个新的环境文件
+     *
      * @param  string  $key
      * @return void
      */
     protected function writeNewEnvironmentFileWith($key)
     {
+        //                          获取环境文件的完全限定路径
         file_put_contents($this->laravel->environmentFilePath(), preg_replace(
-            $this->keyReplacementPattern(),
+            $this->keyReplacementPattern(),//得到一个正则表达式模式匹配环境APP_KEY任何随机密钥
             'APP_KEY='.$key,
-            file_get_contents($this->laravel->environmentFilePath())
+            file_get_contents($this->laravel->environmentFilePath())//获取环境文件的完全限定路径
         ));
     }
 
     /**
      * Get a regex pattern that will match env APP_KEY with any random key.
+     *
+     * 得到一个正则表达式模式匹配环境APP_KEY任何随机密钥
      *
      * @return string
      */

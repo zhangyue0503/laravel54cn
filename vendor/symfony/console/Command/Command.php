@@ -486,6 +486,8 @@ class Command
     /**
      * Sets the description for the command.
      *
+     * 设置命令的描述
+     *
      * @param string $description The description for the command
      *
      * @return $this

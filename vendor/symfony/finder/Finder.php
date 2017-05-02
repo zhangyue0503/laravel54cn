@@ -195,6 +195,8 @@ class Finder implements \IteratorAggregate, \Countable
     /**
      * Adds tests that file contents must match.
      *
+     * 添加文件内容必须匹配的测试
+     *
      * Strings or PCRE patterns can be used:
      *
      * $finder->contains('Lorem ipsum')

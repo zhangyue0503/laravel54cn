@@ -3,7 +3,7 @@
 namespace Illuminate\Foundation\Bootstrap;
 
 use Illuminate\Contracts\Foundation\Application;
-
+//注册提供者
 class RegisterProviders
 {
     /**

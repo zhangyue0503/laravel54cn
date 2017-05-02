@@ -75,7 +75,9 @@ class EnvironmentDetector
      */
     protected function getEnvironmentArgument(array $args)
     {
+        //通过给定的真值测试返回数组中的第一个元素
         return Arr::first($args, function ($value) {
+            //确定给定的子字符串是否属于给定的字符串
             return Str::startsWith($value, '--env');
         });
     }

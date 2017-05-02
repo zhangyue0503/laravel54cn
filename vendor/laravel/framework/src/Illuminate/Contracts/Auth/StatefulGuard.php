@@ -7,6 +7,8 @@ interface StatefulGuard extends Guard
     /**
      * Attempt to authenticate a user using the given credentials.
      *
+     * 尝试使用给定的凭据对用户进行身份验证
+     *
      * @param  array  $credentials
      * @param  bool   $remember
      * @return bool
@@ -23,6 +25,8 @@ interface StatefulGuard extends Guard
 
     /**
      * Log a user into the application.
+     *
+     * 将用户登录到应用程序中
      *
      * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @param  bool  $remember
@@ -56,6 +60,8 @@ interface StatefulGuard extends Guard
 
     /**
      * Log the user out of the application.
+     *
+     * 记录用户退出应用程序
      *
      * @return void
      */

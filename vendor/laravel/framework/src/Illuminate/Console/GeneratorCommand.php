@@ -146,6 +146,8 @@ abstract class GeneratorCommand extends Command
     /**
      * Build the class with the given name.
      *
+     * 用给定的名称构建类
+     *
      * @param  string  $name
      * @return string
      */
@@ -187,6 +189,8 @@ abstract class GeneratorCommand extends Command
 
     /**
      * Replace the class name for the given stub.
+     *
+     * 替换给定桩的类名
      *
      * @param  string  $stub
      * @param  string  $name

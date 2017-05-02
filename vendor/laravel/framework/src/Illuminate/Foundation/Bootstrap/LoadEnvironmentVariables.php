@@ -61,7 +61,7 @@ class LoadEnvironmentVariables
             return;
         }
 
-        $this->setEnvironmentFilePath( ////加载自定义环境文件
+        $this->setEnvironmentFilePath( //加载自定义环境文件
 			//     获取应用程序正在使用的环境文件      获取环境变量的值
             $app, $app->environmentFile().'.'.env('APP_ENV')
         );
