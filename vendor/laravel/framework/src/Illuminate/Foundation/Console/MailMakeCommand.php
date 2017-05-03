@@ -4,7 +4,7 @@ namespace Illuminate\Foundation\Console;
 
 use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
-
+//创建邮件命令
 class MailMakeCommand extends GeneratorCommand
 {
     /**

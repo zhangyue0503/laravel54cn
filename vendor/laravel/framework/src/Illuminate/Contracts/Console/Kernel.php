@@ -16,6 +16,8 @@ interface Kernel
     /**
      * Run an Artisan console command by name.
      *
+     * 按名称运行一个Artisan控制台命令
+     *
      * @param  string  $command
      * @param  array  $parameters
      * @return int

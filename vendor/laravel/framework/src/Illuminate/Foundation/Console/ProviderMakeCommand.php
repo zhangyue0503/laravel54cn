@@ -3,7 +3,7 @@
 namespace Illuminate\Foundation\Console;
 
 use Illuminate\Console\GeneratorCommand;
-
+//创建提供者命令
 class ProviderMakeCommand extends GeneratorCommand
 {
     /**

@@ -3,7 +3,7 @@
 namespace Illuminate\Foundation\Console;
 
 use Illuminate\Console\Command;
-
+//存储链接命令
 class StorageLinkCommand extends Command
 {
     /**

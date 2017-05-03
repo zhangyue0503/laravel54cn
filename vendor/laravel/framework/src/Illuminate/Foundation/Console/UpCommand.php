@@ -3,7 +3,7 @@
 namespace Illuminate\Foundation\Console;
 
 use Illuminate\Console\Command;
-
+//up命令
 class UpCommand extends Command
 {
     /**

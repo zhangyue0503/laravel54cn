@@ -4,7 +4,7 @@ namespace Illuminate\Queue\Console;
 
 use Illuminate\Support\Arr;
 use Illuminate\Console\Command;
-
+//失败的列表命令
 class ListFailedCommand extends Command
 {
     /**

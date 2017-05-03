@@ -125,6 +125,8 @@ class Application extends SymfonyApplication implements ApplicationContract
     /*
      * Clear the console application bootstrappers.
      *
+     * 清除控制台应用程序启动加载器
+     *
      * @return void
      */
     public static function forgetBootstrappers()

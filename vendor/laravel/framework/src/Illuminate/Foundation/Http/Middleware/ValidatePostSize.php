@@ -10,6 +10,8 @@ class ValidatePostSize
     /**
      * Handle an incoming request.
      *
+     * 处理传入请求
+     *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
      * @return mixed
@@ -18,8 +20,8 @@ class ValidatePostSize
      */
     public function handle($request, Closure $next)
     {
-        $max = $this->getPostMaxSize();
-
+        $max = $this->getPostMaxSize();//确定服务器的post_max_size字节
+        //                        从请求中检索一个服务器变量
         if ($max > 0 && $request->server('CONTENT_LENGTH') > $max) {
             throw new PostTooLargeException;
         }
@@ -29,6 +31,8 @@ class ValidatePostSize
 
     /**
      * Determine the server 'post_max_size' as bytes.
+     *
+     * 确定服务器的post_max_size字节
      *
      * @return int
      */

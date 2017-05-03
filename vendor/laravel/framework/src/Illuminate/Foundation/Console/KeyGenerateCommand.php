@@ -4,7 +4,7 @@ namespace Illuminate\Foundation\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;
-
+//密钥生成命令
 class KeyGenerateCommand extends Command
 {
     use ConfirmableTrait;

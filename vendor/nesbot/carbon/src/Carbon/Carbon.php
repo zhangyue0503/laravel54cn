@@ -24,6 +24,8 @@ use Symfony\Component\Translation\TranslatorInterface;
 /**
  * A simple API extension for DateTime
  *
+ * 用于DateTime的一个简单的API扩展
+ *
  * @property      int $year
  * @property      int $yearIso
  * @property      int $month
@@ -606,6 +608,8 @@ class Carbon extends DateTime
 
     /**
      * Create a Carbon instance from a timestamp.
+     *
+     * 从时间戳中创建一个Carbon实例
      *
      * @param int                       $timestamp
      * @param \DateTimeZone|string|null $tz
@@ -2503,6 +2507,10 @@ class Carbon extends DateTime
     /**
      * Add seconds to the instance. Positive $value travels forward while
      * negative $value travels into the past.
+     *
+     * 在实例中添加秒
+     *
+     * 积极的$value是向前的，而负的$value则会传递到过去
      *
      * @param int $value
      *

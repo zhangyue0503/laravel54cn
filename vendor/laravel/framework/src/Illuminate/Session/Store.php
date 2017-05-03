@@ -192,6 +192,8 @@ class Store implements Session
     /**
      * Checks if an a key is present and not null.
      *
+     * 检查一个键是否存在并且不是空
+     *
      * @param  string|array  $key
      * @return bool
      */
@@ -514,6 +516,8 @@ class Store implements Session
 
     /**
      * Determine if the session has been started.
+     *
+     * 确定会话是否已启动
      *
      * @return bool
      */

@@ -3,7 +3,7 @@
 namespace Illuminate\Foundation\Console;
 
 use Illuminate\Console\GeneratorCommand;
-
+//创建事件命令
 class EventMakeCommand extends GeneratorCommand
 {
     /**

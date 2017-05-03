@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use Symfony\Component\Process\ProcessUtils;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Process\PhpExecutableFinder;
-
+//服务命令
 class ServeCommand extends Command
 {
     /**

@@ -7,6 +7,8 @@ interface Guard
     /**
      * Determine if the current user is authenticated.
      *
+     * 确定当前用户是否已通过身份验证
+     *
      * @return bool
      */
     public function check();
@@ -20,6 +22,8 @@ interface Guard
 
     /**
      * Get the currently authenticated user.
+     *
+     * 获取当前经过身份验证的用户
      *
      * @return \Illuminate\Contracts\Auth\Authenticatable|null
      */
@@ -42,6 +46,8 @@ interface Guard
 
     /**
      * Set the current user.
+     *
+     * 设置当前用户
      *
      * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @return void

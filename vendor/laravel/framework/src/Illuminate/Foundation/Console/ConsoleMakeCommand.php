@@ -5,7 +5,7 @@ namespace Illuminate\Foundation\Console;
 use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
-
+//控制台创建命令
 class ConsoleMakeCommand extends GeneratorCommand
 {
     /**

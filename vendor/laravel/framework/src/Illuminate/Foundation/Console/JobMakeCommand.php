@@ -4,7 +4,7 @@ namespace Illuminate\Foundation\Console;
 
 use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
-
+//创建工作命令
 class JobMakeCommand extends GeneratorCommand
 {
     /**

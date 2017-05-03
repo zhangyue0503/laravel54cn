@@ -36,6 +36,8 @@ class SeedCommand extends Command
     /**
      * Create a new database seed command instance.
      *
+     * 创建一个新的数据库种子命令实例
+     *
      * @param  \Illuminate\Database\ConnectionResolverInterface  $resolver
      * @return void
      */

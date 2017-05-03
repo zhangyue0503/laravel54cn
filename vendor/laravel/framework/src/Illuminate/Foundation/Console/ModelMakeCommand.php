@@ -5,7 +5,7 @@ namespace Illuminate\Foundation\Console;
 use Illuminate\Support\Str;
 use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
-
+//创建模型命令
 class ModelMakeCommand extends GeneratorCommand
 {
     /**

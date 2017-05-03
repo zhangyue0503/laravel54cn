@@ -37,6 +37,8 @@ class SessionTableCommand extends Command
     /**
      * Create a new session table command instance.
      *
+     * 创建一个新的会话表命令实例
+     *
      * @param  \Illuminate\Filesystem\Filesystem  $files
      * @param  \Illuminate\Support\Composer  $composer
      * @return void

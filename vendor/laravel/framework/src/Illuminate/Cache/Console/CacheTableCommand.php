@@ -37,6 +37,8 @@ class CacheTableCommand extends Command
     /**
      * Create a new cache table command instance.
      *
+     * 创建一个新的缓存表命令实例
+     *
      * @param  \Illuminate\Filesystem\Filesystem  $files
      * @param  \Illuminate\Support\Composer  $composer
      * @return void

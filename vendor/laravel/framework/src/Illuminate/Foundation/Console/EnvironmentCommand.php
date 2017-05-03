@@ -3,7 +3,7 @@
 namespace Illuminate\Foundation\Console;
 
 use Illuminate\Console\Command;
-
+//环境命令
 class EnvironmentCommand extends Command
 {
     /**

@@ -704,6 +704,8 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
     /**
      * Get the user provider used by the guard.
      *
+     * 获取保护器使用的用户提供程序
+     *
      * @return \Illuminate\Contracts\Auth\UserProvider
      */
     public function getProvider()

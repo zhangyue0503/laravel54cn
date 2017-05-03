@@ -5,7 +5,7 @@ namespace Illuminate\Database\Console\Migrations;
 use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;
 use Symfony\Component\Console\Input\InputOption;
-
+//刷新命令
 class RefreshCommand extends Command
 {
     use ConfirmableTrait;

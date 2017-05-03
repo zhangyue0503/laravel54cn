@@ -32,6 +32,8 @@ class StatusCommand extends BaseCommand
     /**
      * Create a new migration rollback command instance.
      *
+     * 创建一个新的迁移回滚命令实例
+     *
      * @param  \Illuminate\Database\Migrations\Migrator $migrator
      * @return \Illuminate\Database\Console\Migrations\StatusCommand
      */

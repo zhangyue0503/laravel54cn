@@ -70,6 +70,8 @@ class Mockery
     /**
      * Static shortcut to \Mockery\Container::mock().
      *
+     * 静态的捷径\Mockery\Container::mock()
+     *
      * @return \Mockery\MockInterface
      */
     public static function mock()

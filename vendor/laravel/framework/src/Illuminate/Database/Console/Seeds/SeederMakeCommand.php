@@ -39,6 +39,8 @@ class SeederMakeCommand extends GeneratorCommand
     /**
      * Create a new command instance.
      *
+     * 创建一个新的命令实例
+     *
      * @param  \Illuminate\Filesystem\Filesystem  $files
      * @param  \Illuminate\Support\Composer  $composer
      * @return void

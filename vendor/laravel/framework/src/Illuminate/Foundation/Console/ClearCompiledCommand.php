@@ -3,7 +3,7 @@
 namespace Illuminate\Foundation\Console;
 
 use Illuminate\Console\Command;
-
+//清除编译命令
 class ClearCompiledCommand extends Command
 {
     /**

@@ -9,6 +9,8 @@ interface Validator extends MessageProvider
     /**
      * Determine if the data fails the validation rules.
      *
+     * 确定数据是否失败了验证规则
+     *
      * @return bool
      */
     public function fails();

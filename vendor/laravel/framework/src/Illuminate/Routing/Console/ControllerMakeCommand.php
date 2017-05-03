@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
-
+//控制器创建命令
 class ControllerMakeCommand extends GeneratorCommand
 {
     /**

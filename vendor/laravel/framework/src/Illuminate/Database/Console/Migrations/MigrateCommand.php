@@ -38,6 +38,8 @@ class MigrateCommand extends BaseCommand
     /**
      * Create a new migration command instance.
      *
+     * 创建一个新的迁移命令实例
+     *
      * @param  \Illuminate\Database\Migrations\Migrator  $migrator
      * @return void
      */

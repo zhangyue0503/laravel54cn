@@ -11,6 +11,8 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * The controller namespace for the application.
      *
+     * 应用程序的控制器名称空间
+     *
      * @var string|null
      */
     protected $namespace;
@@ -29,9 +31,10 @@ class RouteServiceProvider extends ServiceProvider
         if ($this->app->routesAreCached()) { // 确定应用程序路由是否被缓存
             $this->loadCachedRoutes(); // 为应用程序加载缓存的路由
         } else {
-            $this->loadRoutes();
-
+            $this->loadRoutes();//加载应用程序路由
+            //注册一个新的“引导”监听
             $this->app->booted(function () {
+                //           获取基础路由集合           刷新名称查找表
                 $this->app['router']->getRoutes()->refreshNameLookups();
             });
         }
@@ -47,6 +50,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function setRootControllerNamespace()
     {
         if (! is_null($this->namespace)) {
+            //              //Url生成器                 设置根控制器名称空间
             $this->app[UrlGenerator::class]->setRootControllerNamespace($this->namespace);
         }
     }
@@ -60,7 +64,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function loadCachedRoutes()
     {
+        ////注册一个新的“引导”监听
         $this->app->booted(function () {
+            // 获取路由的缓存文件的路径
             require $this->app->getCachedRoutesPath();
         });
     }
@@ -83,6 +89,8 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Register the service provider.
      *
+     * 注册服务提供者
+     *
      * @return void
      */
     public function register()
@@ -93,6 +101,8 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Pass dynamic methods onto the router instance.
      *
+     * 将动态方法传递给路由器实例
+     *
      * @param  string  $method
      * @param  array  $parameters
      * @return mixed
@@ -100,6 +110,7 @@ class RouteServiceProvider extends ServiceProvider
     public function __call($method, $parameters)
     {
         return call_user_func_array(
+            //从容器中解析给定类型
             [$this->app->make(Router::class), $method], $parameters
         );
     }

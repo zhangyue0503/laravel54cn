@@ -7,13 +7,15 @@ use InvalidArgumentException;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Contracts\Support\Arrayable;
 use Symfony\Component\HttpFoundation\JsonResponse as BaseJsonResponse;
-
+//json响应
 class JsonResponse extends BaseJsonResponse
 {
     use ResponseTrait;
 
     /**
      * Constructor.
+     *
+     * 构造函数
      *
      * @param  mixed  $data
      * @param  int    $status

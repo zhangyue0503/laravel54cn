@@ -46,6 +46,8 @@ class WorkCommand extends Command
     /**
      * Create a new queue listen command.
      *
+     * 创建一个新的队列监听命令
+     *
      * @param  \Illuminate\Queue\Worker  $worker
      * @return void
      */

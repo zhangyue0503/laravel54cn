@@ -3,7 +3,7 @@
 namespace Illuminate\Foundation\Console;
 
 use Illuminate\Console\GeneratorCommand;
-
+//创建测试命令
 class TestMakeCommand extends GeneratorCommand
 {
     /**

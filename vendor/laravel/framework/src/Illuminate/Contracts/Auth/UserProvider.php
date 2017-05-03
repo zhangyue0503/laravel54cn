@@ -33,6 +33,8 @@ interface UserProvider
     /**
      * Retrieve a user by the given credentials.
      *
+     * 通过给定的凭证检索用户
+     *
      * @param  array  $credentials
      * @return \Illuminate\Contracts\Auth\Authenticatable|null
      */
@@ -40,6 +42,8 @@ interface UserProvider
 
     /**
      * Validate a user against the given credentials.
+     *
+     * 根据给定的凭据对用户进行验证
      *
      * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @param  array  $credentials

@@ -3,7 +3,7 @@
 namespace Illuminate\Queue\Console;
 
 use Illuminate\Console\Command;
-
+//刷新失败的命令
 class FlushFailedCommand extends Command
 {
     /**

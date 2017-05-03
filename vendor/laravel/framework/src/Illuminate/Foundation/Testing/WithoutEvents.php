@@ -9,6 +9,8 @@ trait WithoutEvents
     /**
      * Prevent all event handles from being executed.
      *
+     * 防止所有事件句柄被执行
+     *
      * @throws \Exception
      */
     public function disableEventsForAllTests()

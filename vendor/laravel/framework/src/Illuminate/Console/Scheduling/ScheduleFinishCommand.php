@@ -3,7 +3,7 @@
 namespace Illuminate\Console\Scheduling;
 
 use Illuminate\Console\Command;
-
+//计划完成命令
 class ScheduleFinishCommand extends Command
 {
     /**

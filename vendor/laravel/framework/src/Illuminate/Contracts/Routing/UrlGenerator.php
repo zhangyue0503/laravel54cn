@@ -1,7 +1,7 @@
 <?php
 
 namespace Illuminate\Contracts\Routing;
-
+//Url生成器
 interface UrlGenerator
 {
     /**
@@ -63,6 +63,8 @@ interface UrlGenerator
 
     /**
      * Set the root controller namespace.
+     *
+     * 设置根控制器名称空间
      *
      * @param  string  $rootNamespace
      * @return $this

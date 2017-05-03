@@ -96,6 +96,8 @@ interface MessageBag
     /**
      * Get the instance as an array.
      *
+     * 将实例作为数组
+     *
      * @return array
      */
     public function toArray();

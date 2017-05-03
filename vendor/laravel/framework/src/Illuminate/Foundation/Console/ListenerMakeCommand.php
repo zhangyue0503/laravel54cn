@@ -5,7 +5,7 @@ namespace Illuminate\Foundation\Console;
 use Illuminate\Support\Str;
 use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
-
+//创建监听命令
 class ListenerMakeCommand extends GeneratorCommand
 {
     /**

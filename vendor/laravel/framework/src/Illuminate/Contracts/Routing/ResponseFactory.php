@@ -19,6 +19,8 @@ interface ResponseFactory
     /**
      * Return a new view response from the application.
      *
+     * 从应用程序返回一个新的视图响应
+     *
      * @param  string  $view
      * @param  array  $data
      * @param  int  $status

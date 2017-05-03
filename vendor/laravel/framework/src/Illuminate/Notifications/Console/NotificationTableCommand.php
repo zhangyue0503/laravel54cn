@@ -37,6 +37,8 @@ class NotificationTableCommand extends Command
     /**
      * Create a new notifications table command instance.
      *
+     * 创建一个新的通知表命令实例
+     *
      * @param  \Illuminate\Filesystem\Filesystem  $files
      * @param  \Illuminate\Support\Composer    $composer
      * @return void

@@ -5,7 +5,7 @@ namespace Illuminate\Foundation\Console;
 use Illuminate\Support\Str;
 use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
-
+//创建策略命令
 class PolicyMakeCommand extends GeneratorCommand
 {
     /**

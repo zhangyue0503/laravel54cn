@@ -42,9 +42,15 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 /**
  * An Application is the container for a collection of commands.
  *
+ * 应用程序是一组命令的容器
+ *
  * It is the main entry point of a Console application.
  *
+ * 它是控制台应用程序的主要入口点
+ *
  * This class is optimized for a standard CLI environment.
+ *
+ * 这个类针对一个标准的CLI环境进行了优化
  *
  * Usage:
  *
@@ -618,6 +624,8 @@ class Application
 
     /**
      * Renders a caught exception.
+     *
+     * 呈现捕获异常
      *
      * @param \Exception      $e      An exception instance
      * @param OutputInterface $output An OutputInterface instance

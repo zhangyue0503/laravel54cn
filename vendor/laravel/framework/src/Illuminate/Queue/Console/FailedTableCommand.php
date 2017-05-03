@@ -38,6 +38,8 @@ class FailedTableCommand extends Command
     /**
      * Create a new failed queue jobs table command instance.
      *
+     * 创建一个新的失败队列作业表命令实例
+     *
      * @param  \Illuminate\Filesystem\Filesystem  $files
      * @param  \Illuminate\Support\Composer    $composer
      * @return void

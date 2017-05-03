@@ -7,6 +7,8 @@ class TrimStrings extends TransformsRequest
     /**
      * The attributes that should not be trimmed.
      *
+     * 不应该被修剪的属性
+     *
      * @var array
      */
     protected $except = [
@@ -15,6 +17,8 @@ class TrimStrings extends TransformsRequest
 
     /**
      * Transform the given value.
+     *
+     * 转换给定值
      *
      * @param  string  $key
      * @param  mixed  $value

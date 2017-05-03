@@ -24,6 +24,8 @@ interface Kernel
     /**
      * Perform any final actions for the request lifecycle.
      *
+     * 为请求生命周期执行任何最终操作
+     *
      * @param  \Symfony\Component\HttpFoundation\Request  $request
      * @param  \Symfony\Component\HttpFoundation\Response  $response
      * @return void

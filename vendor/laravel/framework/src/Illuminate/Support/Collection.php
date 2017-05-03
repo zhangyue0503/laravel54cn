@@ -802,7 +802,7 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
      * The callback should return an associative array with a single key/value pair.
      *
      * 回调应该返回一个具有单个 键/值 对的关联数组
-     *0
+     *
      * @param  callable  $callback
      * @return static
      */

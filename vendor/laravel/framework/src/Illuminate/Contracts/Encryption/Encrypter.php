@@ -16,6 +16,8 @@ interface Encrypter
     /**
      * Decrypt the given value.
      *
+     * 对给定值进行解密
+     *
      * @param  string  $payload
      * @param  bool  $unserialize
      * @return string

@@ -32,6 +32,8 @@ class OptimizeCommand extends Command
     /**
      * Create a new optimize command instance.
      *
+     * 创建一个新的优化命令实例
+     *
      * @param  \Illuminate\Support\Composer  $composer
      * @return void
      */

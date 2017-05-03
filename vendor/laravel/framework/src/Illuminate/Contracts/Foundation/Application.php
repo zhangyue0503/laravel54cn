@@ -36,6 +36,8 @@ interface Application extends Container
     /**
      * Determine if the application is currently down for maintenance.
      *
+     * 确定应用程序当前是否用于维护
+     *
      * @return bool
      */
     public function isDownForMaintenance();

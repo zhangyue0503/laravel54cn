@@ -4,7 +4,7 @@ namespace Illuminate\Queue\Console;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
-
+//移除失败的命令
 class ForgetFailedCommand extends Command
 {
     /**

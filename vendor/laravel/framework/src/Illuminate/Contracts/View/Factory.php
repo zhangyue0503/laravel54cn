@@ -7,6 +7,8 @@ interface Factory
     /**
      * Determine if a given view exists.
      *
+     * 确定给定的视图是否存在
+     *
      * @param  string  $view
      * @return bool
      */
@@ -70,6 +72,8 @@ interface Factory
 
     /**
      * Replace the namespace hints for the given namespace.
+     *
+     * 替换给定名称空间的名称空间提示
      *
      * @param  string  $namespace
      * @param  string|array  $hints

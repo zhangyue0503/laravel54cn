@@ -4,7 +4,7 @@ namespace Illuminate\Queue\Console;
 
 use Carbon\Carbon;
 use Illuminate\Console\Command;
-
+//重启命令
 class RestartCommand extends Command
 {
     /**

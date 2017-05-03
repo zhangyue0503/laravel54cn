@@ -3,7 +3,7 @@
 namespace Illuminate\Routing\Console;
 
 use Illuminate\Console\GeneratorCommand;
-
+//创建中间件命令
 class MiddlewareMakeCommand extends GeneratorCommand
 {
     /**

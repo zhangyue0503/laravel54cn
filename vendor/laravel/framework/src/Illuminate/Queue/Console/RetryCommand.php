@@ -5,7 +5,7 @@ namespace Illuminate\Queue\Console;
 use Illuminate\Support\Arr;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
-
+//重试命令
 class RetryCommand extends Command
 {
     /**

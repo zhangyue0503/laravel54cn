@@ -32,6 +32,8 @@ class InstallCommand extends Command
     /**
      * Create a new migration install command instance.
      *
+     * 创建一个新的迁移安装命令实例
+     *
      * @param  \Illuminate\Database\Migrations\MigrationRepositoryInterface  $repository
      * @return void
      */

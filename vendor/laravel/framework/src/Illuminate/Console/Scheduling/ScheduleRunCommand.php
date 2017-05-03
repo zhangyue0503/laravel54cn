@@ -3,7 +3,7 @@
 namespace Illuminate\Console\Scheduling;
 
 use Illuminate\Console\Command;
-
+//调度运行命令
 class ScheduleRunCommand extends Command
 {
     /**

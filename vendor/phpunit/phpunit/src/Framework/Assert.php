@@ -21,6 +21,8 @@ abstract class PHPUnit_Framework_Assert
     /**
      * Asserts that an array has a specified key.
      *
+     * 断言一个数组有一个指定的键
+     *
      * @param mixed             $key
      * @param array|ArrayAccess $array
      * @param string            $message
@@ -48,6 +50,8 @@ abstract class PHPUnit_Framework_Assert
 
     /**
      * Asserts that an array has a specified subset.
+     *
+     * 断言一个数组有一个指定子集
      *
      * @param array|ArrayAccess $subset
      * @param array|ArrayAccess $array
@@ -78,6 +82,8 @@ abstract class PHPUnit_Framework_Assert
     /**
      * Asserts that an array does not have a specified key.
      *
+     * 断言一个数组没有指定的键
+     *
      * @param mixed             $key
      * @param array|ArrayAccess $array
      * @param string            $message
@@ -107,6 +113,8 @@ abstract class PHPUnit_Framework_Assert
 
     /**
      * Asserts that a haystack contains a needle.
+     *
+     * 断言一个草堆包含一根针
      *
      * @param mixed  $needle
      * @param mixed  $haystack
@@ -172,6 +180,8 @@ abstract class PHPUnit_Framework_Assert
 
     /**
      * Asserts that a haystack does not contain a needle.
+     *
+     * 断言一个草堆不包含针
      *
      * @param mixed  $needle
      * @param mixed  $haystack
@@ -463,6 +473,8 @@ abstract class PHPUnit_Framework_Assert
 
     /**
      * Asserts that two variables are equal.
+     *
+     * 断言两个变量是相等的
      *
      * @param mixed  $expected
      * @param mixed  $actual
@@ -1084,6 +1096,8 @@ abstract class PHPUnit_Framework_Assert
     /**
      * Asserts that a condition is true.
      *
+     * 断言一个条件是正确的
+     *
      * @param bool   $condition
      * @param string $message
      *
@@ -1109,6 +1123,8 @@ abstract class PHPUnit_Framework_Assert
 
     /**
      * Asserts that a condition is false.
+     *
+     * 断言一个条件是假的
      *
      * @param bool   $condition
      * @param string $message
@@ -1146,6 +1162,8 @@ abstract class PHPUnit_Framework_Assert
 
     /**
      * Asserts that a variable is not null.
+     *
+     * 断言一个变量不是空的
      *
      * @param mixed  $actual
      * @param string $message
@@ -1363,6 +1381,9 @@ abstract class PHPUnit_Framework_Assert
      * Used on objects, it asserts that two variables reference
      * the same object.
      *
+     * 断言两个变量具有相同的类型和值
+     * 在对象上，它断言两个变量引用相同的对象
+     *
      * @param mixed  $expected
      * @param mixed  $actual
      * @param string $message
@@ -1441,6 +1462,8 @@ abstract class PHPUnit_Framework_Assert
     /**
      * Asserts that a variable is of a given type.
      *
+     * 断言变量是给定类型的
+     *
      * @param string $expected
      * @param mixed  $actual
      * @param string $message
@@ -1514,6 +1537,8 @@ abstract class PHPUnit_Framework_Assert
 
     /**
      * Asserts that a variable is of a given type.
+     *
+     * 断言变量是给定类型的
      *
      * @param string $expected
      * @param mixed  $actual
@@ -2048,6 +2073,8 @@ abstract class PHPUnit_Framework_Assert
 
     /**
      * Evaluates a PHPUnit_Framework_Constraint matcher object.
+     *
+     * 评估一个PHPUnit_Framework_Constraint匹配器对象
      *
      * @param mixed                        $value
      * @param PHPUnit_Framework_Constraint $constraint
@@ -2744,6 +2771,8 @@ abstract class PHPUnit_Framework_Assert
     }
     /**
      * Fails a test with the given message.
+     *
+     * 对给定消息的测试失败
      *
      * @param string $message
      *

@@ -38,6 +38,8 @@ class TableCommand extends Command
     /**
      * Create a new queue job table command instance.
      *
+     * 创建一个新的队列作业表命令实例
+     *
      * @param  \Illuminate\Filesystem\Filesystem  $files
      * @param  \Illuminate\Support\Composer    $composer
      * @return void

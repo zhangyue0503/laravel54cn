@@ -31,6 +31,8 @@ class ForgetCommand extends Command
     /**
      * Create a new cache clear command instance.
      *
+     * 创建一个新的缓存清除命令实例
+     *
      * @param  \Illuminate\Cache\CacheManager  $cache
      * @return void
      */

@@ -3,7 +3,7 @@
 namespace Illuminate\Auth\Console;
 
 use Illuminate\Console\Command;
-
+//清除重置命令
 class ClearResetsCommand extends Command
 {
     /**

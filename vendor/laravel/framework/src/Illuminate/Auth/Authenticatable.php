@@ -24,6 +24,8 @@ trait Authenticatable
     /**
      * Get the unique identifier for the user.
      *
+     * 获取用户的唯一标识符
+     *
      * @return mixed
      */
     public function getAuthIdentifier()

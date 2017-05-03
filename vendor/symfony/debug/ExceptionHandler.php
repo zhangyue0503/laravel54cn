@@ -180,6 +180,8 @@ class ExceptionHandler
     /**
      * Gets the full HTML content associated with the given exception.
      *
+     * 获取与给定异常相关的全部HTML内容
+     *
      * @param \Exception|FlattenException $exception An \Exception or FlattenException instance
      *
      * @return string The HTML content as a string

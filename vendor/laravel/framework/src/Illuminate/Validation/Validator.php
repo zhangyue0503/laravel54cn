@@ -606,6 +606,8 @@ class Validator implements ValidatorContract
     /**
      * Get the message container for the validator.
      *
+     * 获取验证器的消息容器
+     *
      * @return \Illuminate\Support\MessageBag
      */
     public function messages()
@@ -619,6 +621,8 @@ class Validator implements ValidatorContract
 
     /**
      * An alternative more semantic shortcut to the message container.
+     *
+     * 消息容器的另一种语义快捷方式
      *
      * @return \Illuminate\Support\MessageBag
      */

@@ -5,7 +5,7 @@ namespace Illuminate\Foundation\Console;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider;
-
+//事件生成命令
 class EventGenerateCommand extends Command
 {
     /**
