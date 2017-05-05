@@ -312,6 +312,8 @@ class Carbon extends DateTime
     /**
      * Create a carbon instance from a string.
      *
+     * 从字符串中创建一个carbon实例
+     *
      * This is an alias for the constructor that allows better fluent syntax
      * as it allows you to do Carbon::parse('Monday next week')->fn() rather
      * than (new Carbon('Monday next week'))->fn().
@@ -1772,6 +1774,8 @@ class Carbon extends DateTime
     /**
      * Determines if the instance is in the past, ie. less (before) than now
      *
+     * 确定实例是否在过去，例如。比现在少(之前)
+     *
      * @return bool
      */
     public function isPast()
@@ -2547,6 +2551,8 @@ class Carbon extends DateTime
 
     /**
      * Remove seconds from the instance
+     *
+     * 从实例中删除秒
      *
      * @param int $value
      *

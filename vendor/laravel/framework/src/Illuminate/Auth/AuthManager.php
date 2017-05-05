@@ -118,6 +118,8 @@ class AuthManager implements FactoryContract
     /**
      * Create a session based authentication guard.
      *
+     * 创建基于会话的身份验证保护
+     *
      * @param  string  $name
      * @param  array  $config
      * @return \Illuminate\Auth\SessionGuard

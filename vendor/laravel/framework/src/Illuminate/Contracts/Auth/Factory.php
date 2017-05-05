@@ -17,6 +17,8 @@ interface Factory
     /**
      * Set the default guard the factory should serve.
      *
+     * 设置工厂应该提供的默认保护
+     *
      * @param  string  $name
      * @return void
      */

@@ -18,6 +18,8 @@ interface Hasher
     /**
      * Check the given plain value against a hash.
      *
+     * 检查给定的普通值与散列值
+     *
      * @param  string  $value
      * @param  string  $hashedValue
      * @param  array   $options

@@ -11,6 +11,8 @@ class Registered
     /**
      * The authenticated user.
      *
+     * 经过身份验证的用户
+     *
      * @var \Illuminate\Contracts\Auth\Authenticatable
      */
     public $user;

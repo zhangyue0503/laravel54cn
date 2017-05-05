@@ -11,6 +11,8 @@ class Authenticate
     /**
      * The authentication factory instance.
      *
+     * 身份验证工厂实例
+     *
      * @var \Illuminate\Contracts\Auth\Factory
      */
     protected $auth;
@@ -60,12 +62,13 @@ class Authenticate
     protected function authenticate(array $guards)
     {
         if (empty($guards)) {
-            return $this->auth->authenticate();
+            return $this->auth->authenticate();//确定用户是否登录到任何给定的保护中
         }
 
         foreach ($guards as $guard) {
+            //通过名称获取守护实例->确定是否给予给定的能力
             if ($this->auth->guard($guard)->check()) {
-                return $this->auth->shouldUse($guard);
+                return $this->auth->shouldUse($guard);//设置工厂应该提供的默认保护
             }
         }
 

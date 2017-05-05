@@ -141,6 +141,8 @@ class SimpleMessage
     /**
      * Add a line of text to the notification.
      *
+     * 在通知中添加一行文本
+     *
      * @param  \Illuminate\Notifications\Action|string  $line
      * @return $this
      */
@@ -185,6 +187,8 @@ class SimpleMessage
 
     /**
      * Configure the "call to action" button.
+     *
+     * 配置“调用操作”按钮
      *
      * @param  string  $text
      * @param  string  $url
