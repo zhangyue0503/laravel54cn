@@ -15,12 +15,16 @@ class Dispatcher implements QueueingDispatcher
     /**
      * The container implementation.
      *
+     * 容器实现
+     *
      * @var \Illuminate\Contracts\Container\Container
      */
     protected $container;
 
     /**
      * The pipeline instance for the bus.
+     *
+     * 总线的管道实例
      *
      * @var \Illuminate\Pipeline\Pipeline
      */
@@ -29,6 +33,8 @@ class Dispatcher implements QueueingDispatcher
     /**
      * The pipes to send commands through before dispatching.
      *
+     * 在发送命令之前通过管道发送命令
+     *
      * @var array
      */
     protected $pipes = [];
@@ -36,12 +42,16 @@ class Dispatcher implements QueueingDispatcher
     /**
      * The command to handler mapping for non-self-handling events.
      *
+     * 命令处理程序映射non-self-handling事件
+     *
      * @var array
      */
     protected $handlers = [];
 
     /**
      * The queue resolver callback.
+     *
+     * 队列解析器回调
      *
      * @var \Closure|null
      */
@@ -61,7 +71,7 @@ class Dispatcher implements QueueingDispatcher
     {
         $this->container = $container;
         $this->queueResolver = $queueResolver;
-        $this->pipeline = new Pipeline($container);
+        $this->pipeline = new Pipeline($container);//创建新的实例
     }
 
     /**
@@ -78,7 +88,7 @@ class Dispatcher implements QueueingDispatcher
         if ($this->queueResolver && $this->commandShouldBeQueued($command)) {
             return $this->dispatchToQueue($command);//向队列后面的适当处理程序发送命令
         } else {
-            return $this->dispatchNow($command);
+            return $this->dispatchNow($command);//在当前进程中向其适当的处理程序发送命令
         }
     }
 
@@ -94,6 +104,7 @@ class Dispatcher implements QueueingDispatcher
      */
     public function dispatchNow($command, $handler = null)
     {
+        //                               获取一个命令的处理程序
         if ($handler || $handler = $this->getCommandHandler($command)) {
             $callback = function ($command) use ($handler) {
                 return $handler->handle($command);
@@ -103,12 +114,14 @@ class Dispatcher implements QueueingDispatcher
                 return $this->container->call([$command, 'handle']);//调用给定的闭包/类@方法并注入它的依赖项
             };
         }
-
+        //              设置通过管道发送的对象->设置管道数组->使用最终目标回调来运行管道
         return $this->pipeline->send($command)->through($this->pipes)->then($callback);
     }
 
     /**
      * Determine if the given command has a handler.
+     *
+     * 确定给定的命令是否具有处理程序
      *
      * @param  mixed  $command
      * @return bool
@@ -121,12 +134,16 @@ class Dispatcher implements QueueingDispatcher
     /**
      * Retrieve the handler for a command.
      *
+     * 获取一个命令的处理程序
+     *
      * @param  mixed  $command
      * @return bool|mixed
      */
     public function getCommandHandler($command)
     {
+        //确定给定的命令是否具有处理程序
         if ($this->hasCommandHandler($command)) {
+            //从容器中解析给定类型
             return $this->container->make($this->handlers[get_class($command)]);
         }
 
@@ -135,6 +152,8 @@ class Dispatcher implements QueueingDispatcher
 
     /**
      * Determine if the given command should be queued.
+     *
+     * 确定给定的命令是否应该排队
      *
      * @param  mixed  $command
      * @return bool
@@ -168,6 +187,7 @@ class Dispatcher implements QueueingDispatcher
         if (method_exists($command, 'queue')) {
             return $command->queue($queue, $command);
         } else {
+            //将命令推送到给定的队列实例
             return $this->pushCommandToQueue($queue, $command);
         }
     }
@@ -185,22 +205,27 @@ class Dispatcher implements QueueingDispatcher
     protected function pushCommandToQueue($queue, $command)
     {
         if (isset($command->queue, $command->delay)) {
+            //在延迟之后将新作业推到队列上
             return $queue->laterOn($command->queue, $command->delay, $command);
         }
 
         if (isset($command->queue)) {
+            //把新工作推到队列上
             return $queue->pushOn($command->queue, $command);
         }
 
         if (isset($command->delay)) {
+            //在延迟之后将新作业推到队列上
             return $queue->later($command->delay, $command);
         }
-
+        //推送一条新的消息到队列
         return $queue->push($command);
     }
 
     /**
      * Set the pipes through which commands should be piped before dispatching.
+     *
+     * 设置管道，在分派之前，命令应该通过管道进行
      *
      * @param  array  $pipes
      * @return $this
@@ -214,6 +239,8 @@ class Dispatcher implements QueueingDispatcher
 
     /**
      * Map a command to a handler.
+     *
+     * 将命令映射到处理程序
      *
      * @param  array  $map
      * @return $this

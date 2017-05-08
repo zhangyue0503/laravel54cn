@@ -7,6 +7,8 @@ interface UserProvider
     /**
      * Retrieve a user by their unique identifier.
      *
+     * 通过惟一标识符检索用户
+     *
      * @param  mixed  $identifier
      * @return \Illuminate\Contracts\Auth\Authenticatable|null
      */
@@ -14,6 +16,8 @@ interface UserProvider
 
     /**
      * Retrieve a user by their unique identifier and "remember me" token.
+     *
+     * 通过其唯一标识符检索用户并“记住我”令牌
      *
      * @param  mixed   $identifier
      * @param  string  $token
@@ -23,6 +27,8 @@ interface UserProvider
 
     /**
      * Update the "remember me" token for the given user in storage.
+     *
+     * 在存储中为给定用户更新“记住我”令牌
      *
      * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @param  string  $token

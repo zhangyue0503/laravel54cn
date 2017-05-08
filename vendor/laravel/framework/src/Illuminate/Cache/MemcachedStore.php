@@ -173,6 +173,8 @@ class MemcachedStore extends TaggableStore implements Store
     /**
      * Remove an item from the cache.
      *
+     * 从缓存中删除一个项目
+     *
      * @param  string  $key
      * @return bool
      */
@@ -183,6 +185,8 @@ class MemcachedStore extends TaggableStore implements Store
 
     /**
      * Remove all items from the cache.
+     *
+     * 从缓存中删除所有项目
      *
      * @return bool
      */

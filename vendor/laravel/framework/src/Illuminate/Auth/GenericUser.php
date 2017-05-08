@@ -9,12 +9,16 @@ class GenericUser implements UserContract
     /**
      * All of the user's attributes.
      *
+     * 所有用户的属性
+     *
      * @var array
      */
     protected $attributes;
 
     /**
      * Create a new generic User object.
+     *
+     * 创建一个新的通用用户对象
      *
      * @param  array  $attributes
      * @return void
@@ -27,6 +31,8 @@ class GenericUser implements UserContract
     /**
      * Get the name of the unique identifier for the user.
      *
+     * 为用户获取唯一标识符的名称
+     *
      * @return string
      */
     public function getAuthIdentifierName()
@@ -37,10 +43,13 @@ class GenericUser implements UserContract
     /**
      * Get the unique identifier for the user.
      *
+     * 获取用户的唯一标识符
+     *
      * @return mixed
      */
     public function getAuthIdentifier()
     {
+        //         为用户获取唯一标识符的名称
         $name = $this->getAuthIdentifierName();
 
         return $this->attributes[$name];
@@ -48,6 +57,8 @@ class GenericUser implements UserContract
 
     /**
      * Get the password for the user.
+     *
+     * 获取用户的密码
      *
      * @return string
      */
@@ -59,26 +70,34 @@ class GenericUser implements UserContract
     /**
      * Get the "remember me" token value.
      *
+     * 获得“记住我”的标记值
+     *
      * @return string
      */
     public function getRememberToken()
     {
+        //                        获取“记住我”标记的列名
         return $this->attributes[$this->getRememberTokenName()];
     }
 
     /**
      * Set the "remember me" token value.
      *
+     * 设置“记住我”的令牌值
+     *
      * @param  string  $value
      * @return void
      */
     public function setRememberToken($value)
     {
+        //                  获取“记住我”标记的列名
         $this->attributes[$this->getRememberTokenName()] = $value;
     }
 
     /**
      * Get the column name for the "remember me" token.
+     *
+     * 获取“记住我”标记的列名
      *
      * @return string
      */
@@ -90,6 +109,8 @@ class GenericUser implements UserContract
     /**
      * Dynamically access the user's attributes.
      *
+     * 动态访问用户的属性
+     *
      * @param  string  $key
      * @return mixed
      */
@@ -100,6 +121,8 @@ class GenericUser implements UserContract
 
     /**
      * Dynamically set an attribute on the user.
+     *
+     * 动态地为用户设置一个属性
      *
      * @param  string  $key
      * @param  mixed  $value
@@ -113,6 +136,8 @@ class GenericUser implements UserContract
     /**
      * Dynamically check if a value is set on the user.
      *
+     * 动态检查用户是否设置了一个值
+     *
      * @param  string  $key
      * @return bool
      */
@@ -123,6 +148,8 @@ class GenericUser implements UserContract
 
     /**
      * Dynamically unset a value on the user.
+     *
+     * 动态地为用户设置一个值
      *
      * @param  string  $key
      * @return void

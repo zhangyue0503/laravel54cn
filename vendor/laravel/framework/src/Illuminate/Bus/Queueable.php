@@ -7,6 +7,8 @@ trait Queueable
     /**
      * The name of the connection the job should be sent to.
      *
+     * 连接的名称应该被发送到
+     *
      * @var string|null
      */
     public $connection;
@@ -14,12 +16,16 @@ trait Queueable
     /**
      * The name of the queue the job should be sent to.
      *
+     * 该作业队列的名称应该被发送到
+     *
      * @var string|null
      */
     public $queue;
 
     /**
      * The number of seconds before the job should be made available.
+     *
+     * 在工作之前的几秒钟
      *
      * @var \DateTime|int|null
      */

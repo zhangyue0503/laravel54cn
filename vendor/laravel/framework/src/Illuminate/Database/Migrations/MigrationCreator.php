@@ -39,6 +39,8 @@ class MigrationCreator
     /**
      * Create a new migration at the given path.
      *
+     * 在给定的路径中创建新的迁移
+     *
      * @param  string  $name
      * @param  string  $path
      * @param  string  $table

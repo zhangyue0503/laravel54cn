@@ -24,6 +24,8 @@ interface Broadcaster
     /**
      * Broadcast the given event.
      *
+     * 广播给定事件
+     *
      * @param  array  $channels
      * @param  string  $event
      * @param  array  $payload

@@ -1,10 +1,12 @@
 <?php
 
 namespace Illuminate\Broadcasting;
-
+//私有频道
 class PrivateChannel extends Channel
 {
     /**
+     * Create a new channel instance.
+     *
      * Create a new channel instance.
      *
      * @param  string  $name

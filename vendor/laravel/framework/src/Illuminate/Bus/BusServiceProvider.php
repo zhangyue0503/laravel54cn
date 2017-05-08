@@ -12,6 +12,8 @@ class BusServiceProvider extends ServiceProvider
     /**
      * Indicates if loading of the provider is deferred.
      *
+     * 指示是否延迟了提供者的加载
+     *
      * @var bool
      */
     protected $defer = true;
@@ -32,11 +34,11 @@ class BusServiceProvider extends ServiceProvider
                 return $app[QueueFactoryContract::class]->connection($connection);
             });
         });
-
+        // 别名为不同名称的类型
         $this->app->alias(
             Dispatcher::class, DispatcherContract::class
         );
-
+        // 别名为不同名称的类型
         $this->app->alias(
             Dispatcher::class, QueueingDispatcherContract::class
         );
@@ -44,6 +46,8 @@ class BusServiceProvider extends ServiceProvider
 
     /**
      * Get the services provided by the provider.
+     *
+     * 获取提供者提供的服务
      *
      * @return array
      */

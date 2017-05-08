@@ -66,6 +66,8 @@ interface Session
     /**
      * Get an item from the session.
      *
+     * 从会话中获得一个项目
+     *
      * @param  string  $key
      * @param  mixed  $default
      * @return mixed
@@ -74,6 +76,8 @@ interface Session
 
     /**
      * Put a key / value pair or array of key / value pairs in the session.
+     *
+     * 在会话中放置键/值对或数组键/值对
      *
      * @param  string|array  $key
      * @param  mixed       $value
@@ -90,6 +94,8 @@ interface Session
 
     /**
      * Remove an item from the session, returning its value.
+     *
+     * 从会话中删除一个条目，返回它的值
      *
      * @param  string  $key
      * @return mixed
@@ -113,6 +119,8 @@ interface Session
 
     /**
      * Generate a new session ID for the session.
+     *
+     * 为会话生成一个新的会话ID
      *
      * @param  bool  $destroy
      * @return bool

@@ -14,12 +14,16 @@ interface Authenticatable
     /**
      * Get the unique identifier for the user.
      *
+     * 获取用户的唯一标识符
+     *
      * @return mixed
      */
     public function getAuthIdentifier();
 
     /**
      * Get the password for the user.
+     *
+     * 获取用户的密码
      *
      * @return string
      */
@@ -28,12 +32,16 @@ interface Authenticatable
     /**
      * Get the token value for the "remember me" session.
      *
+     * 获取“记住我”会话的令牌值
+     *
      * @return string
      */
     public function getRememberToken();
 
     /**
      * Set the token value for the "remember me" session.
+     *
+     * 为“记住我”的会话设置令牌值
      *
      * @param  string  $value
      * @return void

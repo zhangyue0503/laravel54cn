@@ -7,6 +7,8 @@ interface QueueingFactory extends Factory
     /**
      * Queue a cookie to send with the next response.
      *
+     * 用下一个响应发送一个cookie来发送
+     *
      * @param  array  $parameters
      * @return void
      */

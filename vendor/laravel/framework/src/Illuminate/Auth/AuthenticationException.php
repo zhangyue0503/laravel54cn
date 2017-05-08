@@ -9,12 +9,16 @@ class AuthenticationException extends Exception
     /**
      * All of the guards that were checked.
      *
+     * 所有被检查的警卫
+     *
      * @var array
      */
     protected $guards;
 
     /**
      * Create a new authentication exception.
+     *
+     * 创建一个新的身份验证异常
      *
      * @param  string  $message
      * @param  array  $guards
@@ -29,6 +33,8 @@ class AuthenticationException extends Exception
 
     /**
      * Get the guards that were checked.
+     *
+     * 检查检查过的警卫
      *
      * @return array
      */

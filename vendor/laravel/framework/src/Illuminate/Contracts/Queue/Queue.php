@@ -27,6 +27,8 @@ interface Queue
     /**
      * Push a new job onto the queue.
      *
+     * 把新工作推到队列上
+     *
      * @param  string  $queue
      * @param  string  $job
      * @param  mixed   $data
@@ -47,6 +49,8 @@ interface Queue
     /**
      * Push a new job onto the queue after a delay.
      *
+     * 在延迟之后将新作业推到队列上
+     *
      * @param  \DateTime|int  $delay
      * @param  string  $job
      * @param  mixed   $data
@@ -57,6 +61,8 @@ interface Queue
 
     /**
      * Push a new job onto the queue after a delay.
+     *
+     * 在延迟之后将新作业推到队列上
      *
      * @param  string  $queue
      * @param  \DateTime|int  $delay

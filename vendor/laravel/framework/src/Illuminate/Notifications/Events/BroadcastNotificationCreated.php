@@ -66,6 +66,8 @@ class BroadcastNotificationCreated implements ShouldBroadcast
     /**
      * Get the data that should be sent with the broadcasted event.
      *
+     * 得到的数据应该发送的广播事件
+     *
      * @return array
      */
     public function broadcastWith()

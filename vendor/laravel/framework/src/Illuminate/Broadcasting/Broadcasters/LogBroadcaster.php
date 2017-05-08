@@ -9,12 +9,16 @@ class LogBroadcaster extends Broadcaster
     /**
      * The logger implementation.
      *
+     * logger实现
+     *
      * @var \Psr\Log\LoggerInterface
      */
     protected $logger;
 
     /**
      * Create a new broadcaster instance.
+     *
+     * 创建一个新的广播实例
      *
      * @param  \Psr\Log\LoggerInterface  $logger
      * @return void
@@ -45,6 +49,7 @@ class LogBroadcaster extends Broadcaster
      */
     public function broadcast(array $channels, $event, array $payload = [])
     {
+        //                                 将通道数组格式化为字符串数组
         $channels = implode(', ', $this->formatChannels($channels));
 
         $payload = json_encode($payload, JSON_PRETTY_PRINT);
