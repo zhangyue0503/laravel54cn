@@ -7,6 +7,8 @@ interface Mailer
     /**
      * Send a new message when only a raw text part.
      *
+     * 仅在原始文本部分发送一条新消息
+     *
      * @param  string  $text
      * @param  \Closure|string  $callback
      * @return int

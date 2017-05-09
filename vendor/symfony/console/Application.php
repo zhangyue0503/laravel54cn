@@ -270,6 +270,8 @@ class Application
     /**
      * Sets whether to catch exceptions or not during commands execution.
      *
+     * 在命令执行过程中设置是否捕获异常
+     *
      * @param bool $boolean Whether to catch exceptions or not during commands execution
      */
     public function setCatchExceptions($boolean)
@@ -289,6 +291,8 @@ class Application
 
     /**
      * Sets whether to automatically exit after a command execution or not.
+     *
+     * 设置是否在命令执行后自动退出
      *
      * @param bool $boolean Whether to automatically exit after a command execution or not
      */
@@ -383,6 +387,8 @@ class Application
 
     /**
      * Adds a command object.
+     *
+     * 添加一个命令对象
      *
      * If a command with the same name already exists, it will be overridden.
      * If the command is not enabled it will not be added.
@@ -517,6 +523,8 @@ class Application
 
     /**
      * Finds a command by name or alias.
+     *
+     * 通过名称或别名找到一个命令
      *
      * Contrary to get, this command tries to find the best
      * match if you give it an abbreviation of a name or alias.
@@ -906,6 +914,8 @@ class Application
 
     /**
      * Gets the default input definition.
+     *
+     * 获得默认输入定义
      *
      * @return InputDefinition An InputDefinition instance
      */

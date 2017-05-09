@@ -423,6 +423,8 @@ class Filesystem
     /**
      * Get all of the directories within a given directory.
      *
+     * 在给定目录中获取所有目录
+     *
      * @param  string  $directory
      * @return array
      */
@@ -531,7 +533,11 @@ class Filesystem
     /**
      * Recursively delete a directory.
      *
+     * 递归删除目录
+     *
      * The directory itself may be optionally preserved.
+     *
+     * 目录本身可以被保留
      *
      * @param  string  $directory
      * @param  bool    $preserve

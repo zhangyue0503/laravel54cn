@@ -75,6 +75,8 @@ class Question
     /**
      * Sets whether the user response must be hidden or not.
      *
+     * 设置用户响应是否必须隐藏
+     *
      * @param bool $hidden
      *
      * @return $this
@@ -105,6 +107,8 @@ class Question
     /**
      * Sets whether to fallback on non-hidden question if the response can not be hidden.
      *
+     * 设置是否可以在非隐藏的问题上后退如果响应不能被隐藏
+     *
      * @param bool $fallback
      *
      * @return $this
@@ -128,6 +132,8 @@ class Question
 
     /**
      * Sets values for the autocompleter.
+     *
+     * 集值自动完成
      *
      * @param null|array|\Traversable $values
      *
@@ -183,6 +189,8 @@ class Question
 
     /**
      * Sets the maximum number of attempts.
+     *
+     * 设置最大的尝试次数
      *
      * Null means an unlimited number of attempts.
      *

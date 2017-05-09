@@ -7,6 +7,8 @@ interface Store
     /**
      * Retrieve an item from the cache by key.
      *
+     * 通过键从缓存中检索一个项
+     *
      * @param  string|array  $key
      * @return mixed
      */
@@ -24,6 +26,8 @@ interface Store
 
     /**
      * Store an item in the cache for a given number of minutes.
+     *
+     * 在缓存中存储一个条目，在给定的时间内
      *
      * @param  string  $key
      * @param  mixed   $value
@@ -44,6 +48,8 @@ interface Store
     /**
      * Increment the value of an item in the cache.
      *
+     * 增加缓存中的项的值
+     *
      * @param  string  $key
      * @param  mixed   $value
      * @return int|bool
@@ -52,6 +58,8 @@ interface Store
 
     /**
      * Decrement the value of an item in the cache.
+     *
+     * 增加缓存中的项的值
      *
      * @param  string  $key
      * @param  mixed   $value
@@ -62,6 +70,8 @@ interface Store
     /**
      * Store an item in the cache indefinitely.
      *
+     * 在缓存中无限期地存储一个项
+     *
      * @param  string  $key
      * @param  mixed   $value
      * @return void
@@ -70,6 +80,8 @@ interface Store
 
     /**
      * Remove an item from the cache.
+     *
+     * 从缓存中删除一个项目
      *
      * @param  string  $key
      * @return bool
@@ -85,6 +97,8 @@ interface Store
 
     /**
      * Get the cache key prefix.
+     *
+     * 获取高速缓存键前缀
      *
      * @return string
      */

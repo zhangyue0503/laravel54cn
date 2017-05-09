@@ -7,12 +7,16 @@ class ApcWrapper
     /**
      * Indicates if APCu is supported.
      *
+     * 表示是否支持APCu
+     *
      * @var bool
      */
     protected $apcu = false;
 
     /**
      * Create a new APC wrapper instance.
+     *
+     * 创建一个新的APC包装器实例
      *
      * @return void
      */
@@ -24,6 +28,8 @@ class ApcWrapper
     /**
      * Get an item from the cache.
      *
+     * 从缓存中获取一个项目
+     *
      * @param  string  $key
      * @return mixed
      */
@@ -34,6 +40,8 @@ class ApcWrapper
 
     /**
      * Store an item in the cache.
+     *
+     * 在缓存中存储一个项
      *
      * @param  string  $key
      * @param  mixed   $value
@@ -48,6 +56,8 @@ class ApcWrapper
     /**
      * Increment the value of an item in the cache.
      *
+     * 增加缓存中的项的值
+     *
      * @param  string  $key
      * @param  mixed   $value
      * @return int|bool
@@ -59,6 +69,8 @@ class ApcWrapper
 
     /**
      * Decrement the value of an item in the cache.
+     *
+     * 在缓存中减去一个项目的值
      *
      * @param  string  $key
      * @param  mixed   $value
@@ -72,6 +84,8 @@ class ApcWrapper
     /**
      * Remove an item from the cache.
      *
+     * 从缓存中删除一个项目
+     *
      * @param  string  $key
      * @return bool
      */
@@ -82,6 +96,8 @@ class ApcWrapper
 
     /**
      * Remove all items from the cache.
+     *
+     * 从缓存中删除所有项目
      *
      * @return bool
      */

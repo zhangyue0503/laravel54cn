@@ -97,6 +97,8 @@ class InputDefinition
     /**
      * Adds an InputArgument object.
      *
+     * 添加一个InputArgument对象
+     *
      * @param InputArgument $argument An InputArgument object
      *
      * @throws LogicException When incorrect argument is given

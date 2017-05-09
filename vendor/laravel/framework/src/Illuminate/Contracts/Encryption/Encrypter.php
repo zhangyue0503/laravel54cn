@@ -7,6 +7,8 @@ interface Encrypter
     /**
      * Encrypt the given value.
      *
+     * 对给定值进行加密
+     *
      * @param  string  $value
      * @param  bool  $serialize
      * @return string

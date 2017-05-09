@@ -116,6 +116,8 @@ class Command
     /**
      * Gets the application instance for this command.
      *
+     * 获取该命令的应用程序实例
+     *
      * @return Application An Application instance
      */
     public function getApplication()
@@ -194,6 +196,8 @@ class Command
 
     /**
      * Runs the command.
+     *
+     * 运行命令
      *
      * The code to execute is either defined directly with the
      * setCode() method or by overriding the execute() method
@@ -353,6 +357,8 @@ class Command
 
     /**
      * Gets the InputDefinition attached to this Command.
+     *
+     * 获得这个命令的InputDefinition
      *
      * @return InputDefinition An InputDefinition instance
      */

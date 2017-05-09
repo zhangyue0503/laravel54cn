@@ -83,6 +83,8 @@ interface InputInterface
     /**
      * Returns the argument value for a given argument name.
      *
+     * 返回给定参数名的参数值
+     *
      * @param string $name The argument name
      *
      * @return mixed The argument value
@@ -103,6 +105,8 @@ interface InputInterface
 
     /**
      * Returns true if an InputArgument object exists by name or position.
+     *
+     * 返回true,如果一个InputArgument对象存在的名字或位置
      *
      * @param string|int $name The InputArgument name or position
      *
@@ -144,6 +148,8 @@ interface InputInterface
 
     /**
      * Returns true if an InputOption object exists by name.
+     *
+     * 返回true,如果存在一个InputOption对象的名字
      *
      * @param string $name The InputOption name
      *

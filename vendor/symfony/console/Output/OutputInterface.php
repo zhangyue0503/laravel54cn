@@ -66,12 +66,16 @@ interface OutputInterface
     /**
      * Returns whether verbosity is quiet (-q).
      *
+     * 返回是否安静的冗长(-q)
+     *
      * @return bool true if verbosity is set to VERBOSITY_QUIET, false otherwise
      */
     public function isQuiet();
 
     /**
      * Returns whether verbosity is verbose (-v).
+     *
+     * 返回是否冗长冗长(- v)
      *
      * @return bool true if verbosity is set to VERBOSITY_VERBOSE, false otherwise
      */
@@ -80,12 +84,16 @@ interface OutputInterface
     /**
      * Returns whether verbosity is very verbose (-vv).
      *
+     * 返回是否非常冗长冗长(vv)
+     *
      * @return bool true if verbosity is set to VERBOSITY_VERY_VERBOSE, false otherwise
      */
     public function isVeryVerbose();
 
     /**
      * Returns whether verbosity is debug (-vvv).
+     *
+     * 返回是否调试冗长(-vvv)
      *
      * @return bool true if verbosity is set to VERBOSITY_DEBUG, false otherwise
      */

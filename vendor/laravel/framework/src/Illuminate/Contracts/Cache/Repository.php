@@ -9,6 +9,8 @@ interface Repository
     /**
      * Determine if an item exists in the cache.
      *
+     * 确定缓存中是否存在某个项
+     *
      * @param  string  $key
      * @return bool
      */
@@ -16,6 +18,8 @@ interface Repository
 
     /**
      * Retrieve an item from the cache by key.
+     *
+     * 通过键从缓存中检索一个项
      *
      * @param  string  $key
      * @param  mixed   $default
@@ -35,6 +39,8 @@ interface Repository
     /**
      * Store an item in the cache.
      *
+     * 在缓存中存储一个项
+     *
      * @param  string  $key
      * @param  mixed   $value
      * @param  \DateTime|float|int  $minutes
@@ -45,6 +51,8 @@ interface Repository
     /**
      * Store an item in the cache if the key does not exist.
      *
+     * 如果键不存在，则在缓存中存储一个项
+     *
      * @param  string  $key
      * @param  mixed   $value
      * @param  \DateTime|float|int  $minutes
@@ -54,6 +62,8 @@ interface Repository
 
     /**
      * Increment the value of an item in the cache.
+     *
+     * 增加缓存中的项的值
      *
      * @param  string  $key
      * @param  mixed  $value
@@ -101,6 +111,8 @@ interface Repository
     /**
      * Get an item from the cache, or store the default value forever.
      *
+     * 从缓存中获取一个条目，或者永久存储默认值
+     *
      * @param  string   $key
      * @param  \Closure  $callback
      * @return mixed
@@ -109,6 +121,8 @@ interface Repository
 
     /**
      * Remove an item from the cache.
+     *
+     * 从缓存中删除一个项目
      *
      * @param  string $key
      * @return bool

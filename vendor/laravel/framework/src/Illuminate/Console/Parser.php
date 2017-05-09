@@ -12,6 +12,8 @@ class Parser
     /**
      * Parse the given console command definition into an array.
      *
+     * 将给定的控制台命令定义解析为一个数组
+     *
      * @param  string  $expression
      * @return array
      *
@@ -19,10 +21,12 @@ class Parser
      */
     public static function parse($expression)
     {
+        //从表达式中提取命令的名称
         $name = static::name($expression);
 
         if (preg_match_all('/\{\s*(.*?)\s*\}/', $expression, $matches)) {
             if (count($matches[1])) {
+                //                             从令牌中提取所有参数
                 return array_merge([$name], static::parameters($matches[1]));
             }
         }
@@ -32,6 +36,8 @@ class Parser
 
     /**
      * Extract the name of the command from the expression.
+     *
+     * 从表达式中提取命令的名称
      *
      * @param  string  $expression
      * @return string
@@ -52,6 +58,8 @@ class Parser
     /**
      * Extract all of the parameters from the tokens.
      *
+     * 从令牌中提取所有参数
+     *
      * @param  array  $tokens
      * @return array
      */
@@ -63,9 +71,9 @@ class Parser
 
         foreach ($tokens as $token) {
             if (preg_match('/-{2,}(.*)/', $token, $matches)) {
-                $options[] = static::parseOption($matches[1]);
+                $options[] = static::parseOption($matches[1]);//解析一个选项表达式
             } else {
-                $arguments[] = static::parseArgument($token);
+                $arguments[] = static::parseArgument($token);//解析一个参数表达式
             }
         }
 
@@ -75,15 +83,18 @@ class Parser
     /**
      * Parse an argument expression.
      *
+     * 解析一个参数表达式
+     *
      * @param  string  $token
      * @return \Symfony\Component\Console\Input\InputArgument
      */
     protected static function parseArgument($token)
     {
+        //                              将令牌解析为其令牌和描述段
         list($token, $description) = static::extractDescription($token);
 
         switch (true) {
-            case Str::endsWith($token, '?*'):
+            case Str::endsWith($token, '?*')://确定给定的字符串的结束是否是给定的子字符串
                 return new InputArgument(trim($token, '?*'), InputArgument::IS_ARRAY, $description);
             case Str::endsWith($token, '*'):
                 return new InputArgument(trim($token, '*'), InputArgument::IS_ARRAY | InputArgument::REQUIRED, $description);
@@ -99,11 +110,14 @@ class Parser
     /**
      * Parse an option expression.
      *
+     * 解析一个选项表达式
+     *
      * @param  string  $token
      * @return \Symfony\Component\Console\Input\InputOption
      */
     protected static function parseOption($token)
     {
+        //                             将令牌解析为其令牌和描述段
         list($token, $description) = static::extractDescription($token);
 
         $matches = preg_split('/\s*\|\s*/', $token, 2);
@@ -116,7 +130,7 @@ class Parser
         }
 
         switch (true) {
-            case Str::endsWith($token, '='):
+            case Str::endsWith($token, '=')://确定给定的字符串的结束是否是给定的子字符串
                 return new InputOption(trim($token, '='), $shortcut, InputOption::VALUE_OPTIONAL, $description);
             case Str::endsWith($token, '=*'):
                 return new InputOption(trim($token, '=*'), $shortcut, InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, $description);
@@ -129,6 +143,8 @@ class Parser
 
     /**
      * Parse the token into its token and description segments.
+     *
+     * 将令牌解析为其令牌和描述段
      *
      * @param  string  $token
      * @return array

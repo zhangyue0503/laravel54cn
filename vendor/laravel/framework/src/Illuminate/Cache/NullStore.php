@@ -11,12 +11,16 @@ class NullStore extends TaggableStore implements Store
     /**
      * The array of stored values.
      *
+     * 存储值的数组
+     *
      * @var array
      */
     protected $storage = [];
 
     /**
      * Retrieve an item from the cache by key.
+     *
+     * 通过键从缓存中检索一个项
      *
      * @param  string  $key
      * @return mixed
@@ -28,6 +32,8 @@ class NullStore extends TaggableStore implements Store
 
     /**
      * Store an item in the cache for a given number of minutes.
+     *
+     * 在缓存中存储一个条目，在给定的时间内
      *
      * @param  string  $key
      * @param  mixed   $value
@@ -42,6 +48,8 @@ class NullStore extends TaggableStore implements Store
     /**
      * Increment the value of an item in the cache.
      *
+     * 增加缓存中的项的值
+     *
      * @param  string  $key
      * @param  mixed   $value
      * @return int
@@ -53,6 +61,8 @@ class NullStore extends TaggableStore implements Store
 
     /**
      * Decrement the value of an item in the cache.
+     *
+     * 在缓存中减去一个项目的值
      *
      * @param  string  $key
      * @param  mixed   $value
@@ -66,6 +76,8 @@ class NullStore extends TaggableStore implements Store
     /**
      * Store an item in the cache indefinitely.
      *
+     * 在缓存中无限期地存储一个项
+     *
      * @param  string  $key
      * @param  mixed   $value
      * @return void
@@ -78,6 +90,8 @@ class NullStore extends TaggableStore implements Store
     /**
      * Remove an item from the cache.
      *
+     * 从缓存中删除一个项目
+     *
      * @param  string  $key
      * @return void
      */
@@ -89,6 +103,8 @@ class NullStore extends TaggableStore implements Store
     /**
      * Remove all items from the cache.
      *
+     * 从缓存中删除所有项
+     *
      * @return bool
      */
     public function flush()
@@ -98,6 +114,8 @@ class NullStore extends TaggableStore implements Store
 
     /**
      * Get the cache key prefix.
+     *
+     * 获取高速缓存键前缀
      *
      * @return string
      */

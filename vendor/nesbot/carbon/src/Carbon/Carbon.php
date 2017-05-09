@@ -296,6 +296,8 @@ class Carbon extends DateTime
     /**
      * Create a Carbon instance from a DateTime one.
      *
+     * 从DateTime中创建一个碳实例
+     *
      * @param \DateTime $dt
      *
      * @return static
@@ -944,6 +946,8 @@ class Carbon extends DateTime
 
     /**
      * Set the instance's timezone from a string or object
+     *
+     * 从字符串或对象中设置实例的时区
      *
      * @param \DateTimeZone|string $value
      *
@@ -2743,6 +2747,8 @@ class Carbon extends DateTime
 
     /**
      * Get the difference in seconds
+     *
+     * 以秒为差
      *
      * @param \Carbon\Carbon|null $dt
      * @param bool                $abs Get the absolute of the difference

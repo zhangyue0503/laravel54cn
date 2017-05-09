@@ -28,6 +28,8 @@ use Symfony\Component\Console\Terminal;
 /**
  * Output decorator helpers for the Symfony Style Guide.
  *
+ * 输出装饰助手Symfony风格指南
+ *
  * @author Kevin Bond <kevinbond@gmail.com>
  */
 class SymfonyStyle extends OutputStyle

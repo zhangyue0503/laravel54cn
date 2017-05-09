@@ -35,6 +35,8 @@ interface OutputFormatterInterface
     /**
      * Sets a new style.
      *
+     * 设置一个新的样式
+     *
      * @param string                        $name  The style name
      * @param OutputFormatterStyleInterface $style The style instance
      */
@@ -42,6 +44,8 @@ interface OutputFormatterInterface
 
     /**
      * Checks if output formatter has style with specified name.
+     *
+     * 检查输出格式器是否具有指定名称的样式
      *
      * @param string $name
      *
