@@ -7,6 +7,8 @@ interface Log
     /**
      * Log an alert message to the logs.
      *
+     * 将警报消息记录到日志中
+     *
      * @param  string  $message
      * @param  array  $context
      * @return void
@@ -15,6 +17,8 @@ interface Log
 
     /**
      * Log a critical message to the logs.
+     *
+     * 将一条重要消息记录到日志中
      *
      * @param  string  $message
      * @param  array  $context
@@ -25,6 +29,8 @@ interface Log
     /**
      * Log an error message to the logs.
      *
+     * 将错误消息记录到日志中
+     *
      * @param  string  $message
      * @param  array  $context
      * @return void
@@ -33,6 +39,8 @@ interface Log
 
     /**
      * Log a warning message to the logs.
+     *
+     * 将一条警告消息记录到日志中
      *
      * @param  string  $message
      * @param  array  $context
@@ -43,6 +51,8 @@ interface Log
     /**
      * Log a notice to the logs.
      *
+     * 将一个通知记录到日志中
+     *
      * @param  string  $message
      * @param  array  $context
      * @return void
@@ -51,6 +61,8 @@ interface Log
 
     /**
      * Log an informational message to the logs.
+     *
+     * 将一条信息消息记录到日志中
      *
      * @param  string  $message
      * @param  array  $context
@@ -61,6 +73,8 @@ interface Log
     /**
      * Log a debug message to the logs.
      *
+     * 将调试消息记录到日志中
+     *
      * @param  string  $message
      * @param  array  $context
      * @return void
@@ -69,6 +83,8 @@ interface Log
 
     /**
      * Log a message to the logs.
+     *
+     * 将消息记录到日志中
      *
      * @param  string  $level
      * @param  string  $message
@@ -80,6 +96,8 @@ interface Log
     /**
      * Register a file log handler.
      *
+     * 注册一个文件日志处理程序
+     *
      * @param  string  $path
      * @param  string  $level
      * @return void
@@ -88,6 +106,8 @@ interface Log
 
     /**
      * Register a daily file log handler.
+     *
+     * 注册一个每日文件日志处理程序
      *
      * @param  string  $path
      * @param  int     $days

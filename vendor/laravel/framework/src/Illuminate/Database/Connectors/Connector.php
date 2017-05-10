@@ -15,6 +15,8 @@ class Connector
     /**
      * The default PDO connection options.
      *
+     * 默认的PDO连接选项
+     *
      * @var array
      */
     protected $options = [
@@ -38,6 +40,7 @@ class Connector
     public function createConnection($dsn, array $config, array $options)
     {
         list($username, $password) = [
+            //使用“点”符号从数组中获取一个项
             Arr::get($config, 'username'), Arr::get($config, 'password'),
         ];
 
@@ -46,6 +49,7 @@ class Connector
                 $dsn, $username, $password, $options
             );
         } catch (Exception $e) {
+            //处理连接执行期间发生的异常
             return $this->tryAgainIfCausedByLostConnection(
                 $e, $dsn, $username, $password, $options
             );
@@ -65,6 +69,7 @@ class Connector
      */
     protected function createPdoConnection($dsn, $username, $password, $options)
     {
+        //                                             确定连接是否持久
         if (class_exists(PDOConnection::class) && ! $this->isPersistentConnection($options)) {
             return new PDOConnection($dsn, $username, $password, $options);
         }
@@ -74,6 +79,8 @@ class Connector
 
     /**
      * Determine if the connection is persistent.
+     *
+     * 确定连接是否持久
      *
      * @param  array  $options
      * @return bool
@@ -87,6 +94,8 @@ class Connector
     /**
      * Handle an exception that occurred during connect execution.
      *
+     * 处理连接执行期间发生的异常
+     *
      * @param  \Exception  $e
      * @param  string  $dsn
      * @param  string  $username
@@ -98,7 +107,9 @@ class Connector
      */
     protected function tryAgainIfCausedByLostConnection(Exception $e, $dsn, $username, $password, $options)
     {
+        //确定给定的异常是否由丢失的连接引起
         if ($this->causedByLostConnection($e)) {
+            //创建一个新的PDO连接实例
             return $this->createPdoConnection($dsn, $username, $password, $options);
         }
 
@@ -108,11 +119,14 @@ class Connector
     /**
      * Get the PDO options based on the configuration.
      *
+     * 根据配置获得PDO选项
+     *
      * @param  array  $config
      * @return array
      */
     public function getOptions(array $config)
     {
+        //使用“点”符号从数组中获取一个项
         $options = Arr::get($config, 'options', []);
 
         return array_diff_key($this->options, $options) + $options;
@@ -120,6 +134,8 @@ class Connector
 
     /**
      * Get the default PDO connection options.
+     *
+     * 获得默认的PDO连接选项
      *
      * @return array
      */
@@ -130,6 +146,8 @@ class Connector
 
     /**
      * Set the default PDO connection options.
+     *
+     * 设置默认的PDO连接选项
      *
      * @param  array  $options
      * @return void

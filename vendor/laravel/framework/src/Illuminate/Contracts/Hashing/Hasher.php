@@ -30,6 +30,8 @@ interface Hasher
     /**
      * Check if the given hash has been hashed using the given options.
      *
+     * 检查给定的散列是否已使用给定选项进行散列
+     *
      * @param  string  $hashedValue
      * @param  array   $options
      * @return bool

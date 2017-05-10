@@ -20,6 +20,8 @@ interface Factory
     /**
      * Register a custom validator extension.
      *
+     * 注册一个定制的验证器扩展
+     *
      * @param  string  $rule
      * @param  \Closure|string  $extension
      * @param  string  $message
@@ -30,6 +32,8 @@ interface Factory
     /**
      * Register a custom implicit validator extension.
      *
+     * 注册一个自定义的隐式验证器扩展
+     *
      * @param  string   $rule
      * @param  \Closure|string  $extension
      * @param  string  $message
@@ -39,6 +43,8 @@ interface Factory
 
     /**
      * Register a custom implicit validator message replacer.
+     *
+     * 注册一个定制的隐式验证器消息替换器
      *
      * @param  string   $rule
      * @param  \Closure|string  $replacer

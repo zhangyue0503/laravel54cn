@@ -74,6 +74,8 @@ class Migrator
     /**
      * Run the pending migrations at a given path.
      *
+     * 在给定的路径上运行正在等待的迁移
+     *
      * @param  array|string  $paths
      * @param  array  $options
      * @return array
@@ -187,6 +189,8 @@ class Migrator
     /**
      * Rollback the last migration operation.
      *
+     * 回滚最后一次迁移操作
+     *
      * @param  array|string $paths
      * @param  array  $options
      * @return array
@@ -257,6 +261,8 @@ class Migrator
 
     /**
      * Rolls all of the currently applied migrations back.
+     *
+     * 将当前应用的所有迁移回滚
      *
      * @param  array|string $paths
      * @param  bool  $pretend
@@ -408,6 +414,8 @@ class Migrator
     /**
      * Get all of the migration files in a given path.
      *
+     * 在给定的路径中获取所有迁移文件
+     *
      * @param  string|array  $paths
      * @return array
      */
@@ -437,6 +445,8 @@ class Migrator
 
     /**
      * Get the name of the migration.
+     *
+     * 获取迁移的名称
      *
      * @param  string  $path
      * @return string
@@ -469,6 +479,8 @@ class Migrator
 
     /**
      * Set the default connection name.
+     *
+     * 设置缺省连接名称
      *
      * @param  string  $name
      * @return void
@@ -515,6 +527,8 @@ class Migrator
     /**
      * Get the migration repository instance.
      *
+     * 获取迁移存储库实例
+     *
      * @return \Illuminate\Database\Migrations\MigrationRepositoryInterface
      */
     public function getRepository()
@@ -524,6 +538,8 @@ class Migrator
 
     /**
      * Determine if the migration repository exists.
+     *
+     * 确定迁移存储库是否存在
      *
      * @return bool
      */
@@ -555,6 +571,8 @@ class Migrator
 
     /**
      * Get the notes for the last operation.
+     *
+     * 获取最后一个操作的注释
      *
      * @return array
      */

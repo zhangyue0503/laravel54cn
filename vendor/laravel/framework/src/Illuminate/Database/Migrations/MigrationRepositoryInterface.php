@@ -7,6 +7,8 @@ interface MigrationRepositoryInterface
     /**
      * Get the ran migrations for a given package.
      *
+     * 获取一个给定包的运行迁移
+     *
      * @return array
      */
     public function getRan();
@@ -53,6 +55,8 @@ interface MigrationRepositoryInterface
     /**
      * Create the migration repository data store.
      *
+     * 创建迁移存储库数据存储
+     *
      * @return void
      */
     public function createRepository();
@@ -66,6 +70,8 @@ interface MigrationRepositoryInterface
 
     /**
      * Set the information source to gather data.
+     *
+     * 设置信息源以收集数据
      *
      * @param  string  $name
      * @return void

@@ -66,6 +66,8 @@ interface Application extends Container
     /**
      * Register a deferred provider and service.
      *
+     * 注册一个延迟提供程序和服务
+     *
      * @param  string  $provider
      * @param  string  $service
      * @return void
@@ -83,6 +85,8 @@ interface Application extends Container
 
     /**
      * Register a new boot listener.
+     *
+     * 注册一个新的引导侦听器
      *
      * @param  mixed  $callback
      * @return void

@@ -7,6 +7,8 @@ interface Repository
     /**
      * Determine if the given configuration value exists.
      *
+     * 确定给定的配置值是否存在
+     *
      * @param  string  $key
      * @return bool
      */
@@ -14,6 +16,8 @@ interface Repository
 
     /**
      * Get the specified configuration value.
+     *
+     * 获得指定的配置值
      *
      * @param  string  $key
      * @param  mixed   $default
@@ -23,6 +27,8 @@ interface Repository
 
     /**
      * Get all of the configuration items for the application.
+     *
+     * 获取应用程序的所有配置项
      *
      * @return array
      */
@@ -42,6 +48,8 @@ interface Repository
     /**
      * Prepend a value onto an array configuration value.
      *
+     * 预先考虑值在数组配置值
+     *
      * @param  string  $key
      * @param  mixed  $value
      * @return void
@@ -50,6 +58,8 @@ interface Repository
 
     /**
      * Push a value onto an array configuration value.
+     *
+     * 将一个值推到一个数组配置值上
      *
      * @param  string  $key
      * @param  mixed  $value

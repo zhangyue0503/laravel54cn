@@ -30,6 +30,8 @@ interface Repository
     /**
      * Retrieve an item from the cache and delete it.
      *
+     * 从缓存中检索一个条目并删除它
+     *
      * @param  string  $key
      * @param  mixed   $default
      * @return mixed

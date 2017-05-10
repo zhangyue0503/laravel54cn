@@ -9,6 +9,8 @@ class EntityNotFoundException extends InvalidArgumentException
     /**
      * Create a new exception instance.
      *
+     * 创建一个新的异常实例
+     *
      * @param  string  $type
      * @param  mixed  $id
      * @return void

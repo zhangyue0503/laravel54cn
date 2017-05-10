@@ -17,12 +17,16 @@ interface QueueingFactory extends Factory
     /**
      * Remove a cookie from the queue.
      *
+     * 从队列中删除cookie
+     *
      * @param  string  $name
      */
     public function unqueue($name);
 
     /**
      * Get the cookies which have been queued for the next request.
+     *
+     * 获取为下一个请求排队的cookie
      *
      * @return array
      */

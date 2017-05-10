@@ -15,6 +15,8 @@ class SeedCommand extends Command
     /**
      * The console command name.
      *
+     * 控制台命令名
+     *
      * @var string
      */
     protected $name = 'db:seed';
@@ -22,12 +24,16 @@ class SeedCommand extends Command
     /**
      * The console command description.
      *
+     * 控制台命令描述
+     *
      * @var string
      */
     protected $description = 'Seed the database with records';
 
     /**
      * The connection resolver instance.
+     *
+     * 连接解析器实例
      *
      * @var \Illuminate\Database\ConnectionResolverInterface
      */
@@ -43,6 +49,7 @@ class SeedCommand extends Command
      */
     public function __construct(Resolver $resolver)
     {
+        //创建一个新的控制台命令实例
         parent::__construct();
 
         $this->resolver = $resolver;
@@ -51,17 +58,21 @@ class SeedCommand extends Command
     /**
      * Execute the console command.
      *
+     * 执行控制台命令
+     *
      * @return void
      */
     public function fire()
     {
+        //在继续操作之前确认
         if (! $this->confirmToProceed()) {
             return;
         }
-
+        //设置默认的连接名称(获取要使用的数据库连接的名称)
         $this->resolver->setDefaultConnection($this->getDatabase());
-
+        //运行给定的可调用的大意的
         Model::unguarded(function () {
+            //在容器中获取seeder实例->运行数据库seeds
             $this->getSeeder()->__invoke();
         });
     }
@@ -69,10 +80,13 @@ class SeedCommand extends Command
     /**
      * Get a seeder instance from the container.
      *
+     * 在容器中获取seeder实例
+     *
      * @return \Illuminate\Database\Seeder
      */
     protected function getSeeder()
     {
+        //从容器中解析给定类型(返回给定选项名的选项值)
         $class = $this->laravel->make($this->input->getOption('class'));
 
         return $class->setContainer($this->laravel)->setCommand($this);
@@ -81,10 +95,13 @@ class SeedCommand extends Command
     /**
      * Get the name of the database connection to use.
      *
+     * 获取要使用的数据库连接的名称
+     *
      * @return string
      */
     protected function getDatabase()
     {
+        //返回给定选项名的选项值
         $database = $this->input->getOption('database');
 
         return $database ?: $this->laravel['config']['database.default'];

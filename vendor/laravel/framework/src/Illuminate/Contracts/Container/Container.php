@@ -162,6 +162,8 @@ interface Container
     /**
      * Register a new resolving callback.
      *
+     * 注册一个新的解析回调
+     *
      * @param  string    $abstract
      * @param  \Closure|null  $callback
      * @return void
@@ -170,6 +172,8 @@ interface Container
 
     /**
      * Register a new after resolving callback.
+     *
+     * 在解析回调后注册一个新的
      *
      * @param  string    $abstract
      * @param  \Closure|null  $callback

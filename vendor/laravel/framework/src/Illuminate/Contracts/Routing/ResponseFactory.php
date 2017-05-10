@@ -45,6 +45,8 @@ interface ResponseFactory
     /**
      * Return a new JSONP response from the application.
      *
+     * 从应用程序返回一个新的JSONP响应
+     *
      * @param  string  $callback
      * @param  string|array  $data
      * @param  int  $status
@@ -57,6 +59,8 @@ interface ResponseFactory
     /**
      * Return a new streamed response from the application.
      *
+     * 从应用程序返回一个新的流响应
+     *
      * @param  \Closure  $callback
      * @param  int  $status
      * @param  array  $headers
@@ -66,6 +70,8 @@ interface ResponseFactory
 
     /**
      * Create a new file download response.
+     *
+     * 创建一个新的文件下载响应
      *
      * @param  \SplFileInfo|string  $file
      * @param  string  $name
@@ -78,6 +84,8 @@ interface ResponseFactory
     /**
      * Create a new redirect response to the given path.
      *
+     * 为给定的路径创建一个新的重定向响应
+     *
      * @param  string  $path
      * @param  int  $status
      * @param  array  $headers
@@ -88,6 +96,8 @@ interface ResponseFactory
 
     /**
      * Create a new redirect response to a named route.
+     *
+     * 为指定的路由创建一个新的重定向响应
      *
      * @param  string  $route
      * @param  array  $parameters
@@ -100,6 +110,8 @@ interface ResponseFactory
     /**
      * Create a new redirect response to a controller action.
      *
+     * 为控制器动作创建一个新的重定向响应
+     *
      * @param  string  $action
      * @param  array  $parameters
      * @param  int  $status
@@ -111,6 +123,8 @@ interface ResponseFactory
     /**
      * Create a new redirect response, while putting the current URL in the session.
      *
+     * 创建一个新的重定向响应，同时将当前的URL放在会话中
+     *
      * @param  string  $path
      * @param  int  $status
      * @param  array  $headers
@@ -121,6 +135,8 @@ interface ResponseFactory
 
     /**
      * Create a new redirect response to the previously intended location.
+     *
+     * 创建一个新的重定向响应，以响应先前的目标位置
      *
      * @param  string  $default
      * @param  int  $status

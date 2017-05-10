@@ -7,6 +7,8 @@ interface Registrar
     /**
      * Register a new GET route with the router.
      *
+     * 用路由器注册一个新的GET路由
+     *
      * @param  string  $uri
      * @param  \Closure|array|string  $action
      * @return void
@@ -15,6 +17,8 @@ interface Registrar
 
     /**
      * Register a new POST route with the router.
+     *
+     * 用路由器注册一个新的POST路由
      *
      * @param  string  $uri
      * @param  \Closure|array|string  $action
@@ -25,6 +29,8 @@ interface Registrar
     /**
      * Register a new PUT route with the router.
      *
+     * 用路由器注册一个新的PUT路由
+     *
      * @param  string  $uri
      * @param  \Closure|array|string  $action
      * @return void
@@ -33,6 +39,8 @@ interface Registrar
 
     /**
      * Register a new DELETE route with the router.
+     *
+     * 用路由器注册一个新的DELETE路由
      *
      * @param  string  $uri
      * @param  \Closure|array|string  $action

@@ -7,6 +7,8 @@ interface Authenticatable
     /**
      * Get the name of the unique identifier for the user.
      *
+     * 为用户获取唯一标识符的名称
+     *
      * @return string
      */
     public function getAuthIdentifierName();
@@ -50,6 +52,8 @@ interface Authenticatable
 
     /**
      * Get the column name for the "remember me" token.
+     *
+     * 获取“记住我”标记的列名
      *
      * @return string
      */

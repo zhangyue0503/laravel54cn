@@ -7,6 +7,8 @@ interface Gate
     /**
      * Determine if a given ability has been defined.
      *
+     * 确定是否已经定义了给定的能力
+     *
      * @param  string  $ability
      * @return bool
      */
@@ -14,6 +16,8 @@ interface Gate
 
     /**
      * Define a new ability.
+     *
+     * 定义一个新的能力
      *
      * @param  string  $ability
      * @param  callable|string  $callback
@@ -24,6 +28,8 @@ interface Gate
     /**
      * Define a policy class for a given class type.
      *
+     * 定义一个给定类类型的策略类
+     *
      * @param  string  $class
      * @param  string  $policy
      * @return $this
@@ -33,6 +39,8 @@ interface Gate
     /**
      * Register a callback to run before all Gate checks.
      *
+     * 在所有的Gate检查之前注册一个回调来运行
+     *
      * @param  callable  $callback
      * @return $this
      */
@@ -40,6 +48,8 @@ interface Gate
 
     /**
      * Register a callback to run after all Gate checks.
+     *
+     * 注册一个回调，以便在所有的Gate检查之后运行
      *
      * @param  callable  $callback
      * @return $this
@@ -49,6 +59,8 @@ interface Gate
     /**
      * Determine if the given ability should be granted for the current user.
      *
+     * 确定当前用户是否应该授予给定的能力
+     *
      * @param  string  $ability
      * @param  array|mixed  $arguments
      * @return bool
@@ -57,6 +69,8 @@ interface Gate
 
     /**
      * Determine if the given ability should be denied for the current user.
+     *
+     * 确定当前用户是否应该拒绝给定的能力
      *
      * @param  string  $ability
      * @param  array|mixed  $arguments

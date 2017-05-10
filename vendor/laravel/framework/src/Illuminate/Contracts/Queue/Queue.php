@@ -7,6 +7,8 @@ interface Queue
     /**
      * Get the size of the queue.
      *
+     * 获取队列的大小
+     *
      * @param  string  $queue
      * @return int
      */
@@ -38,6 +40,8 @@ interface Queue
 
     /**
      * Push a raw payload onto the queue.
+     *
+     * 将原始有效负载推到队列中
      *
      * @param  string  $payload
      * @param  string  $queue

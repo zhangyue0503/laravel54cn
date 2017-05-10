@@ -18,6 +18,8 @@ interface SupportsBasicAuth
     /**
      * Perform a stateless HTTP Basic login attempt.
      *
+     * 执行无状态的HTTP基本登录尝试
+     *
      * @param  string  $field
      * @param  array  $extraConditions
      * @return \Symfony\Component\HttpFoundation\Response|null

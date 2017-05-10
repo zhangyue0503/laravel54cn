@@ -7,6 +7,8 @@ interface Dispatcher
     /**
      * Dispatch a command to its appropriate handler.
      *
+     * 向适当的处理程序分派一个命令
+     *
      * @param  mixed  $command
      * @return mixed
      */
@@ -26,6 +28,8 @@ interface Dispatcher
 
     /**
      * Set the pipes commands should be piped through before dispatching.
+     *
+     * 设置管道命令应该在分派之前通过管道完成
      *
      * @param  array  $pipes
      * @return $this

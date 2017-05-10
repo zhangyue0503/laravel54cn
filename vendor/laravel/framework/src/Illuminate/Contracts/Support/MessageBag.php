@@ -7,12 +7,16 @@ interface MessageBag
     /**
      * Get the keys present in the message bag.
      *
+     * 获取信息袋中出现的密钥
+     *
      * @return array
      */
     public function keys();
 
     /**
      * Add a message to the bag.
+     *
+     * 将消息添加到包中
      *
      * @param  string  $key
      * @param  string  $message
@@ -23,6 +27,8 @@ interface MessageBag
     /**
      * Merge a new array of messages into the bag.
      *
+     * 将新的消息数组合并到包中
+     *
      * @param  \Illuminate\Contracts\Support\MessageProvider|array  $messages
      * @return $this
      */
@@ -31,6 +37,8 @@ interface MessageBag
     /**
      * Determine if messages exist for a given key.
      *
+     * 确定给定键是否存在消息
+     *
      * @param  string|array  $key
      * @return bool
      */
@@ -38,6 +46,8 @@ interface MessageBag
 
     /**
      * Get the first message from the bag for a given key.
+     *
+     * 从包中获取一个给定键的第一个消息
      *
      * @param  string  $key
      * @param  string  $format
@@ -48,6 +58,8 @@ interface MessageBag
     /**
      * Get all of the messages from the bag for a given key.
      *
+     * 从包中获取所有的消息，获取一个给定的键
+     *
      * @param  string  $key
      * @param  string  $format
      * @return array
@@ -57,6 +69,8 @@ interface MessageBag
     /**
      * Get all of the messages for every key in the bag.
      *
+     * 获取包中每个关键字的所有消息
+     *
      * @param  string  $format
      * @return array
      */
@@ -65,12 +79,16 @@ interface MessageBag
     /**
      * Get the default message format.
      *
+     * 获取默认消息格式
+     *
      * @return string
      */
     public function getFormat();
 
     /**
      * Set the default message format.
+     *
+     * 设置默认消息格式
      *
      * @param  string  $format
      * @return $this
@@ -79,6 +97,8 @@ interface MessageBag
 
     /**
      * Determine if the message bag has any messages.
+     *
+     * 确定消息包是否有任何消息
      *
      * @return bool
      */

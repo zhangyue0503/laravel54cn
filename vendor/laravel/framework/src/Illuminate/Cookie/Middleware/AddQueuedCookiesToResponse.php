@@ -10,12 +10,16 @@ class AddQueuedCookiesToResponse
     /**
      * The cookie jar instance.
      *
+     * cookie jar实例
+     *
      * @var \Illuminate\Contracts\Cookie\QueueingFactory
      */
     protected $cookies;
 
     /**
      * Create a new CookieQueue instance.
+     *
+     * 创建一个新的CookieQueue实例
      *
      * @param  \Illuminate\Contracts\Cookie\QueueingFactory  $cookies
      * @return void
@@ -28,6 +32,8 @@ class AddQueuedCookiesToResponse
     /**
      * Handle an incoming request.
      *
+     * 处理传入请求
+     *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
      * @return mixed
@@ -36,6 +42,7 @@ class AddQueuedCookiesToResponse
     {
         $response = $next($request);
 
+        //获取为下一个请求排队的cookie
         foreach ($this->cookies->getQueuedCookies() as $cookie) {
             $response->headers->setCookie($cookie);
         }

@@ -18,6 +18,8 @@ interface StatefulGuard extends Guard
     /**
      * Log a user into the application without sessions or cookies.
      *
+     * 在没有会话或cookie的情况下将用户登录到应用程序
+     *
      * @param  array  $credentials
      * @return bool
      */
@@ -37,6 +39,8 @@ interface StatefulGuard extends Guard
     /**
      * Log the given user ID into the application.
      *
+     * 将给定的用户ID记录到应用程序中
+     *
      * @param  mixed  $id
      * @param  bool   $remember
      * @return \Illuminate\Contracts\Auth\Authenticatable
@@ -46,6 +50,8 @@ interface StatefulGuard extends Guard
     /**
      * Log the given user ID into the application without sessions or cookies.
      *
+     * 将给定的用户ID记录到应用程序中，而不需要会话或cookie
+     *
      * @param  mixed  $id
      * @return bool
      */
@@ -53,6 +59,8 @@ interface StatefulGuard extends Guard
 
     /**
      * Determine if the user was authenticated via "remember me" cookie.
+     *
+     * 确定用户是否通过“记住我”cookie进行了身份验证
      *
      * @return bool
      */

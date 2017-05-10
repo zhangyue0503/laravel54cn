@@ -23,6 +23,8 @@ interface Factory
     /**
      * Create a cookie that lasts "forever" (five years).
      *
+     * 创建一个cookie,持续“永远”(五年)
+     *
      * @param  string  $name
      * @param  string  $value
      * @param  string  $path
@@ -35,6 +37,8 @@ interface Factory
 
     /**
      * Expire the given cookie.
+     *
+     * 过期的cookie
      *
      * @param  string  $name
      * @param  string  $path

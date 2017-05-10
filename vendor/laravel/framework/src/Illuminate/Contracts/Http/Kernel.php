@@ -7,6 +7,8 @@ interface Kernel
     /**
      * Bootstrap the application for HTTP requests.
      *
+     * 启动HTTP请求的应用程序
+     *
      * @return void
      */
     public function bootstrap();
@@ -34,6 +36,8 @@ interface Kernel
 
     /**
      * Get the Laravel application instance.
+     *
+     * Laravel应用程序实例
      *
      * @return \Illuminate\Contracts\Foundation\Application
      */

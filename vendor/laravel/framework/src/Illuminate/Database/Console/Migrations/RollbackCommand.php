@@ -13,6 +13,8 @@ class RollbackCommand extends BaseCommand
     /**
      * The console command name.
      *
+     * 控制台命令名
+     *
      * @var string
      */
     protected $name = 'migrate:rollback';
@@ -20,12 +22,16 @@ class RollbackCommand extends BaseCommand
     /**
      * The console command description.
      *
+     * 控制台命令描述
+     *
      * @var string
      */
     protected $description = 'Rollback the last database migration';
 
     /**
      * The migrator instance.
+     *
+     * 迁移实例
      *
      * @var \Illuminate\Database\Migrations\Migrator
      */
@@ -41,6 +47,7 @@ class RollbackCommand extends BaseCommand
      */
     public function __construct(Migrator $migrator)
     {
+        //创建一个新的控制台命令实例
         parent::__construct();
 
         $this->migrator = $migrator;
@@ -49,17 +56,21 @@ class RollbackCommand extends BaseCommand
     /**
      * Execute the console command.
      *
+     * 执行控制台命令
+     *
      * @return void
      */
     public function fire()
     {
+        //在继续操作之前确认
         if (! $this->confirmToProceed()) {
             return;
         }
-
+        //设置缺省连接名称(获取命令选项的值)
         $this->migrator->setConnection($this->option('database'));
-
+        //回滚最后一次迁移操作
         $this->migrator->rollback(
+            //获取所有的迁移路径
             $this->getMigrationPaths(), [
                 'pretend' => $this->option('pretend'),
                 'step' => (int) $this->option('step'),
@@ -69,6 +80,10 @@ class RollbackCommand extends BaseCommand
         // Once the migrator has run we will grab the note output and send it out to
         // the console screen, since the migrator itself functions without having
         // any instances of the OutputInterface contract passed into the class.
+        //
+        // 一旦迁移运行我们将抓住注意输出并将其发送到控制台屏幕上,由于迁移本身功能没有任何OutputInterface合同传递到类的实例
+        //
+        //              获取最后一个操作的注释
         foreach ($this->migrator->getNotes() as $note) {
             $this->output->writeln($note);
         }
@@ -76,6 +91,8 @@ class RollbackCommand extends BaseCommand
 
     /**
      * Get the console command options.
+     *
+     * 获得控制台命令选项
      *
      * @return array
      */

@@ -16,6 +16,8 @@ interface Guard
     /**
      * Determine if the current user is a guest.
      *
+     * 确定当前用户是否是一个客户
+     *
      * @return bool
      */
     public function guest();
@@ -32,12 +34,16 @@ interface Guard
     /**
      * Get the ID for the currently authenticated user.
      *
+     * 获取当前身份验证用户的ID
+     *
      * @return int|null
      */
     public function id();
 
     /**
      * Validate a user's credentials.
+     *
+     * 验证用户的凭证
      *
      * @param  array  $credentials
      * @return bool

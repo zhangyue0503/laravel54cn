@@ -9,6 +9,8 @@ interface Pipeline
     /**
      * Set the traveler object being sent on the pipeline.
      *
+     * 设置正在发送的旅行者对象
+     *
      * @param  mixed  $traveler
      * @return $this
      */
@@ -16,6 +18,8 @@ interface Pipeline
 
     /**
      * Set the stops of the pipeline.
+     *
+     * 设置管线的停止
      *
      * @param  dynamic|array  $stops
      * @return $this
@@ -25,6 +29,8 @@ interface Pipeline
     /**
      * Set the method to call on the stops.
      *
+     * 设置调用停止的方法
+     *
      * @param  string  $method
      * @return $this
      */
@@ -32,6 +38,8 @@ interface Pipeline
 
     /**
      * Run the pipeline with a final destination callback.
+     *
+     * 使用最终目的地回调运行管道
      *
      * @param  \Closure  $destination
      * @return mixed

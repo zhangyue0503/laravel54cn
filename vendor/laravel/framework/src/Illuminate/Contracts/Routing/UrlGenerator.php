@@ -7,12 +7,16 @@ interface UrlGenerator
     /**
      * Get the current URL for the request.
      *
+     * 获取请求的当前URL
+     *
      * @return string
      */
     public function current();
 
     /**
      * Generate an absolute URL to the given path.
+     *
+     * 为给定的路径生成一个绝对URL
      *
      * @param  string  $path
      * @param  mixed  $extra
@@ -24,6 +28,8 @@ interface UrlGenerator
     /**
      * Generate a secure, absolute URL to the given path.
      *
+     * 为给定的路径生成一个安全的、绝对的URL
+     *
      * @param  string  $path
      * @param  array   $parameters
      * @return string
@@ -33,6 +39,8 @@ interface UrlGenerator
     /**
      * Generate the URL to an application asset.
      *
+     * 生成应用程序资产的URL
+     *
      * @param  string  $path
      * @param  bool    $secure
      * @return string
@@ -41,6 +49,8 @@ interface UrlGenerator
 
     /**
      * Get the URL to a named route.
+     *
+     * 获取到指定路径的URL
      *
      * @param  string  $name
      * @param  mixed   $parameters
@@ -53,6 +63,8 @@ interface UrlGenerator
 
     /**
      * Get the URL to a controller action.
+     *
+     * 获取控制器动作的URL
      *
      * @param  string  $action
      * @param  mixed $parameters

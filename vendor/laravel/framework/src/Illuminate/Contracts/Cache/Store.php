@@ -17,7 +17,11 @@ interface Store
     /**
      * Retrieve multiple items from the cache by key.
      *
+     * 通过键从缓存中检索多个项
+     *
      * Items not found in the cache will have a null value.
+     *
+     * 在缓存中未找到的项将具有空值
      *
      * @param  array  $keys
      * @return array
@@ -38,6 +42,8 @@ interface Store
 
     /**
      * Store multiple items in the cache for a given number of minutes.
+     *
+     * 将多个项目存储在缓存中，在给定的时间内
      *
      * @param  array  $values
      * @param  float|int  $minutes
@@ -90,6 +96,8 @@ interface Store
 
     /**
      * Remove all items from the cache.
+     *
+     * 从缓存中删除所有项
      *
      * @return bool
      */

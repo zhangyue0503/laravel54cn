@@ -32,14 +32,19 @@ class MySqlConnector extends Connector implements ConnectorInterface
         if (! empty($config['database'])) {
             $connection->exec("use `{$config['database']}`;");
         }
-
+        //设置连接字符集和排序
         $this->configureEncoding($connection, $config);
 
         // Next, we will check to see if a timezone has been specified in this config
         // and if it has we will issue a statement to modify the timezone with the
         // database. Setting this DB timezone is an optional configuration item.
+        //
+        // 接下来，我们将检查是否在这个配置中指定了一个时区，如果它有的话，我们将发出一个语句来修改带数据库的时区
+        // 设置这个DB timezone是一个可选的配置项
+        //
+        //     在连接上设置时区
         $this->configureTimezone($connection, $config);
-
+        //为连接设置模式
         $this->setModes($connection, $config);
 
         return $connection;
@@ -47,6 +52,8 @@ class MySqlConnector extends Connector implements ConnectorInterface
 
     /**
      * Set the connection character set and collation.
+     *
+     * 设置连接字符集和排序
      *
      * @param  \PDO  $connection
      * @param  array  $config
@@ -59,12 +66,15 @@ class MySqlConnector extends Connector implements ConnectorInterface
         }
 
         $connection->prepare(
+            //                                  获取连接配置
             "set names '{$config['charset']}'".$this->getCollation($config)
         )->execute();
     }
 
     /**
      * Get the collation for the configuration.
+     *
+     * 获取连接配置
      *
      * @param  array  $config
      * @return string
@@ -76,6 +86,8 @@ class MySqlConnector extends Connector implements ConnectorInterface
 
     /**
      * Set the timezone on the connection.
+     *
+     * 在连接上设置时区
      *
      * @param  \PDO  $connection
      * @param  array  $config
@@ -102,13 +114,15 @@ class MySqlConnector extends Connector implements ConnectorInterface
      */
     protected function getDsn(array $config)
     {
-        return $this->hasSocket($config)
-                            ? $this->getSocketDsn($config)
+        return $this->hasSocket($config) //确定给定的配置数组是否具有UNIX套接字值
+                            ? $this->getSocketDsn($config)//获取套接字配置的DSN字符串
                             : $this->getHostDsn($config); // 从DSN字符串得到一个主机/端口配置
     }
 
     /**
      * Determine if the given configuration array has a UNIX socket value.
+     *
+     * 确定给定的配置数组是否具有UNIX套接字值
      *
      * @param  array  $config
      * @return bool
@@ -120,6 +134,8 @@ class MySqlConnector extends Connector implements ConnectorInterface
 
     /**
      * Get the DSN string for a socket configuration.
+     *
+     * 获取套接字配置的DSN字符串
      *
      * @param  array  $config
      * @return string
@@ -149,6 +165,8 @@ class MySqlConnector extends Connector implements ConnectorInterface
     /**
      * Set the modes for the connection.
      *
+     * 为连接设置模式
+     *
      * @param  \PDO  $connection
      * @param  array  $config
      * @return void
@@ -156,9 +174,11 @@ class MySqlConnector extends Connector implements ConnectorInterface
     protected function setModes(PDO $connection, array $config)
     {
         if (isset($config['modes'])) {
+            //在连接上设置自定义模式
             $this->setCustomModes($connection, $config);
         } elseif (isset($config['strict'])) {
             if ($config['strict']) {
+                //                      获取该查询以启用严格模式
                 $connection->prepare($this->strictMode())->execute();
             } else {
                 $connection->prepare("set session sql_mode='NO_ENGINE_SUBSTITUTION'")->execute();
@@ -168,6 +188,8 @@ class MySqlConnector extends Connector implements ConnectorInterface
 
     /**
      * Set the custom modes on the connection.
+     *
+     * 在连接上设置自定义模式
      *
      * @param  \PDO  $connection
      * @param  array  $config
@@ -182,6 +204,8 @@ class MySqlConnector extends Connector implements ConnectorInterface
 
     /**
      * Get the query to enable strict mode.
+     *
+     * 获取该查询以启用严格模式
      *
      * @return string
      */
