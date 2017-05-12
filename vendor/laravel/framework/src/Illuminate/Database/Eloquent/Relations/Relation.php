@@ -54,6 +54,8 @@ abstract class Relation
     /**
      * Create a new relation instance.
      *
+     * 创建一个新的关系实例
+     *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  \Illuminate\Database\Eloquent\Model  $parent
      * @return void
@@ -134,6 +136,8 @@ abstract class Relation
     /**
      * Get the results of the relationship.
      *
+     * 得到关系的结果
+     *
      * @return mixed
      */
     abstract public function getResults();
@@ -213,6 +217,8 @@ abstract class Relation
     /**
      * Get all of the primary keys for an array of models.
      *
+     * 获取一组模型的所有主键
+     *
      * @param  array   $models
      * @param  string  $key
      * @return array
@@ -248,6 +254,8 @@ abstract class Relation
 
     /**
      * Get the parent model of the relation.
+     *
+     * 获得关系的父模型
      *
      * @return \Illuminate\Database\Eloquent\Model
      */

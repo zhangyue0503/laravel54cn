@@ -13,12 +13,16 @@ class HasManyThrough extends Relation
     /**
      * The "through" parent model instance.
      *
+     * “通过”父模型实例
+     *
      * @var \Illuminate\Database\Eloquent\Model
      */
     protected $throughParent;
 
     /**
      * The far parent model instance.
+     *
+     * 远父模型实例
      *
      * @var \Illuminate\Database\Eloquent\Model
      */
@@ -27,6 +31,8 @@ class HasManyThrough extends Relation
     /**
      * The near key on the relationship.
      *
+     * 关系的键
+     *
      * @var string
      */
     protected $firstKey;
@@ -34,12 +40,16 @@ class HasManyThrough extends Relation
     /**
      * The far key on the relationship.
      *
+     * 这是关系的远键
+     *
      * @var string
      */
     protected $secondKey;
 
     /**
      * The local key on the relationship.
+     *
+     * 关于关系的本地键
      *
      * @var string
      */
@@ -65,22 +75,25 @@ class HasManyThrough extends Relation
         $this->secondKey = $secondKey;
         $this->farParent = $farParent;
         $this->throughParent = $throughParent;
-
+        //创建一个新的关系实例
         parent::__construct($query, $throughParent);
     }
 
     /**
      * Set the base constraints on the relation query.
      *
+     * 在关系查询中设置基本约束
+     *
      * @return void
      */
     public function addConstraints()
     {
         $localValue = $this->farParent[$this->localKey];
-
+        //在查询中设置连接子句
         $this->performJoin();
 
         if (static::$constraints) {
+            //将基本WHERE子句添加到查询中    在“通过”模型中获得合格的外键
             $this->query->where($this->getQualifiedFirstKeyName(), '=', $localValue);
         }
     }
@@ -88,13 +101,15 @@ class HasManyThrough extends Relation
     /**
      * Set the join clause on the query.
      *
+     * 在查询中设置连接子句
+     *
      * @param  \Illuminate\Database\Eloquent\Builder|null  $query
      * @return void
      */
     protected function performJoin(Builder $query = null)
     {
         $query = $query ?: $this->query;
-
+        //           在“通过”模型中获得合格的外键
         $farKey = $this->getQualifiedFarKeyName();
 
         $query->join($this->throughParent->getTable(), $this->getQualifiedParentKeyName(), '=', $farKey);
@@ -447,6 +462,8 @@ class HasManyThrough extends Relation
 
     /**
      * Get the qualified foreign key on the "through" model.
+     *
+     * 在“通过”模型中获得合格的外键
      *
      * @return string
      */

@@ -7,6 +7,8 @@ trait HidesAttributes
     /**
      * The attributes that should be hidden for serialization.
      *
+     * 应该隐藏用于序列化的属性
+     *
      * @var array
      */
     protected $hidden = [];
@@ -14,12 +16,16 @@ trait HidesAttributes
     /**
      * The attributes that should be visible in serialization.
      *
+     * 在序列化中应该可见的属性
+     *
      * @var array
      */
     protected $visible = [];
 
     /**
      * Get the hidden attributes for the model.
+     *
+     * 获取模型的隐藏属性
      *
      * @return array
      */
@@ -30,6 +36,8 @@ trait HidesAttributes
 
     /**
      * Set the hidden attributes for the model.
+     *
+     * 设置模型的隐藏属性
      *
      * @param  array  $hidden
      * @return $this
@@ -44,6 +52,8 @@ trait HidesAttributes
     /**
      * Add hidden attributes for the model.
      *
+     * 为模型添加隐藏属性
+     *
      * @param  array|string|null  $attributes
      * @return void
      */
@@ -57,6 +67,8 @@ trait HidesAttributes
     /**
      * Get the visible attributes for the model.
      *
+     * 获取模型的可见属性
+     *
      * @return array
      */
     public function getVisible()
@@ -66,6 +78,8 @@ trait HidesAttributes
 
     /**
      * Set the visible attributes for the model.
+     *
+     * 为模型设置可见的属性
      *
      * @param  array  $visible
      * @return $this
@@ -80,6 +94,8 @@ trait HidesAttributes
     /**
      * Add visible attributes for the model.
      *
+     * 为模型添加可见的属性
+     *
      * @param  array|string|null  $attributes
      * @return void
      */
@@ -93,6 +109,8 @@ trait HidesAttributes
     /**
      * Make the given, typically hidden, attributes visible.
      *
+     * 让给定的，通常隐藏的属性可见
+     *
      * @param  array|string  $attributes
      * @return $this
      */
@@ -101,7 +119,7 @@ trait HidesAttributes
         $this->hidden = array_diff($this->hidden, (array) $attributes);
 
         if (! empty($this->visible)) {
-            $this->addVisible($attributes);
+            $this->addVisible($attributes);//为模型添加可见的属性
         }
 
         return $this;
@@ -109,6 +127,8 @@ trait HidesAttributes
 
     /**
      * Make the given, typically visible, attributes hidden.
+     *
+     * 使给定的、通常可见的属性隐藏起来
      *
      * @param  array|string  $attributes
      * @return $this

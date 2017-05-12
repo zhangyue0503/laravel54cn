@@ -565,6 +565,8 @@ class Carbon extends DateTime
     /**
      * Create a Carbon instance from a specific format.
      *
+     * 从特定的格式创建一个碳实例
+     *
      * @param string                    $format
      * @param string                    $time
      * @param \DateTimeZone|string|null $tz
@@ -2884,6 +2886,8 @@ class Carbon extends DateTime
 
     /**
      * Resets the time to 00:00:00
+     *
+     * 重置时间
      *
      * @return static
      */

@@ -93,6 +93,8 @@ class Collection extends BaseCollection implements QueueableCollection
     /**
      * Get the array of primary keys.
      *
+     * 获取主键的数组
+     *
      * @return array
      */
     public function modelKeys()
