@@ -10,6 +10,8 @@ class QueueEntityResolver implements EntityResolverContract
     /**
      * Resolve the entity for the given ID.
      *
+     * 为给定的ID解析实体
+     *
      * @param  string  $type
      * @param  mixed  $id
      * @return mixed

@@ -25,6 +25,8 @@ use Symfony\Component\Finder\Iterator\SortableIterator;
 /**
  * Finder allows to build rules to find files and directories.
  *
+ * Finder允许构建规则来查找文件和目录
+ *
  * It is a thin wrapper around several specialized iterator classes.
  *
  * All rules may be invoked several times.
@@ -95,6 +97,8 @@ class Finder implements \IteratorAggregate, \Countable
 
     /**
      * Restricts the matching to files only.
+     *
+     * 仅将匹配限制为文件
      *
      * @return $this
      */

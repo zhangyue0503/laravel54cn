@@ -9,12 +9,16 @@ class ModelNotFoundException extends RuntimeException
     /**
      * Name of the affected Eloquent model.
      *
+     * 受影响的Eloquent模型的名称
+     *
      * @var string
      */
     protected $model;
 
     /**
      * The affected model IDs.
+     *
+     * 受影响的模型id
      *
      * @var int|array
      */
@@ -32,6 +36,7 @@ class ModelNotFoundException extends RuntimeException
     public function setModel($model, $ids = [])
     {
         $this->model = $model;
+        //             如果给定值不是数组，请将其包在一个数组中
         $this->ids = array_wrap($ids);
 
         $this->message = "No query results for model [{$model}]";
@@ -48,6 +53,8 @@ class ModelNotFoundException extends RuntimeException
     /**
      * Get the affected Eloquent model.
      *
+     * 获得受影响的Eloquent模型
+     *
      * @return string
      */
     public function getModel()
@@ -57,6 +64,8 @@ class ModelNotFoundException extends RuntimeException
 
     /**
      * Get the affected Eloquent model IDs.
+     *
+     * 获取受影响的Eloquent模型id
      *
      * @return int|array
      */
