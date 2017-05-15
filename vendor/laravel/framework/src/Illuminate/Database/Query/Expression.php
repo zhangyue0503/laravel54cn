@@ -47,6 +47,7 @@ class Expression
      */
     public function __toString()
     {
+        //                   得到表达式的值
         return (string) $this->getValue();
     }
 }

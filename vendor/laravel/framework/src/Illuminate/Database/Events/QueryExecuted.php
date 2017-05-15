@@ -7,12 +7,16 @@ class QueryExecuted
     /**
      * The SQL query that was executed.
      *
+     * 执行的SQL查询
+     *
      * @var string
      */
     public $sql;
 
     /**
      * The array of query bindings.
+     *
+     * 查询绑定数组
      *
      * @var array
      */
@@ -21,12 +25,16 @@ class QueryExecuted
     /**
      * The number of milliseconds it took to execute the query.
      *
+     * 执行查询所需的毫秒数
+     *
      * @var float
      */
     public $time;
 
     /**
      * The database connection instance.
+     *
+     * 数据库连接实例
      *
      * @var \Illuminate\Database\Connection
      */
@@ -35,12 +43,16 @@ class QueryExecuted
     /**
      * The database connection name.
      *
+     * 数据库连接名称
+     *
      * @var string
      */
     public $connectionName;
 
     /**
      * Create a new event instance.
+     *
+     * 创建一个新的事件实例
      *
      * @param  string  $sql
      * @param  array  $bindings
@@ -53,6 +65,7 @@ class QueryExecuted
         $this->time = $time;
         $this->bindings = $bindings;
         $this->connection = $connection;
+        //                              获取数据库连接名
         $this->connectionName = $connection->getName();
     }
 }

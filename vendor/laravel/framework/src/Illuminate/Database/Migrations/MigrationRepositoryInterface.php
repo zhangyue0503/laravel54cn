@@ -16,6 +16,8 @@ interface MigrationRepositoryInterface
     /**
      * Get list of migrations.
      *
+     * 获取迁移列表
+     *
      * @param  int  $steps
      * @return array
      */
@@ -24,12 +26,16 @@ interface MigrationRepositoryInterface
     /**
      * Get the last migration batch.
      *
+     * 最后一次迁移
+     *
      * @return array
      */
     public function getLast();
 
     /**
      * Log that a migration was run.
+     *
+     * 记录迁移运行的日志
      *
      * @param  string  $file
      * @param  int     $batch
@@ -40,6 +46,8 @@ interface MigrationRepositoryInterface
     /**
      * Remove a migration from the log.
      *
+     * 从日志中删除一个迁移
+     *
      * @param  object  $migration
      * @return void
      */
@@ -47,6 +55,8 @@ interface MigrationRepositoryInterface
 
     /**
      * Get the next migration batch number.
+     *
+     * 获得下一个迁移批号
      *
      * @return int
      */
@@ -63,6 +73,8 @@ interface MigrationRepositoryInterface
 
     /**
      * Determine if the migration repository exists.
+     *
+     * 确定迁移存储库是否存在
      *
      * @return bool
      */

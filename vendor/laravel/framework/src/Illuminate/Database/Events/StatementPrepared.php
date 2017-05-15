@@ -7,12 +7,16 @@ class StatementPrepared
     /**
      * The database connection instance.
      *
+     * 数据库连接实例
+     *
      * @var \Illuminate\Database\Connection
      */
     public $connection;
 
     /**
      * The PDO statement.
+     *
+     * PDO声明
      *
      * @var \PDOStatement
      */

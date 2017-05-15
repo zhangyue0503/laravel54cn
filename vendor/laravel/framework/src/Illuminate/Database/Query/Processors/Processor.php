@@ -33,8 +33,9 @@ class Processor
      */
     public function processInsertGetId(Builder $query, $sql, $values, $sequence = null)
     {
+        //获取数据库链接实例           对数据库运行INSERT语句
         $query->getConnection()->insert($sql, $values);
-
+        //   获取数据库链接实例          获取当前的PDO连接
         $id = $query->getConnection()->getPdo()->lastInsertId($sequence);
 
         return is_numeric($id) ? (int) $id : $id;
@@ -42,6 +43,8 @@ class Processor
 
     /**
      * Process the results of a column listing query.
+     *
+     * 处理列清单查询的结果
      *
      * @param  array  $results
      * @return array

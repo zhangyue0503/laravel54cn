@@ -63,6 +63,8 @@ class Builder
     /**
      * Determine if the given table exists.
      *
+     * 确定给定的表是否存在
+     *
      * @param  string  $table
      * @return bool
      */
@@ -152,6 +154,8 @@ class Builder
 
     /**
      * Create a new table on the schema.
+     *
+     * 在模式上创建一个新表
      *
      * @param  string    $table
      * @param  \Closure  $callback

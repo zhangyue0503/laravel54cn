@@ -96,6 +96,8 @@ class Filesystem
     /**
      * Require the given file once.
      *
+     * 要求给定的文件一次
+     *
      * @param  string  $file
      * @return mixed
      */

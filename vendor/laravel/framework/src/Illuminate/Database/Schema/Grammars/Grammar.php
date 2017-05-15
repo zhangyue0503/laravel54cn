@@ -246,6 +246,8 @@ abstract class Grammar extends BaseGrammar
     /**
      * Check if this Grammar supports schema changes wrapped in a transaction.
      *
+     * 检查该语法是否支持在事务中包装的模式更改
+     *
      * @return bool
      */
     public function supportsSchemaTransactions()

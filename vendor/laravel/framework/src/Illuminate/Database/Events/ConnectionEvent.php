@@ -7,12 +7,16 @@ abstract class ConnectionEvent
     /**
      * The name of the connection.
      *
+     * 连接名称
+     *
      * @var string
      */
     public $connectionName;
 
     /**
      * The database connection instance.
+     *
+     * 数据库连接实例
      *
      * @var \Illuminate\Database\Connection
      */
@@ -21,12 +25,15 @@ abstract class ConnectionEvent
     /**
      * Create a new event instance.
      *
+     * 创建一个新的事件实例
+     *
      * @param  \Illuminate\Database\Connection  $connection
      * @return void
      */
     public function __construct($connection)
     {
         $this->connection = $connection;
+        //                              获取数据库连接名
         $this->connectionName = $connection->getName();
     }
 }
