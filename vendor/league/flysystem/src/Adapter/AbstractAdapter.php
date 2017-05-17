@@ -38,6 +38,8 @@ abstract class AbstractAdapter implements AdapterInterface
     /**
      * Get the path prefix.
      *
+     * 获得路径前缀
+     *
      * @return string path prefix
      */
     public function getPathPrefix()

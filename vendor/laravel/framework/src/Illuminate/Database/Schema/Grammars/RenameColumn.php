@@ -14,6 +14,8 @@ class RenameColumn
     /**
      * Compile a rename column command.
      *
+     * 编译重命名列命令
+     *
      * @param  \Illuminate\Database\Schema\Grammars\Grammar  $grammar
      * @param  \Illuminate\Database\Schema\Blueprint  $blueprint
      * @param  \Illuminate\Support\Fluent  $command

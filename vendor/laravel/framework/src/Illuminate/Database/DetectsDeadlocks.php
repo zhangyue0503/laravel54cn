@@ -18,7 +18,7 @@ trait DetectsDeadlocks
     protected function causedByDeadlock(Exception $e)
     {
         $message = $e->getMessage();
-
+        //确定一个给定的字符串包含另一个字符串
         return Str::contains($message, [
             'Deadlock found when trying to get lock',
             'deadlock detected',

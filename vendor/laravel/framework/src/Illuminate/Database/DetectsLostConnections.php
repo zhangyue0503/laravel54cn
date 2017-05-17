@@ -18,7 +18,7 @@ trait DetectsLostConnections
     protected function causedByLostConnection(Exception $e)
     {
         $message = $e->getMessage();
-
+        //确定一个给定的字符串包含另一个字符串
         return Str::contains($message, [
             'server has gone away',
             'no connection to the server',

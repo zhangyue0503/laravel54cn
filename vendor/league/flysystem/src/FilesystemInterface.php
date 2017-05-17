@@ -7,6 +7,8 @@ interface FilesystemInterface
     /**
      * Check whether a file exists.
      *
+     * 检查文件是否存在
+     *
      * @param string $path
      *
      * @return bool
@@ -15,6 +17,8 @@ interface FilesystemInterface
 
     /**
      * Read a file.
+     *
+     * 读取一个文件
      *
      * @param string $path The path to the file.
      *
@@ -38,6 +42,8 @@ interface FilesystemInterface
     /**
      * List contents of a directory.
      *
+     * 目录的目录内容
+     *
      * @param string $directory The directory to list.
      * @param bool   $recursive Whether to list recursively.
      *
@@ -59,6 +65,8 @@ interface FilesystemInterface
     /**
      * Get a file's size.
      *
+     * 获取文件大小
+     *
      * @param string $path The path to the file.
      *
      * @return int|false The file size or false on failure.
@@ -67,6 +75,8 @@ interface FilesystemInterface
 
     /**
      * Get a file's mime-type.
+     *
+     * 得到文件的mime类型
      *
      * @param string $path The path to the file.
      *
@@ -79,6 +89,8 @@ interface FilesystemInterface
     /**
      * Get a file's timestamp.
      *
+     * 获取文件的时间戳
+     *
      * @param string $path The path to the file.
      *
      * @throws FileNotFoundException
@@ -89,6 +101,8 @@ interface FilesystemInterface
 
     /**
      * Get a file's visibility.
+     *
+     * 获取文件的可见性
      *
      * @param string $path The path to the file.
      *
@@ -155,6 +169,8 @@ interface FilesystemInterface
     /**
      * Rename a file.
      *
+     * 重命名一个文件
+     *
      * @param string $path    Path to the existing file.
      * @param string $newpath The new path of the file.
      *
@@ -167,6 +183,8 @@ interface FilesystemInterface
 
     /**
      * Copy a file.
+     *
+     * 复制一个文件
      *
      * @param string $path    Path to the existing file.
      * @param string $newpath The new path of the file.
@@ -181,6 +199,8 @@ interface FilesystemInterface
     /**
      * Delete a file.
      *
+     * 删除一个文件
+     *
      * @param string $path
      *
      * @throws FileNotFoundException
@@ -191,6 +211,8 @@ interface FilesystemInterface
 
     /**
      * Delete a directory.
+     *
+     * 删除一个目录
      *
      * @param string $dirname
      *
@@ -203,6 +225,8 @@ interface FilesystemInterface
     /**
      * Create a directory.
      *
+     * 创建一个目录
+     *
      * @param string $dirname The name of the new directory.
      * @param array  $config  An optional configuration array.
      *
@@ -212,6 +236,8 @@ interface FilesystemInterface
 
     /**
      * Set the visibility for a file.
+     *
+     * 设置文件的可见性
      *
      * @param string $path       The path to the file.
      * @param string $visibility One of 'public' or 'private'.
@@ -223,6 +249,8 @@ interface FilesystemInterface
     /**
      * Create a file or update if exists.
      *
+     * 如果存在，创建一个文件或更新
+     *
      * @param string $path     The path to the file.
      * @param string $contents The file contents.
      * @param array  $config   An optional configuration array.
@@ -233,6 +261,8 @@ interface FilesystemInterface
 
     /**
      * Create a file or update if exists.
+     *
+     * 如果存在，创建一个文件或更新
      *
      * @param string   $path     The path to the file.
      * @param resource $resource The file handle.

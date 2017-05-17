@@ -39,6 +39,8 @@ class Filesystem implements FilesystemInterface
     /**
      * Get the Adapter.
      *
+     * 获取适配器
+     *
      * @return AdapterInterface adapter
      */
     public function getAdapter()

@@ -86,6 +86,8 @@ class Finder implements \IteratorAggregate, \Countable
     /**
      * Restricts the matching to directories only.
      *
+     * 只限制与目录的匹配
+     *
      * @return $this
      */
     public function directories()
@@ -111,6 +113,8 @@ class Finder implements \IteratorAggregate, \Countable
 
     /**
      * Adds tests for the directory depth.
+     *
+     * 为目录深度添加测试
      *
      * Usage:
      *
@@ -325,6 +329,8 @@ class Finder implements \IteratorAggregate, \Countable
 
     /**
      * Excludes "hidden" directories and files (starting with a dot).
+     *
+     * 不包括“隐藏”的目录和文件(从一个点开始)
      *
      * @param bool $ignoreDotFiles Whether to exclude "hidden" files or not
      *
