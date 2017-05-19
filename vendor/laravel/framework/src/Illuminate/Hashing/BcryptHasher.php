@@ -10,12 +10,16 @@ class BcryptHasher implements HasherContract
     /**
      * Default crypt cost factor.
      *
+     * 默认加密因子
+     *
      * @var int
      */
     protected $rounds = 10;
 
     /**
      * Hash the given value.
+     *
+     * 将给定值哈希
      *
      * @param  string  $value
      * @param  array   $options
@@ -39,6 +43,8 @@ class BcryptHasher implements HasherContract
     /**
      * Check the given plain value against a hash.
      *
+     * 检查给定的普通值与散列值
+     *
      * @param  string  $value
      * @param  string  $hashedValue
      * @param  array   $options
@@ -56,6 +62,8 @@ class BcryptHasher implements HasherContract
     /**
      * Check if the given hash has been hashed using the given options.
      *
+     * 检查给定的散列是否已使用给定选项进行散列
+     *
      * @param  string  $hashedValue
      * @param  array   $options
      * @return bool
@@ -69,6 +77,8 @@ class BcryptHasher implements HasherContract
 
     /**
      * Set the default password work factor.
+     *
+     * 设置默认密码工作因子
      *
      * @param  int  $rounds
      * @return $this

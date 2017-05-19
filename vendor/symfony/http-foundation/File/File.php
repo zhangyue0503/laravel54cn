@@ -43,6 +43,8 @@ class File extends \SplFileInfo
     /**
      * Returns the extension based on the mime type.
      *
+     * 根据mime类型返回扩展名
+     *
      * If the mime type is unknown, returns null.
      *
      * This method uses the mime type as guessed by getMimeType()

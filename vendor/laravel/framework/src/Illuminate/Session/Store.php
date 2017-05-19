@@ -246,6 +246,8 @@ class Store implements Session
     /**
      * Get the requested item from the flashed input array.
      *
+     * 从闪存的输入数组中获取所请求的项
+     *
      * @param  string  $key
      * @param  mixed   $default
      * @return mixed
@@ -427,6 +429,8 @@ class Store implements Session
 
     /**
      * Flash an input array to the session.
+     *
+     * 在会话中输入一个输入数组
      *
      * @param  array  $value
      * @return void

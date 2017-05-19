@@ -780,13 +780,15 @@ class MimeType
     /**
      * Get the MIME type for a file based on the file's extension.
      *
+     * 根据文件的扩展获取一个文件的MIME类型
+     *
      * @param  string  $filename
      * @return string
      */
     public static function from($filename)
     {
         $extension = pathinfo($filename, PATHINFO_EXTENSION);
-
+        //                        按key从集合中获取项
         return collect(self::$mimes)->get($extension, 'application/octet-stream');
     }
 }

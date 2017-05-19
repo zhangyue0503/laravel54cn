@@ -64,6 +64,8 @@ class UploadedFile extends File
     /**
      * Accepts the information of the uploaded file as provided by the PHP global $_FILES.
      *
+     * 接受提供的信息上传文件的PHP全局$_FILE
+     *
      * The file object is only created when the uploaded file is valid (i.e. when the
      * isValid() method returns true). Otherwise the only methods that could be called
      * on an UploadedFile instance are:
@@ -142,6 +144,8 @@ class UploadedFile extends File
 
     /**
      * Returns the extension based on the client mime type.
+     *
+     * 根据客户端mime类型返回扩展
      *
      * If the mime type is unknown, returns null.
      *

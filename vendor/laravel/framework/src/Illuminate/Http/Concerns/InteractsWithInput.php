@@ -34,6 +34,7 @@ trait InteractsWithInput
      */
     public function hasHeader($key)
     {
+        //                   从请求中检索标头
         return ! is_null($this->header($key));
     }
 
@@ -61,9 +62,11 @@ trait InteractsWithInput
      */
     public function bearerToken()
     {
+        //              从请求中检索标头
         $header = $this->header('Authorization', '');
-
+        //确定给定的子字符串是否属于给定的字符串
         if (Str::startsWith($header, 'Bearer ')) {
+            //返回由开始和长度参数指定的字符串的一部分
             return Str::substr($header, 7);
         }
     }
@@ -79,10 +82,11 @@ trait InteractsWithInput
     public function exists($key)
     {
         $keys = is_array($key) ? $key : func_get_args();
-
+        //获取请求的所有输入和文件
         $input = $this->all();
 
         foreach ($keys as $value) {
+            //使用“点”符号检查数组中的项或项是否存在
             if (! Arr::has($input, $value)) {
                 return false;
             }
@@ -104,6 +108,7 @@ trait InteractsWithInput
         $keys = is_array($key) ? $key : func_get_args();
 
         foreach ($keys as $value) {
+            //确定给定的输入键是否为“has”的空字符串
             if ($this->isEmptyString($value)) {
                 return false;
             }
@@ -154,6 +159,7 @@ trait InteractsWithInput
     {
         // 使用“点”符号从数组或对象中获取项
         return data_get(
+            //获取请求的输入源
             $this->getInputSource()->all() + $this->query->all(), $key, $default
         );
     }
@@ -171,10 +177,11 @@ trait InteractsWithInput
         $keys = is_array($keys) ? $keys : func_get_args();
 
         $results = [];
-
+        //获取请求的所有输入和文件
         $input = $this->all();
 
         foreach ($keys as $key) {
+            //如果没有给定key的方法，整个数组将被替换     使用“点”符号从数组或对象中获取项
             Arr::set($results, $key, data_get($input, $key));
         }
 
@@ -192,9 +199,9 @@ trait InteractsWithInput
     public function except($keys)
     {
         $keys = is_array($keys) ? $keys : func_get_args();
-
+        //获取请求的所有输入和文件
         $results = $this->all();
-
+        //使用“点”符号从给定数组中移除一个或多个数组项
         Arr::forget($results, $keys);
 
         return $results;
@@ -210,6 +217,7 @@ trait InteractsWithInput
      */
     public function intersect($keys)
     {
+        //                      获取包含来自输入数据的值的所提供键的子集
         return array_filter($this->only(is_array($keys) ? $keys : func_get_args()));
     }
 
@@ -238,6 +246,7 @@ trait InteractsWithInput
      */
     public function hasCookie($key)
     {
+        //                检索从请求来的cookie
         return ! is_null($this->cookie($key));
     }
 
@@ -269,6 +278,7 @@ trait InteractsWithInput
         //请求的所有转换文件 : 请求的所有转换文件 : 转换给定的数组从symfony 上传文件到Laravel 上传文件
         return $this->convertedFiles
                     ? $this->convertedFiles
+            //                                 转换给定的数组从symfony 上传文件到Laravel 上传文件
                     : $this->convertedFiles = $this->convertUploadedFiles($files);
     }
 
@@ -288,7 +298,9 @@ trait InteractsWithInput
             }
             //返回  文件数组 ? 转换文件 : 从基础实例创建新的文件实例
             return is_array($file)
+            //                 转换给定的数组从symfony 上传文件到Laravel 上传文件
                         ? $this->convertUploadedFiles($file)
+                //            从基础实例创建新的文件实例
                         : UploadedFile::createFromBase($file);
         }, $files);
     }

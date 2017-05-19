@@ -35,6 +35,7 @@ trait InteractsWithContentTypes
      */
     public function isJson()
     {
+        //确定一个给定的字符串包含另一个字符串  从请求中检索标头
         return Str::contains($this->header('CONTENT_TYPE'), ['/json', '+json']);
     }
 
@@ -47,6 +48,7 @@ trait InteractsWithContentTypes
      */
     public function expectsJson()
     {
+        //确定请求是否是Ajax调用的结果      确定该请求是否是一个pjax调用的结果     确定当前请求是否返回JSON请求
         return ($this->ajax() && ! $this->pjax()) || $this->wantsJson();
     }
 
@@ -60,7 +62,7 @@ trait InteractsWithContentTypes
     public function wantsJson()
     {
         $acceptable = $this->getAcceptableContentTypes();      // Symfony\Component\HttpFoundation\Request::getAcceptableContentTypes获取客户端浏览器可接受的内容类型列表
-
+        //                             确定一个给定的字符串包含另一个字符串
         return isset($acceptable[0]) && Str::contains($acceptable[0], ['/json', '+json']);
     }
 
@@ -140,6 +142,7 @@ trait InteractsWithContentTypes
      */
     public function acceptsJson()
     {
+        //决定是否接受给定的当前请求类型
         return $this->accepts('application/json');
     }
 
@@ -152,6 +155,7 @@ trait InteractsWithContentTypes
      */
     public function acceptsHtml()
     {
+        //决定是否接受给定的当前请求类型
         return $this->accepts('text/html');
     }
 
