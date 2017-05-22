@@ -17,12 +17,16 @@ class Mailable implements MailableContract
     /**
      * The person the message is from.
      *
+     * 信息来自于
+     *
      * @var array
      */
     public $from = [];
 
     /**
      * The "to" recipients of the message.
+     *
+     * 消息接收者的“to”收件人
      *
      * @var array
      */
@@ -31,12 +35,16 @@ class Mailable implements MailableContract
     /**
      * The "cc" recipients of the message.
      *
+     * 消息接收者的“cc”收件人
+     *
      * @var array
      */
     public $cc = [];
 
     /**
      * The "bcc" recipients of the message.
+     *
+     * 消息接收者的“bcc”收件人
      *
      * @var array
      */
@@ -45,12 +53,16 @@ class Mailable implements MailableContract
     /**
      * The "reply to" recipients of the message.
      *
+     * 消息接收者的“回复”
+     *
      * @var array
      */
     public $replyTo = [];
 
     /**
      * The subject of the message.
+     *
+     * 消息标题
      *
      * @var string
      */
@@ -59,12 +71,16 @@ class Mailable implements MailableContract
     /**
      * The Markdown template for the message (if applicable).
      *
+     * 消息的Markdown模板(如果适用的话)
+     *
      * @var string
      */
     protected $markdown;
 
     /**
      * The view to use for the message.
+     *
+     * 用于消息的视图
      *
      * @var string
      */
@@ -73,12 +89,16 @@ class Mailable implements MailableContract
     /**
      * The plain text view to use for the message.
      *
+     * 用于消息的纯文本视图
+     *
      * @var string
      */
     public $textView;
 
     /**
      * The view data for the message.
+     *
+     * 消息的视图数据
      *
      * @var array
      */
@@ -87,12 +107,16 @@ class Mailable implements MailableContract
     /**
      * The attachments for the message.
      *
+     * 消息的附件
+     *
      * @var array
      */
     public $attachments = [];
 
     /**
      * The raw attachments for the message.
+     *
+     * 消息的原始附件
      *
      * @var array
      */
@@ -101,6 +125,8 @@ class Mailable implements MailableContract
     /**
      * The callbacks for the message.
      *
+     * 消息的回调
+     *
      * @var array
      */
     public $callbacks = [];
@@ -108,24 +134,29 @@ class Mailable implements MailableContract
     /**
      * Send the message using the given mailer.
      *
+     * 使用给定的邮件发送消息
+     *
      * @param  \Illuminate\Contracts\Mail\Mailer  $mailer
      * @return void
      */
     public function send(MailerContract $mailer)
     {
+        //设置容器的全局可用实例      调用给定的闭包/类@方法并注入它的依赖项
         Container::getInstance()->call([$this, 'build']);
-
+        //使用视图发送一条新消息   为消息构建视图     为消息构建视图数据
         $mailer->send($this->buildView(), $this->buildViewData(), function ($message) {
-            $this->buildFrom($message)
-                 ->buildRecipients($message)
-                 ->buildSubject($message)
-                 ->buildAttachments($message)
-                 ->runCallbacks($message);
+            $this->buildFrom($message)//将发送方添加到消息中
+                 ->buildRecipients($message)//将所有接收方添加到消息中
+                 ->buildSubject($message)//为消息设置主题
+                 ->buildAttachments($message)//将所有附件添加到消息中
+                 ->runCallbacks($message);//运行该消息的回调
         });
     }
 
     /**
      * Queue the message for sending.
+     *
+     * 排队等待发送消息
      *
      * @param  \Illuminate\Contracts\Queue\Factory  $queue
      * @return mixed
@@ -135,7 +166,7 @@ class Mailable implements MailableContract
         $connection = property_exists($this, 'connection') ? $this->connection : null;
 
         $queueName = property_exists($this, 'queue') ? $this->queue : null;
-
+        //          解析队列连接实例                  把新工作推到队列上
         return $queue->connection($connection)->pushOn(
             $queueName ?: null, new SendQueuedMailable($this)
         );
@@ -143,6 +174,8 @@ class Mailable implements MailableContract
 
     /**
      * Deliver the queued message after the given delay.
+     *
+     * 在给定的延迟之后交付队列消息
      *
      * @param  \DateTime|int  $delay
      * @param  Queue  $queue
@@ -153,7 +186,7 @@ class Mailable implements MailableContract
         $connection = property_exists($this, 'connection') ? $this->connection : null;
 
         $queueName = property_exists($this, 'queue') ? $this->queue : null;
-
+        //          解析队列连接实例               在延迟之后将新作业推到队列上
         return $queue->connection($connection)->laterOn(
             $queueName ?: null, $delay, new SendQueuedMailable($this)
         );
@@ -162,11 +195,14 @@ class Mailable implements MailableContract
     /**
      * Build the view for the message.
      *
+     * 为消息构建视图
+     *
      * @return array|string
      */
     protected function buildView()
     {
         if (isset($this->markdown)) {
+            //             为消息构建Markdown视图
             return $this->buildMarkdownView();
         }
 
@@ -181,6 +217,8 @@ class Mailable implements MailableContract
 
     /**
      * Build the Markdown view for the message.
+     *
+     * 为消息构建Markdown视图
      *
      * @return array
      */
@@ -198,6 +236,8 @@ class Mailable implements MailableContract
 
     /**
      * Build the view data for the message.
+     *
+     * 为消息构建视图数据
      *
      * @return array
      */
@@ -217,6 +257,8 @@ class Mailable implements MailableContract
     /**
      * Add the sender to the message.
      *
+     * 将发送方添加到消息中
+     *
      * @param  \Illuminate\Mail\Message  $message
      * @return $this
      */
@@ -231,6 +273,8 @@ class Mailable implements MailableContract
 
     /**
      * Add all of the recipients to the message.
+     *
+     * 将所有接收方添加到消息中
      *
      * @param  \Illuminate\Mail\Message  $message
      * @return $this
@@ -249,6 +293,8 @@ class Mailable implements MailableContract
     /**
      * Set the subject for the message.
      *
+     * 为消息设置主题
+     *
      * @param  \Illuminate\Mail\Message  $message
      * @return $this
      */
@@ -265,6 +311,8 @@ class Mailable implements MailableContract
 
     /**
      * Add all of the attachments to the message.
+     *
+     * 将所有附件添加到消息中
      *
      * @param  \Illuminate\Mail\Message  $message
      * @return $this
@@ -286,6 +334,8 @@ class Mailable implements MailableContract
 
     /**
      * Run the callbacks for the message.
+     *
+     * 运行该消息的回调
      *
      * @param  \Illuminate\Mail\Message  $message
      * @return $this

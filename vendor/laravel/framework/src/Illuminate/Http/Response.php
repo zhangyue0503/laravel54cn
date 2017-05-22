@@ -31,7 +31,9 @@ class Response extends BaseResponse
         // 如果内容是“JSONable”我们将设置适当的标题和内容到JSON转换。
         // 当从自动转换到JSON格式的路由返回一些类似模型时，这非常有用。
         //
+        //          确定给定的内容是否应该变成JSON
         if ($this->shouldBeJson($content)) {
+            //在响应中设置一个标题
             $this->header('Content-Type', 'application/json');
 
             $content = $this->morphToJson($content); //将给定的内容转换成JSON
@@ -44,6 +46,7 @@ class Response extends BaseResponse
         // 如果这个内容实现了“渲染”界面，然后我们将调用Render方法的对象，我们将避免“__tostring”异常可能被抛出，有错误的处理了PHP。
         //
         elseif ($content instanceof Renderable) {
+            //获取对象的评价内容
             $content = $content->render();
         }
 
@@ -77,6 +80,7 @@ class Response extends BaseResponse
     protected function morphToJson($content)
     {
         if ($content instanceof Jsonable) {
+            //          将对象转换为JSON表示形式
             return $content->toJson();
         }
 

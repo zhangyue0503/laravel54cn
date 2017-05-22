@@ -103,6 +103,8 @@ interface LoggerInterface
     /**
      * Detailed debug information.
      *
+     * 详细的调试信息
+     *
      * @param string $message
      * @param array  $context
      *

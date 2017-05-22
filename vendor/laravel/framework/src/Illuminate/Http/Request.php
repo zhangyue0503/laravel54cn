@@ -66,7 +66,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     {
         //设置Symfony允许请求参数重写
         static::enableHttpMethodParameterOverride();
-        //创建一个Illuminate请求通过Symfony请求实例
+        //创建一个Illuminate请求通过Symfony请求实例         从PHP的超级全局变量创建一个新的请求
         return static::createFromBase(SymfonyRequest::createFromGlobals());
     }
 
@@ -91,6 +91,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      */
     public function method()
     {
+        //获取请求的“预期”方法
         return $this->getMethod();
     }
 
@@ -132,7 +133,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
         $query = $this->getQueryString(); //为请求生成标准化查询字符串
         //           返回执行此请求的根URL  返回与被执行脚本相对应的路径
         $question = $this->getBaseUrl().$this->getPathInfo() == '/' ? '/?' : '?';
-
+        //          从请求获取URL（无查询字符串）
         return $query ? $this->url().$question.$query : $this->url();
     }
 
@@ -148,9 +149,11 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     {
         //           返回执行此请求的根URL  返回与被执行脚本相对应的路径
         $question = $this->getBaseUrl().$this->getPathInfo() == '/' ? '/?' : '?';
-
+        //         从请求中检索查询字符串项
         return count($this->query()) > 0
+        //从请求获取URL（无查询字符串）                          从请求中检索查询字符串项
             ? $this->url().$question.http_build_query(array_merge($this->query(), $query))
+            //从请求获取完整的URL
             : $this->fullUrl().$question.http_build_query($query);
     }
 
@@ -193,6 +196,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      */
     public function segment($index, $default = null)
     {
+        //使用“点”符号从数组中获取一个项   获取请求路径的所有段
         return Arr::get($this->segments(), $index - 1, $default);
     }
 
@@ -205,6 +209,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      */
     public function segments()
     {
+        //                            获取请求的当前编码路径信息
         $segments = explode('/', $this->decodedPath());
 
         return array_values(array_filter($segments, function ($v) {
@@ -272,6 +277,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      */
     public function pjax()
     {
+        //                  根据名称获取标头中的值
         return $this->headers->get('X-PJAX') == true;
     }
 
@@ -284,6 +290,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      */
     public function secure()
     {
+        //检查请求是否安全
         return $this->isSecure();//Symfony\Component\HttpFoundation\Request::isSecure
     }
 
@@ -296,6 +303,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      */
     public function ip()
     {
+        //返回客户端IP地址
         return $this->getClientIp(); //返回客户端IP地址 Symfony\Component\HttpFoundation\Request::getClientIp
     }
 
@@ -308,6 +316,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      */
     public function ips()
     {
+        //返回客户端IP地址集合
         return $this->getClientIps();//返回客户端IP地址 Symfony\Component\HttpFoundation\Request::getClientIps
     }
 
@@ -357,7 +366,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
         if (is_null($key)) {
             return $this->json;
         }
-
+        //                     返回所有参数数组
         return data_get($this->json->all(), $key, $default);
     }
 
@@ -395,6 +404,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
 
         //调用symfony中的方法，克隆一个请求并覆盖它的一些参数
         $request = (new static)->duplicate(
+            //         返回所有参数数组
             $request->query->all(), $request->request->all(), $request->attributes->all(),
             $request->cookies->all(), $request->files->all(), $request->server->all()
         );
@@ -413,7 +423,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      */
     public function duplicate(array $query = null, array $request = null, array $attributes = null, array $cookies = null, array $files = null, array $server = null)
     {
-        //Symfony\Component\HttpFoundation\Request::duplicate
+        //克隆一个请求并覆盖它的一些参数Symfony\Component\HttpFoundation\Request::duplicate   筛选给定的文件数组，移除任何空值
         return parent::duplicate($query, $request, $attributes, $cookies, $this->filterFiles($files), $server);
     }
 
@@ -433,6 +443,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
 
         foreach ($files as $key => $file) {
             if (is_array($file)) {
+                //                 筛选给定的文件数组，移除任何空值
                 $files[$key] = $this->filterFiles($files[$key]);
             }
 
@@ -459,7 +470,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
         if (! $this->hasSession()) {
             throw new RuntimeException('Session store not set on request.');
         }
-
+        //         获取session
         return $this->getSession();
     }
 
@@ -528,6 +539,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
         }
         //组合请求的method、domain、uri、ip参数生成sha1串
         return sha1(implode('|', array_merge(
+            //获取路由响应的HTTP请求method    获取路由定义的域 获取与路由关联的URI 返回客户IP地址
             $route->methods(), [$route->domain(), $route->uri(), $this->ip()]
         )));
     }
@@ -614,6 +626,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      */
     public function toArray()
     {
+        //获取请求的所有输入和文件
         return $this->all();
     }
 
@@ -627,6 +640,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      */
     public function offsetExists($offset)
     {
+        //                                 获取请求的所有输入和文件
         return array_key_exists($offset, $this->all());
     }
 
@@ -640,6 +654,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      */
     public function offsetGet($offset)
     {
+        //  使用“点”符号从数组或对象中获取项        获取请求的所有输入和文件
         return data_get($this->all(), $offset);
     }
 
@@ -654,6 +669,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      */
     public function offsetSet($offset, $value)
     {
+        //获取请求的输入源           设置参数通过key名
         $this->getInputSource()->set($offset, $value);
     }
 
@@ -667,6 +683,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      */
     public function offsetUnset($offset)
     {
+        //获取请求的输入源          删除指定的参数
         $this->getInputSource()->remove($offset);
     }
 
@@ -680,6 +697,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      */
     public function __isset($key)
     {
+        //                      从请求中获取输入元素
         return ! is_null($this->__get($key));
     }
 
@@ -693,10 +711,12 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      */
     public function __get($key)
     {
+        //      确定给定偏移是否存在
         if ($this->offsetExists($key)) {
+            //        得到给定偏移量的值
             return $this->offsetGet($key);
         }
-
+        //          获取路由处理请求
         return $this->route($key);
     }
 }

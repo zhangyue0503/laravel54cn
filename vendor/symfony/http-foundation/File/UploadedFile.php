@@ -101,6 +101,8 @@ class UploadedFile extends File
     /**
      * Returns the original file name.
      *
+     * 返回原始文件名
+     *
      * It is extracted from the request from which the file has been uploaded.
      * Then it should not be considered as a safe value.
      *
@@ -126,6 +128,8 @@ class UploadedFile extends File
 
     /**
      * Returns the file mime type.
+     *
+     * 返回文件mime类型
      *
      * The client mime type is extracted from the request from which the file
      * was uploaded, so it should not be considered as a safe value.
@@ -172,6 +176,8 @@ class UploadedFile extends File
     /**
      * Returns the file size.
      *
+     * 返回文件大小
+     *
      * It is extracted from the request from which the file has been uploaded.
      * Then it should not be considered as a safe value.
      *
@@ -184,6 +190,8 @@ class UploadedFile extends File
 
     /**
      * Returns the upload error.
+     *
+     * 返回上传错误
      *
      * If the upload was successful, the constant UPLOAD_ERR_OK is returned.
      * Otherwise one of the other UPLOAD_ERR_XXX constants is returned.

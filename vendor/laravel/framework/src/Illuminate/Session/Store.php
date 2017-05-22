@@ -309,6 +309,8 @@ class Store implements Session
     /**
      * Push a value onto a session array.
      *
+     * 将一个值推到一个会话数组中
+     *
      * @param  string  $key
      * @param  mixed   $value
      * @return void
@@ -351,21 +353,25 @@ class Store implements Session
     /**
      * Flash a key / value pair to the session.
      *
+     * 在会话中闪存一个键/值对
+     *
      * @param  string  $key
      * @param  mixed   $value
      * @return void
      */
     public function flash($key, $value)
     {
-        $this->put($key, $value);
+        $this->put($key, $value);//将键/值对或数组中的键/值对放入session
 
-        $this->push('_flash.new', $key);
+        $this->push('_flash.new', $key);//将一个值推到一个会话数组中
 
-        $this->removeFromOldFlashData([$key]);
+        $this->removeFromOldFlashData([$key]);//从旧的flash数据中删除给定的键
     }
 
     /**
      * Flash a key / value pair to the session for immediate use.
+     *
+     * 将键/值对用于会话，以便立即使用
      *
      * @param  string $key
      * @param  mixed $value
@@ -373,57 +379,69 @@ class Store implements Session
      */
     public function now($key, $value)
     {
-        $this->put($key, $value);
+        $this->put($key, $value);//将键/值对或数组中的键/值对放入session
 
-        $this->push('_flash.old', $key);
+        $this->push('_flash.old', $key);;//将一个值推到一个会话数组中
     }
 
     /**
      * Reflash all of the session flash data.
      *
+     * 反射所有的会话闪存数据
+     *
      * @return void
      */
     public function reflash()
     {
+        //将新的flash键合并到新的flash数组中  从会话中获取项目
         $this->mergeNewFlashes($this->get('_flash.old', []));
-
+        //将键/值对或数组中的键/值对放入session
         $this->put('_flash.old', []);
     }
 
     /**
      * Reflash a subset of the current flash data.
      *
+     * 反射当前的flash数据的一个子集
+     *
      * @param  array|mixed  $keys
      * @return void
      */
     public function keep($keys = null)
     {
+        //将新的flash键合并到新的flash数组中
         $this->mergeNewFlashes($keys = is_array($keys) ? $keys : func_get_args());
-
+        //从旧的flash数据中删除给定的键
         $this->removeFromOldFlashData($keys);
     }
 
     /**
      * Merge new flash keys into the new flash array.
      *
+     * 将新的flash键合并到新的flash数组中
+     *
      * @param  array  $keys
      * @return void
      */
     protected function mergeNewFlashes(array $keys)
     {
+        //                                从会话中获取项目
         $values = array_unique(array_merge($this->get('_flash.new', []), $keys));
-
+        //将键/值对或数组中的键/值对放入session
         $this->put('_flash.new', $values);
     }
 
     /**
      * Remove the given keys from the old flash data.
      *
+     * 从旧的flash数据中删除给定的键
+     *
      * @param  array  $keys
      * @return void
      */
     protected function removeFromOldFlashData(array $keys)
     {
+        //将键/值对或数组中的键/值对放入session         从会话中获取项目
         $this->put('_flash.old', array_diff($this->get('_flash.old', []), $keys));
     }
 

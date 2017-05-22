@@ -7,6 +7,8 @@ class MimeType
     /**
      * An array of extension to MIME types.
      *
+     * MIME类型的扩展数组
+     *
      * @var array
      */
     protected static $mimes = [

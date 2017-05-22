@@ -168,6 +168,8 @@ class Logger implements LoggerInterface
 
     /**
      * Pushes a handler on to the stack.
+     * 将处理程序推到堆栈上
+     *
      *
      * @param  HandlerInterface $handler
      * @return $this

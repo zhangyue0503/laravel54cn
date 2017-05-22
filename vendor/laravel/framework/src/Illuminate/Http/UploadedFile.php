@@ -15,6 +15,8 @@ class UploadedFile extends SymfonyUploadedFile
     /**
      * Begin creating a new file fake.
      *
+     * 开始创建一个新文件
+     *
      * @return \Illuminate\Http\Testing\FileFactory
      */
     public static function fake()
@@ -25,17 +27,22 @@ class UploadedFile extends SymfonyUploadedFile
     /**
      * Store the uploaded file on a filesystem disk.
      *
+     * 将上传的文件存储在文件系统磁盘上
+     *
      * @param  string  $path
      * @param  array  $options
      * @return string|false
      */
     public function store($path, $options = [])
     {
+        // 将上传的文件存储在文件系统磁盘上      为文件获取文件名       解析和格式化给定选项
         return $this->storeAs($path, $this->hashName(), $this->parseOptions($options));
     }
 
     /**
      * Store the uploaded file on a filesystem disk with public visibility.
+     *
+     * 将上传的文件存储在具有公共可见性的文件系统磁盘上
      *
      * @param  string  $path
      * @param  array  $options
@@ -43,15 +50,18 @@ class UploadedFile extends SymfonyUploadedFile
      */
     public function storePublicly($path, $options = [])
     {
+        //            解析和格式化给定选项
         $options = $this->parseOptions($options);
 
         $options['visibility'] = 'public';
-
+        //将上传的文件存储在文件系统磁盘上      为文件获取文件名
         return $this->storeAs($path, $this->hashName(), $options);
     }
 
     /**
      * Store the uploaded file on a filesystem disk with public visibility.
+     *
+     * 将上传的文件存储在具有公共可见性的文件系统磁盘上
      *
      * @param  string  $path
      * @param  string  $name
@@ -60,15 +70,18 @@ class UploadedFile extends SymfonyUploadedFile
      */
     public function storePubliclyAs($path, $name, $options = [])
     {
+        //            解析和格式化给定选项
         $options = $this->parseOptions($options);
 
         $options['visibility'] = 'public';
-
+        //将上传的文件存储在文件系统磁盘上
         return $this->storeAs($path, $name, $options);
     }
 
     /**
      * Store the uploaded file on a filesystem disk.
+     *
+     * 将上传的文件存储在文件系统磁盘上
      *
      * @param  string  $path
      * @param  string  $name
@@ -77,11 +90,12 @@ class UploadedFile extends SymfonyUploadedFile
      */
     public function storeAs($path, $name, $options = [])
     {
+        //               解析和格式化给定选项
         $options = $this->parseOptions($options);
-
+        //从数组中获取值，并将其移除
         $disk = Arr::pull($options, 'disk');
-
-        return Container::getInstance()->make(FilesystemFactory::class)->disk($disk)->putFileAs(
+        //设置容器的全局可用实例            从容器中解析给定类型               获得文件系统实现   将上传的文件存储在磁盘上，并带有一个给定的名称
+        return Container::getInstance()->make(FilesystemFactory::class)->disk($disk)->putFileAs(//Illuminate\Filesystem\FilesystemAdapter
             $path, $this, $name, $options
         );
     }
@@ -99,16 +113,18 @@ class UploadedFile extends SymfonyUploadedFile
     {
         return $file instanceof static ? $file : new static(
             $file->getPathname(),
-            $file->getClientOriginalName(),
-            $file->getClientMimeType(),
-            $file->getClientSize(),
-            $file->getError(),
+            $file->getClientOriginalName(),//返回原始文件名
+            $file->getClientMimeType(),//返回文件mime类型
+            $file->getClientSize(),//返回文件大小
+            $file->getError(),//返回上传错误
             $test
         );
     }
 
     /**
      * Parse and format the given options.
+     *
+     * 解析和格式化给定选项
      *
      * @param  array|string  $options
      * @return array

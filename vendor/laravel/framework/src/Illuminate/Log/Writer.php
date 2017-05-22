@@ -291,6 +291,7 @@ class Writer implements LogContract, PsrLoggerInterface
      */
     public function useSyslog($name = 'laravel', $level = 'debug', $facility = LOG_USER)
     {
+        //              将处理程序推到堆栈上
         return $this->monolog->pushHandler(new SyslogHandler($name, $facility, $level));
     }
 
@@ -305,6 +306,7 @@ class Writer implements LogContract, PsrLoggerInterface
      */
     public function useErrorLog($level = 'debug', $messageType = ErrorLogHandler::OPERATING_SYSTEM)
     {
+        //将处理程序推到堆栈上
         $this->monolog->pushHandler(
         //                                                字符串等解析为Monolog的常量
             $handler = new ErrorLogHandler($messageType, $this->parseLevel($level))

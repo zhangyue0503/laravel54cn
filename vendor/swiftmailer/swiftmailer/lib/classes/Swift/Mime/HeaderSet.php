@@ -34,6 +34,8 @@ interface Swift_Mime_HeaderSet extends Swift_Mime_CharsetObserver
     /**
      * Add a new basic text header with $name and $value.
      *
+     * 添加一个新的基本文本标题，$name和$value
+     *
      * @param string $name
      * @param string $value
      */
