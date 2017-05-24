@@ -9,12 +9,16 @@ class SlackAttachment
     /**
      * The attachment's title.
      *
+     * 附件的标题
+     *
      * @var string
      */
     public $title;
 
     /**
      * The attachment's URL.
+     *
+     * 附件的URL
      *
      * @var string
      */
@@ -23,12 +27,16 @@ class SlackAttachment
     /**
      * The attachment's text content.
      *
+     * 附件的文本内容
+     *
      * @var string
      */
     public $content;
 
     /**
      * A plain-text summary of the attachment.
+     *
+     * 附件的纯文本摘要
      *
      * @var string
      */
@@ -37,12 +45,16 @@ class SlackAttachment
     /**
      * The attachment's color.
      *
+     * 附件的颜色
+     *
      * @var string
      */
     public $color;
 
     /**
      * The attachment's fields.
+     *
+     * 附件的字段
      *
      * @var array
      */
@@ -51,12 +63,16 @@ class SlackAttachment
     /**
      * The fields containing markdown.
      *
+     * 字段包含markdown
+     *
      * @var array
      */
     public $markdown;
 
     /**
      * The attachment's footer.
+     *
+     * 附件的底部
      *
      * @var string
      */
@@ -65,6 +81,8 @@ class SlackAttachment
     /**
      * The attachment's footer icon.
      *
+     * 附件的底部icon
+     *
      * @var string
      */
     public $footerIcon;
@@ -72,12 +90,16 @@ class SlackAttachment
     /**
      * The attachment's timestamp.
      *
+     * 附件的时间戳
+     *
      * @var int
      */
     public $timestamp;
 
     /**
      * Set the title of the attachment.
+     *
+     * 设置附件的标题
      *
      * @param  string  $title
      * @param  string  $url
@@ -94,6 +116,8 @@ class SlackAttachment
     /**
      * Set the content (text) of the attachment.
      *
+     * 设置附件的内容(文本)
+     *
      * @param  string  $content
      * @return $this
      */
@@ -106,6 +130,8 @@ class SlackAttachment
 
     /**
      * A plain-text summary of the attachment.
+     *
+     * 附件的纯文本摘要
      *
      * @param  string  $fallback
      * @return $this
@@ -120,6 +146,8 @@ class SlackAttachment
     /**
      * Set the color of the attachment.
      *
+     * 设置附件的颜色
+     *
      * @param  string  $color
      * @return $this
      */
@@ -132,6 +160,8 @@ class SlackAttachment
 
     /**
      * Add a field to the attachment.
+     *
+     * 添加附件的字段
      *
      * @param  \Closure|string $title
      * @param  string $content
@@ -157,6 +187,8 @@ class SlackAttachment
     /**
      * Set the fields of the attachment.
      *
+     * 设置附件的字段
+     *
      * @param  array  $fields
      * @return $this
      */
@@ -169,6 +201,8 @@ class SlackAttachment
 
     /**
      * Set the fields containing markdown.
+     *
+     * 设置包含markdown的字段
      *
      * @param  array  $fields
      * @return $this
@@ -183,6 +217,8 @@ class SlackAttachment
     /**
      * Set the footer content.
      *
+     * 设置底部内容
+     *
      * @param  string  $footer
      * @return $this
      */
@@ -196,6 +232,8 @@ class SlackAttachment
     /**
      * Set the footer icon.
      *
+     * 设置底部icon
+     *
      * @param  string $icon
      * @return $this
      */
@@ -208,6 +246,8 @@ class SlackAttachment
 
     /**
      * Set the timestamp.
+     *
+     * 设置时间戳
      *
      * @param  Carbon  $timestamp
      * @return $this

@@ -11,6 +11,8 @@ class Notification
     /**
      * The unique identifier for the notification.
      *
+     * 通知的唯一标识符
+     *
      * @var string
      */
     public $id;

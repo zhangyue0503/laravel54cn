@@ -10,22 +10,27 @@ class DatabaseChannel
     /**
      * Send the given notification.
      *
+     * 发送给定的通知
+     *
      * @param  mixed  $notifiable
      * @param  \Illuminate\Notifications\Notification  $notification
      * @return \Illuminate\Database\Eloquent\Model
      */
     public function send($notifiable, Notification $notification)
     {
+        //                获取给定驱动程序的通知路由信息
         return $notifiable->routeNotificationFor('database')->create([
             'id' => $notification->id,
             'type' => get_class($notification),
-            'data' => $this->getData($notifiable, $notification),
+            'data' => $this->getData($notifiable, $notification),//获取通知的数据
             'read_at' => null,
         ]);
     }
 
     /**
      * Get the data for the notification.
+     *
+     * 获取通知的数据
      *
      * @param  mixed  $notifiable
      * @param  \Illuminate\Notifications\Notification  $notification

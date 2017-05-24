@@ -7,6 +7,8 @@ class Action
     /**
      * The action text.
      *
+     * 操作文本
+     *
      * @var string
      */
     public $text;
@@ -14,12 +16,16 @@ class Action
     /**
      * The action URL.
      *
+     * 操作URL
+     *
      * @var string
      */
     public $url;
 
     /**
      * Create a new action instance.
+     *
+     * 创建一个新的操作实例
      *
      * @param  string  $text
      * @param  string  $url

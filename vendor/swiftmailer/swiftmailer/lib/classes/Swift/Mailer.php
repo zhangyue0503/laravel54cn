@@ -105,6 +105,8 @@ class Swift_Mailer
     /**
      * The Transport used to send messages.
      *
+     * 用于发送消息的传输
+     *
      * @return Swift_Transport
      */
     public function getTransport()

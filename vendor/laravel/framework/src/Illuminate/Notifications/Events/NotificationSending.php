@@ -7,12 +7,16 @@ class NotificationSending
     /**
      * The notifiable entity who received the notification.
      *
+     * 收到通知的通知实体
+     *
      * @var mixed
      */
     public $notifiable;
 
     /**
      * The notification instance.
+     *
+     * 通知实例
      *
      * @var \Illuminate\Notifications\Notification
      */
@@ -21,12 +25,16 @@ class NotificationSending
     /**
      * The channel name.
      *
+     * 频道名称
+     *
      * @var string
      */
     public $channel;
 
     /**
      * Create a new event instance.
+     *
+     * 创建新的事件实例
      *
      * @param  mixed  $notifiable
      * @param  \Illuminate\Notifications\Notification  $notification

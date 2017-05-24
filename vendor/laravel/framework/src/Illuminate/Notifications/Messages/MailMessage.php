@@ -7,12 +7,16 @@ class MailMessage extends SimpleMessage
     /**
      * The view to be rendered.
      *
+     * 呈现的视图
+     *
      * @var array|string
      */
     public $view;
 
     /**
      * The view data for the message.
+     *
+     * 消息的视图数据
      *
      * @var array
      */
@@ -21,12 +25,16 @@ class MailMessage extends SimpleMessage
     /**
      * The Markdown template to render (if applicable).
      *
+     * 用于呈现的Markdown模板(如果适用的话)
+     *
      * @var string|null
      */
     public $markdown = 'notifications::email';
 
     /**
      * The "from" information for the message.
+     *
+     * 信息的“来自”信息
      *
      * @var array
      */
@@ -35,12 +43,16 @@ class MailMessage extends SimpleMessage
     /**
      * The "reply to" information for the message.
      *
+     * 消息的“回复”信息
+     *
      * @var array
      */
     public $replyTo = [];
 
     /**
      * The attachments for the message.
+     *
+     * 消息的附件
      *
      * @var array
      */
@@ -49,6 +61,8 @@ class MailMessage extends SimpleMessage
     /**
      * The raw attachments for the message.
      *
+     * 消息的原始附件
+     *
      * @var array
      */
     public $rawAttachments = [];
@@ -56,12 +70,16 @@ class MailMessage extends SimpleMessage
     /**
      * Priority level of the message.
      *
+     * 消息的优先级
+     *
      * @var int
      */
     public $priority;
 
     /**
      * Set the view for the mail message.
+     *
+     * 设置邮件消息的视图
      *
      * @param  array|string  $view
      * @param  array  $data
@@ -80,6 +98,8 @@ class MailMessage extends SimpleMessage
     /**
      * Set the Markdown template for the notification.
      *
+     * 为通知设置Markdown模板
+     *
      * @param  string  $view
      * @param  array  $data
      * @return $this
@@ -97,6 +117,8 @@ class MailMessage extends SimpleMessage
     /**
      * Set the from address for the mail message.
      *
+     * 设置邮件消息的地址
+     *
      * @param  string  $address
      * @param  string|null  $name
      * @return $this
@@ -110,6 +132,8 @@ class MailMessage extends SimpleMessage
 
     /**
      * Set the "reply to" address of the message.
+     *
+     * 设置消息的“回复”地址
      *
      * @param  array|string  $address
      * @param  string|null  $name
@@ -125,6 +149,8 @@ class MailMessage extends SimpleMessage
     /**
      * Attach a file to the message.
      *
+     * 将文件附加到消息中
+     *
      * @param  string  $file
      * @param  array  $options
      * @return $this
@@ -138,6 +164,8 @@ class MailMessage extends SimpleMessage
 
     /**
      * Attach in-memory data as an attachment.
+     *
+     * 将内存中的数据附加在附件中
      *
      * @param  string  $data
      * @param  string  $name
@@ -154,7 +182,11 @@ class MailMessage extends SimpleMessage
     /**
      * Set the priority of this message.
      *
+     * 设置此消息的优先级
+     *
      * The value is an integer where 1 is the highest priority and 5 is the lowest.
+     *
+     * 值是一个整数，其中1是最高的优先级，5是最低的
      *
      * @param  int  $level
      * @return $this
@@ -169,10 +201,13 @@ class MailMessage extends SimpleMessage
     /**
      * Get the data array for the mail message.
      *
+     * 获取邮件消息的数据数组
+     *
      * @return array
      */
     public function data()
     {
+        //                  获取消息的数组表示
         return array_merge($this->toArray(), $this->viewData);
     }
 }

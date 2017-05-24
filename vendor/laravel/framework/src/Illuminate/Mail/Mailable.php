@@ -224,9 +224,10 @@ class Mailable implements MailableContract
      */
     protected function buildMarkdownView()
     {
+        //                    设置容器的全局可用实例 从容器中解析给定类型
         $markdown = Container::getInstance()->make(Markdown::class);
 
-        $data = $this->buildViewData();
+        $data = $this->buildViewData();//为消息构建视图数据
 
         return [
             'html' => $markdown->render($this->markdown, $data),
@@ -265,6 +266,7 @@ class Mailable implements MailableContract
     protected function buildFrom($message)
     {
         if (! empty($this->from)) {
+            //将“from”地址添加到消息中
             $message->from($this->from[0]['address'], $this->from[0]['name']);
         }
 
@@ -301,8 +303,10 @@ class Mailable implements MailableContract
     protected function buildSubject($message)
     {
         if ($this->subject) {
+            //设置消息的主题
             $message->subject($this->subject);
         } else {
+            //                给定字符串转换为首字母大写 将字符串转换为蛇形命名
             $message->subject(Str::title(Str::snake(class_basename($this), ' ')));
         }
 
@@ -320,10 +324,12 @@ class Mailable implements MailableContract
     protected function buildAttachments($message)
     {
         foreach ($this->attachments as $attachment) {
+            //将文件附加到消息中
             $message->attach($attachment['file'], $attachment['options']);
         }
 
         foreach ($this->rawAttachments as $attachment) {
+            //将内存中的数据附加为附件
             $message->attachData(
                 $attachment['data'], $attachment['name'], $attachment['options']
             );
@@ -343,6 +349,7 @@ class Mailable implements MailableContract
     protected function runCallbacks($message)
     {
         foreach ($this->callbacks as $callback) {
+            //             获取底层的Swift消息实例
             $callback($message->getSwiftMessage());
         }
 
@@ -352,7 +359,11 @@ class Mailable implements MailableContract
     /**
      * Set the priority of this message.
      *
+     * 设置此消息的优先级
+     *
      * The value is an integer where 1 is the highest priority and 5 is the lowest.
+     *
+     * 值是一个整数，其中1是最高的优先级，5是最低的
      *
      * @param  int  $level
      * @return $this
@@ -369,17 +380,22 @@ class Mailable implements MailableContract
     /**
      * Set the sender of the message.
      *
+     * 设置消息的发送者
+     *
      * @param  object|array|string  $address
      * @param  string|null  $name
      * @return $this
      */
     public function from($address, $name = null)
     {
+        //           设置消息的接收者
         return $this->setAddress($address, $name, 'from');
     }
 
     /**
      * Set the recipients of the message.
+     *
+     * 设置消息的接收者
      *
      * @param  object|array|string  $address
      * @param  string|null  $name
@@ -387,11 +403,14 @@ class Mailable implements MailableContract
      */
     public function to($address, $name = null)
     {
+        //          设置消息的接收者
         return $this->setAddress($address, $name, 'to');
     }
 
     /**
      * Determine if the given recipient is set on the mailable.
+     *
+     * 确定给定的接收者是否设置为可发送的
      *
      * @param  object|array|string  $address
      * @param  string|null  $name
@@ -399,11 +418,14 @@ class Mailable implements MailableContract
      */
     public function hasTo($address, $name = null)
     {
+        //          确定给定的接收者是否设置为可发送的
         return $this->hasRecipient($address, $name, 'to');
     }
 
     /**
      * Set the recipients of the message.
+     *
+     * 设置消息的接收者
      *
      * @param  object|array|string  $address
      * @param  string|null  $name
@@ -411,11 +433,14 @@ class Mailable implements MailableContract
      */
     public function cc($address, $name = null)
     {
+        //          设置消息的接收者
         return $this->setAddress($address, $name, 'cc');
     }
 
     /**
      * Determine if the given recipient is set on the mailable.
+     *
+     * 确定给定的接收者是否设置为可发送的
      *
      * @param  object|array|string  $address
      * @param  string|null  $name
@@ -423,11 +448,14 @@ class Mailable implements MailableContract
      */
     public function hasCc($address, $name = null)
     {
+        //          确定给定的接收者是否设置为可发送的
         return $this->hasRecipient($address, $name, 'cc');
     }
 
     /**
      * Set the recipients of the message.
+     *
+     * 设置消息的接收者
      *
      * @param  object|array|string  $address
      * @param  string|null  $name
@@ -435,11 +463,14 @@ class Mailable implements MailableContract
      */
     public function bcc($address, $name = null)
     {
+        //          设置消息的接收者
         return $this->setAddress($address, $name, 'bcc');
     }
 
     /**
      * Determine if the given recipient is set on the mailable.
+     *
+     * 确定给定的接收者是否设置为可发送的
      *
      * @param  object|array|string  $address
      * @param  string|null  $name
@@ -447,11 +478,14 @@ class Mailable implements MailableContract
      */
     public function hasBcc($address, $name = null)
     {
+        //          确定给定的接收者是否设置为可发送的
         return $this->hasRecipient($address, $name, 'bcc');
     }
 
     /**
      * Set the "reply to" address of the message.
+     *
+     * 设置消息的“回复”地址
      *
      * @param  object|array|string  $address
      * @param  string|null  $name
@@ -459,13 +493,18 @@ class Mailable implements MailableContract
      */
     public function replyTo($address, $name = null)
     {
+        //          设置消息的接收者
         return $this->setAddress($address, $name, 'replyTo');
     }
 
     /**
      * Set the recipients of the message.
      *
+     * 设置消息的接收者
+     *
      * All recipients are stored internally as [['name' => ?, 'address' => ?]]
+     *
+     * 所有接收方都在内部存储[['name' => ?, 'address' => ?]]
      *
      * @param  object|array|string  $address
      * @param  string|null  $name
@@ -474,7 +513,9 @@ class Mailable implements MailableContract
      */
     protected function setAddress($address, $name = null, $property = 'to')
     {
+        //           将给定的接收方参数转换为数组
         foreach ($this->addressesToArray($address, $name) as $recipient) {
+            //                将给定的接收方转换为对象
             $recipient = $this->normalizeRecipient($recipient);
 
             $this->{$property}[] = [
@@ -488,6 +529,8 @@ class Mailable implements MailableContract
 
     /**
      * Convert the given recipient arguments to an array.
+     *
+     * 将给定的接收方参数转换为数组
      *
      * @param  object|array|string  $address
      * @param  string|null  $name
@@ -504,6 +547,8 @@ class Mailable implements MailableContract
 
     /**
      * Convert the given recipient into an object.
+     *
+     * 将给定的接收方转换为对象
      *
      * @param  mixed  $recipient
      * @return object
@@ -522,6 +567,8 @@ class Mailable implements MailableContract
     /**
      * Determine if the given recipient is set on the mailable.
      *
+     * 确定给定的接收者是否设置为可发送的
+     *
      * @param  object|array|string  $address
      * @param  string|null  $name
      * @param  string  $property
@@ -529,7 +576,9 @@ class Mailable implements MailableContract
      */
     protected function hasRecipient($address, $name = null, $property = 'to')
     {
+        //                  将给定的接收方转换为对象
         $expected = $this->normalizeRecipient(
+            //将给定的接收方参数转换为数组
             $this->addressesToArray($address, $name)[0]
         );
 
@@ -537,7 +586,7 @@ class Mailable implements MailableContract
             'name' => isset($expected->name) ? $expected->name : null,
             'address' => $expected->email,
         ];
-
+        //                                确定集合中是否存在项
         return collect($this->{$property})->contains(function ($actual) use ($expected) {
             if (! isset($expected['name'])) {
                 return $actual['address'] == $expected['address'];
@@ -549,6 +598,8 @@ class Mailable implements MailableContract
 
     /**
      * Set the subject of the message.
+     *
+     * 设置消息的主题
      *
      * @param  string  $subject
      * @return $this
@@ -562,6 +613,8 @@ class Mailable implements MailableContract
 
     /**
      * Set the Markdown template for the message.
+     *
+     * 为消息设置Markdown模板
      *
      * @param  string  $view
      * @param  array  $data
@@ -578,6 +631,8 @@ class Mailable implements MailableContract
     /**
      * Set the view and view data for the message.
      *
+     * 为消息设置视图和视图数据
+     *
      * @param  string  $view
      * @param  array  $data
      * @return $this
@@ -593,6 +648,8 @@ class Mailable implements MailableContract
     /**
      * Set the plain text view for the message.
      *
+     * 为消息设置纯文本视图
+     *
      * @param  string  $textView
      * @param  array  $data
      * @return $this
@@ -607,6 +664,8 @@ class Mailable implements MailableContract
 
     /**
      * Set the view data for the message.
+     *
+     * 为消息设置视图数据
      *
      * @param  string|array  $key
      * @param  mixed   $value
@@ -626,6 +685,8 @@ class Mailable implements MailableContract
     /**
      * Attach a file to the message.
      *
+     * 将文件附加到消息中
+     *
      * @param  string  $file
      * @param  array  $options
      * @return $this
@@ -639,6 +700,8 @@ class Mailable implements MailableContract
 
     /**
      * Attach in-memory data as an attachment.
+     *
+     * 将内存中的数据附加为附件
      *
      * @param  string  $data
      * @param  string  $name
@@ -655,6 +718,8 @@ class Mailable implements MailableContract
     /**
      * Register a callback to be called with the Swift message instance.
      *
+     * 注册一个回调，以使用Swift消息实例来调用
+     *
      * @param  callable  $callback
      * @return $this
      */
@@ -668,6 +733,8 @@ class Mailable implements MailableContract
     /**
      * Dynamically bind parameters to the message.
      *
+     * 动态地将参数绑定到消息
+     *
      * @param  string  $method
      * @param  array   $parameters
      * @return $this
@@ -676,7 +743,9 @@ class Mailable implements MailableContract
      */
     public function __call($method, $parameters)
     {
+        //确定给定的子字符串是否属于给定的字符串
         if (Str::startsWith($method, 'with')) {
+            //为消息设置视图数据        将字符串转换为蛇形命名
             return $this->with(Str::snake(substr($method, 4)), $parameters[0]);
         }
 

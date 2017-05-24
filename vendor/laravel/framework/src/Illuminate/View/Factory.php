@@ -352,6 +352,8 @@ class Factory implements FactoryContract
     /**
      * Replace the namespace hints for the given namespace.
      *
+     * 替换给定名称空间的名称空间提示
+     *
      * @param  string  $namespace
      * @param  string|array  $hints
      * @return $this
@@ -454,6 +456,8 @@ class Factory implements FactoryContract
 
     /**
      * Flush the cache of views located by the finder.
+     *
+     * 刷新查找器所在的视图的缓存
      *
      * @return void
      */

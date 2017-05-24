@@ -1,7 +1,7 @@
 <?php
 
 namespace Illuminate\Contracts\Notifications;
-
+//调度程序
 interface Dispatcher
 {
     /**
