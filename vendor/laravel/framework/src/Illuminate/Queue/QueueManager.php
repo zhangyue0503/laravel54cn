@@ -12,6 +12,8 @@ class QueueManager implements FactoryContract, MonitorContract
     /**
      * The application instance.
      *
+     * 应用程序实例
+     *
      * @var \Illuminate\Foundation\Application
      */
     protected $app;
@@ -19,12 +21,16 @@ class QueueManager implements FactoryContract, MonitorContract
     /**
      * The array of resolved queue connections.
      *
+     * 已解析队列连接的数组
+     *
      * @var array
      */
     protected $connections = [];
 
     /**
      * The array of resolved queue connectors.
+     *
+     * 解析队列连接器的数组
      *
      * @var array
      */
@@ -46,77 +52,98 @@ class QueueManager implements FactoryContract, MonitorContract
     /**
      * Register an event listener for the before job event.
      *
+     * 为之前的作业事件注册一个事件侦听器
+     *
      * @param  mixed  $callback
      * @return void
      */
     public function before($callback)
     {
+        //              用分配器注册事件监听器
         $this->app['events']->listen(Events\JobProcessing::class, $callback);
     }
 
     /**
      * Register an event listener for the after job event.
      *
+     * 为后面的作业事件注册一个事件侦听器
+     *
      * @param  mixed  $callback
      * @return void
      */
     public function after($callback)
     {
+        //              用分配器注册事件监听器
         $this->app['events']->listen(Events\JobProcessed::class, $callback);
     }
 
     /**
      * Register an event listener for the exception occurred job event.
      *
+     * 为异常发生的作业事件注册一个事件侦听器
+     *
      * @param  mixed  $callback
      * @return void
      */
     public function exceptionOccurred($callback)
     {
+        //              用分配器注册事件监听器
         $this->app['events']->listen(Events\JobExceptionOccurred::class, $callback);
     }
 
     /**
      * Register an event listener for the daemon queue loop.
      *
+     * 为守护进程队列循环注册一个事件侦听器
+     *
      * @param  mixed  $callback
      * @return void
      */
     public function looping($callback)
     {
+        //              用分配器注册事件监听器
         $this->app['events']->listen(Events\Looping::class, $callback);
     }
 
     /**
      * Register an event listener for the failed job event.
      *
+     * 为失败的作业事件注册一个事件侦听器
+     *
      * @param  mixed  $callback
      * @return void
      */
     public function failing($callback)
     {
+        //              用分配器注册事件监听器
         $this->app['events']->listen(Events\JobFailed::class, $callback);
     }
 
     /**
      * Register an event listener for the daemon queue stopping.
      *
+     * 为守护队列停止注册一个事件侦听器
+     *
      * @param  mixed  $callback
      * @return void
      */
     public function stopping($callback)
     {
+        //              用分配器注册事件监听器
         $this->app['events']->listen(Events\WorkerStopping::class, $callback);
     }
 
     /**
      * Determine if the driver is connected.
      *
+     * 确定驱动程序是否连接
+     *
      * @param  string  $name
      * @return bool
      */
     public function connected($name = null)
     {
+        //                                      获取默认队列连接的名称
         return isset($this->connections[$name ?: $this->getDefaultDriver()]);
     }
 
@@ -142,7 +169,7 @@ class QueueManager implements FactoryContract, MonitorContract
         if (! isset($this->connections[$name])) {
             $this->connections[$name] = $this->resolve($name);//解决一个消息队列连接
 
-            $this->connections[$name]->setContainer($this->app);
+            $this->connections[$name]->setContainer($this->app);//设置IoC容器实例
         }
 
         return $this->connections[$name];
@@ -163,7 +190,7 @@ class QueueManager implements FactoryContract, MonitorContract
 
         return $this->getConnector($config['driver'])//获取给定驱动器的连接器
                         ->connect($config)//建立队列连接
-                        ->setConnectionName($name);
+                        ->setConnectionName($name);//设置队列的连接名称
     }
 
     /**
@@ -188,13 +215,15 @@ class QueueManager implements FactoryContract, MonitorContract
     /**
      * Add a queue connection resolver.
      *
+     * 添加队列连接解析器
+     *
      * @param  string    $driver
      * @param  \Closure  $resolver
      * @return void
      */
     public function extend($driver, Closure $resolver)
     {
-        return $this->addConnector($driver, $resolver);
+        return $this->addConnector($driver, $resolver);//添加队列连接解析器
     }
 
     /**
@@ -243,6 +272,8 @@ class QueueManager implements FactoryContract, MonitorContract
     /**
      * Set the name of the default queue connection.
      *
+     * 设置缺省队列连接的名称
+     *
      * @param  string  $name
      * @return void
      */
@@ -254,26 +285,32 @@ class QueueManager implements FactoryContract, MonitorContract
     /**
      * Get the full name for the given connection.
      *
+     * 获取给定连接的完整名称
+     *
      * @param  string  $connection
      * @return string
      */
     public function getName($connection = null)
     {
-        return $connection ?: $this->getDefaultDriver();
+        return $connection ?: $this->getDefaultDriver();//获取默认队列连接的名称
     }
 
     /**
      * Determine if the application is in maintenance mode.
      *
+     * 确定应用程序是否处于维护模式
+     *
      * @return bool
      */
     public function isDownForMaintenance()
     {
-        return $this->app->isDownForMaintenance();
+        return $this->app->isDownForMaintenance();//确定当前应用程序是否正在维护
     }
 
     /**
      * Dynamically pass calls to the default connection.
+     *
+     * 将调用动态地传递给默认连接
      *
      * @param  string  $method
      * @param  array   $parameters
@@ -281,6 +318,7 @@ class QueueManager implements FactoryContract, MonitorContract
      */
     public function __call($method, $parameters)
     {
+        //         解析队列连接实例
         return $this->connection()->$method(...$parameters);
     }
 }

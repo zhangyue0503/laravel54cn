@@ -7,12 +7,16 @@ class JobExceptionOccurred
     /**
      * The connection name.
      *
+     * 连接名
+     *
      * @var string
      */
     public $connectionName;
 
     /**
      * The job instance.
+     *
+     * 工作实例
      *
      * @var \Illuminate\Contracts\Queue\Job
      */
@@ -21,12 +25,16 @@ class JobExceptionOccurred
     /**
      * The exception instance.
      *
+     * 异常实例
+     *
      * @var \Exception
      */
     public $exception;
 
     /**
      * Create a new event instance.
+     *
+     * 创建一个新的事件实例
      *
      * @param  string  $connectionName
      * @param  \Illuminate\Contracts\Queue\Job  $job

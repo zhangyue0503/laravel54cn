@@ -18,6 +18,8 @@ class QueueServiceProvider extends ServiceProvider
     /**
      * Indicates if loading of the provider is deferred.
      *
+     * 指示是否延迟了提供者的加载
+     *
      * @var bool
      */
     protected $defer = true;
@@ -33,13 +35,13 @@ class QueueServiceProvider extends ServiceProvider
     {
         $this->registerManager();//注册队列管理器
 
-        $this->registerConnection();
+        $this->registerConnection();//注册缺省队列连接绑定
 
-        $this->registerWorker();
+        $this->registerWorker();//注册队列工人
 
-        $this->registerListener();
+        $this->registerListener();//注册队列监听器
 
-        $this->registerFailedJobServices();
+        $this->registerFailedJobServices();//注册失败的作业服务
     }
 
     /**
@@ -70,12 +72,15 @@ class QueueServiceProvider extends ServiceProvider
     /**
      * Register the default queue connection binding.
      *
+     * 注册缺省队列连接绑定
+     *
      * @return void
      */
     protected function registerConnection()
     {
+        //在容器中注册共享绑定
         $this->app->singleton('queue.connection', function ($app) {
-            return $app['queue']->connection();
+            return $app['queue']->connection();//解析队列连接实例
         });
     }
 
@@ -97,12 +102,15 @@ class QueueServiceProvider extends ServiceProvider
 
     /**
      * Register the Null queue connector.
+     * 注册空队列连接器
+     *
      *
      * @param  \Illuminate\Queue\QueueManager  $manager
      * @return void
      */
     protected function registerNullConnector($manager)
     {
+        //添加队列连接解析器
         $manager->addConnector('null', function () {
             return new NullConnector;
         });
@@ -143,11 +151,14 @@ class QueueServiceProvider extends ServiceProvider
     /**
      * Register the Redis queue connector.
      *
+     * 注册Redis队列连接器
+     *
      * @param  \Illuminate\Queue\QueueManager  $manager
      * @return void
      */
     protected function registerRedisConnector($manager)
     {
+        //添加队列连接解析器
         $manager->addConnector('redis', function () {
             return new RedisConnector($this->app['redis']);
         });
@@ -156,11 +167,14 @@ class QueueServiceProvider extends ServiceProvider
     /**
      * Register the Beanstalkd queue connector.
      *
+     * 注册Beanstalkd队列连接器
+     *
      * @param  \Illuminate\Queue\QueueManager  $manager
      * @return void
      */
     protected function registerBeanstalkdConnector($manager)
     {
+        //添加队列连接解析器
         $manager->addConnector('beanstalkd', function () {
             return new BeanstalkdConnector;
         });
@@ -169,11 +183,14 @@ class QueueServiceProvider extends ServiceProvider
     /**
      * Register the Amazon SQS queue connector.
      *
+     * 注册Amazon SQS队列连接器
+     *
      * @param  \Illuminate\Queue\QueueManager  $manager
      * @return void
      */
     protected function registerSqsConnector($manager)
     {
+        //添加队列连接解析器
         $manager->addConnector('sqs', function () {
             return new SqsConnector;
         });
@@ -182,10 +199,13 @@ class QueueServiceProvider extends ServiceProvider
     /**
      * Register the queue worker.
      *
+     * 注册队列工人
+     *
      * @return void
      */
     protected function registerWorker()
     {
+        //在容器中注册共享绑定
         $this->app->singleton('queue.worker', function () {
             return new Worker(
                 $this->app['queue'], $this->app['events'], $this->app[ExceptionHandler::class]
@@ -196,11 +216,15 @@ class QueueServiceProvider extends ServiceProvider
     /**
      * Register the queue listener.
      *
+     * 注册队列监听器
+     *
      * @return void
      */
     protected function registerListener()
     {
+        //在容器中注册共享绑定
         $this->app->singleton('queue.listener', function () {
+            //                         得到Laravel安装的基本路径
             return new Listener($this->app->basePath());
         });
     }
@@ -208,14 +232,18 @@ class QueueServiceProvider extends ServiceProvider
     /**
      * Register the failed job services.
      *
+     * 注册失败的作业服务
+     *
      * @return void
      */
     protected function registerFailedJobServices()
     {
+        //在容器中注册共享绑定
         $this->app->singleton('queue.failer', function () {
             $config = $this->app['config']['queue.failed'];
 
             return isset($config['table'])
+            //                  创建一个新的数据库失败的作业提供者
                         ? $this->databaseFailedJobProvider($config)
                         : new NullFailedJobProvider;
         });
@@ -223,6 +251,8 @@ class QueueServiceProvider extends ServiceProvider
 
     /**
      * Create a new database failed job provider.
+     *
+     * 创建一个新的数据库失败的作业提供者
      *
      * @param  array  $config
      * @return \Illuminate\Queue\Failed\DatabaseFailedJobProvider
@@ -236,6 +266,8 @@ class QueueServiceProvider extends ServiceProvider
 
     /**
      * Get the services provided by the provider.
+     *
+     * 获取提供者提供的服务
      *
      * @return array
      */

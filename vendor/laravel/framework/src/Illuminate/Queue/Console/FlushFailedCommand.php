@@ -9,12 +9,16 @@ class FlushFailedCommand extends Command
     /**
      * The console command name.
      *
+     * 控制台命令名
+     *
      * @var string
      */
     protected $name = 'queue:flush';
 
     /**
      * The console command description.
+     *
+     * 控制台命令描述
      *
      * @var string
      */
@@ -23,12 +27,14 @@ class FlushFailedCommand extends Command
     /**
      * Execute the console command.
      *
+     * 执行控制台命令
+     *
      * @return void
      */
     public function fire()
     {
-        $this->laravel['queue.failer']->flush();
-
+        $this->laravel['queue.failer']->flush();//从存储中清除所有失败的作业
+        //将字符串写入信息输出
         $this->info('All failed jobs deleted successfully!');
     }
 }

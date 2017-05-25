@@ -11,6 +11,8 @@ class SqsJob extends Job implements JobContract
     /**
      * The Amazon SQS client instance.
      *
+     * Amazon SQS客户端实例
+     *
      * @var \Aws\Sqs\SqsClient
      */
     protected $sqs;
@@ -18,12 +20,16 @@ class SqsJob extends Job implements JobContract
     /**
      * The Amazon SQS job instance.
      *
+     * Amazon SQS工作实例
+     *
      * @var array
      */
     protected $job;
 
     /**
      * Create a new job instance.
+     *
+     * 创建一个新的工作实例
      *
      * @param  \Illuminate\Container\Container  $container
      * @param  \Aws\Sqs\SqsClient  $sqs
@@ -44,12 +50,14 @@ class SqsJob extends Job implements JobContract
     /**
      * Release the job back into the queue.
      *
+     * 将作业放回队列中
+     *
      * @param  int   $delay
      * @return void
      */
     public function release($delay = 0)
     {
-        parent::release($delay);
+        parent::release($delay);//将作业放回队列中
 
         $this->sqs->changeMessageVisibility([
             'QueueUrl' => $this->queue,
@@ -61,11 +69,13 @@ class SqsJob extends Job implements JobContract
     /**
      * Delete the job from the queue.
      *
+     * 从队列中删除作业
+     *
      * @return void
      */
     public function delete()
     {
-        parent::delete();
+        parent::delete();//从队列中删除作业
 
         $this->sqs->deleteMessage([
             'QueueUrl' => $this->queue, 'ReceiptHandle' => $this->job['ReceiptHandle'],
@@ -74,6 +84,8 @@ class SqsJob extends Job implements JobContract
 
     /**
      * Get the number of times the job has been attempted.
+     *
+     * 获得工作尝试过的次数
      *
      * @return int
      */
@@ -85,6 +97,8 @@ class SqsJob extends Job implements JobContract
     /**
      * Get the job identifier.
      *
+     * 获取工作标识符
+     *
      * @return string
      */
     public function getJobId()
@@ -94,6 +108,8 @@ class SqsJob extends Job implements JobContract
 
     /**
      * Get the raw body string for the job.
+     *
+     * 获取该作业的原始字符串
      *
      * @return string
      */
@@ -105,6 +121,8 @@ class SqsJob extends Job implements JobContract
     /**
      * Get the underlying SQS client instance.
      *
+     * 获取底层的SQS客户端实例
+     *
      * @return \Aws\Sqs\SqsClient
      */
     public function getSqs()
@@ -114,6 +132,8 @@ class SqsJob extends Job implements JobContract
 
     /**
      * Get the underlying raw SQS job.
+     *
+     * 获取底层的原始SQS作业
      *
      * @return array
      */

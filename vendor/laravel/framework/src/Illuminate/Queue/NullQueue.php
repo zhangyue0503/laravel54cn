@@ -3,11 +3,13 @@
 namespace Illuminate\Queue;
 
 use Illuminate\Contracts\Queue\Queue as QueueContract;
-
+//空队列
 class NullQueue extends Queue implements QueueContract
 {
     /**
      * Get the size of the queue.
+     *
+     * 获取队列的大小
      *
      * @param  string  $queue
      * @return int
@@ -19,6 +21,8 @@ class NullQueue extends Queue implements QueueContract
 
     /**
      * Push a new job onto the queue.
+     *
+     * 把新工作推到队列上
      *
      * @param  string  $job
      * @param  mixed   $data
@@ -33,6 +37,8 @@ class NullQueue extends Queue implements QueueContract
     /**
      * Push a raw payload onto the queue.
      *
+     * 将原始有效负载推到队列中
+     *
      * @param  string  $payload
      * @param  string  $queue
      * @param  array   $options
@@ -45,6 +51,8 @@ class NullQueue extends Queue implements QueueContract
 
     /**
      * Push a new job onto the queue after a delay.
+     *
+     * 在延迟之后将新作业推到队列上
      *
      * @param  \DateTime|int  $delay
      * @param  string  $job
@@ -59,6 +67,8 @@ class NullQueue extends Queue implements QueueContract
 
     /**
      * Pop the next job off of the queue.
+     *
+     * 从队列中取出下一个作业
      *
      * @param  string  $queue
      * @return \Illuminate\Contracts\Queue\Job|null

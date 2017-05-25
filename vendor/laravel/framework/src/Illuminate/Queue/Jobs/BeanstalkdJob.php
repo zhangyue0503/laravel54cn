@@ -12,6 +12,8 @@ class BeanstalkdJob extends Job implements JobContract
     /**
      * The Pheanstalk instance.
      *
+     * Pheanstalk实例
+     *
      * @var \Pheanstalk\Pheanstalk
      */
     protected $pheanstalk;
@@ -19,12 +21,16 @@ class BeanstalkdJob extends Job implements JobContract
     /**
      * The Pheanstalk job instance.
      *
+     * Pheanstalk工作实例
+     *
      * @var \Pheanstalk\Job
      */
     protected $job;
 
     /**
      * Create a new job instance.
+     *
+     * 创建一个新的工作实例
      *
      * @param  \Illuminate\Container\Container  $container
      * @param  \Pheanstalk\Pheanstalk  $pheanstalk
@@ -45,12 +51,14 @@ class BeanstalkdJob extends Job implements JobContract
     /**
      * Release the job back into the queue.
      *
+     * 将作业放回队列中
+     *
      * @param  int   $delay
      * @return void
      */
     public function release($delay = 0)
     {
-        parent::release($delay);
+        parent::release($delay);//将作业放回队列中
 
         $priority = Pheanstalk::DEFAULT_PRIORITY;
 
@@ -60,11 +68,13 @@ class BeanstalkdJob extends Job implements JobContract
     /**
      * Bury the job in the queue.
      *
+     * 把工作埋在队列里
+     *
      * @return void
      */
     public function bury()
     {
-        parent::release();
+        parent::release();//将作业放回队列中
 
         $this->pheanstalk->bury($this->job);
     }
@@ -72,17 +82,21 @@ class BeanstalkdJob extends Job implements JobContract
     /**
      * Delete the job from the queue.
      *
+     * 从队列中删除作业
+     *
      * @return void
      */
     public function delete()
     {
-        parent::delete();
+        parent::delete();//从队列中删除作业
 
         $this->pheanstalk->delete($this->job);
     }
 
     /**
      * Get the number of times the job has been attempted.
+     *
+     * 获得工作尝试过的次数
      *
      * @return int
      */
@@ -96,6 +110,8 @@ class BeanstalkdJob extends Job implements JobContract
     /**
      * Get the job identifier.
      *
+     * 得到那份工作标识符
+     *
      * @return string
      */
     public function getJobId()
@@ -105,6 +121,8 @@ class BeanstalkdJob extends Job implements JobContract
 
     /**
      * Get the raw body string for the job.
+     *
+     * 获取该作业的原始字符串
      *
      * @return string
      */
@@ -116,6 +134,8 @@ class BeanstalkdJob extends Job implements JobContract
     /**
      * Get the underlying Pheanstalk instance.
      *
+     * 获取底层的Pheanstalk实例
+     *
      * @return \Pheanstalk\Pheanstalk
      */
     public function getPheanstalk()
@@ -125,6 +145,8 @@ class BeanstalkdJob extends Job implements JobContract
 
     /**
      * Get the underlying Pheanstalk job.
+     *
+     * 获取底层的Pheanstalk作业
      *
      * @return \Pheanstalk\Job
      */

@@ -7,6 +7,8 @@ class LuaScripts
     /**
      * Get the Lua script for computing the size of queue.
      *
+     * 让Lua的脚本计算出队列的大小
+     *
      * KEYS[1] - The name of the primary queue
      * KEYS[2] - The name of the "delayed" queue
      * KEYS[3] - The name of the "reserved" queue
@@ -22,6 +24,8 @@ LUA;
 
     /**
      * Get the Lua script for popping the next job off of the queue.
+     *
+     * 获得Lua的脚本，从队列中弹出下一份工作
      *
      * KEYS[1] - The queue to pop jobs from, for example: queues:foo
      * KEYS[2] - The queue to place reserved jobs on, for example: queues:foo:reserved
@@ -51,6 +55,8 @@ LUA;
     /**
      * Get the Lua script for releasing reserved jobs.
      *
+     * 获得Lua的保留作业
+     *
      * KEYS[1] - The "delayed" queue we release jobs onto, for example: queues:foo:delayed
      * KEYS[2] - The queue the jobs are currently on, for example: queues:foo:reserved
      * ARGV[1] - The raw payload of the job to add to the "delayed" queue
@@ -73,6 +79,8 @@ LUA;
 
     /**
      * Get the Lua script to migrate expired jobs back onto the queue.
+     *
+     * 让Lua的脚本将过期的工作转移到队列上
      *
      * KEYS[1] - The queue we are removing jobs from, for example: queues:foo:reserved
      * KEYS[2] - The queue we are moving jobs to, for example: queues:foo

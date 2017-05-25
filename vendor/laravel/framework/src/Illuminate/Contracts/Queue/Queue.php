@@ -79,6 +79,8 @@ interface Queue
     /**
      * Push an array of jobs onto the queue.
      *
+     * 将一系列作业推到队列中
+     *
      * @param  array   $jobs
      * @param  mixed   $data
      * @param  string  $queue
@@ -89,6 +91,8 @@ interface Queue
     /**
      * Pop the next job off of the queue.
      *
+     * 从队列中取出下一个作业
+     *
      * @param  string  $queue
      * @return \Illuminate\Contracts\Queue\Job|null
      */
@@ -97,12 +101,16 @@ interface Queue
     /**
      * Get the connection name for the queue.
      *
+     * 获取队列的连接名称
+     *
      * @return string
      */
     public function getConnectionName();
 
     /**
      * Set the connection name for the queue.
+     *
+     * 设置队列的连接名称
      *
      * @param  string  $name
      * @return $this

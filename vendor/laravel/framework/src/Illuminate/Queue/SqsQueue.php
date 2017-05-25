@@ -11,12 +11,16 @@ class SqsQueue extends Queue implements QueueContract
     /**
      * The Amazon SQS instance.
      *
+     * Amazon SQS实例
+     *
      * @var \Aws\Sqs\SqsClient
      */
     protected $sqs;
 
     /**
      * The name of the default queue.
+     *
+     * 默认队列的名称
      *
      * @var string
      */
@@ -25,12 +29,16 @@ class SqsQueue extends Queue implements QueueContract
     /**
      * The queue URL prefix.
      *
+     * 队列的URL前缀
+     *
      * @var string
      */
     protected $prefix;
 
     /**
      * Create a new Amazon SQS queue instance.
+     *
+     * 创建一个新的Amazon SQS队列实例
      *
      * @param  \Aws\Sqs\SqsClient  $sqs
      * @param  string  $default
@@ -47,13 +55,15 @@ class SqsQueue extends Queue implements QueueContract
     /**
      * Get the size of the queue.
      *
+     * 获取队列的大小
+     *
      * @param  string  $queue
      * @return int
      */
     public function size($queue = null)
     {
         $response = $this->sqs->getQueueAttributes([
-            'QueueUrl' => $this->getQueue($queue),
+            'QueueUrl' => $this->getQueue($queue),//获取队列或返回默认值
             'AttributeNames' => ['ApproximateNumberOfMessages'],
         ]);
 
@@ -65,6 +75,8 @@ class SqsQueue extends Queue implements QueueContract
     /**
      * Push a new job onto the queue.
      *
+     * 把新工作推到队列上
+     *
      * @param  string  $job
      * @param  mixed   $data
      * @param  string  $queue
@@ -72,11 +84,14 @@ class SqsQueue extends Queue implements QueueContract
      */
     public function push($job, $data = '', $queue = null)
     {
+        //将原始有效负载推到队列中          从给定的作业和数据创建有效载荷字符串
         return $this->pushRaw($this->createPayload($job, $data), $queue);
     }
 
     /**
      * Push a raw payload onto the queue.
+     *
+     * 将原始有效负载推到队列中
      *
      * @param  string  $payload
      * @param  string  $queue
@@ -86,12 +101,15 @@ class SqsQueue extends Queue implements QueueContract
     public function pushRaw($payload, $queue = null, array $options = [])
     {
         return $this->sqs->sendMessage([
+            //               获取队列或返回默认值
             'QueueUrl' => $this->getQueue($queue), 'MessageBody' => $payload,
         ])->get('MessageId');
     }
 
     /**
      * Push a new job onto the queue after a delay.
+     *
+     * 在延迟之后将新作业推到队列上
      *
      * @param  \DateTime|int  $delay
      * @param  string  $job
@@ -102,14 +120,16 @@ class SqsQueue extends Queue implements QueueContract
     public function later($delay, $job, $data = '', $queue = null)
     {
         return $this->sqs->sendMessage([
-            'QueueUrl' => $this->getQueue($queue),
-            'MessageBody' => $this->createPayload($job, $data),
-            'DelaySeconds' => $this->secondsUntil($delay),
+            'QueueUrl' => $this->getQueue($queue),//获取队列或返回默认值
+            'MessageBody' => $this->createPayload($job, $data),//从给定的作业和数据创建有效载荷字符串
+            'DelaySeconds' => $this->secondsUntil($delay),//在给定的DateTime之前获得秒数
         ])->get('MessageId');
     }
 
     /**
      * Pop the next job off of the queue.
+     * 从队列中取出下一个作业
+     *
      *
      * @param  string  $queue
      * @return \Illuminate\Contracts\Queue\Job|null
@@ -117,7 +137,7 @@ class SqsQueue extends Queue implements QueueContract
     public function pop($queue = null)
     {
         $response = $this->sqs->receiveMessage([
-            'QueueUrl' => $queue = $this->getQueue($queue),
+            'QueueUrl' => $queue = $this->getQueue($queue),//获取队列或返回默认值
             'AttributeNames' => ['ApproximateReceiveCount'],
         ]);
 
@@ -132,6 +152,8 @@ class SqsQueue extends Queue implements QueueContract
     /**
      * Get the queue or return the default.
      *
+     * 获取队列或返回默认值
+     *
      * @param  string|null  $queue
      * @return string
      */
@@ -145,6 +167,8 @@ class SqsQueue extends Queue implements QueueContract
 
     /**
      * Get the underlying SQS instance.
+     *
+     * 获取底层的SQS实例
      *
      * @return \Aws\Sqs\SqsClient
      */
