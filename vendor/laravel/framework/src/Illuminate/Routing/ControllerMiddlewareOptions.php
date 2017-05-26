@@ -7,12 +7,16 @@ class ControllerMiddlewareOptions
     /**
      * The middleware options.
      *
+     * 中间件的选项
+     *
      * @var array
      */
     protected $options;
 
     /**
      * Create a new middleware option instance.
+     *
+     * 创建一个新的中间件选项实例
      *
      * @param  array  $options
      * @return void
@@ -39,6 +43,8 @@ class ControllerMiddlewareOptions
 
     /**
      * Set the controller methods the middleware should exclude.
+     *
+     * 设置中间件应该排除的控制器方法
      *
      * @param  array|string|dynamic  $methods
      * @return $this

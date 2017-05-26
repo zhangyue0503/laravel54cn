@@ -127,6 +127,7 @@ class RouteParameterBinder
     protected function replaceDefaults(array $parameters)
     {
         foreach ($parameters as $key => $value) {
+            //                                            使用“点”符号从数组中获取一个项
             $parameters[$key] = isset($value) ? $value : Arr::get($this->route->defaults, $key);
         }
 

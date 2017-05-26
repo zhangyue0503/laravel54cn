@@ -16,6 +16,7 @@ class UrlGenerationException extends Exception
      */
     public static function forMissingParameters($route)
     {
+        //                                                      获取路由实例的名称                  获取与路由关联的URI
         return new static("Missing required parameters for [Route: {$route->getName()}] [URI: {$route->uri()}].");
     }
 }

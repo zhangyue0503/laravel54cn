@@ -69,10 +69,10 @@ class ControllerDispatcher
         if (! method_exists($controller, 'getMiddleware')) {
             return [];
         }
-        // 获取分配给控制器的中间件
+        //                 获取分配给控制器的中间件      创建不通过给定的真值测试的所有元素的集合
         return collect($controller->getMiddleware())->reject(function ($data) use ($method) {
             return static::methodExcludedByOptions($method, $data['options']); // 确定给定的选项是否包含一些特别的方法
-        })->pluck('middleware')->all();
+        })->pluck('middleware')->all();//获取给定键的值->获取集合中的所有项目
     }
 
     /**

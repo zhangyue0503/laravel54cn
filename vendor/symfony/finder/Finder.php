@@ -138,6 +138,8 @@ class Finder implements \IteratorAggregate, \Countable
     /**
      * Adds tests for file dates (last modified).
      *
+     * 为文件日期添加测试(最后修改)
+     *
      * The date must be something that strtotime() is able to parse:
      *
      *   $finder->date('since yesterday');

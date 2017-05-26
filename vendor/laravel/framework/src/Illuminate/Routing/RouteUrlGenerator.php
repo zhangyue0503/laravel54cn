@@ -227,6 +227,7 @@ class RouteUrlGenerator
         $path = $this->replaceNamedParameters($path, $parameters); //替换路径中的所有命名参数
 
         $path = preg_replace_callback('/\{.*?\}/', function ($match) use (&$parameters) {
+            //                             确定给定的字符串的结束是否是给定的子字符串
             return (empty($parameters) && ! Str::endsWith($match[0], '?}'))
                         ? $match[0]
                         : array_shift($parameters);
@@ -248,6 +249,7 @@ class RouteUrlGenerator
     {
         return preg_replace_callback('/\{(.*?)\??\}/', function ($m) use (&$parameters) {
             if (isset($parameters[$m[1]])) {
+                //     从数组中获取值，并将其移除
                 return Arr::pull($parameters, $m[1]);
             } elseif (isset($this->defaultParameters[$m[1]])) {
                 return $this->defaultParameters[$m[1]];

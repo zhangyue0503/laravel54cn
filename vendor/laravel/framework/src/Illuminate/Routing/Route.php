@@ -374,6 +374,7 @@ class Route
     public function hasParameter($name)
     {
         if ($this->hasParameters()) {
+            //                                获取路由参数的键/值列表
             return array_key_exists($name, $this->parameters());
         }
 
@@ -391,6 +392,7 @@ class Route
      */
     public function parameter($name, $default = null)
     {
+        //使用“点”符号从数组中获取一个项     获取路由参数的键/值列表
         return Arr::get($this->parameters(), $name, $default);
     }
 
@@ -405,6 +407,7 @@ class Route
      */
     public function setParameter($name, $value)
     {
+        //获取路由参数的键/值列表
         $this->parameters();
 
         $this->parameters[$name] = $value;
@@ -420,7 +423,7 @@ class Route
      */
     public function forgetParameter($name)
     {
-        $this->parameters();
+        $this->parameters();//获取路由参数的键/值列表
 
         unset($this->parameters[$name]);
     }
@@ -452,6 +455,7 @@ class Route
      */
     public function parametersWithoutNulls()
     {
+        //                  获取路由参数的键/值列表
         return array_filter($this->parameters(), function ($p) {
             return ! is_null($p);
         });
@@ -482,6 +486,7 @@ class Route
      */
     protected function compileParameterNames()
     {
+        //                              获取路由定义的域
         preg_match_all('/\{(.*?)\}/', $this->domain().$this->uri, $matches);
 
         return array_map(function ($m) {
@@ -601,7 +606,7 @@ class Route
      */
     public function httpsOnly()
     {
-        return $this->secure();
+        return $this->secure();//确定路由是否只响应HTTPS请求
     }
 
     /**
@@ -773,6 +778,7 @@ class Route
      */
     public function getActionMethod()
     {
+        //    返回经过给定的真值测试的数组中的最后一个元素      获取路由的action名称
         return array_last(explode('@', $this->getActionName()));
     }
 
@@ -834,6 +840,7 @@ class Route
     public function middleware($middleware = null)
     {
         if (is_null($middleware)) {
+            //使用“点”符号从数组中获取一个项
             return (array) Arr::get($this->action, 'middleware', []);
         }
 

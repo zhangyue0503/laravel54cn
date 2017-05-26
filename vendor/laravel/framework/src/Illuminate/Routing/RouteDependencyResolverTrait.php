@@ -85,6 +85,7 @@ trait RouteDependencyResolverTrait
         //
         // 如果参数具有类型暗示类，我们将检查它是否已在参数列表中。如果是，我们将跳过它，因为它可能是一个模型绑定，我们不想弄乱这些，否则，我们在这里解决它
         //
+        //                  确定的对象是在给定的类的参数列表
         if ($class && ! $this->alreadyInParameters($class->name, $parameters)) {
             return $this->container->make($class->name); //从容器中解析给定类型
         }
@@ -101,6 +102,7 @@ trait RouteDependencyResolverTrait
      */
     protected function alreadyInParameters($class, array $parameters)
     {
+        //                通过给定的真值测试返回数组中的第一个元素
         return ! is_null(Arr::first($parameters, function ($value) use ($class) {
             return $value instanceof $class;
         }));

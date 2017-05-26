@@ -43,6 +43,7 @@ class RouteCompiler
         $uri = preg_replace('/\{(\w+?)\?\}/', '{$1}', $this->route->uri());
 
         return (
+            //                                                                 获取路由定义的域
             new SymfonyRoute($uri, $optionals, $this->route->wheres, [], $this->route->domain() ?: '')
         )->compile(); //返回 编译的SymfonyRoute
     }
@@ -56,6 +57,7 @@ class RouteCompiler
      */
     protected function getOptionalParameters()
     {
+        //                                  获取与路由关联的URI
         preg_match_all('/\{(\w+?)\?\}/', $this->route->uri(), $matches);
 
         return isset($matches[1]) ? array_fill_keys($matches[1], null) : [];

@@ -82,6 +82,7 @@ class RouteAction
      */
     protected static function findCallable(array $action)
     {
+        //通过给定的真值测试返回数组中的第一个元素
         return Arr::first($action, function ($value, $key) {
             return is_callable($value) && is_numeric($key);
         });

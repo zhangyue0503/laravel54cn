@@ -10,6 +10,8 @@ abstract class Controller
     /**
      * The middleware registered on the controller.
      *
+     * 在控制器上注册的中间件
+     *
      * @var array
      */
     protected $middleware = [];
@@ -64,6 +66,8 @@ abstract class Controller
     /**
      * Handle calls to missing methods on the controller.
      *
+     * 处理控制器上的缺失方法的调用
+     *
      * @param  array   $parameters
      * @return mixed
      *
@@ -76,6 +80,8 @@ abstract class Controller
 
     /**
      * Handle calls to missing methods on the controller.
+     *
+     * 处理控制器上的缺失方法的调用
      *
      * @param  string  $method
      * @param  array   $parameters

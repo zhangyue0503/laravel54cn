@@ -12,12 +12,16 @@ class ControllerMakeCommand extends GeneratorCommand
     /**
      * The console command name.
      *
+     * 控制台命令名
+     *
      * @var string
      */
     protected $name = 'make:controller';
 
     /**
      * The console command description.
+     *
+     * 控制台命令描述
      *
      * @var string
      */
@@ -26,6 +30,8 @@ class ControllerMakeCommand extends GeneratorCommand
     /**
      * The type of class being generated.
      *
+     * 生成的类类型
+     *
      * @var string
      */
     protected $type = 'Controller';
@@ -33,10 +39,13 @@ class ControllerMakeCommand extends GeneratorCommand
     /**
      * Get the stub file for the generator.
      *
+     * 获取生成器的桩文件
+     *
      * @return string
      */
     protected function getStub()
     {
+        //获取命令选项的值
         if ($this->option('model')) {
             return __DIR__.'/stubs/controller.model.stub';
         } elseif ($this->option('resource')) {
@@ -49,6 +58,8 @@ class ControllerMakeCommand extends GeneratorCommand
     /**
      * Get the default namespace for the class.
      *
+     * 获取类的默认名称空间
+     *
      * @param  string  $rootNamespace
      * @return string
      */
@@ -60,22 +71,30 @@ class ControllerMakeCommand extends GeneratorCommand
     /**
      * Build the class with the given name.
      *
+     * 用给定的名称构建类
+     *
      * Remove the base controller import if we are already in base namespace.
+     *
+     * 如果我们已经在基本名称空间中，就删除基本控制器导入
      *
      * @param  string  $name
      * @return string
      */
     protected function buildClass($name)
     {
+        //                        获得给定类的完整名称空间，不使用类名
         $controllerNamespace = $this->getNamespace($name);
 
         $replace = [];
-
+        //获取命令选项的值
         if ($this->option('model')) {
+            //                获得完全限定的模型类名
             $modelClass = $this->parseModel($this->option('model'));
 
             if (! class_exists($modelClass)) {
+                //与用户确认一个问题
                 if ($this->confirm("A {$modelClass} model does not exist. Do you want to generate it?", true)) {
+                    //调用另一个控制台命令
                     $this->call('make:model', ['name' => $modelClass]);
                 }
             }
@@ -90,12 +109,15 @@ class ControllerMakeCommand extends GeneratorCommand
         $replace["use {$controllerNamespace}\Controller;\n"] = '';
 
         return str_replace(
+            //                                               用给定的名称构建类
             array_keys($replace), array_values($replace), parent::buildClass($name)
         );
     }
 
     /**
      * Get the fully-qualified model class name.
+     *
+     * 获得完全限定的模型类名
      *
      * @param  string  $model
      * @return string
@@ -107,7 +129,7 @@ class ControllerMakeCommand extends GeneratorCommand
         }
 
         $model = trim(str_replace('/', '\\', $model), '\\');
-
+        //确定给定的子字符串是否属于给定的字符串                       获取应用程序的命名空间
         if (! Str::startsWith($model, $rootNamespace = $this->laravel->getNamespace())) {
             $model = $rootNamespace.$model;
         }
@@ -118,11 +140,14 @@ class ControllerMakeCommand extends GeneratorCommand
     /**
      * Get the console command options.
      *
+     * 获得控制台命令选项
+     *
      * @return array
      */
     protected function getOptions()
     {
         return [
+            //            表示一个命令行选项
             ['model', 'm', InputOption::VALUE_OPTIONAL, 'Generate a resource controller for the given model.'],
 
             ['resource', 'r', InputOption::VALUE_NONE, 'Generate a resource controller class.'],

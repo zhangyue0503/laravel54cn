@@ -371,7 +371,7 @@ class RouteCollection implements Countable, IteratorAggregate
      */
     public function getIterator()
     {
-        return new ArrayIterator($this->getRoutes());
+        return new ArrayIterator($this->getRoutes());//获取集合中的所有路由
     }
 
     /**
@@ -383,6 +383,6 @@ class RouteCollection implements Countable, IteratorAggregate
      */
     public function count()
     {
-        return count($this->getRoutes());
+        return count($this->getRoutes());//获取集合中的所有路由
     }
 }

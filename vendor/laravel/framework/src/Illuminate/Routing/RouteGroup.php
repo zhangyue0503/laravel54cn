@@ -20,13 +20,13 @@ class RouteGroup
         if (isset($new['domain'])) {
             unset($old['domain']);
         }
-
+        //                   格式化新组属性的“as”子句
         $new = array_merge(static::formatAs($new, $old), [
-            'namespace' => static::formatNamespace($new, $old),
-            'prefix' => static::formatPrefix($new, $old),
-            'where' => static::formatWhere($new, $old),
+            'namespace' => static::formatNamespace($new, $old),//为新组属性格式化命名空间
+            'prefix' => static::formatPrefix($new, $old),//为新组属性格式化命名空间
+            'where' => static::formatWhere($new, $old),//对新组属性的“wheres”进行格式化
         ]);
-
+        //                             获取指定数组，除了指定的数组项
         return array_merge_recursive(Arr::except(
             $old, ['namespace', 'prefix', 'where', 'as']
         ), $new);
@@ -34,6 +34,8 @@ class RouteGroup
 
     /**
      * Format the namespace for the new group attributes.
+     *
+     * 为新组属性格式化命名空间
      *
      * @param  array  $new
      * @param  array  $old
@@ -53,12 +55,15 @@ class RouteGroup
     /**
      * Format the prefix for the new group attributes.
      *
+     * 为新组属性格式化命名空间
+     *
      * @param  array  $new
      * @param  array  $old
      * @return string|null
      */
     protected static function formatPrefix($new, $old)
     {
+        //使用“点”符号从数组中获取一个项
         $old = Arr::get($old, 'prefix');
 
         return isset($new['prefix']) ? trim($old, '/').'/'.trim($new['prefix'], '/') : $old;
@@ -66,6 +71,8 @@ class RouteGroup
 
     /**
      * Format the "wheres" for the new group attributes.
+     *
+     * 对新组属性的“wheres”进行格式化
      *
      * @param  array  $new
      * @param  array  $old
@@ -82,6 +89,8 @@ class RouteGroup
     /**
      * Format the "as" clause of the new group attributes.
      *
+     * 格式化新组属性的“as”子句
+     *
      * @param  array  $new
      * @param  array  $old
      * @return array
@@ -89,6 +98,7 @@ class RouteGroup
     protected static function formatAs($new, $old)
     {
         if (isset($old['as'])) {
+            //                      使用“点”符号从数组中获取一个项
             $new['as'] = $old['as'].Arr::get($new, 'as', '');
         }
 

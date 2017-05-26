@@ -331,7 +331,7 @@ class UrlGenerator implements UrlGeneratorContract
     protected function removeIndex($root)
     {
         $i = 'index.php';
-
+        // 确定一个给定的字符串包含另一个字符串
         return Str::contains($root, $i) ? str_replace('/'.$i, '', $root) : $root;
     }
 
@@ -498,7 +498,7 @@ class UrlGenerator implements UrlGeneratorContract
 
             $root = $this->cachedRoot;
         }
-
+        //确定给定的子字符串是否属于给定的字符串
         $start = Str::startsWith($root, 'http://') ? 'http://' : 'https://';
 
         return preg_replace('~'.$start.'~', $scheme, $root, 1);
@@ -538,6 +538,7 @@ class UrlGenerator implements UrlGeneratorContract
      */
     public function isValidUrl($path)
     {
+        //确定给定的子字符串是否属于给定的字符串
         if (! Str::startsWith($path, ['#', '//', 'mailto:', 'tel:', 'http://', 'https://'])) {
             return filter_var($path, FILTER_VALIDATE_URL) !== false;
         }
@@ -571,7 +572,7 @@ class UrlGenerator implements UrlGeneratorContract
      */
     public function defaults(array $defaults)
     {
-        //获取路由URL生成器实例->
+        //获取路由URL生成器实例->设置URL生成器使用的默认命名参数
         $this->routeUrl()->defaults($defaults);
     }
 

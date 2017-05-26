@@ -98,6 +98,8 @@ interface Registrar
     /**
      * Substitute the route bindings onto the route.
      *
+     * 将路由绑定替换到路由
+     *
      * @param  \Illuminate\Routing\Route  $route
      * @return \Illuminate\Routing\Route
      */
@@ -105,6 +107,8 @@ interface Registrar
 
     /**
      * Substitute the implicit Eloquent model bindings for the route.
+     *
+     * 为路由替换隐式的Eloquent模型绑定
      *
      * @param  \Illuminate\Routing\Route  $route
      * @return void

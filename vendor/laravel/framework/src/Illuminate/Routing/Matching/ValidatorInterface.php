@@ -10,6 +10,8 @@ interface ValidatorInterface
     /**
      * Validate a given rule against a route and request.
      *
+     * 根据路由和请求验证给定的规则
+     *
      * @param  \Illuminate\Routing\Route  $route
      * @param  \Illuminate\Http\Request  $request
      * @return bool

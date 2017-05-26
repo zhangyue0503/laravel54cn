@@ -2469,6 +2469,9 @@ class Carbon extends DateTime
      * Add minutes to the instance. Positive $value travels forward while
      * negative $value travels into the past.
      *
+     * 添加几分钟到实例
+     *  积极的价值是向前的，而负的价值则会传递到过去
+     *
      * @param int $value
      *
      * @return static
@@ -2504,6 +2507,8 @@ class Carbon extends DateTime
 
     /**
      * Remove minutes from the instance
+     *
+     * 从实例中删除几分钟
      *
      * @param int $value
      *
