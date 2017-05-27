@@ -46,6 +46,7 @@ class QueueFake implements Queue
      */
     public function assertPushedOn($queue, $job, $callback = null)
     {
+        //断言如果一个任务是基于真实测试回调而被推的
         return $this->assertPushed($job, function ($job, $pushedQueue) use ($callback, $queue) {
             if ($pushedQueue !== $queue) {
                 return false;
@@ -66,6 +67,7 @@ class QueueFake implements Queue
      */
     public function assertNotPushed($job, $callback = null)
     {
+        //断言一个条件是正确的
         PHPUnit::assertTrue(
             //获取所有匹配一个真实测试回调的任务->计数集合中的项目数
             $this->pushed($job, $callback)->count() === 0,

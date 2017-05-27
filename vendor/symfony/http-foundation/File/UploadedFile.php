@@ -206,6 +206,8 @@ class UploadedFile extends File
     /**
      * Returns whether the file was uploaded successfully.
      *
+     * 返回文件是否成功上传
+     *
      * @return bool True if the file has been uploaded with HTTP and no error occurred
      */
     public function isValid()

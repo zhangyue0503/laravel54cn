@@ -70,7 +70,11 @@ class ValidationData
     /**
      * Extract data based on the given dot-notated path.
      *
+     * 根据给定的点指定路径提取数据
+     *
      * Used to extract a sub-section of the data for faster iteration.
+     *
+     * 用于为更快的迭代提取数据的子部分
      *
      * @param  string  $attribute
      * @param  array  $masterData
@@ -92,9 +96,13 @@ class ValidationData
     /**
      * Get the explicit part of the attribute name.
      *
+     * 获取属性名的显式部分
+     *
      * E.g. 'foo.bar.*.baz' -> 'foo.bar'
      *
      * Allows us to not spin through all of the flattened data for some operations.
+     *
+     * 允许我们在一些操作中不旋转所有的平化数据
      *
      * @param  string  $attribute
      * @return string

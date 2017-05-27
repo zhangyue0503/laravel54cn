@@ -9,6 +9,8 @@ class MessageSelector
     /**
      * Select a proper translation string based on the given number.
      *
+     * 根据给定的数字选择适当的翻译字符串
+     *
      * @param  string  $line
      * @param  int  $number
      * @param  string  $locale
@@ -17,13 +19,13 @@ class MessageSelector
     public function choose($line, $number, $locale)
     {
         $segments = explode('|', $line);
-
+        //使用内联条件提取翻译字符串
         if (($value = $this->extract($segments, $number)) !== null) {
             return trim($value);
         }
-
+        //               从每个段中删除行内的条件，只留下文本
         $segments = $this->stripConditions($segments);
-
+        //                   让索引用于复数
         $pluralIndex = $this->getPluralIndex($locale, $number);
 
         if (count($segments) == 1 || ! isset($segments[$pluralIndex])) {
@@ -36,6 +38,8 @@ class MessageSelector
     /**
      * Extract a translation string using inline conditions.
      *
+     * 使用内联条件提取翻译字符串
+     *
      * @param  array  $segments
      * @param  int  $number
      * @return mixed
@@ -43,6 +47,7 @@ class MessageSelector
     private function extract($segments, $number)
     {
         foreach ($segments as $part) {
+            //                         如果条件匹配，就获得翻译字符串
             if (! is_null($line = $this->extractFromString($part, $number))) {
                 return $line;
             }
@@ -51,6 +56,8 @@ class MessageSelector
 
     /**
      * Get the translation string if the condition matches.
+     *
+     * 如果条件匹配，就获得翻译字符串
      *
      * @param  string  $part
      * @param  int  $number
@@ -67,7 +74,7 @@ class MessageSelector
         $condition = $matches[1];
 
         $value = $matches[2];
-
+        //确定一个给定的字符串包含另一个字符串
         if (Str::contains($condition, ',')) {
             list($from, $to) = explode(',', $condition, 2);
 
@@ -86,22 +93,29 @@ class MessageSelector
     /**
      * Strip the inline conditions from each segment, just leaving the text.
      *
+     * 从每个段中删除行内的条件，只留下文本
+     *
      * @param  array  $segments
      * @return array
      */
     private function stripConditions($segments)
     {
+        //                         在每个项目上运行map
         return collect($segments)->map(function ($part) {
             return preg_replace('/^[\{\[]([^\[\]\{\}]*)[\}\]]/', '', $part);
-        })->all();
+        })->all();//获取集合中的所有项目
     }
 
     /**
      * Get the index to use for pluralization.
      *
+     * 让索引用于复数
+     *
      * The plural rules are derived from code of the Zend Framework (2010-09-25), which
      * is subject to the new BSD license (http://framework.zend.com/license/new-bsd)
      * Copyright (c) 2005-2010 - Zend Technologies USA Inc. (http://www.zend.com)
+     *
+     * 复数规则来自于Zend Framework(2010-09-25)的代码，该规则遵循新的BSD许可证(http://framework.zend.com/许可证/新BSD)版权(c)2005-2010-Zend技术美国公司(http://www.zend.com)
      *
      * @param  string  $locale
      * @param  int  $number

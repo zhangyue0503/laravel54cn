@@ -385,6 +385,8 @@ class Validator implements ValidatorContract
     /**
      * Get the primary attribute name.
      *
+     * 获得主属性名
+     *
      * For example, if "name.0" is given, "name.*" will be returned.
      *
      * @param  string  $attribute
@@ -644,6 +646,8 @@ class Validator implements ValidatorContract
     /**
      * Determine if the given attribute has a rule in the given set.
      *
+     * 确定给定属性在给定的集合中是否有规则
+     *
      * @param  string  $attribute
      * @param  string|array  $rules
      * @return bool
@@ -655,6 +659,8 @@ class Validator implements ValidatorContract
 
     /**
      * Get a rule and its parameters for a given attribute.
+     *
+     * 获取给定属性的规则及其参数
      *
      * @param  string  $attribute
      * @param  string|array  $rules
@@ -714,6 +720,8 @@ class Validator implements ValidatorContract
 
     /**
      * Get the value of a given attribute.
+     *
+     * 获取给定属性的值
      *
      * @param  string  $attribute
      * @return mixed
@@ -973,6 +981,8 @@ class Validator implements ValidatorContract
 
     /**
      * Get the Presence Verifier implementation.
+     *
+     * 获得存在验证器的实现
      *
      * @param  string  $connection
      * @return \Illuminate\Validation\PresenceVerifierInterface

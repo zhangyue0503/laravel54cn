@@ -24,6 +24,8 @@ class Schema extends Facade
     /**
      * Get a schema builder instance for the default connection.
      *
+     * 获取默认连接的模式构建器实例
+     *
      * @return \Illuminate\Database\Schema\Builder
      */
     protected static function getFacadeAccessor()

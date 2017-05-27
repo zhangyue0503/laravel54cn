@@ -7,12 +7,16 @@ class ArrayLoader implements LoaderInterface
     /**
      * All of the translation messages.
      *
+     * 所有的翻译信息
+     *
      * @var array
      */
     protected $messages = [];
 
     /**
      * Load the messages for the given locale.
+     *
+     * 为给定的地区加载消息
      *
      * @param  string  $locale
      * @param  string  $group
@@ -33,6 +37,8 @@ class ArrayLoader implements LoaderInterface
     /**
      * Add a new namespace to the loader.
      *
+     * 向加载程序添加一个新的名称空间
+     *
      * @param  string  $namespace
      * @param  string  $hint
      * @return void
@@ -44,6 +50,8 @@ class ArrayLoader implements LoaderInterface
 
     /**
      * Add messages to the loader.
+     *
+     * 向加载程序添加消息
      *
      * @param  string  $locale
      * @param  string  $group
@@ -62,6 +70,8 @@ class ArrayLoader implements LoaderInterface
 
     /**
      * Get an array of all the registered namespaces.
+     *
+     * 获取所有已注册名称空间的数组
      *
      * @return array
      */

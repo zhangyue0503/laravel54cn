@@ -44,7 +44,8 @@ class WelcomeController extends Controller
 	//Laravel框架关键技术解析十三
 	public function indexThirteen(){
 		//    分发消息到适当的处理模块
-		$this->dispatch(new QueuedTest());
+        $queue = (new QueuedTest())->onQueue('processing');
+		$this->dispatch($queue);
 		return view('welcome');
 	}
 	//Laravel框架关键技术解析十二

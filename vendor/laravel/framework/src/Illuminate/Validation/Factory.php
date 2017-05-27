@@ -13,6 +13,8 @@ class Factory implements FactoryContract
     /**
      * The Translator implementation.
      *
+     * 翻译实现
+     *
      * @var \Illuminate\Contracts\Translation\Translator
      */
     protected $translator;

@@ -6,11 +6,15 @@ class In
 {
     /**
      * The name of the rule.
+     *
+     * 规则名
      */
     protected $rule = 'in';
 
     /**
      * The accepted values.
+     *
+     * 通过的值
      *
      * @var array
      */
@@ -18,6 +22,8 @@ class In
 
     /**
      * Create a new in rule instance.
+     *
+     * 创建一个新的规则实例
      *
      * @param  array  $values
      * @return void
@@ -29,6 +35,8 @@ class In
 
     /**
      * Convert the rule to a validation string.
+     *
+     * 将规则转换为一个验证字符串
      *
      * @return string
      */
