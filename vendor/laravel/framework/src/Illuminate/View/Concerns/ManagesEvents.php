@@ -11,6 +11,8 @@ trait ManagesEvents
     /**
      * Register a view creator event.
      *
+     * 注册一个视图创建器事件
+     *
      * @param  array|string     $views
      * @param  \Closure|string  $callback
      * @return array
@@ -20,6 +22,7 @@ trait ManagesEvents
         $creators = [];
 
         foreach ((array) $views as $view) {
+            //              为给定的视图添加事件
             $creators[] = $this->addViewEvent($view, $callback, 'creating: ');
         }
 
@@ -29,6 +32,8 @@ trait ManagesEvents
     /**
      * Register multiple view composers via an array.
      *
+     * 通过数组来注册多个视图的作曲家
+     *
      * @param  array  $composers
      * @return array
      */
@@ -37,6 +42,7 @@ trait ManagesEvents
         $registered = [];
 
         foreach ($composers as $callback => $views) {
+            //                                     注册一个视图composer事件
             $registered = array_merge($registered, $this->composer($views, $callback));
         }
 
@@ -45,6 +51,8 @@ trait ManagesEvents
 
     /**
      * Register a view composer event.
+     *
+     * 注册一个视图composer事件
      *
      * @param  array|string  $views
      * @param  \Closure|string  $callback
@@ -55,6 +63,7 @@ trait ManagesEvents
         $composers = [];
 
         foreach ((array) $views as $view) {
+            //                为给定的视图添加事件
             $composers[] = $this->addViewEvent($view, $callback, 'composing: ');
         }
 
@@ -64,6 +73,8 @@ trait ManagesEvents
     /**
      * Add an event for a given view.
      *
+     * 为给定的视图添加事件
+     *
      * @param  string  $view
      * @param  \Closure|string  $callback
      * @param  string  $prefix
@@ -71,19 +82,23 @@ trait ManagesEvents
      */
     protected function addViewEvent($view, $callback, $prefix = 'composing: ')
     {
-        $view = $this->normalizeName($view);
+        $view = $this->normalizeName($view);//正常的视图名称
 
         if ($callback instanceof Closure) {
+            //向事件调度程序添加侦听器
             $this->addEventListener($prefix.$view, $callback);
 
             return $callback;
         } elseif (is_string($callback)) {
+            //注册一个基于类的视图composer
             return $this->addClassEvent($view, $callback, $prefix);
         }
     }
 
     /**
      * Register a class based view composer.
+     *
+     * 注册一个基于类的视图composer
      *
      * @param  string    $view
      * @param  string    $class
@@ -97,6 +112,9 @@ trait ManagesEvents
         // When registering a class based view "composer", we will simply resolve the
         // classes from the application IoC container then call the compose method
         // on the instance. This allows for convenient, testable view composers.
+        //
+        // 在注册一个基于类的视图“composer”时，我们将简单地从应用程序IoC容器中解析类，然后在实例上调用组合方法。这允许方便、可测试的视图composers
+        //
         $callback = $this->buildClassEventCallback(
             $class, $prefix
         );
@@ -152,6 +170,8 @@ trait ManagesEvents
 
     /**
      * Add a listener to the event dispatcher.
+     *
+     * 向事件调度程序添加侦听器
      *
      * @param  string    $name
      * @param  \Closure  $callback

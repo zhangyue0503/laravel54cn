@@ -7,6 +7,8 @@ trait CompilesConditionals
     /**
      * Compile the has-section statements into valid PHP.
      *
+     * 将has-section语句编译成有效的PHP
+     *
      * @param  string  $expression
      * @return string
      */
@@ -17,6 +19,8 @@ trait CompilesConditionals
 
     /**
      * Compile the if statements into valid PHP.
+     *
+     * 将if语句编译成有效的PHP
      *
      * @param  string  $expression
      * @return string
@@ -29,6 +33,8 @@ trait CompilesConditionals
     /**
      * Compile the unless statements into valid PHP.
      *
+     * 将除非语句编译成有效的PHP
+     *
      * @param  string  $expression
      * @return string
      */
@@ -39,6 +45,8 @@ trait CompilesConditionals
 
     /**
      * Compile the else-if statements into valid PHP.
+     *
+     * 将else-if语句编译成有效的PHP
      *
      * @param  string  $expression
      * @return string
@@ -51,6 +59,8 @@ trait CompilesConditionals
     /**
      * Compile the else statements into valid PHP.
      *
+     * 将else语句编译成有效的PHP
+     *
      * @return string
      */
     protected function compileElse()
@@ -61,6 +71,8 @@ trait CompilesConditionals
     /**
      * Compile the end-if statements into valid PHP.
      *
+     * 将最终if语句编译成有效的PHP
+     *
      * @return string
      */
     protected function compileEndif()
@@ -70,6 +82,8 @@ trait CompilesConditionals
 
     /**
      * Compile the end-unless statements into valid PHP.
+     *
+     * 将最终的除非语句编译成有效的PHP
      *
      * @return string
      */

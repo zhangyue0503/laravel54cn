@@ -11,6 +11,8 @@ class Rule
     /**
      * Get a dimensions constraint builder instance.
      *
+     * 获得一个维度约束构建器实例
+     *
      * @param  array  $constraints
      * @return \Illuminate\Validation\Rules\Dimensions
      */
@@ -21,6 +23,8 @@ class Rule
 
     /**
      * Get a exists constraint builder instance.
+     *
+     * 获得一个存在约束构建器实例
      *
      * @param  string  $table
      * @param  string  $column
@@ -34,6 +38,8 @@ class Rule
     /**
      * Get an in constraint builder instance.
      *
+     * 获得约束构建器实例
+     *
      * @param  array  $values
      * @return \Illuminate\Validation\Rules\In
      */
@@ -45,6 +51,8 @@ class Rule
     /**
      * Get a not_in constraint builder instance.
      *
+     * 获得一个约束构建器实例
+     *
      * @param  array  $values
      * @return \Illuminate\Validation\Rules\NotIn
      */
@@ -55,6 +63,8 @@ class Rule
 
     /**
      * Get a unique constraint builder instance.
+     *
+     * 获得一个惟一的约束构建实例
      *
      * @param  string  $table
      * @param  string  $column

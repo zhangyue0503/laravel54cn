@@ -7,6 +7,8 @@ trait CompilesIncludes
     /**
      * Compile the each statements into valid PHP.
      *
+     * 将每个语句编译成有效的PHP
+     *
      * @param  string  $expression
      * @return string
      */
@@ -18,11 +20,14 @@ trait CompilesIncludes
     /**
      * Compile the include statements into valid PHP.
      *
+     * 将include语句编译成有效的PHP
+     *
      * @param  string  $expression
      * @return string
      */
     protected function compileInclude($expression)
     {
+        //                  从给定表达式中去掉括号
         $expression = $this->stripParentheses($expression);
 
         return "<?php echo \$__env->make({$expression}, array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>";
@@ -31,11 +36,14 @@ trait CompilesIncludes
     /**
      * Compile the include-if statements into valid PHP.
      *
+     * 将include-if语句编译成有效的PHP
+     *
      * @param  string  $expression
      * @return string
      */
     protected function compileIncludeIf($expression)
     {
+        //                  从给定表达式中去掉括号
         $expression = $this->stripParentheses($expression);
 
         return "<?php if (\$__env->exists({$expression})) echo \$__env->make({$expression}, array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>";
@@ -44,11 +52,14 @@ trait CompilesIncludes
     /**
      * Compile the include-when statements into valid PHP.
      *
+     * 将include语句编译成有效的PHP
+     *
      * @param string $expression
      * @return string
      */
     protected function compileIncludeWhen($expression)
     {
+        //                  从给定表达式中去掉括号
         $expression = $this->stripParentheses($expression);
 
         preg_match('/ *(.*), *(.*)$/is', $expression, $matches);

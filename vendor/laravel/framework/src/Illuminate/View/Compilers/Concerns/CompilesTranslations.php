@@ -7,6 +7,8 @@ trait CompilesTranslations
     /**
      * Compile the lang statements into valid PHP.
      *
+     * 将lang语句编译成有效的PHP
+     *
      * @param  string  $expression
      * @return string
      */
@@ -24,6 +26,8 @@ trait CompilesTranslations
     /**
      * Compile the end-lang statements into valid PHP.
      *
+     * 将end-lang语句编译成有效的PHP
+     *
      * @return string
      */
     protected function compileEndlang()
@@ -33,6 +37,8 @@ trait CompilesTranslations
 
     /**
      * Compile the choice statements into valid PHP.
+     *
+     * 将choice语句编译成有效的PHP
      *
      * @param  string  $expression
      * @return string

@@ -7,6 +7,8 @@ trait CompilesComments
     /**
      * Compile Blade comments into an empty string.
      *
+     * 将Blade注释编译成空字符串
+     *
      * @param  string  $value
      * @return string
      */

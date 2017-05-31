@@ -179,6 +179,8 @@ class Factory implements FactoryContract
     /**
      * Normalize a view name.
      *
+     * 正常的视图名称
+     *
      * @param  string $name
      * @return string
      */

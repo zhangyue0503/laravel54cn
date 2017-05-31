@@ -159,6 +159,8 @@ trait ManagesLayouts
     /**
      * Get the parent placeholder for the current request.
      *
+     * 获取当前请求的父占位符
+     *
      * @param  string  $section
      * @return string
      */

@@ -7,6 +7,8 @@ trait CompilesInjections
     /**
      * Compile the inject statements into valid PHP.
      *
+     * 将注入语句编译为有效的PHP
+     *
      * @param  string  $expression
      * @return string
      */

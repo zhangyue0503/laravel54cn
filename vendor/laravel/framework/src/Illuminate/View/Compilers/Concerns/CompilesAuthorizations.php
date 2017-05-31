@@ -7,6 +7,8 @@ trait CompilesAuthorizations
     /**
      * Compile the can statements into valid PHP.
      *
+     * 将can语句编译成有效的PHP
+     *
      * @param  string  $expression
      * @return string
      */
@@ -17,6 +19,8 @@ trait CompilesAuthorizations
 
     /**
      * Compile the cannot statements into valid PHP.
+     *
+     * 将不能语句编译成有效的PHP
      *
      * @param  string  $expression
      * @return string
@@ -29,6 +33,8 @@ trait CompilesAuthorizations
     /**
      * Compile the else-can statements into valid PHP.
      *
+     * 将其他可以使用的语句编译成有效的PHP
+     *
      * @param  string  $expression
      * @return string
      */
@@ -39,6 +45,8 @@ trait CompilesAuthorizations
 
     /**
      * Compile the else-cannot statements into valid PHP.
+     *
+     * 将其他的语句编译成有效的PHP
      *
      * @param  string  $expression
      * @return string
@@ -51,6 +59,8 @@ trait CompilesAuthorizations
     /**
      * Compile the end-can statements into valid PHP.
      *
+     * 将端到端语句编译成有效的PHP
+     *
      * @return string
      */
     protected function compileEndcan()
@@ -60,6 +70,8 @@ trait CompilesAuthorizations
 
     /**
      * Compile the end-cannot statements into valid PHP.
+     *
+     * 将最终的cancan语句编译成有效的PHP
      *
      * @return string
      */

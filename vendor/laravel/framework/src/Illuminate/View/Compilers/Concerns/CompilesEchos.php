@@ -7,11 +7,14 @@ trait CompilesEchos
     /**
      * Compile Blade echos into valid PHP.
      *
+     * 将刀片服务器的echos编译成有效的PHP
+     *
      * @param  string  $value
      * @return string
      */
     protected function compileEchos($value)
     {
+        //        以适当的顺序获得相应的echo方法
         foreach ($this->getEchoMethods() as $method) {
             $value = $this->$method($value);
         }
@@ -21,6 +24,8 @@ trait CompilesEchos
 
     /**
      * Get the echo methods in the proper order for compilation.
+     *
+     * 以适当的顺序获得相应的echo方法
      *
      * @return array
      */
@@ -36,6 +41,8 @@ trait CompilesEchos
     /**
      * Compile the "raw" echo statements.
      *
+     * 编译“原始”的echo语句
+     *
      * @param  string  $value
      * @return string
      */
@@ -45,7 +52,7 @@ trait CompilesEchos
 
         $callback = function ($matches) {
             $whitespace = empty($matches[3]) ? '' : $matches[3].$matches[3];
-
+            //                                                           编译转义的echo语句
             return $matches[1] ? substr($matches[0], 1) : "<?php echo {$this->compileEchoDefaults($matches[2])}; ?>{$whitespace}";
         };
 
@@ -54,6 +61,8 @@ trait CompilesEchos
 
     /**
      * Compile the "regular" echo statements.
+     *
+     * 编译“常规”的echo语句
      *
      * @param  string  $value
      * @return string
@@ -64,7 +73,7 @@ trait CompilesEchos
 
         $callback = function ($matches) {
             $whitespace = empty($matches[3]) ? '' : $matches[3].$matches[3];
-
+            //                                         编译echo语句的默认值
             $wrapped = sprintf($this->echoFormat, $this->compileEchoDefaults($matches[2]));
 
             return $matches[1] ? substr($matches[0], 1) : "<?php echo {$wrapped}; ?>{$whitespace}";
@@ -76,6 +85,8 @@ trait CompilesEchos
     /**
      * Compile the escaped echo statements.
      *
+     * 编译转义的echo语句
+     *
      * @param  string  $value
      * @return string
      */
@@ -85,7 +96,7 @@ trait CompilesEchos
 
         $callback = function ($matches) {
             $whitespace = empty($matches[3]) ? '' : $matches[3].$matches[3];
-
+            //                                                编译echo语句的默认值
             return $matches[1] ? $matches[0] : "<?php echo e({$this->compileEchoDefaults($matches[2])}); ?>{$whitespace}";
         };
 
@@ -94,6 +105,8 @@ trait CompilesEchos
 
     /**
      * Compile the default values for the echo statement.
+     *
+     * 编译echo语句的默认值
      *
      * @param  string  $value
      * @return string
