@@ -4,13 +4,15 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Third Party Services
+    | Third Party Services 第三方服务
     |--------------------------------------------------------------------------
     |
     | This file is for storing the credentials for third party services such
     | as Stripe, Mailgun, SparkPost and others. This file provides a sane
     | default location for this type of information, allowing packages
     | to have a conventional place to find your various credentials.
+    |
+    | 此文件用于存储第三方服务的凭据，如Stripe、Mailgun、SparkPost和其他服务。这个文件为这种类型的信息提供了一个合理的默认位置，允许包有一个传统的位置来查找各种凭据
     |
     */
 
