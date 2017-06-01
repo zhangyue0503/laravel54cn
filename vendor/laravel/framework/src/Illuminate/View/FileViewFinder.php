@@ -10,12 +10,16 @@ class FileViewFinder implements ViewFinderInterface
     /**
      * The filesystem instance.
      *
+     * 文件系统实例
+     *
      * @var \Illuminate\Filesystem\Filesystem
      */
     protected $files;
 
     /**
      * The array of active view paths.
+     *
+     * 活动视图路径的数组
      *
      * @var array
      */
@@ -24,12 +28,16 @@ class FileViewFinder implements ViewFinderInterface
     /**
      * The array of views that have been located.
      *
+     * 已经找到的视图数组
+     *
      * @var array
      */
     protected $views = [];
 
     /**
      * The namespace to file path hints.
+     *
+     * 文件路径提示的名称空间
      *
      * @var array
      */
@@ -38,12 +46,16 @@ class FileViewFinder implements ViewFinderInterface
     /**
      * Register a view extension with the finder.
      *
+     * 用finder注册一个视图扩展名
+     *
      * @var array
      */
     protected $extensions = ['blade.php', 'php', 'css'];
 
     /**
      * Create a new file view loader instance.
+     *
+     * 创建一个新的文件视图加载器实例
      *
      * @param  \Illuminate\Filesystem\Filesystem  $files
      * @param  array  $paths
@@ -63,6 +75,8 @@ class FileViewFinder implements ViewFinderInterface
     /**
      * Get the fully qualified location of the view.
      *
+     * 获得视图的完全限定位置
+     *
      * @param  string  $name
      * @return string
      */
@@ -71,29 +85,35 @@ class FileViewFinder implements ViewFinderInterface
         if (isset($this->views[$name])) {
             return $this->views[$name];
         }
-
+        //返回视图名是否有任何提示信息
         if ($this->hasHintInformation($name = trim($name))) {
+            //                          使用指定路径获取路径到模板
             return $this->views[$name] = $this->findNamespacedView($name);
         }
-
+        //                          在路径列表中找到给定的视图
         return $this->views[$name] = $this->findInPaths($name, $this->paths);
     }
 
     /**
      * Get the path to a template with a named path.
      *
+     * 使用指定路径获取路径到模板
+     *
      * @param  string  $name
      * @return string
      */
     protected function findNamespacedView($name)
     {
+        //                    获取带有指定路径的模板段
         list($namespace, $view) = $this->parseNamespaceSegments($name);
-
+        //在路径列表中找到给定的视图
         return $this->findInPaths($view, $this->hints[$namespace]);
     }
 
     /**
      * Get the segments of a template with a named path.
+     *
+     * 获取带有指定路径的模板段
      *
      * @param  string  $name
      * @return array
@@ -118,6 +138,8 @@ class FileViewFinder implements ViewFinderInterface
     /**
      * Find the given view in the list of paths.
      *
+     * 在路径列表中找到给定的视图
+     *
      * @param  string  $name
      * @param  array   $paths
      * @return string
@@ -127,7 +149,9 @@ class FileViewFinder implements ViewFinderInterface
     protected function findInPaths($name, $paths)
     {
         foreach ((array) $paths as $path) {
+            //获取一组可能的视图文件
             foreach ($this->getPossibleViewFiles($name) as $file) {
+                //确定文件或目录是否存在
                 if ($this->files->exists($viewPath = $path.'/'.$file)) {
                     return $viewPath;
                 }
@@ -139,6 +163,8 @@ class FileViewFinder implements ViewFinderInterface
 
     /**
      * Get an array of possible view files.
+     *
+     * 获取一组可能的视图文件
      *
      * @param  string  $name
      * @return array
@@ -153,6 +179,8 @@ class FileViewFinder implements ViewFinderInterface
     /**
      * Add a location to the finder.
      *
+     * 在finder中添加一个位置
+     *
      * @param  string  $location
      * @return void
      */
@@ -163,6 +191,8 @@ class FileViewFinder implements ViewFinderInterface
 
     /**
      * Prepend a location to the finder.
+     *
+     * 为查找器预先准备一个位置
      *
      * @param  string  $location
      * @return void
@@ -195,6 +225,8 @@ class FileViewFinder implements ViewFinderInterface
     /**
      * Prepend a namespace hint to the finder.
      *
+     * 为查找器预先准备一个名称空间提示
+     *
      * @param  string  $namespace
      * @param  string|array  $hints
      * @return void
@@ -213,6 +245,8 @@ class FileViewFinder implements ViewFinderInterface
     /**
      * Replace the namespace hints for the given namespace.
      *
+     * 替换给定名称空间的名称空间提示
+     *
      * @param  string  $namespace
      * @param  string|array  $hints
      * @return void
@@ -224,6 +258,8 @@ class FileViewFinder implements ViewFinderInterface
 
     /**
      * Register an extension with the view finder.
+     *
+     * 用查看器注册一个扩展名
      *
      * @param  string  $extension
      * @return void
@@ -240,6 +276,8 @@ class FileViewFinder implements ViewFinderInterface
     /**
      * Returns whether or not the view name has any hint information.
      *
+     * 返回视图名是否有任何提示信息
+     *
      * @param  string  $name
      * @return bool
      */
@@ -251,6 +289,8 @@ class FileViewFinder implements ViewFinderInterface
     /**
      * Flush the cache of located views.
      *
+     * 刷新位置视图的缓存
+     *
      * @return void
      */
     public function flush()
@@ -260,6 +300,8 @@ class FileViewFinder implements ViewFinderInterface
 
     /**
      * Get the filesystem instance.
+     *
+     * 获得文件系统实例
      *
      * @return \Illuminate\Filesystem\Filesystem
      */
@@ -271,6 +313,8 @@ class FileViewFinder implements ViewFinderInterface
     /**
      * Get the active view paths.
      *
+     * 获取活动视图路径
+     *
      * @return array
      */
     public function getPaths()
@@ -281,6 +325,8 @@ class FileViewFinder implements ViewFinderInterface
     /**
      * Get the namespace to file path hints.
      *
+     * 获取名称空间到文件路径提示
+     *
      * @return array
      */
     public function getHints()
@@ -290,6 +336,8 @@ class FileViewFinder implements ViewFinderInterface
 
     /**
      * Get registered extensions.
+     *
+     * 获得注册扩展
      *
      * @return array
      */

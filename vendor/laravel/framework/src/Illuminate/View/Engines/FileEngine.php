@@ -7,6 +7,8 @@ class FileEngine implements EngineInterface
     /**
      * Get the evaluated contents of the view.
      *
+     * 获取视图的评估内容
+     *
      * @param  string  $path
      * @param  array   $data
      * @return string

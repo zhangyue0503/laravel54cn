@@ -10,12 +10,16 @@ class EngineResolver
     /**
      * The array of engine resolvers.
      *
+     * 引擎解析器阵列
+     *
      * @var array
      */
     protected $resolvers = [];
 
     /**
      * The resolved engine instances.
+     *
+     * 解析引擎实例
      *
      * @var array
      */
@@ -24,7 +28,11 @@ class EngineResolver
     /**
      * Register a new engine resolver.
      *
+     * 注册一个新的引擎解析器
+     *
      * The engine string typically corresponds to a file extension.
+     *
+     * 引擎字符串通常对应于一个文件扩展名
      *
      * @param  string   $engine
      * @param  \Closure  $resolver

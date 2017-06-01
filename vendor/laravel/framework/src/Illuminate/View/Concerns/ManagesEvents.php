@@ -115,10 +115,12 @@ trait ManagesEvents
         //
         // 在注册一个基于类的视图“composer”时，我们将简单地从应用程序IoC容器中解析类，然后在实例上调用组合方法。这允许方便、可测试的视图composers
         //
+        //                 构建基于类的容器回调闭包
         $callback = $this->buildClassEventCallback(
             $class, $prefix
         );
 
+        //向事件调度程序添加侦听器
         $this->addEventListener($name, $callback);
 
         return $callback;
@@ -127,17 +129,23 @@ trait ManagesEvents
     /**
      * Build a class based container callback Closure.
      *
+     * 构建基于类的容器回调闭包
+     *
      * @param  string  $class
      * @param  string  $prefix
      * @return \Closure
      */
     protected function buildClassEventCallback($class, $prefix)
     {
+        //                                    解析一个基于类的composer名
         list($class, $method) = $this->parseClassEvent($class, $prefix);
 
         // Once we have the class and method name, we can build the Closure to resolve
         // the instance out of the IoC container and call the method on it with the
         // given arguments that are passed to the Closure as the composer's data.
+        //
+        // 一旦我们有了类和方法名，我们就可以构建闭包，以解析IoC容器中的实例，并通过传递给闭包的参数来调用该方法，并将其作为编写器的数据传递给闭包
+        //
         return function () use ($class, $method) {
             return call_user_func_array(
                 [$this->container->make($class), $method], func_get_args()
@@ -148,23 +156,29 @@ trait ManagesEvents
     /**
      * Parse a class based composer name.
      *
+     * 解析一个基于类的composer名
+     *
      * @param  string  $class
      * @param  string  $prefix
      * @return array
      */
     protected function parseClassEvent($class, $prefix)
     {
+        //解析 类@方法 类型回调到类和方法           根据给定的前缀确定类事件方法
         return Str::parseCallback($class, $this->classEventMethodForPrefix($prefix));
     }
 
     /**
      * Determine the class event method based on the given prefix.
      *
+     * 根据给定的前缀确定类事件方法
+     *
      * @param  string  $prefix
      * @return string
      */
     protected function classEventMethodForPrefix($prefix)
     {
+        //确定一个给定的字符串包含另一个字符串
         return Str::contains($prefix, 'composing') ? 'compose' : 'create';
     }
 
@@ -179,34 +193,41 @@ trait ManagesEvents
      */
     protected function addEventListener($name, $callback)
     {
+        //确定一个给定的字符串包含另一个字符串
         if (Str::contains($name, '*')) {
             $callback = function ($name, array $data) use ($callback) {
                 return $callback($data[0]);
             };
         }
-
+        //用分配器注册事件监听器
         $this->events->listen($name, $callback);
     }
 
     /**
      * Call the composer for a given view.
      *
+     * 为给定的视图调用composer
+     *
      * @param  \Illuminate\Contracts\View\View  $view
      * @return void
      */
     public function callComposer(ViewContract $view)
     {
+        //触发事件并调用监听器
         $this->events->fire('composing: '.$view->name(), [$view]);
     }
 
     /**
      * Call the creator for a given view.
      *
+     * 为给定的视图调用创建者
+     *
      * @param  \Illuminate\Contracts\View\View  $view
      * @return void
      */
     public function callCreator(ViewContract $view)
     {
+        //触发事件并调用监听器
         $this->events->fire('creating: '.$view->name(), [$view]);
     }
 }

@@ -9,12 +9,16 @@ trait ManagesLayouts
     /**
      * All of the finished, captured sections.
      *
+     * 所有完成的，捕获的部分
+     *
      * @var array
      */
     protected $sections = [];
 
     /**
      * The stack of in-progress sections.
+     *
+     * 正在进行中的一组
      *
      * @var array
      */
@@ -23,12 +27,16 @@ trait ManagesLayouts
     /**
      * The parent placeholder for the request.
      *
+     * 请求的父占位符
+     *
      * @var string
      */
     protected static $parentPlaceholder = [];
 
     /**
      * Start injecting content into a section.
+     *
+     * 开始向一个部分中注入内容
      *
      * @param  string  $section
      * @param  string|null  $content
@@ -41,6 +49,7 @@ trait ManagesLayouts
                 $this->sectionStack[] = $section;
             }
         } else {
+            //将内容附加到给定的部分
             $this->extendSection($section, e($content));
         }
     }
@@ -48,17 +57,22 @@ trait ManagesLayouts
     /**
      * Inject inline content into a section.
      *
+     * 将内联内容注入到一个部分中
+     *
      * @param  string  $section
      * @param  string  $content
      * @return void
      */
     public function inject($section, $content)
     {
+        //开始向一个部分中注入内容
         return $this->startSection($section, $content);
     }
 
     /**
      * Stop injecting content into a section and return its contents.
+     *
+     * 停止向一个部分中注入内容并返回其内容
      *
      * @return string
      */
@@ -67,12 +81,14 @@ trait ManagesLayouts
         if (empty($this->sectionStack)) {
             return '';
         }
-
+        //获取一个分段的字符串内容            停止向一节中注入内容
         return $this->yieldContent($this->stopSection());
     }
 
     /**
      * Stop injecting content into a section.
+     *
+     * 停止向一节中注入内容
      *
      * @param  bool  $overwrite
      * @return string
@@ -89,6 +105,7 @@ trait ManagesLayouts
         if ($overwrite) {
             $this->sections[$last] = ob_get_clean();
         } else {
+            // 将内容附加到给定的部分
             $this->extendSection($last, ob_get_clean());
         }
 
@@ -97,6 +114,8 @@ trait ManagesLayouts
 
     /**
      * Stop injecting content into a section and append it.
+     *
+     * 停止向一个部分注入内容并附加它
      *
      * @return string
      * @throws \InvalidArgumentException
@@ -121,6 +140,8 @@ trait ManagesLayouts
     /**
      * Append content to a given section.
      *
+     * 将内容附加到给定的部分
+     *
      * @param  string  $section
      * @param  string  $content
      * @return void
@@ -128,6 +149,7 @@ trait ManagesLayouts
     protected function extendSection($section, $content)
     {
         if (isset($this->sections[$section])) {
+            //                     获取当前请求的父占位符
             $content = str_replace(static::parentPlaceholder($section), $content, $this->sections[$section]);
         }
 
@@ -136,6 +158,8 @@ trait ManagesLayouts
 
     /**
      * Get the string contents of a section.
+     *
+     * 获取一个分段的字符串内容
      *
      * @param  string  $section
      * @param  string  $default
@@ -152,6 +176,7 @@ trait ManagesLayouts
         $sectionContent = str_replace('@@parent', '--parent--holder--', $sectionContent);
 
         return str_replace(
+            //                                      获取当前请求的父占位符
             '--parent--holder--', '@parent', str_replace(static::parentPlaceholder($section), '', $sectionContent)
         );
     }
@@ -176,6 +201,8 @@ trait ManagesLayouts
     /**
      * Check if section exists.
      *
+     * 检查是否存在部分
+     *
      * @param  string  $name
      * @return bool
      */
@@ -187,6 +214,8 @@ trait ManagesLayouts
     /**
      * Get the entire array of sections.
      *
+     * 获取全部的分段
+     *
      * @return array
      */
     public function getSections()
@@ -196,6 +225,8 @@ trait ManagesLayouts
 
     /**
      * Flush all of the sections.
+     *
+     * 刷新所有的部分
      *
      * @return void
      */
